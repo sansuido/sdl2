@@ -166,7 +166,10 @@ class SDL_KeyboardEvent extends Struct {
   int keysym_2;
   @Uint16()
   int keysym_3;
-  SDL_Keysym get keysym => addressOf.cast<Uint8>().elementAt(16).cast<SDL_Keysym>().ref;
+}
+// ignore: camel_case_extensions
+extension SDL_KeyboardEventExtension on Pointer<SDL_KeyboardEvent> {
+  SDL_Keysym get keysym => cast<Uint8>().elementAt(16).cast<SDL_Keysym>().ref;
 }
 
 class SDL_TextEditingEvent extends Struct {
@@ -754,7 +757,6 @@ class SDL_Event extends Struct {
   // [4]+(8)
   @Uint64()
   int common_1;
-  SDL_CommonEvent get common => addressOf.cast<Uint8>().elementAt(4).cast<SDL_CommonEvent>().ref;
   // [12]+(24)
   @Uint64()
   int window_1;
@@ -762,7 +764,6 @@ class SDL_Event extends Struct {
   int window_2;
   @Uint64()
   int window_3;
-  SDL_WindowEvent get window => addressOf.cast<Uint8>().elementAt(12).cast<SDL_WindowEvent>().ref;
   // [36]+(30)
   @Uint64()
   int key_1;
@@ -774,7 +775,6 @@ class SDL_Event extends Struct {
   int key_4;
   @Uint16()
   int key_5;
-  SDL_KeyboardEvent get key => addressOf.cast<Uint8>().elementAt(36).cast<SDL_KeyboardEvent>().ref;
   // [66]+(52)
   @Uint64()
   int edit_1;
@@ -790,7 +790,6 @@ class SDL_Event extends Struct {
   int edit_6;
   @Uint32()
   int edit_7;
-  SDL_TextEditingEvent get edit => addressOf.cast<Uint8>().elementAt(66).cast<SDL_TextEditingEvent>().ref;
   // [118]+(44)
   @Uint64()
   int text_1;
@@ -804,7 +803,6 @@ class SDL_Event extends Struct {
   int text_5;
   @Uint32()
   int text_6;
-  SDL_TextInputEvent get text => addressOf.cast<Uint8>().elementAt(118).cast<SDL_TextInputEvent>().ref;
   // [162]+(36)
   @Uint64()
   int motion_1;
@@ -816,7 +814,6 @@ class SDL_Event extends Struct {
   int motion_4;
   @Uint32()
   int motion_5;
-  SDL_MouseMotionEvent get motion => addressOf.cast<Uint8>().elementAt(162).cast<SDL_MouseMotionEvent>().ref;
   // [198]+(28)
   @Uint64()
   int button_1;
@@ -826,7 +823,6 @@ class SDL_Event extends Struct {
   int button_3;
   @Uint32()
   int button_4;
-  SDL_MouseButtonEvent get button => addressOf.cast<Uint8>().elementAt(198).cast<SDL_MouseButtonEvent>().ref;
   // [226]+(24)
   @Uint64()
   int wheel_1;
@@ -834,7 +830,6 @@ class SDL_Event extends Struct {
   int wheel_2;
   @Uint64()
   int wheel_3;
-  SDL_MouseWheelEvent get wheel => addressOf.cast<Uint8>().elementAt(226).cast<SDL_MouseWheelEvent>().ref;
   // [250]+(20)
   @Uint64()
   int jaxis_1;
@@ -842,7 +837,6 @@ class SDL_Event extends Struct {
   int jaxis_2;
   @Uint32()
   int jaxis_3;
-  SDL_JoyAxisEvent get jaxis => addressOf.cast<Uint8>().elementAt(250).cast<SDL_JoyAxisEvent>().ref;
   // [270]+(20)
   @Uint64()
   int jball_1;
@@ -850,25 +844,21 @@ class SDL_Event extends Struct {
   int jball_2;
   @Uint32()
   int jball_3;
-  SDL_JoyBallEvent get jball => addressOf.cast<Uint8>().elementAt(270).cast<SDL_JoyBallEvent>().ref;
   // [290]+(16)
   @Uint64()
   int jhat_1;
   @Uint64()
   int jhat_2;
-  SDL_JoyHatEvent get jhat => addressOf.cast<Uint8>().elementAt(290).cast<SDL_JoyHatEvent>().ref;
   // [306]+(16)
   @Uint64()
   int jbutton_1;
   @Uint64()
   int jbutton_2;
-  SDL_JoyButtonEvent get jbutton => addressOf.cast<Uint8>().elementAt(306).cast<SDL_JoyButtonEvent>().ref;
   // [322]+(12)
   @Uint64()
   int jdevice_1;
   @Uint32()
   int jdevice_2;
-  SDL_JoyDeviceEvent get jdevice => addressOf.cast<Uint8>().elementAt(322).cast<SDL_JoyDeviceEvent>().ref;
   // [334]+(20)
   @Uint64()
   int caxis_1;
@@ -876,23 +866,19 @@ class SDL_Event extends Struct {
   int caxis_2;
   @Uint32()
   int caxis_3;
-  SDL_ControllerAxisEvent get caxis => addressOf.cast<Uint8>().elementAt(334).cast<SDL_ControllerAxisEvent>().ref;
   // [354]+(16)
   @Uint64()
   int cbutton_1;
   @Uint64()
   int cbutton_2;
-  SDL_ControllerButtonEvent get cbutton => addressOf.cast<Uint8>().elementAt(354).cast<SDL_ControllerButtonEvent>().ref;
   // [370]+(12)
   @Uint64()
   int cdevice_1;
   @Uint32()
   int cdevice_2;
-  SDL_ControllerDeviceEvent get cdevice => addressOf.cast<Uint8>().elementAt(370).cast<SDL_ControllerDeviceEvent>().ref;
   // [382]+(8)
   @Uint64()
   int quit_1;
-  SDL_QuitEvent get quit => addressOf.cast<Uint8>().elementAt(382).cast<SDL_QuitEvent>().ref;
   // [390]+(32)
   @Uint64()
   int user_1;
@@ -902,13 +888,11 @@ class SDL_Event extends Struct {
   int user_3;
   @Uint64()
   int user_4;
-  SDL_UserEvent get user => addressOf.cast<Uint8>().elementAt(390).cast<SDL_UserEvent>().ref;
   // [422]+(16)
   @Uint64()
   int syswm_1;
   @Uint64()
   int syswm_2;
-  SDL_SysWMEvent get syswm => addressOf.cast<Uint8>().elementAt(422).cast<SDL_SysWMEvent>().ref;
   // [438]+(44)
   @Uint64()
   int tfinger_1;
@@ -922,7 +906,6 @@ class SDL_Event extends Struct {
   int tfinger_5;
   @Uint32()
   int tfinger_6;
-  SDL_TouchFingerEvent get tfinger => addressOf.cast<Uint8>().elementAt(438).cast<SDL_TouchFingerEvent>().ref;
   // [482]+(36)
   @Uint64()
   int mgesture_1;
@@ -934,7 +917,6 @@ class SDL_Event extends Struct {
   int mgesture_4;
   @Uint32()
   int mgesture_5;
-  SDL_MultiGestureEvent get mgesture => addressOf.cast<Uint8>().elementAt(482).cast<SDL_MultiGestureEvent>().ref;
   // [518]+(40)
   @Uint64()
   int dgesture_1;
@@ -946,13 +928,11 @@ class SDL_Event extends Struct {
   int dgesture_4;
   @Uint64()
   int dgesture_5;
-  SDL_DollarGestureEvent get dgesture => addressOf.cast<Uint8>().elementAt(518).cast<SDL_DollarGestureEvent>().ref;
   // [558]+(16)
   @Uint64()
   int drop_1;
   @Uint64()
   int drop_2;
-  SDL_DropEvent get drop => addressOf.cast<Uint8>().elementAt(558).cast<SDL_DropEvent>().ref;
   // [574]+(1*56)
   @Uint8()
   int padding_1;
@@ -1067,6 +1047,32 @@ class SDL_Event extends Struct {
   @Uint8()
   int padding_56;
 }
+// ignore: camel_case_extensions
+extension SDL_EventExtension on Pointer<SDL_Event> {
+  SDL_CommonEvent get common => cast<Uint8>().elementAt(4).cast<SDL_CommonEvent>().ref;
+  SDL_WindowEvent get window => cast<Uint8>().elementAt(12).cast<SDL_WindowEvent>().ref;
+  SDL_KeyboardEvent get key => cast<Uint8>().elementAt(36).cast<SDL_KeyboardEvent>().ref;
+  SDL_TextEditingEvent get edit => cast<Uint8>().elementAt(66).cast<SDL_TextEditingEvent>().ref;
+  SDL_TextInputEvent get text => cast<Uint8>().elementAt(118).cast<SDL_TextInputEvent>().ref;
+  SDL_MouseMotionEvent get motion => cast<Uint8>().elementAt(162).cast<SDL_MouseMotionEvent>().ref;
+  SDL_MouseButtonEvent get button => cast<Uint8>().elementAt(198).cast<SDL_MouseButtonEvent>().ref;
+  SDL_MouseWheelEvent get wheel => cast<Uint8>().elementAt(226).cast<SDL_MouseWheelEvent>().ref;
+  SDL_JoyAxisEvent get jaxis => cast<Uint8>().elementAt(250).cast<SDL_JoyAxisEvent>().ref;
+  SDL_JoyBallEvent get jball => cast<Uint8>().elementAt(270).cast<SDL_JoyBallEvent>().ref;
+  SDL_JoyHatEvent get jhat => cast<Uint8>().elementAt(290).cast<SDL_JoyHatEvent>().ref;
+  SDL_JoyButtonEvent get jbutton => cast<Uint8>().elementAt(306).cast<SDL_JoyButtonEvent>().ref;
+  SDL_JoyDeviceEvent get jdevice => cast<Uint8>().elementAt(322).cast<SDL_JoyDeviceEvent>().ref;
+  SDL_ControllerAxisEvent get caxis => cast<Uint8>().elementAt(334).cast<SDL_ControllerAxisEvent>().ref;
+  SDL_ControllerButtonEvent get cbutton => cast<Uint8>().elementAt(354).cast<SDL_ControllerButtonEvent>().ref;
+  SDL_ControllerDeviceEvent get cdevice => cast<Uint8>().elementAt(370).cast<SDL_ControllerDeviceEvent>().ref;
+  SDL_QuitEvent get quit => cast<Uint8>().elementAt(382).cast<SDL_QuitEvent>().ref;
+  SDL_UserEvent get user => cast<Uint8>().elementAt(390).cast<SDL_UserEvent>().ref;
+  SDL_SysWMEvent get syswm => cast<Uint8>().elementAt(422).cast<SDL_SysWMEvent>().ref;
+  SDL_TouchFingerEvent get tfinger => cast<Uint8>().elementAt(438).cast<SDL_TouchFingerEvent>().ref;
+  SDL_MultiGestureEvent get mgesture => cast<Uint8>().elementAt(482).cast<SDL_MultiGestureEvent>().ref;
+  SDL_DollarGestureEvent get dgesture => cast<Uint8>().elementAt(518).cast<SDL_DollarGestureEvent>().ref;
+  SDL_DropEvent get drop => cast<Uint8>().elementAt(558).cast<SDL_DropEvent>().ref;
+}
 
 class SDL_GameController extends Opaque {}
 
@@ -1104,7 +1110,6 @@ class SDL_HapticConstant extends Struct {
   int direction_2;
   @Uint8()
   int direction_3;
-  SDL_HapticDirection get direction => addressOf.cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
   // [15]+(4)
   @Uint32()
   int length;
@@ -1133,6 +1138,10 @@ class SDL_HapticConstant extends Struct {
   @Uint16()
   int fade_level;
 }
+// ignore: camel_case_extensions
+extension SDL_HapticConstantExtension on Pointer<SDL_HapticConstant> {
+  SDL_HapticDirection get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
+}
 
 class SDL_HapticPeriodic extends Struct {
   // [0]+(2)
@@ -1145,7 +1154,6 @@ class SDL_HapticPeriodic extends Struct {
   int direction_2;
   @Uint8()
   int direction_3;
-  SDL_HapticDirection get direction => addressOf.cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
   // [15]+(4)
   @Uint32()
   int length;
@@ -1183,6 +1191,10 @@ class SDL_HapticPeriodic extends Struct {
   @Uint16()
   int fade_level;
 }
+// ignore: camel_case_extensions
+extension SDL_HapticPeriodicExtension on Pointer<SDL_HapticPeriodic> {
+  SDL_HapticDirection get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
+}
 
 class SDL_HapticCondition extends Struct {
   // [0]+(2)
@@ -1195,7 +1207,6 @@ class SDL_HapticCondition extends Struct {
   int direction_2;
   @Uint8()
   int direction_3;
-  SDL_HapticDirection get direction => addressOf.cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
   // [15]+(4)
   @Uint32()
   int length;
@@ -1251,6 +1262,10 @@ class SDL_HapticCondition extends Struct {
   @Int16()
   int center_3;
 }
+// ignore: camel_case_extensions
+extension SDL_HapticConditionExtension on Pointer<SDL_HapticCondition> {
+  SDL_HapticDirection get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
+}
 
 class SDL_HapticRamp extends Struct {
   // [0]+(2)
@@ -1263,7 +1278,6 @@ class SDL_HapticRamp extends Struct {
   int direction_2;
   @Uint8()
   int direction_3;
-  SDL_HapticDirection get direction => addressOf.cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
   // [15]+(4)
   @Uint32()
   int length;
@@ -1295,6 +1309,10 @@ class SDL_HapticRamp extends Struct {
   @Uint16()
   int fade_level;
 }
+// ignore: camel_case_extensions
+extension SDL_HapticRampExtension on Pointer<SDL_HapticRamp> {
+  SDL_HapticDirection get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
+}
 
 class SDL_HapticLeftRight extends Struct {
   // [0]+(2)
@@ -1322,7 +1340,6 @@ class SDL_HapticCustom extends Struct {
   int direction_2;
   @Uint8()
   int direction_3;
-  SDL_HapticDirection get direction => addressOf.cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
   // [15]+(4)
   @Uint32()
   int length;
@@ -1359,6 +1376,10 @@ class SDL_HapticCustom extends Struct {
   @Uint16()
   int fade_level;
 }
+// ignore: camel_case_extensions
+extension SDL_HapticCustomExtension on Pointer<SDL_HapticCustom> {
+  SDL_HapticDirection get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
+}
 
 class SDL_HapticEffect extends Struct {
   // [0]+(2)
@@ -1377,7 +1398,6 @@ class SDL_HapticEffect extends Struct {
   int ant_5;
   @Uint8()
   int ant_6;
-  SDL_HapticConstant get ant => addressOf.cast<Uint8>().elementAt(2).cast<SDL_HapticConstant>().ref;
   // [37]+(41)
   @Uint64()
   int periodic_1;
@@ -1391,7 +1411,6 @@ class SDL_HapticEffect extends Struct {
   int periodic_5;
   @Uint8()
   int periodic_6;
-  SDL_HapticPeriodic get periodic => addressOf.cast<Uint8>().elementAt(37).cast<SDL_HapticPeriodic>().ref;
   // [78]+(61)
   @Uint64()
   int condition_1;
@@ -1411,7 +1430,6 @@ class SDL_HapticEffect extends Struct {
   int condition_8;
   @Uint8()
   int condition_9;
-  SDL_HapticCondition get condition => addressOf.cast<Uint8>().elementAt(78).cast<SDL_HapticCondition>().ref;
   // [139]+(37)
   @Uint64()
   int ramp_1;
@@ -1425,13 +1443,11 @@ class SDL_HapticEffect extends Struct {
   int ramp_5;
   @Uint8()
   int ramp_6;
-  SDL_HapticRamp get ramp => addressOf.cast<Uint8>().elementAt(139).cast<SDL_HapticRamp>().ref;
   // [176]+(10)
   @Uint64()
   int leftright_1;
   @Uint16()
   int leftright_2;
-  SDL_HapticLeftRight get leftright => addressOf.cast<Uint8>().elementAt(176).cast<SDL_HapticLeftRight>().ref;
   // [186]+(46)
   @Uint64()
   int custom_1;
@@ -1447,7 +1463,15 @@ class SDL_HapticEffect extends Struct {
   int custom_6;
   @Uint16()
   int custom_7;
-  SDL_HapticCustom get custom => addressOf.cast<Uint8>().elementAt(186).cast<SDL_HapticCustom>().ref;
+}
+// ignore: camel_case_extensions
+extension SDL_HapticEffectExtension on Pointer<SDL_HapticEffect> {
+  SDL_HapticConstant get ant => cast<Uint8>().elementAt(2).cast<SDL_HapticConstant>().ref;
+  SDL_HapticPeriodic get periodic => cast<Uint8>().elementAt(37).cast<SDL_HapticPeriodic>().ref;
+  SDL_HapticCondition get condition => cast<Uint8>().elementAt(78).cast<SDL_HapticCondition>().ref;
+  SDL_HapticRamp get ramp => cast<Uint8>().elementAt(139).cast<SDL_HapticRamp>().ref;
+  SDL_HapticLeftRight get leftright => cast<Uint8>().elementAt(176).cast<SDL_HapticLeftRight>().ref;
+  SDL_HapticCustom get custom => cast<Uint8>().elementAt(186).cast<SDL_HapticCustom>().ref;
 }
 
 class SDL_Joystick extends Opaque {}
@@ -1536,10 +1560,13 @@ class SDL_MessageBoxColorScheme extends Struct {
   int colors_3;
   @Uint8()
   int colors_4;
+}
+// ignore: camel_case_extensions
+extension SDL_MessageBoxColorSchemeExtension on Pointer<SDL_MessageBoxColorScheme> {
   List<SDL_MessageBoxColor> get colors {
     List<SDL_MessageBoxColor> list;
     for (var i = 0; i < 5; i++) {
-      list.add(addressOf.cast<Uint8>().elementAt(0 + i * 3).cast<SDL_MessageBoxColor>().ref);
+      list.add(cast<Uint8>().elementAt(0 + i * 3).cast<SDL_MessageBoxColor>().ref);
     }
     return list;
   }
@@ -1764,7 +1791,10 @@ class SDL_WindowShapeParams extends Struct {
   // [1]+(4)
   @Uint32()
   int colorKey_1;
-  SDL_Color get colorKey => addressOf.cast<Uint8>().elementAt(1).cast<SDL_Color>().ref;
+}
+// ignore: camel_case_extensions
+extension SDL_WindowShapeParamsExtension on Pointer<SDL_WindowShapeParams> {
+  SDL_Color get colorKey => cast<Uint8>().elementAt(1).cast<SDL_Color>().ref;
 }
 
 class SDL_WindowShapeMode extends Struct {
@@ -1776,7 +1806,10 @@ class SDL_WindowShapeMode extends Struct {
   int parameters_1;
   @Uint8()
   int parameters_2;
-  SDL_WindowShapeParams get parameters => addressOf.cast<Uint8>().elementAt(4).cast<SDL_WindowShapeParams>().ref;
+}
+// ignore: camel_case_extensions
+extension SDL_WindowShapeModeExtension on Pointer<SDL_WindowShapeMode> {
+  SDL_WindowShapeParams get parameters => cast<Uint8>().elementAt(4).cast<SDL_WindowShapeParams>().ref;
 }
 
 class SDL_iconv_t extends Opaque {}
@@ -1810,12 +1843,15 @@ class SDL_Surface extends Struct {
   int clip_rect_1;
   @Uint64()
   int clip_rect_2;
-  SDL_Rect get clip_rect => addressOf.cast<Uint8>().elementAt(52).cast<SDL_Rect>().ref;
   // [68]+(8)
   Pointer<Pointer<Void>> map;
   // [76]+(4)
   @Int32()
   int refcount;
+}
+// ignore: camel_case_extensions
+extension SDL_SurfaceExtension on Pointer<SDL_Surface> {
+  SDL_Rect get clip_rect => cast<Uint8>().elementAt(52).cast<SDL_Rect>().ref;
 }
 
 class NSWindow extends Opaque {}
