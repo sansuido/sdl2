@@ -215,132 +215,132 @@ int TTF_SizeUNICODE(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Int32>
   return _TTF_SizeUNICODE(font, text, w, h);
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Solid(TTF_Font *font, const char *text, SDL_Color fg)
-Pointer<SDL_Surface> TTF_RenderText_Solid(Pointer<TTF_Font> font, String text, Pointer<Void> fg) {
+Pointer<SDL_Surface> TTF_RenderText_Solid(Pointer<TTF_Font> font, String text, SDL_Color fg) {
   final _TTF_RenderText_Solid = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg)>('TTF_RenderText_Solid');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg)>('TTF_RenderText_Solid');
   final _textPointer = text.toNativeUtf8();
   final _result = _TTF_RenderText_Solid(font, _textPointer, fg);
   calloc.free(_textPointer);
   return _result;
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Solid(TTF_Font *font, const char *text, SDL_Color fg)
-Pointer<SDL_Surface> TTF_RenderUTF8_Solid(Pointer<TTF_Font> font, String text, Pointer<Void> fg) {
+Pointer<SDL_Surface> TTF_RenderUTF8_Solid(Pointer<TTF_Font> font, String text, SDL_Color fg) {
   final _TTF_RenderUTF8_Solid = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg)>('TTF_RenderUTF8_Solid');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg)>('TTF_RenderUTF8_Solid');
   final _textPointer = text.toNativeUtf8();
   final _result = _TTF_RenderUTF8_Solid(font, _textPointer, fg);
   calloc.free(_textPointer);
   return _result;
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Solid(TTF_Font *font, const Uint16 *text, SDL_Color fg)
-Pointer<SDL_Surface> TTF_RenderUNICODE_Solid(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Void> fg) {
+Pointer<SDL_Surface> TTF_RenderUNICODE_Solid(Pointer<TTF_Font> font, Pointer<Uint16> text, SDL_Color fg) {
   final _TTF_RenderUNICODE_Solid = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Void> fg),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Void> fg)>('TTF_RenderUNICODE_Solid');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, SDL_Color fg),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, SDL_Color fg)>('TTF_RenderUNICODE_Solid');
   return _TTF_RenderUNICODE_Solid(font, text, fg);
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph_Solid(TTF_Font *font, Uint16 ch, SDL_Color fg)
-Pointer<SDL_Surface> TTF_RenderGlyph_Solid(Pointer<TTF_Font> font, int ch, Pointer<Void> fg) {
+Pointer<SDL_Surface> TTF_RenderGlyph_Solid(Pointer<TTF_Font> font, int ch, SDL_Color fg) {
   final _TTF_RenderGlyph_Solid = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Uint16 ch, Pointer<Void> fg),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, int ch, Pointer<Void> fg)>('TTF_RenderGlyph_Solid');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Uint16 ch, SDL_Color fg),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, int ch, SDL_Color fg)>('TTF_RenderGlyph_Solid');
   return _TTF_RenderGlyph_Solid(font, ch, fg);
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Shaded(TTF_Font *font, const char *text, SDL_Color fg, SDL_Color bg)
-Pointer<SDL_Surface> TTF_RenderText_Shaded(Pointer<TTF_Font> font, String text, Pointer<Void> fg, Pointer<Void> bg) {
+Pointer<SDL_Surface> TTF_RenderText_Shaded(Pointer<TTF_Font> font, String text, SDL_Color fg, SDL_Color bg) {
   final _TTF_RenderText_Shaded = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg, Pointer<Void> bg),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg, Pointer<Void> bg)>('TTF_RenderText_Shaded');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg, SDL_Color bg),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg, SDL_Color bg)>('TTF_RenderText_Shaded');
   final _textPointer = text.toNativeUtf8();
   final _result = _TTF_RenderText_Shaded(font, _textPointer, fg, bg);
   calloc.free(_textPointer);
   return _result;
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Shaded(TTF_Font *font, const char *text, SDL_Color fg, SDL_Color bg)
-Pointer<SDL_Surface> TTF_RenderUTF8_Shaded(Pointer<TTF_Font> font, String text, Pointer<Void> fg, Pointer<Void> bg) {
+Pointer<SDL_Surface> TTF_RenderUTF8_Shaded(Pointer<TTF_Font> font, String text, SDL_Color fg, SDL_Color bg) {
   final _TTF_RenderUTF8_Shaded = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg, Pointer<Void> bg),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg, Pointer<Void> bg)>('TTF_RenderUTF8_Shaded');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg, SDL_Color bg),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg, SDL_Color bg)>('TTF_RenderUTF8_Shaded');
   final _textPointer = text.toNativeUtf8();
   final _result = _TTF_RenderUTF8_Shaded(font, _textPointer, fg, bg);
   calloc.free(_textPointer);
   return _result;
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Shaded(TTF_Font *font, const Uint16 *text, SDL_Color fg, SDL_Color bg)
-Pointer<SDL_Surface> TTF_RenderUNICODE_Shaded(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Void> fg, Pointer<Void> bg) {
+Pointer<SDL_Surface> TTF_RenderUNICODE_Shaded(Pointer<TTF_Font> font, Pointer<Uint16> text, SDL_Color fg, SDL_Color bg) {
   final _TTF_RenderUNICODE_Shaded = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Void> fg, Pointer<Void> bg),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Void> fg, Pointer<Void> bg)>('TTF_RenderUNICODE_Shaded');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, SDL_Color fg, SDL_Color bg),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, SDL_Color fg, SDL_Color bg)>('TTF_RenderUNICODE_Shaded');
   return _TTF_RenderUNICODE_Shaded(font, text, fg, bg);
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph_Shaded(TTF_Font *font, Uint16 ch, SDL_Color fg, SDL_Color bg)
-Pointer<SDL_Surface> TTF_RenderGlyph_Shaded(Pointer<TTF_Font> font, int ch, Pointer<Void> fg, Pointer<Void> bg) {
+Pointer<SDL_Surface> TTF_RenderGlyph_Shaded(Pointer<TTF_Font> font, int ch, SDL_Color fg, SDL_Color bg) {
   final _TTF_RenderGlyph_Shaded = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Uint16 ch, Pointer<Void> fg, Pointer<Void> bg),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, int ch, Pointer<Void> fg, Pointer<Void> bg)>('TTF_RenderGlyph_Shaded');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Uint16 ch, SDL_Color fg, SDL_Color bg),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, int ch, SDL_Color fg, SDL_Color bg)>('TTF_RenderGlyph_Shaded');
   return _TTF_RenderGlyph_Shaded(font, ch, fg, bg);
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Blended(TTF_Font *font, const char *text, SDL_Color fg)
-Pointer<SDL_Surface> TTF_RenderText_Blended(Pointer<TTF_Font> font, String text, Pointer<Void> fg) {
+Pointer<SDL_Surface> TTF_RenderText_Blended(Pointer<TTF_Font> font, String text, SDL_Color fg) {
   final _TTF_RenderText_Blended = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg)>('TTF_RenderText_Blended');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg)>('TTF_RenderText_Blended');
   final _textPointer = text.toNativeUtf8();
   final _result = _TTF_RenderText_Blended(font, _textPointer, fg);
   calloc.free(_textPointer);
   return _result;
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Blended(TTF_Font *font, const char *text, SDL_Color fg)
-Pointer<SDL_Surface> TTF_RenderUTF8_Blended(Pointer<TTF_Font> font, String text, Pointer<Void> fg) {
+Pointer<SDL_Surface> TTF_RenderUTF8_Blended(Pointer<TTF_Font> font, String text, SDL_Color fg) {
   final _TTF_RenderUTF8_Blended = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg)>('TTF_RenderUTF8_Blended');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg)>('TTF_RenderUTF8_Blended');
   final _textPointer = text.toNativeUtf8();
   final _result = _TTF_RenderUTF8_Blended(font, _textPointer, fg);
   calloc.free(_textPointer);
   return _result;
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Blended(TTF_Font *font, const Uint16 *text, SDL_Color fg)
-Pointer<SDL_Surface> TTF_RenderUNICODE_Blended(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Void> fg) {
+Pointer<SDL_Surface> TTF_RenderUNICODE_Blended(Pointer<TTF_Font> font, Pointer<Uint16> text, SDL_Color fg) {
   final _TTF_RenderUNICODE_Blended = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Void> fg),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Void> fg)>('TTF_RenderUNICODE_Blended');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, SDL_Color fg),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, SDL_Color fg)>('TTF_RenderUNICODE_Blended');
   return _TTF_RenderUNICODE_Blended(font, text, fg);
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Blended_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, Uint32 wrapLength)
-Pointer<SDL_Surface> TTF_RenderText_Blended_Wrapped(Pointer<TTF_Font> font, String text, Pointer<Void> fg, int wrapLength) {
+Pointer<SDL_Surface> TTF_RenderText_Blended_Wrapped(Pointer<TTF_Font> font, String text, SDL_Color fg, int wrapLength) {
   final _TTF_RenderText_Blended_Wrapped = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg, Uint32 wrapLength),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg, int wrapLength)>('TTF_RenderText_Blended_Wrapped');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg, Uint32 wrapLength),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg, int wrapLength)>('TTF_RenderText_Blended_Wrapped');
   final _textPointer = text.toNativeUtf8();
   final _result = _TTF_RenderText_Blended_Wrapped(font, _textPointer, fg, wrapLength);
   calloc.free(_textPointer);
   return _result;
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Blended_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, Uint32 wrapLength)
-Pointer<SDL_Surface> TTF_RenderUTF8_Blended_Wrapped(Pointer<TTF_Font> font, String text, Pointer<Void> fg, int wrapLength) {
+Pointer<SDL_Surface> TTF_RenderUTF8_Blended_Wrapped(Pointer<TTF_Font> font, String text, SDL_Color fg, int wrapLength) {
   final _TTF_RenderUTF8_Blended_Wrapped = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg, Uint32 wrapLength),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, Pointer<Void> fg, int wrapLength)>('TTF_RenderUTF8_Blended_Wrapped');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg, Uint32 wrapLength),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Utf8> text, SDL_Color fg, int wrapLength)>('TTF_RenderUTF8_Blended_Wrapped');
   final _textPointer = text.toNativeUtf8();
   final _result = _TTF_RenderUTF8_Blended_Wrapped(font, _textPointer, fg, wrapLength);
   calloc.free(_textPointer);
   return _result;
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Blended_Wrapped(TTF_Font *font, const Uint16 *text, SDL_Color fg, Uint32 wrapLength)
-Pointer<SDL_Surface> TTF_RenderUNICODE_Blended_Wrapped(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Void> fg, int wrapLength) {
+Pointer<SDL_Surface> TTF_RenderUNICODE_Blended_Wrapped(Pointer<TTF_Font> font, Pointer<Uint16> text, SDL_Color fg, int wrapLength) {
   final _TTF_RenderUNICODE_Blended_Wrapped = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Void> fg, Uint32 wrapLength),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, Pointer<Void> fg, int wrapLength)>('TTF_RenderUNICODE_Blended_Wrapped');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, SDL_Color fg, Uint32 wrapLength),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Pointer<Uint16> text, SDL_Color fg, int wrapLength)>('TTF_RenderUNICODE_Blended_Wrapped');
   return _TTF_RenderUNICODE_Blended_Wrapped(font, text, fg, wrapLength);
 }
 // extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph_Blended(TTF_Font *font, Uint16 ch, SDL_Color fg)
-Pointer<SDL_Surface> TTF_RenderGlyph_Blended(Pointer<TTF_Font> font, int ch, Pointer<Void> fg) {
+Pointer<SDL_Surface> TTF_RenderGlyph_Blended(Pointer<TTF_Font> font, int ch, SDL_Color fg) {
   final _TTF_RenderGlyph_Blended = _SDL2_ttf.lookupFunction<
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Uint16 ch, Pointer<Void> fg),
-      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, int ch, Pointer<Void> fg)>('TTF_RenderGlyph_Blended');
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, Uint16 ch, SDL_Color fg),
+      Pointer<SDL_Surface> Function(Pointer<TTF_Font> font, int ch, SDL_Color fg)>('TTF_RenderGlyph_Blended');
   return _TTF_RenderGlyph_Blended(font, ch, fg);
 }
 // extern DECLSPEC void SDLCALL TTF_CloseFont(TTF_Font *font)

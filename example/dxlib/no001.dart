@@ -22,8 +22,8 @@ bool init() {
   } else {
     window = SDL_CreateWindow(
         TITLE,
-        SDL_WINDOWPOS_UNDEFINED_MASK,
-        SDL_WINDOWPOS_UNDEFINED_MASK,
+        SDL_WINDOWPOS_UNDEFINED,
+        SDL_WINDOWPOS_UNDEFINED,
         SCREEN_WIDTH,
         SCREEN_HEIGHT,
         SDL_WINDOW_SHOWN);
