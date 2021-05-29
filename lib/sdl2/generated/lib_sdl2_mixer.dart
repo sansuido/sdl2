@@ -1,10 +1,11 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
+import 'dart:io';
 import 'package:ffi/ffi.dart';
 import 'struct_sdl2.dart';
 import 'struct_sdl2_mixer.dart';
 
-final _SDL2_mixer = DynamicLibrary.open('SDL2_mixer.dll');
+final _SDL2_mixer = DynamicLibrary.open(Platform.isWindows ? 'SDL2_mixer.dll' : 'libSDL2_mixer.so');
 
 // extern DECLSPEC const SDL_version * SDLCALL Mix_Linked_Version(void)
 Pointer<SDL_version> Mix_Linked_Version() {

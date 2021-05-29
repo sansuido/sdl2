@@ -1,9 +1,10 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
+import 'dart:io';
 import 'package:ffi/ffi.dart';
 import 'struct_sdl2.dart';
 
-final _SDL2_image = DynamicLibrary.open('SDL2_image.dll');
+final _SDL2_image = DynamicLibrary.open(Platform.isWindows ? 'SDL2_image.dll' : 'libSDL2_image.so');
 
 // extern DECLSPEC const SDL_version * SDLCALL IMG_Linked_Version(void)
 Pointer<SDL_version> IMG_Linked_Version() {

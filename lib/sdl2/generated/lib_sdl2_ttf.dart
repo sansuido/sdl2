@@ -1,10 +1,11 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
+import 'dart:io';
 import 'package:ffi/ffi.dart';
 import 'struct_sdl2.dart';
 import 'struct_sdl2_ttf.dart';
 
-final _SDL2_ttf = DynamicLibrary.open('SDL2_ttf.dll');
+final _SDL2_ttf = DynamicLibrary.open(Platform.isWindows ? 'SDL2_ttf.dll' : 'libSDL2_ttf.so');
 
 // extern DECLSPEC const SDL_version * SDLCALL TTF_Linked_Version(void)
 Pointer<SDL_version> TTF_Linked_Version() {

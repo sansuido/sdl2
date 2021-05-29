@@ -1,17 +1,21 @@
+## 1.0.4
+
+- [update]Linux環境下でも実行できるように変更
+
 ## 1.0.3
 
-- SDL_Colorの引数がVoid *に変換されていたのを修正
+- [fix]SDL_Colorの引数がVoid *に変換されていたのを修正
 
 ## 1.0.2
 
-- struct内で使用していたaddressOfを廃止し、extensionに処理を移行
-- constのダブルクォーテーションをシングルクォーテーションに変更
+- [fix]struct内で使用していたaddressOfを廃止し、extensionに処理を移行
+- [fix]constのダブルクォーテーションをシングルクォーテーションに変更
 
 ## 1.0.1
 
-- defineの改行バグでSDL_boolが生成されていなかったのを修正
+- [fix]defineの改行バグでSDL_boolが生成されていなかったのを修正
 
 
 ## 1.0.0
 
-- Initial
+- [fix]Initial

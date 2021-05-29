@@ -1,9 +1,10 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
+import 'dart:io';
 import 'package:ffi/ffi.dart';
 import 'struct_sdl2.dart';
 
-final _SDL2 = DynamicLibrary.open('SDL2.dll');
+final _SDL2 = DynamicLibrary.open(Platform.isWindows ? 'SDL2.dll' : 'libSDL2.so');
 
 // extern DECLSPEC int SDLCALL SDL_Init(Uint32 flags)
 int SDL_Init(int flags) {

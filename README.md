@@ -3,11 +3,11 @@ SDL2 for Dart
 
 # Requirement
 
-* ffi ^1.0.0
+* ffi ^1.1.0
 
 # Note
 
-windows only...
+Windows 64bit & Linux (Tested under Windows 10 WSL2 environment)
 
 # Author
 

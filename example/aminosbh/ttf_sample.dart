@@ -36,8 +36,8 @@ import 'package:sdl2/sdl2.dart';
 const SCREEN_WIDTH = 800;
 const SCREEN_HEIGHT = 600;
 
-// Japanese font test (Windows only...)
-const FONT_PATH = 'C:/Windows/Fonts/msgothic.ttc';
+const FONT_PATH = 'res/SourceHanCodeJP.ttc';
+//const FONT_PATH = 'C:/Windows/Fonts/msgothic.ttc';
 
 int main() {
   // Initialize SDL2
