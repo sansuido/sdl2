@@ -1,4 +1,7 @@
 // https://dxlib.xsrv.jp/dxprogram.html#N1
+// 1.キー入力の基本
+// 1.Keystroke basics
+
 import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:sdl2/sdl2.dart';
@@ -87,18 +90,18 @@ int main() {
       SDL_RenderClear(renderer);
       SDL_SetRenderDrawColor(renderer, 0x00, 0xff, 0x00, 0xff);
       var playerRect = calloc<SDL_Rect>();
-      playerRect.ref
-        ..x = playerX
-        ..y = playerY
-        ..w = PLAYER_WIDTH
-        ..h = PLAYER_HEIGHT;
+      playerRect
+        ..ref.x = playerX
+        ..ref.y = playerY
+        ..ref.w = PLAYER_WIDTH
+        ..ref.h = PLAYER_HEIGHT;
       SDL_RenderFillRect(renderer, playerRect);
       SDL_RenderPresent(renderer);
       calloc.free(playerRect);
     }
     calloc.free(e);
-    // close
-    close();
   }
+  // close
+  close();
   return 0;
 }
