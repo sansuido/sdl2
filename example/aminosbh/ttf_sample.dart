@@ -41,7 +41,7 @@ const FONT_PATH = 'res/SourceHanCodeJP.ttc';
 
 int main() {
   // Initialize SDL2
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+  if (SDL_Init(SDL_INIT_VIDEO)! < 0) {
     print('SDL2 could not be initialized!\n'
         'SDL2 s: ${SDL_GetError()}\n');
     return 0;
@@ -72,8 +72,8 @@ int main() {
       squareRect.ref.w = SCREEN_HEIGHT ~/ 2;
       squareRect.ref.h = SCREEN_HEIGHT ~/ 2;
       // Square position: In the middle of the screen
-      squareRect.ref.x = SCREEN_WIDTH ~/ 2 - squareRect.ref.w ~/ 2;
-      squareRect.ref.y = SCREEN_HEIGHT ~/ 2 - squareRect.ref.h ~/ 2;
+      squareRect.ref.x = SCREEN_WIDTH ~/ 2 - squareRect.ref.w! ~/ 2;
+      squareRect.ref.y = SCREEN_HEIGHT ~/ 2 - squareRect.ref.h! ~/ 2;
       var font = TTF_OpenFont(FONT_PATH, 40);
       if (font == nullptr) {
         print('Unable to load font: \'$FONT_PATH\'!\n'
@@ -108,12 +108,14 @@ int main() {
           return 0;
         }
         // Get text dimensions
-        textRect.ref.w = textSurface.ref.w;
-        textRect.ref.h = textSurface.ref.h;
-        SDL_FreeSurface(textSurface);
+        if (textSurface != null) {
+          textRect.ref.w = textSurface.ref.w;
+          textRect.ref.h = textSurface.ref.h;
+          SDL_FreeSurface(textSurface);
+        }
       }
-      textRect.ref.x = (SCREEN_WIDTH - textRect.ref.w) ~/ 2;
-      textRect.ref.y = squareRect.ref.y - textRect.ref.h - 10;
+      textRect.ref.x = (SCREEN_WIDTH - textRect.ref.w!) ~/ 2;
+      textRect.ref.y = squareRect.ref.y! - textRect.ref.h! - 10;
       // Event loop exit flag
       var quit = false;
       // Event loop

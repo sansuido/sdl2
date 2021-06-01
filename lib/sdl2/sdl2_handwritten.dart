@@ -51,24 +51,24 @@ import './generated/struct_sdl2.dart';
 //const SDL_SCANCODE_TO_KEYCODE = (X) (X | SDLK_SCANCODE_MASK);
 //const main = SDL_main;
 //const SDL_BUTTON = (X) (1 << ((X)-1));
-int SDL_BUTTON(int x) {
-  return 1 << (x - 1);
+int? SDL_BUTTON(int? x) {
+  return 1 << (x! - 1);
 }
 
 //const SDL_BUTTON_LMASK = SDL_BUTTON(SDL_BUTTON_LEFT);
-final int SDL_BUTTON_LMASK = SDL_BUTTON(SDL_BUTTON_LEFT);
+final int? SDL_BUTTON_LMASK = SDL_BUTTON(SDL_BUTTON_LEFT);
 
 //const SDL_BUTTON_MMASK = SDL_BUTTON(SDL_BUTTON_MIDDLE);
-final int SDL_BUTTON_MMASK = SDL_BUTTON(SDL_BUTTON_MIDDLE);
+final int? SDL_BUTTON_MMASK = SDL_BUTTON(SDL_BUTTON_MIDDLE);
 
 //const SDL_BUTTON_RMASK = SDL_BUTTON(SDL_BUTTON_RIGHT);
-final int SDL_BUTTON_RMASK = SDL_BUTTON(SDL_BUTTON_RIGHT);
+final int? SDL_BUTTON_RMASK = SDL_BUTTON(SDL_BUTTON_RIGHT);
 
 //const SDL_BUTTON_X1MASK = SDL_BUTTON(SDL_BUTTON_X1);
-final int SDL_BUTTON_X1MASK = SDL_BUTTON(SDL_BUTTON_X1);
+final int? SDL_BUTTON_X1MASK = SDL_BUTTON(SDL_BUTTON_X1);
 
 //const SDL_BUTTON_X2MASK = SDL_BUTTON(SDL_BUTTON_X2);
-final int SDL_BUTTON_X2MASK = SDL_BUTTON(SDL_BUTTON_X2);
+final int? SDL_BUTTON_X2MASK = SDL_BUTTON(SDL_BUTTON_X2);
 
 //const SDL_MUTEX_MAXWAIT = (~(Uint32)0);
 //const SDL_mutexP = (m) SDL_LockMutex(m);
@@ -115,83 +115,85 @@ final int SDL_BUTTON_X2MASK = SDL_BUTTON(SDL_BUTTON_X2);
 //const SDL_ICONV_EINVAL = (size_t)-4;
 
 //const SDL_iconv_utf8_locale = (S) SDL_iconv_string('', 'UTF-8', S, SDL_strlen(S)+1);
-Pointer<Int8> SDL_iocnv_utf8_locate(String s) {
-  return SDL_iconv_string('', 'UTF-8', s, SDL_strlen(s)+1);
+Pointer<Int8>? SDL_iocnv_utf8_locate(String? s) {
+  return SDL_iconv_string('', 'UTF-8', s, SDL_strlen(s)!+1)!;
 }
 
 //const SDL_iconv_utf8_ucs2 = (S) (Uint16 *)SDL_iconv_string('UCS-2-INTERNAL', 'UTF-8', S, SDL_strlen(S)+1);
-Pointer<Uint16> SDL_ioconv_utf8_ucs2(String s) {
-  return SDL_iconv_string('UCS-2-INTERNAL', 'UTF-8', s, SDL_strlen(s)+1).cast<Uint16>();
+Pointer<Uint16>? SDL_ioconv_utf8_ucs2(String? s) {
+  return SDL_iconv_string('UCS-2-INTERNAL', 'UTF-8', s, SDL_strlen(s)!+1)!.cast<Uint16>();
 }
 
 //const SDL_iconv_utf8_ucs4 = (S) (Uint32 *)SDL_iconv_string('UCS-4-INTERNAL', 'UTF-8', S, SDL_strlen(S)+1);
-Pointer<Uint32> SDL_ioconv_utf8_ucs4(String s) {
-  return SDL_iconv_string('UCS-4-INTERNAL', 'UTF-8', s, SDL_strlen(s)+1).cast<Uint32>();
+Pointer<Uint32>? SDL_ioconv_utf8_ucs4(String? s) {
+  return SDL_iconv_string('UCS-4-INTERNAL', 'UTF-8', s, SDL_strlen(s)!+1)!.cast<Uint32>();
 }
 
 //const SDL_MUSTLOCK = (S) (((S)->flags & SDL_RLEACCEL) != 0);
 
 //const SDL_LoadBMP = (file) SDL_LoadBMP_RW(SDL_RWFromFile(file, 'rb'), 1);
-Pointer<SDL_Surface> SDL_LoadBMP(String file) {
-  return SDL_LoadBMP_RW(SDL_RWFromFile(file, 'rb'), 1);
+Pointer<SDL_Surface> SDL_LoadBMP(String? file) {
+  return SDL_LoadBMP_RW(SDL_RWFromFile(file, 'rb'), 1)!;
 }
 
 //const SDL_SaveBMP = (surface, file) \ SDL_SaveBMP_RW(surface, SDL_RWFromFile(file, 'wb'), 1);
-int SDL_SaveBMP(Pointer<SDL_Surface> surface, String file) {
-  return SDL_SaveBMP_RW(surface, SDL_RWFromFile(file, 'wb'), 1);
+int SDL_SaveBMP(Pointer<SDL_Surface>? surface, String? file) {
+  return SDL_SaveBMP_RW(surface, SDL_RWFromFile(file, 'wb'), 1)!;
 }
 
 //const SDL_BlitSurface = SDL_UpperBlit;
-int SDL_BlitSurface(Pointer<SDL_Surface> src, Pointer<SDL_Rect> srcrect, Pointer<SDL_Surface> dst, Pointer<SDL_Rect> dstrect) {
-  return SDL_UpperBlit(src, srcrect, dst, dstrect);
+int SDL_BlitSurface(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? dstrect) {
+  return SDL_UpperBlit(src, srcrect, dst, dstrect)!;
 }
 
 //const SDL_BlitScaled = SDL_UpperBlitScaled;
-int SDL_BlitScaled(Pointer<SDL_Surface> src, Pointer<SDL_Rect> srcrect, Pointer<SDL_Surface> dst, Pointer<SDL_Rect> dstrect) {
-  return SDL_UpperBlitScaled(src, srcrect, dst, dstrect);
+int SDL_BlitScaled(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? dstrect) {
+  return SDL_UpperBlitScaled(src, srcrect, dst, dstrect)!;
 }
 
 //const SDL_CreateThread = (fn, name, data) SDL_CreateThread(fn, name, data, (pfnSDL_CurrentBeginThread)_beginthreadex, (pfnSDL_CurrentEndThread)_endthreadex);
 //const SDL_TOUCH_MOUSEID = ((Uint32)-1);
 
 //const SDL_VERSION = (x) \{ \ (x)->major = SDL_MAJOR_VERSION; \ (x)->minor = SDL_MINOR_VERSION; \ (x)->patch = SDL_PATCHLEVEL; \};
-void SDL_VERSION(Pointer<SDL_version> x) {
-  x.ref.major = SDL_MAJOR_VERSION;
-  x.ref.minor = SDL_MINOR_VERSION;
-  x.ref.patch = SDL_PATCHLEVEL;
+void SDL_VERSION(Pointer<SDL_version>? x) {
+  if (x != null) {
+    x.ref.major = SDL_MAJOR_VERSION;
+    x.ref.minor = SDL_MINOR_VERSION;
+    x.ref.patch = SDL_PATCHLEVEL;
+  }
 }
 
 //const SDL_VERSIONNUM = (X, Y, Z) \ ((X)*1000 + (Y)*100 + (Z));
-int SDL_VERSIONNUM (int x, int y, int z) {
-  return x * 1000 + y * 100 + z;
+int? SDL_VERSIONNUM (int? x, int? y, int? z) {
+  return x! * 1000 + y! * 100 + z!;
 }
 //const SDL_COMPILEDVERSION = \ SDL_VERSIONNUM(SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
 final SDL_COMPILEDVERSION = SDL_VERSIONNUM(SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
 
 //const SDL_VERSION_ATLEAST = (X, Y, Z) \ (SDL_COMPILEDVERSION >= SDL_VERSIONNUM(X, Y, Z));
-bool SDL_VERSION_ATLEAST(int x, int y, int z) {
-  return SDL_COMPILEDVERSION >= SDL_VERSIONNUM(x, y, z);
+bool SDL_VERSION_ATLEAST(int? x, int? y, int? z) {
+  return SDL_COMPILEDVERSION! >= SDL_VERSIONNUM(x, y, z)!;
 }
 
 //SDL_WINDOWPOS_UNDEFINED_DISPLAY = (X) (SDL_WINDOWPOS_UNDEFINED_MASK|(X));
-int SDL_WINDOWPOS_UNDEFINED_DISPLAY(int x) {
-  return SDL_WINDOWPOS_UNDEFINED_MASK | x;
+int? SDL_WINDOWPOS_UNDEFINED_DISPLAY(int? x) {
+  return SDL_WINDOWPOS_UNDEFINED_MASK | x!;
 }
 //const SDL_WINDOWPOS_UNDEFINED = SDL_WINDOWPOS_UNDEFINED_DISPLAY(0);
 final SDL_WINDOWPOS_UNDEFINED = SDL_WINDOWPOS_UNDEFINED_DISPLAY(0);
 
 //const SDL_WINDOWPOS_ISUNDEFINED = (X) \ (((X)&0xFFFF0000) == SDL_WINDOWPOS_UNDEFINED_MASK);
-bool SDL_WINDOWPOS_ISUNDEFINED(int x) {
-  return x & 0xFFFF0000 == SDL_WINDOWPOS_UNDEFINED_MASK;
+bool SDL_WINDOWPOS_ISUNDEFINED(int? x) {
+  return x! & 0xFFFF0000 == SDL_WINDOWPOS_UNDEFINED_MASK;
 }
 //const SDL_WINDOWPOS_CENTERED_DISPLAY = (X) (SDL_WINDOWPOS_CENTERED_MASK|(X));
-int SDL_WINDOWPOS_CENTERED_DISPLAY(int x) {
-  return SDL_WINDOWPOS_CENTERED_MASK | x;
+int? SDL_WINDOWPOS_CENTERED_DISPLAY(int? x) {
+  return SDL_WINDOWPOS_CENTERED_MASK | x!;
 }
 //const SDL_WINDOWPOS_CENTERED = SDL_WINDOWPOS_CENTERED_DISPLAY(0);
 final SDL_WINDOWPOS_CENTERED = SDL_WINDOWPOS_CENTERED_DISPLAY(0);
 
 //const SDL_WINDOWPOS_ISCENTERED = (X) \ (((X)&0xFFFF0000) == SDL_WINDOWPOS_CENTERED_MASK);
-bool SDL_WINDOWPOS_ISCENTERED(int x) {
-  return x & 0xFFFF0000 == SDL_WINDOWPOS_CENTERED_MASK;
+bool SDL_WINDOWPOS_ISCENTERED(int? x) {
+  return x! & 0xFFFF0000 == SDL_WINDOWPOS_CENTERED_MASK;
 }

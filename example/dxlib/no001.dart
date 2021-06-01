@@ -19,7 +19,7 @@ var playerY = (SCREEN_HEIGHT - PLAYER_HEIGHT) ~/ 2;
 
 bool init() {
   var success = true;
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+  if (SDL_Init(SDL_INIT_VIDEO)! < 0) {
     print('${SDL_GetError()}');
     success = false;
   } else {
@@ -68,17 +68,19 @@ int main() {
             break;
           case SDL_KEYDOWN:
             var keys = SDL_GetKeyboardState(nullptr);
-            if (keys[SDL_SCANCODE_UP] != 0) {
-              playerY -= PLAYER_HEIGHT ~/ 2;
-            }
-            if (keys[SDL_SCANCODE_DOWN] != 0) {
-              playerY += PLAYER_HEIGHT ~/ 2;
-            }
-            if (keys[SDL_SCANCODE_LEFT] != 0) {
-              playerX -= PLAYER_WIDTH ~/ 2;
-            }
-            if (keys[SDL_SCANCODE_RIGHT] != 0) {
-              playerX += PLAYER_WIDTH ~/ 2;
+            if (keys != null) {
+              if (keys[SDL_SCANCODE_UP] != 0) {
+                playerY -= PLAYER_HEIGHT ~/ 2;
+              }
+              if (keys[SDL_SCANCODE_DOWN] != 0) {
+                playerY += PLAYER_HEIGHT ~/ 2;
+              }
+              if (keys[SDL_SCANCODE_LEFT] != 0) {
+                playerX -= PLAYER_WIDTH ~/ 2;
+              }
+              if (keys[SDL_SCANCODE_RIGHT] != 0) {
+                playerX += PLAYER_WIDTH ~/ 2;
+              }
             }
             break;
           default:

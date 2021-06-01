@@ -22,7 +22,7 @@ var gPlayerY = (SCREEN_HEIGHT - PLAYER_HEIGHT) ~/ 2;
 var gJumpPower = 0;
 
 bool init() {
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+  if (SDL_Init(SDL_INIT_VIDEO)! < 0) {
     print('${SDL_GetError()}');
     return false;
   }
@@ -59,21 +59,23 @@ void close() {
 
 void update() {
   var keys = SDL_GetKeyboardState(nullptr);
-  if (keys[SDL_SCANCODE_UP] != 0) {
-    gPlayerY -= PLAYER_HEIGHT ~/ 4;
-  }
-  if (keys[SDL_SCANCODE_DOWN] != 0) {
-    gPlayerY += PLAYER_HEIGHT ~/ 4;
-  }
-  if (keys[SDL_SCANCODE_LEFT] != 0) {
-    gPlayerX -= PLAYER_WIDTH ~/ 4;
-  }
-  if (keys[SDL_SCANCODE_RIGHT] != 0) {
-    gPlayerX += PLAYER_WIDTH ~/ 4;
-  }
-  if (keys[SDL_SCANCODE_SPACE] != 0) {
-    if (gPlayerY == 300) {
-      gJumpPower = 20;
+  if (keys != null) {
+    if (keys[SDL_SCANCODE_UP] != 0) {
+      gPlayerY -= PLAYER_HEIGHT ~/ 4;
+    }
+    if (keys[SDL_SCANCODE_DOWN] != 0) {
+      gPlayerY += PLAYER_HEIGHT ~/ 4;
+    }
+    if (keys[SDL_SCANCODE_LEFT] != 0) {
+      gPlayerX -= PLAYER_WIDTH ~/ 4;
+    }
+    if (keys[SDL_SCANCODE_RIGHT] != 0) {
+      gPlayerX += PLAYER_WIDTH ~/ 4;
+    }
+    if (keys[SDL_SCANCODE_SPACE] != 0) {
+      if (gPlayerY == 300) {
+        gJumpPower = 20;
+      }
     }
   }
   gPlayerY -= gJumpPower;
@@ -124,7 +126,7 @@ int main() {
     var quit = false;
     while (!quit) {
       // frameStart
-      var frameStart = SDL_GetTicks();
+      var frameStart = SDL_GetTicks()!;
       // update
       update();
       // handleEvents
@@ -132,7 +134,7 @@ int main() {
       // render
       render();
       // frameEnd
-      var frameTime = SDL_GetTicks() - frameStart;
+      var frameTime = SDL_GetTicks()! - frameStart;
       if (frameTime < DELAY_TIME) {
         SDL_Delay((DELAY_TIME - frameTime).toInt());
       } else {

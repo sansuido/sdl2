@@ -43,7 +43,7 @@ var gMapData = [
 ];
 
 bool init() {
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+  if (SDL_Init(SDL_INIT_VIDEO)! < 0) {
     print('${SDL_GetError()}');
     return false;
   }
@@ -82,25 +82,27 @@ void close() {
 void update() {
   if (gMove == 0) {
     var keys = SDL_GetKeyboardState(nullptr);
-    if (keys[SDL_SCANCODE_UP] != 0) {
-      gMove = 1;
-      gMoveX = 0;
-      gMoveY = -1;
-    }
-    if (keys[SDL_SCANCODE_DOWN] != 0) {
-      gMove = 1;
-      gMoveX = 0;
-      gMoveY = 1;
-    }
-    if (keys[SDL_SCANCODE_LEFT] != 0) {
-      gMove = 1;
-      gMoveX = -1;
-      gMoveY = 0;
-    }
-    if (keys[SDL_SCANCODE_RIGHT] != 0) {
-      gMove = 1;
-      gMoveX = 1;
-      gMoveY = 0;
+    if (keys != null) {
+      if (keys[SDL_SCANCODE_UP] != 0) {
+        gMove = 1;
+        gMoveX = 0;
+        gMoveY = -1;
+      }
+      if (keys[SDL_SCANCODE_DOWN] != 0) {
+        gMove = 1;
+        gMoveX = 0;
+        gMoveY = 1;
+      }
+      if (keys[SDL_SCANCODE_LEFT] != 0) {
+        gMove = 1;
+        gMoveX = -1;
+        gMoveY = 0;
+      }
+      if (keys[SDL_SCANCODE_RIGHT] != 0) {
+        gMove = 1;
+        gMoveX = 1;
+        gMoveY = 0;
+      }
     }
     if (gMove == 1) {
       if (gMapData[gPlayerY + gMoveY][gPlayerX + gMoveX] == 0) {
@@ -169,7 +171,7 @@ void render() {
       if (drawX < 0 || drawX >= gMapData[y].length) {
         continue;
       }
-      if (gMapData[drawY][drawX] == 0) {
+      if (gMapData[drawY as int][drawX as int] == 0) {
         rect
             ..ref.x = x * MAP_SIZE + gScrollX
             ..ref.y = y * MAP_SIZE + gScrollY
@@ -182,8 +184,8 @@ void render() {
   // player
   SDL_SetRenderDrawColor(gRenderer, 0xff, 0xff, 0xff, 0xff);
   rect
-      ..ref.x = (gPlayerX - mapDrawPointX) * MAP_SIZE
-      ..ref.y = (gPlayerY - mapDrawPointY) * MAP_SIZE
+      ..ref.x = ((gPlayerX - mapDrawPointX) * MAP_SIZE) as int?
+      ..ref.y = ((gPlayerY - mapDrawPointY) * MAP_SIZE) as int?
       ..ref.w = MAP_SIZE
       ..ref.h = MAP_SIZE;
   SDL_RenderFillRect(gRenderer, rect);
@@ -197,7 +199,7 @@ int main() {
     var quit = false;
     while (!quit) {
       // frameStart
-      var frameStart = SDL_GetTicks();
+      var frameStart = SDL_GetTicks()!;
       // update
       update();
       // handleEvents
@@ -205,7 +207,7 @@ int main() {
       // render
       render();
       // frameEnd
-      var frameTime = SDL_GetTicks() - frameStart;
+      var frameTime = SDL_GetTicks()! - frameStart;
       if (frameTime < DELAY_TIME) {
         SDL_Delay((DELAY_TIME - frameTime).toInt());
       } else {

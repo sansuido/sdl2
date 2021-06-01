@@ -1,21 +1,25 @@
+## 1.0.5
+
+- [update] Rewrote the source to support null safety.
+
 ## 1.0.4
 
-- [update]Linux環境下でも実行できるように変更
+- [update] Support Linux.
 
 ## 1.0.3
 
-- [fix]SDL_Colorの引数がVoid *に変換されていたのを修正
+- [fix] Fixed a bug where SDL_Color was Void *.
 
 ## 1.0.2
 
-- [fix]struct内で使用していたaddressOfを廃止し、extensionに処理を移行
-- [fix]constのダブルクォーテーションをシングルクォーテーションに変更
+- [fix] Abolished addressOf.
+- [fix] Fixed to use single quotation instead of double quotation.
 
 ## 1.0.1
 
-- [fix]defineの改行バグでSDL_boolが生成されていなかったのを修正
+- [fix] Fixed a bug where SDL_bool was not created by auto-generation.
 
 
 ## 1.0.0
 
-- [fix]Initial
+- [add] Initial.
