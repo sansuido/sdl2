@@ -43,7 +43,7 @@ var gMapData = [
 ];
 
 bool init() {
-  if (SDL_Init(SDL_INIT_VIDEO)! < 0) {
+  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     print('${SDL_GetError()}');
     return false;
   }
@@ -133,7 +133,7 @@ bool handleEvents() {
   var quit = false;
   var e = calloc<SDL_Event>();
   while (SDL_PollEvent(e) != 0) {
-    switch (e.ref.type) {
+    switch (e.type) {
       case SDL_QUIT:
         quit = true;
         break;
@@ -184,8 +184,8 @@ void render() {
   // player
   SDL_SetRenderDrawColor(gRenderer, 0xff, 0xff, 0xff, 0xff);
   rect
-      ..ref.x = ((gPlayerX - mapDrawPointX) * MAP_SIZE) as int?
-      ..ref.y = ((gPlayerY - mapDrawPointY) * MAP_SIZE) as int?
+      ..ref.x = ((gPlayerX - mapDrawPointX) * MAP_SIZE) as int
+      ..ref.y = ((gPlayerY - mapDrawPointY) * MAP_SIZE) as int
       ..ref.w = MAP_SIZE
       ..ref.h = MAP_SIZE;
   SDL_RenderFillRect(gRenderer, rect);
@@ -199,7 +199,7 @@ int main() {
     var quit = false;
     while (!quit) {
       // frameStart
-      var frameStart = SDL_GetTicks()!;
+      var frameStart = SDL_GetTicks();
       // update
       update();
       // handleEvents
@@ -207,7 +207,7 @@ int main() {
       // render
       render();
       // frameEnd
-      var frameTime = SDL_GetTicks()! - frameStart;
+      var frameTime = SDL_GetTicks() - frameStart;
       if (frameTime < DELAY_TIME) {
         SDL_Delay((DELAY_TIME - frameTime).toInt());
       } else {

@@ -3,22 +3,22 @@ import 'dart:ffi';
 class SDLNet_version extends Struct {
   // [0]+(1)
   @Uint8()
-  external int? major;
+  external int major;
   // [1]+(1)
   @Uint8()
-  external int? minor;
+  external int minor;
   // [2]+(1)
   @Uint8()
-  external int? patch;
+  external int patch;
 }
 
 class IPaddress extends Struct {
   // [0]+(4)
   @Uint32()
-  external int? host;
+  external int host;
   // [4]+(2)
   @Uint16()
-  external int? port;
+  external int port;
 }
 
 class TCPsocket extends Opaque {}
@@ -28,18 +28,18 @@ class UDPsocket extends Opaque {}
 class UDPpacket extends Struct {
   // [0]+(4)
   @Int32()
-  external int? channel;
+  external int channel;
   // [4]+(8)
   external Pointer<Uint8>? data;
   // [12]+(4)
   @Int32()
-  external int? len;
+  external int len;
   // [16]+(4)
   @Int32()
-  external int? maxlen;
+  external int maxlen;
   // [20]+(4)
   @Int32()
-  external int? status;
+  external int status;
   // [24]+(6)
   @Uint32()
   external int? address_1;
@@ -56,6 +56,6 @@ class SDLNet_SocketSet extends Opaque {}
 class SDLNet_GenericSocket extends Struct {
   // [0]+(4)
   @Int32()
-  external int? ready;
+  external int ready;
 }
 

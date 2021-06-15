@@ -19,7 +19,7 @@ var playerY = (SCREEN_HEIGHT - PLAYER_HEIGHT) ~/ 2;
 
 bool init() {
   var success = true;
-  if (SDL_Init(SDL_INIT_VIDEO)! < 0) {
+  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     print('${SDL_GetError()}');
     success = false;
   } else {
@@ -62,7 +62,7 @@ int main() {
     var e = calloc<SDL_Event>();
     while (!quit) {
       while (SDL_PollEvent(e) != 0) {
-        switch (e.ref.type) {
+        switch (e.type) {
           case SDL_QUIT:
             quit = true;
             break;

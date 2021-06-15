@@ -19,7 +19,7 @@ int main() {
         SDL_RenderDrawLine(renderer.value, 340, 240, 320, 200);
         SDL_RenderPresent(renderer.value);
         while (SDL_PollEvent(event) != 0) {
-          if (event.ref.type == SDL_QUIT) {
+          if (event.type == SDL_QUIT) {
             done = SDL_TRUE;
           }
         }

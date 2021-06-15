@@ -1,3 +1,7 @@
+## 1.0.6
+
+- [add] Add comment to function.
+
 ## 1.0.5
 
 - [update] Rewrote the source to support null safety.
