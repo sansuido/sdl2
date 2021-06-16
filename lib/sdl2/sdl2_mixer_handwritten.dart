@@ -40,12 +40,12 @@ bool SDL_MIXER_VERSION_ATLEAST(int x, int y, int z) {
 /// ```c
 /// const MIX_DEFAULT_FORMAT = AUDIO_S16LSB;
 /// ```
-final MIX_DEFAULT_FORMAT = AUDIO_S16LSB;
+const MIX_DEFAULT_FORMAT = AUDIO_S16LSB;
 
 /// ```c
 /// const MIX_MAX_VOLUME = SDL_MIX_MAXVOLUME;
 /// ```
-final MIX_MAX_VOLUME = SDL_MIX_MAXVOLUME;
+const MIX_MAX_VOLUME = SDL_MIX_MAXVOLUME;
 
 /// ```c
 /// const Mix_LoadWAV = (file) Mix_LoadWAV_RW(SDL_RWFromFile(file, 'rb'), 1);
@@ -57,21 +57,21 @@ Pointer<Mix_Chunk>? Mix_LoadWAV(String file) {
 /// ```c
 /// const Mix_PlayChannel = (channel,chunk,loops) Mix_PlayChannelTimed(channel,chunk,loops,-1);
 /// ```
-int? Mix_PlayChannel(int channel, Pointer<Mix_Chunk>? chunk, int loops) {
+int Mix_PlayChannel(int channel, Pointer<Mix_Chunk>? chunk, int loops) {
   return Mix_PlayChannelTimed(channel, chunk, loops, -1);
 }
 
 /// ```c
 /// const Mix_FadeInChannel = (channel,chunk,loops,ms) Mix_FadeInChannelTimed(channel,chunk,loops,ms,-1);
 /// ```
-int? Mix_FadeInChannel(int channel, Pointer<Mix_Chunk>? chunk, int loops, int ms) {
+int Mix_FadeInChannel(int channel, Pointer<Mix_Chunk>? chunk, int loops, int ms) {
   return Mix_FadeInChannelTimed(channel, chunk, loops, ms, -1);
 }
 
 /// ```c
 /// const Mix_SetError = SDL_SetError;
 /// ```
-int? Mix_SetError(String fmt, Pointer<Void>? arg1) {
+int Mix_SetError(String fmt, Pointer<Void>? arg1) {
   return SDL_SetError(fmt, arg1);
 }
 

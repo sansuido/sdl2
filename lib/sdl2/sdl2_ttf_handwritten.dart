@@ -60,13 +60,13 @@ Pointer<SDL_Surface>? TTF_RenderUNICODE(Pointer<TTF_Font>? font, Pointer<Uint16>
 /// ```c
 /// const TTF_SetError = SDL_SetError;
 /// ```
-int? TTF_SetError(String fmt, Pointer<Void>? arg1) {
+int TTF_SetError(String fmt, Pointer<Void>? arg1) {
   return SDL_SetError(fmt, arg1);
 }
 
 /// ```c
 /// const TTF_GetError = SDL_GetError;
 /// ```
-String? TTF_GetError() {
+String TTF_GetError() {
   return SDL_GetError();
 }

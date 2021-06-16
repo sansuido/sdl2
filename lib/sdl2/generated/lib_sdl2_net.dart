@@ -20,6 +20,7 @@ Pointer<SDL_version>? SDLNet_Linked_Version() {
       Pointer<SDL_version>? Function()>('SDLNet_Linked_Version');
   return _SDLNet_Linked_Version();
 }
+
 /// Initialize/Cleanup the network API
 /// SDL must be initialized before calls to functions in this library,
 /// because this library uses utility functions from the SDL library.
@@ -33,6 +34,7 @@ int SDLNet_Init() {
       int Function()>('SDLNet_Init');
   return _SDLNet_Init();
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_Quit(void)
 /// ```
@@ -42,6 +44,7 @@ void SDLNet_Quit() {
       void Function()>('SDLNet_Quit');
   return _SDLNet_Quit();
 }
+
 /// Resolve a host name and port to an IP address in network form.
 /// If the function succeeds, it will return 0.
 /// If the host couldn't be resolved, the host portion of the returned
@@ -60,6 +63,7 @@ int SDLNet_ResolveHost(Pointer<IPaddress>? address, String host, int port) {
   calloc.free(_hostPointer);
   return _result;
 }
+
 /// Resolve an ip address to a host name in canonical form.
 /// If the ip couldn't be resolved, this function returns NULL,
 /// otherwise a pointer to a static buffer containing the hostname
@@ -74,6 +78,7 @@ String SDLNet_ResolveIP(Pointer<IPaddress>? ip) {
       Pointer<Utf8>? Function(Pointer<IPaddress>? ip)>('SDLNet_ResolveIP');
   return _SDLNet_ResolveIP(ip)!.toDartString();
 }
+
 /// Get the addresses of network interfaces on this system.
 /// This returns the number of addresses saved in 'addresses'
 /// /
@@ -86,6 +91,7 @@ int SDLNet_GetLocalAddresses(Pointer<IPaddress>? addresses, int maxcount) {
       int Function(Pointer<IPaddress>? addresses, int maxcount)>('SDLNet_GetLocalAddresses');
   return _SDLNet_GetLocalAddresses(addresses, maxcount);
 }
+
 /// Open a TCP network socket
 /// If ip.host is INADDR_NONE or INADDR_ANY, this creates a local server
 /// socket on the given port, otherwise a TCP connection to the remote
@@ -103,6 +109,7 @@ Pointer<Void>? SDLNet_TCP_Open(Pointer<IPaddress>? ip) {
       Pointer<Void>? Function(Pointer<IPaddress>? ip)>('SDLNet_TCP_Open');
   return _SDLNet_TCP_Open(ip);
 }
+
 /// Accept an incoming connection on the given server socket.
 /// The newly created socket is returned, or NULL if there was an error.
 /// 
@@ -115,6 +122,7 @@ Pointer<Void>? SDLNet_TCP_Accept(Pointer<Void>? server) {
       Pointer<Void>? Function(Pointer<Void>? server)>('SDLNet_TCP_Accept');
   return _SDLNet_TCP_Accept(server);
 }
+
 /// Get the IP address of the remote system associated with the socket.
 /// If the socket is a server socket, this function returns NULL.
 /// 
@@ -127,6 +135,7 @@ Pointer<IPaddress>? SDLNet_TCP_GetPeerAddress(Pointer<Void>? sock) {
       Pointer<IPaddress>? Function(Pointer<Void>? sock)>('SDLNet_TCP_GetPeerAddress');
   return _SDLNet_TCP_GetPeerAddress(sock);
 }
+
 /// Send 'len' bytes of 'data' over the non-server socket 'sock'
 /// This function returns the actual amount of data sent.  If the return value
 /// is less than the amount of data sent, then either the remote connection was
@@ -141,6 +150,7 @@ int SDLNet_TCP_Send(Pointer<Void>? sock, Pointer<Void>? data, int len) {
       int Function(Pointer<Void>? sock, Pointer<Void>? data, int len)>('SDLNet_TCP_Send');
   return _SDLNet_TCP_Send(sock, data, len);
 }
+
 /// Receive up to 'maxlen' bytes of data over the non-server socket 'sock',
 /// and store them in the buffer pointed to by 'data'.
 /// This function returns the actual amount of data received.  If the return
@@ -156,6 +166,7 @@ int SDLNet_TCP_Recv(Pointer<Void>? sock, Pointer<Void>? data, int maxlen) {
       int Function(Pointer<Void>? sock, Pointer<Void>? data, int maxlen)>('SDLNet_TCP_Recv');
   return _SDLNet_TCP_Recv(sock, data, maxlen);
 }
+
 /// Close a TCP network socket
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_TCP_Close(TCPsocket sock)
@@ -166,6 +177,7 @@ void SDLNet_TCP_Close(Pointer<Void>? sock) {
       void Function(Pointer<Void>? sock)>('SDLNet_TCP_Close');
   return _SDLNet_TCP_Close(sock);
 }
+
 /// Allocate/resize/free a single UDP packet 'size' bytes long.
 /// The new packet is returned, or NULL if the function ran out of memory.
 /// /
@@ -178,6 +190,7 @@ Pointer<UDPpacket>? SDLNet_AllocPacket(int size) {
       Pointer<UDPpacket>? Function(int size)>('SDLNet_AllocPacket');
   return _SDLNet_AllocPacket(size);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_ResizePacket(UDPpacket *packet, int newsize)
 /// ```
@@ -187,6 +200,7 @@ int SDLNet_ResizePacket(Pointer<UDPpacket>? packet, int newsize) {
       int Function(Pointer<UDPpacket>? packet, int newsize)>('SDLNet_ResizePacket');
   return _SDLNet_ResizePacket(packet, newsize);
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_FreePacket(UDPpacket *packet)
 /// ```
@@ -196,6 +210,7 @@ void SDLNet_FreePacket(Pointer<UDPpacket>? packet) {
       void Function(Pointer<UDPpacket>? packet)>('SDLNet_FreePacket');
   return _SDLNet_FreePacket(packet);
 }
+
 /// Allocate/Free a UDP packet vector (array of packets) of 'howmany' packets,
 /// each 'size' bytes long.
 /// A pointer to the first packet in the array is returned, or NULL if the
@@ -210,6 +225,7 @@ Pointer<Pointer<UDPpacket>>? SDLNet_AllocPacketV(int howmany, int size) {
       Pointer<Pointer<UDPpacket>>? Function(int howmany, int size)>('SDLNet_AllocPacketV');
   return _SDLNet_AllocPacketV(howmany, size);
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_FreePacketV(UDPpacket **packetV)
 /// ```
@@ -219,6 +235,7 @@ void SDLNet_FreePacketV(Pointer<Pointer<UDPpacket>>? packetV) {
       void Function(Pointer<Pointer<UDPpacket>>? packetV)>('SDLNet_FreePacketV');
   return _SDLNet_FreePacketV(packetV);
 }
+
 /// Open a UDP network socket
 /// If 'port' is non-zero, the UDP socket is bound to a local port.
 /// The 'port' should be given in native byte order, but is used
@@ -234,6 +251,7 @@ Pointer<Void>? SDLNet_UDP_Open(int port) {
       Pointer<Void>? Function(int port)>('SDLNet_UDP_Open');
   return _SDLNet_UDP_Open(port);
 }
+
 /// Set the percentage of simulated packet loss for packets sent on the socket.
 /// 
 /// ```c
@@ -245,6 +263,7 @@ void SDLNet_UDP_SetPacketLoss(Pointer<Void>? sock, int percent) {
       void Function(Pointer<Void>? sock, int percent)>('SDLNet_UDP_SetPacketLoss');
   return _SDLNet_UDP_SetPacketLoss(sock, percent);
 }
+
 /// Bind the address 'address' to the requested channel on the UDP socket.
 /// If the channel is -1, then the first unbound channel that has not yet
 /// been bound to the maximum number of addresses will be bound with
@@ -264,6 +283,7 @@ int SDLNet_UDP_Bind(Pointer<Void>? sock, int channel, Pointer<IPaddress>? addres
       int Function(Pointer<Void>? sock, int channel, Pointer<IPaddress>? address)>('SDLNet_UDP_Bind');
   return _SDLNet_UDP_Bind(sock, channel, address);
 }
+
 /// Unbind all addresses from the given channel
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_UDP_Unbind(UDPsocket sock, int channel)
@@ -274,6 +294,7 @@ void SDLNet_UDP_Unbind(Pointer<Void>? sock, int channel) {
       void Function(Pointer<Void>? sock, int channel)>('SDLNet_UDP_Unbind');
   return _SDLNet_UDP_Unbind(sock, channel);
 }
+
 /// Get the primary IP address of the remote system associated with the
 /// socket and channel.  If the channel is -1, then the primary IP port
 /// of the UDP socket is returned -- this is only meaningful for sockets
@@ -289,6 +310,7 @@ Pointer<IPaddress>? SDLNet_UDP_GetPeerAddress(Pointer<Void>? sock, int channel) 
       Pointer<IPaddress>? Function(Pointer<Void>? sock, int channel)>('SDLNet_UDP_GetPeerAddress');
   return _SDLNet_UDP_GetPeerAddress(sock, channel);
 }
+
 /// Send a vector of packets to the the channels specified within the packet.
 /// If the channel specified in the packet is -1, the packet will be sent to
 /// the address in the 'src' member of the packet.
@@ -305,6 +327,7 @@ int SDLNet_UDP_SendV(Pointer<Void>? sock, Pointer<Pointer<UDPpacket>>? packets, 
       int Function(Pointer<Void>? sock, Pointer<Pointer<UDPpacket>>? packets, int npackets)>('SDLNet_UDP_SendV');
   return _SDLNet_UDP_SendV(sock, packets, npackets);
 }
+
 /// Send a single packet to the specified channel.
 /// If the channel specified in the packet is -1, the packet will be sent to
 /// the address in the 'src' member of the packet.
@@ -326,6 +349,7 @@ int SDLNet_UDP_Send(Pointer<Void>? sock, int channel, Pointer<UDPpacket>? packet
       int Function(Pointer<Void>? sock, int channel, Pointer<UDPpacket>? packet)>('SDLNet_UDP_Send');
   return _SDLNet_UDP_Send(sock, channel, packet);
 }
+
 /// Receive a vector of pending packets from the UDP socket.
 /// The returned packets contain the source address and the channel they arrived
 /// on.  If they did not arrive on a bound channel, the the channel will be set
@@ -345,6 +369,7 @@ int SDLNet_UDP_RecvV(Pointer<Void>? sock, Pointer<Pointer<UDPpacket>>? packets) 
       int Function(Pointer<Void>? sock, Pointer<Pointer<UDPpacket>>? packets)>('SDLNet_UDP_RecvV');
   return _SDLNet_UDP_RecvV(sock, packets);
 }
+
 /// Receive a single packet from the UDP socket.
 /// The returned packet contains the source address and the channel it arrived
 /// on.  If it did not arrive on a bound channel, the the channel will be set
@@ -364,6 +389,7 @@ int SDLNet_UDP_Recv(Pointer<Void>? sock, Pointer<UDPpacket>? packet) {
       int Function(Pointer<Void>? sock, Pointer<UDPpacket>? packet)>('SDLNet_UDP_Recv');
   return _SDLNet_UDP_Recv(sock, packet);
 }
+
 /// Close a UDP network socket
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_UDP_Close(UDPsocket sock)
@@ -374,6 +400,7 @@ void SDLNet_UDP_Close(Pointer<Void>? sock) {
       void Function(Pointer<Void>? sock)>('SDLNet_UDP_Close');
   return _SDLNet_UDP_Close(sock);
 }
+
 /// Allocate a socket set for use with SDLNet_CheckSockets()
 /// This returns a socket set for up to 'maxsockets' sockets, or NULL if
 /// the function ran out of memory.
@@ -387,6 +414,7 @@ Pointer<Void>? SDLNet_AllocSocketSet(int maxsockets) {
       Pointer<Void>? Function(int maxsockets)>('SDLNet_AllocSocketSet');
   return _SDLNet_AllocSocketSet(maxsockets);
 }
+
 /// Add a socket to a set of sockets to be checked for available data
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_AddSocket(SDLNet_SocketSet set, SDLNet_GenericSocket sock)
@@ -397,6 +425,7 @@ int SDLNet_AddSocket(Pointer<Void>? set, Pointer<Void>? sock) {
       int Function(Pointer<Void>? set, Pointer<Void>? sock)>('SDLNet_AddSocket');
   return _SDLNet_AddSocket(set, sock);
 }
+
 /// Remove a socket from a set of sockets to be checked for available data
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_DelSocket(SDLNet_SocketSet set, SDLNet_GenericSocket sock)
@@ -407,6 +436,7 @@ int SDLNet_DelSocket(Pointer<Void>? set, Pointer<Void>? sock) {
       int Function(Pointer<Void>? set, Pointer<Void>? sock)>('SDLNet_DelSocket');
   return _SDLNet_DelSocket(set, sock);
 }
+
 /// This function checks to see if data is available for reading on the
 /// given set of sockets.  If 'timeout' is 0, it performs a quick poll,
 /// otherwise the function returns when either data is available for
@@ -423,6 +453,7 @@ int SDLNet_CheckSockets(Pointer<Void>? set, int timeout) {
       int Function(Pointer<Void>? set, int timeout)>('SDLNet_CheckSockets');
   return _SDLNet_CheckSockets(set, timeout);
 }
+
 /// Free a set of sockets allocated by SDL_NetAllocSocketSet()
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_FreeSocketSet(SDLNet_SocketSet set)
@@ -433,6 +464,7 @@ void SDLNet_FreeSocketSet(Pointer<Void>? set) {
       void Function(Pointer<Void>? set)>('SDLNet_FreeSocketSet');
   return _SDLNet_FreeSocketSet(set);
 }
+
 /// *********************************************************************
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_SetError(const char *fmt, ...)
@@ -446,6 +478,7 @@ void SDLNet_SetError(String fmt, Pointer<Void>? arg1) {
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDLNet_GetError(void)
 /// ```
@@ -455,3 +488,4 @@ String SDLNet_GetError() {
       Pointer<Utf8>? Function()>('SDLNet_GetError');
   return _SDLNet_GetError()!.toDartString();
 }
+

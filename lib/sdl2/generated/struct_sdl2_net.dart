@@ -48,7 +48,7 @@ class UDPpacket extends Struct {
 }
 // ignore: camel_case_extensions
 extension UDPpacketExtension on Pointer<UDPpacket> {
-  IPaddress get address => cast<Uint8>().elementAt(24).cast<IPaddress>().ref;
+  Pointer<IPaddress> get address => cast<Uint8>().elementAt(24).cast<IPaddress>();
 }
 
 class SDLNet_SocketSet extends Opaque {}

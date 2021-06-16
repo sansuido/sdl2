@@ -30,6 +30,7 @@ int main() {
     } else {}
     calloc.free(window);
     calloc.free(renderer);
+    SDL_Quit();
   }
   return 0;
 }

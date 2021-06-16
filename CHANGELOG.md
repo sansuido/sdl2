@@ -1,3 +1,8 @@
+## 1.0.7
+
+- [fix] Fixed Struct extension.
+- [add] Added CONST that was ignored.
+
 ## 1.0.6
 
 - [add] Add comment to function.

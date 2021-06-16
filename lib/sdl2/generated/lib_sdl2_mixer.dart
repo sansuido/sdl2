@@ -20,6 +20,7 @@ Pointer<SDL_version>? Mix_Linked_Version() {
       Pointer<SDL_version>? Function()>('Mix_Linked_Version');
   return _Mix_Linked_Version();
 }
+
 /// Loads dynamic libraries and prepares them for use.  Flags should be
 /// one or more flags from MIX_InitFlags OR'd together.
 /// It returns the flags successfully initialized, or 0 on failure.
@@ -33,6 +34,7 @@ int Mix_Init(int flags) {
       int Function(int flags)>('Mix_Init');
   return _Mix_Init(flags);
 }
+
 /// Unloads libraries loaded with Mix_Init
 /// ```c
 /// extern DECLSPEC void SDLCALL Mix_Quit(void)
@@ -43,6 +45,7 @@ void Mix_Quit() {
       void Function()>('Mix_Quit');
   return _Mix_Quit();
 }
+
 /// Open the mixer with a certain audio format
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_OpenAudio(int frequency, Uint16 format, int channels, int chunksize)
@@ -53,6 +56,7 @@ int Mix_OpenAudio(int frequency, int format, int channels, int chunksize) {
       int Function(int frequency, int format, int channels, int chunksize)>('Mix_OpenAudio');
   return _Mix_OpenAudio(frequency, format, channels, chunksize);
 }
+
 /// Open the mixer with specific device and certain audio format
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_OpenAudioDevice(int frequency, Uint16 format, int channels, int chunksize, const char* device, int allowed_changes)
@@ -66,6 +70,7 @@ int Mix_OpenAudioDevice(int frequency, int format, int channels, int chunksize, 
   calloc.free(_devicePointer);
   return _result;
 }
+
 /// Dynamically change the number of channels managed by the mixer.
 /// If decreasing the number of channels, the upper channels are
 /// stopped.
@@ -80,6 +85,7 @@ int Mix_AllocateChannels(int numchans) {
       int Function(int numchans)>('Mix_AllocateChannels');
   return _Mix_AllocateChannels(numchans);
 }
+
 /// Find out what the actual audio device parameters are.
 /// This function returns 1 if the audio has been opened, 0 otherwise.
 /// /
@@ -92,6 +98,7 @@ int Mix_QuerySpec(Pointer<Int32>? frequency, Pointer<Uint16>? format, Pointer<In
       int Function(Pointer<Int32>? frequency, Pointer<Uint16>? format, Pointer<Int32>? channels)>('Mix_QuerySpec');
   return _Mix_QuerySpec(frequency, format, channels);
 }
+
 /// Load a wave file or a music (.mod .s3m .it .xm) file
 /// ```c
 /// extern DECLSPEC Mix_Chunk * SDLCALL Mix_LoadWAV_RW(SDL_RWops *src, int freesrc)
@@ -102,6 +109,7 @@ Pointer<Mix_Chunk>? Mix_LoadWAV_RW(Pointer<SDL_RWops>? src, int freesrc) {
       Pointer<Mix_Chunk>? Function(Pointer<SDL_RWops>? src, int freesrc)>('Mix_LoadWAV_RW');
   return _Mix_LoadWAV_RW(src, freesrc);
 }
+
 /// ```c
 /// extern DECLSPEC Mix_Music * SDLCALL Mix_LoadMUS(const char *file)
 /// ```
@@ -114,6 +122,7 @@ Pointer<Mix_Music>? Mix_LoadMUS(String file) {
   calloc.free(_filePointer);
   return _result;
 }
+
 /// Load a music file from an SDL_RWop object (Ogg and MikMod specific currently)
 /// Matt Campbell (matt@campbellhome.dhs.org) April 2000 */
 /// ```c
@@ -125,6 +134,7 @@ Pointer<Mix_Music>? Mix_LoadMUS_RW(Pointer<SDL_RWops>? src, int freesrc) {
       Pointer<Mix_Music>? Function(Pointer<SDL_RWops>? src, int freesrc)>('Mix_LoadMUS_RW');
   return _Mix_LoadMUS_RW(src, freesrc);
 }
+
 /// Load a music file from an SDL_RWop object assuming a specific format
 /// ```c
 /// extern DECLSPEC Mix_Music * SDLCALL Mix_LoadMUSType_RW(SDL_RWops *src, Mix_MusicType type, int freesrc)
@@ -135,6 +145,7 @@ Pointer<Mix_Music>? Mix_LoadMUSType_RW(Pointer<SDL_RWops>? src, int type, int fr
       Pointer<Mix_Music>? Function(Pointer<SDL_RWops>? src, int type, int freesrc)>('Mix_LoadMUSType_RW');
   return _Mix_LoadMUSType_RW(src, type, freesrc);
 }
+
 /// Load a wave file of the mixer format from a memory buffer
 /// ```c
 /// extern DECLSPEC Mix_Chunk * SDLCALL Mix_QuickLoad_WAV(Uint8 *mem)
@@ -145,6 +156,7 @@ Pointer<Mix_Chunk>? Mix_QuickLoad_WAV(Pointer<Uint8>? mem) {
       Pointer<Mix_Chunk>? Function(Pointer<Uint8>? mem)>('Mix_QuickLoad_WAV');
   return _Mix_QuickLoad_WAV(mem);
 }
+
 /// Load raw audio data of the mixer format from a memory buffer
 /// ```c
 /// extern DECLSPEC Mix_Chunk * SDLCALL Mix_QuickLoad_RAW(Uint8 *mem, Uint32 len)
@@ -155,6 +167,7 @@ Pointer<Mix_Chunk>? Mix_QuickLoad_RAW(Pointer<Uint8>? mem, int len) {
       Pointer<Mix_Chunk>? Function(Pointer<Uint8>? mem, int len)>('Mix_QuickLoad_RAW');
   return _Mix_QuickLoad_RAW(mem, len);
 }
+
 /// Free an audio chunk previously loaded
 /// ```c
 /// extern DECLSPEC void SDLCALL Mix_FreeChunk(Mix_Chunk *chunk)
@@ -165,6 +178,7 @@ void Mix_FreeChunk(Pointer<Mix_Chunk>? chunk) {
       void Function(Pointer<Mix_Chunk>? chunk)>('Mix_FreeChunk');
   return _Mix_FreeChunk(chunk);
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL Mix_FreeMusic(Mix_Music *music)
 /// ```
@@ -174,6 +188,7 @@ void Mix_FreeMusic(Pointer<Mix_Music>? music) {
       void Function(Pointer<Mix_Music>? music)>('Mix_FreeMusic');
   return _Mix_FreeMusic(music);
 }
+
 /// Get a list of chunk/music decoders that this build of SDL_mixer provides.
 /// This list can change between builds AND runs of the program, if external
 /// libraries that add functionality become available.
@@ -202,6 +217,7 @@ int Mix_GetNumChunkDecoders() {
       int Function()>('Mix_GetNumChunkDecoders');
   return _Mix_GetNumChunkDecoders();
 }
+
 /// ```c
 /// extern DECLSPEC const char * SDLCALL Mix_GetChunkDecoder(int index)
 /// ```
@@ -211,6 +227,7 @@ String Mix_GetChunkDecoder(int index) {
       Pointer<Utf8>? Function(int index)>('Mix_GetChunkDecoder');
   return _Mix_GetChunkDecoder(index)!.toDartString();
 }
+
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL Mix_HasChunkDecoder(const char *name)
 /// ```
@@ -223,6 +240,7 @@ int Mix_HasChunkDecoder(String name) {
   calloc.free(_namePointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_GetNumMusicDecoders(void)
 /// ```
@@ -232,6 +250,7 @@ int Mix_GetNumMusicDecoders() {
       int Function()>('Mix_GetNumMusicDecoders');
   return _Mix_GetNumMusicDecoders();
 }
+
 /// ```c
 /// extern DECLSPEC const char * SDLCALL Mix_GetMusicDecoder(int index)
 /// ```
@@ -241,6 +260,7 @@ String Mix_GetMusicDecoder(int index) {
       Pointer<Utf8>? Function(int index)>('Mix_GetMusicDecoder');
   return _Mix_GetMusicDecoder(index)!.toDartString();
 }
+
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL Mix_HasMusicDecoder(const char *name)
 /// ```
@@ -253,6 +273,7 @@ int Mix_HasMusicDecoder(String name) {
   calloc.free(_namePointer);
   return _result;
 }
+
 /// Find out the music format of a mixer music, or the currently playing
 /// music, if 'music' is NULL.
 /// 
@@ -265,6 +286,7 @@ int Mix_GetMusicType(Pointer<Mix_Music>? music) {
       int Function(Pointer<Mix_Music>? music)>('Mix_GetMusicType');
   return _Mix_GetMusicType(music);
 }
+
 /// Set a function that is called after all mixing is performed.
 /// This can be used to provide real-time visual display of the audio stream
 /// or add a custom mixer filter for the stream data.
@@ -278,6 +300,7 @@ void Mix_SetPostMix(Pointer<Void>? mix_func, Pointer<Void>? arg) {
       void Function(Pointer<Void>? mix_func, Pointer<Void>? arg)>('Mix_SetPostMix');
   return _Mix_SetPostMix(mix_func, arg);
 }
+
 /// Add your own music player or additional mixer function.
 /// If 'mix_func' is NULL, the default music player is re-enabled.
 /// /
@@ -290,6 +313,7 @@ void Mix_HookMusic(Pointer<Void>? mix_func, Pointer<Void>? arg) {
       void Function(Pointer<Void>? mix_func, Pointer<Void>? arg)>('Mix_HookMusic');
   return _Mix_HookMusic(mix_func, arg);
 }
+
 /// Add your own callback for when the music has finished playing or when it is
 /// stopped from a call to Mix_HaltMusic.
 /// /
@@ -302,6 +326,7 @@ void Mix_HookMusicFinished(Pointer<Void>? music_finished) {
       void Function(Pointer<Void>? music_finished)>('Mix_HookMusicFinished');
   return _Mix_HookMusicFinished(music_finished);
 }
+
 /// Get a pointer to the user data for the current music hook
 /// ```c
 /// extern DECLSPEC void * SDLCALL Mix_GetMusicHookData(void)
@@ -312,6 +337,7 @@ Pointer<Void>? Mix_GetMusicHookData() {
       Pointer<Void>? Function()>('Mix_GetMusicHookData');
   return _Mix_GetMusicHookData();
 }
+
 /// 
 /// Add your own callback when a channel has finished playing. NULL
 /// to disable callback. The callback may be called from the mixer's audio
@@ -329,6 +355,7 @@ void Mix_ChannelFinished(Pointer<Void>? channel_finished) {
       void Function(Pointer<Void>? channel_finished)>('Mix_ChannelFinished');
   return _Mix_ChannelFinished(channel_finished);
 }
+
 /// Register a special effect function. At mixing time, the channel data is
 /// copied into a buffer and passed through each registered effect function.
 /// After it passes through all the functions, it is mixed into the final
@@ -384,6 +411,7 @@ int Mix_RegisterEffect(int chan, Pointer<Void>? f, Pointer<Void>? d, Pointer<Voi
       int Function(int chan, Pointer<Void>? f, Pointer<Void>? d, Pointer<Void>? arg)>('Mix_RegisterEffect');
   return _Mix_RegisterEffect(chan, f, d, arg);
 }
+
 /// You may not need to call this explicitly, unless you need to stop an
 /// effect from processing in the middle of a chunk's playback.
 /// Posteffects are never implicitly unregistered as they are for channels,
@@ -401,6 +429,7 @@ int Mix_UnregisterEffect(int channel, Pointer<Void>? f) {
       int Function(int channel, Pointer<Void>? f)>('Mix_UnregisterEffect');
   return _Mix_UnregisterEffect(channel, f);
 }
+
 /// You may not need to call this explicitly, unless you need to stop all
 /// effects from processing in the middle of a chunk's playback. Note that
 /// this will also shut off some internal effect processing, since
@@ -421,6 +450,7 @@ int Mix_UnregisterAllEffects(int channel) {
       int Function(int channel)>('Mix_UnregisterAllEffects');
   return _Mix_UnregisterAllEffects(channel);
 }
+
 /// Set the panning of a channel. The left and right channels are specified
 /// as integers between 0 and 255, quietest to loudest, respectively.
 /// 
@@ -455,6 +485,7 @@ int Mix_SetPanning(int channel, int left, int right) {
       int Function(int channel, int left, int right)>('Mix_SetPanning');
   return _Mix_SetPanning(channel, left, right);
 }
+
 /// Set the position of a channel. (angle) is an integer from 0 to 360, that
 /// specifies the location of the sound in relation to the listener. (angle)
 /// will be reduced as neccesary (540 becomes 180 degrees, -100 becomes 260).
@@ -501,6 +532,7 @@ int Mix_SetPosition(int channel, int angle, int distance) {
       int Function(int channel, int angle, int distance)>('Mix_SetPosition');
   return _Mix_SetPosition(channel, angle, distance);
 }
+
 /// Set the "distance" of a channel. (distance) is an integer from 0 to 255
 /// that specifies the location of the sound in relation to the listener.
 /// Distance 0 is overlapping the listener, and 255 is as far away as possible
@@ -537,6 +569,7 @@ int Mix_SetDistance(int channel, int distance) {
       int Function(int channel, int distance)>('Mix_SetDistance');
   return _Mix_SetDistance(channel, distance);
 }
+
 /// Causes a channel to reverse its stereo. This is handy if the user has his
 /// speakers hooked up backwards, or you would like to have a minor bit of
 /// psychedelia in your sound code.  :)  Calling this function with (flip)
@@ -566,6 +599,7 @@ int Mix_SetReverseStereo(int channel, int flip) {
       int Function(int channel, int flip)>('Mix_SetReverseStereo');
   return _Mix_SetReverseStereo(channel, flip);
 }
+
 /// Reserve the first channels (0 -> n-1) for the application, i.e. don't allocate
 /// them dynamically to the next sample if requested with a -1 value below.
 /// Returns the number of reserved channels.
@@ -579,6 +613,7 @@ int Mix_ReserveChannels(int num) {
       int Function(int num)>('Mix_ReserveChannels');
   return _Mix_ReserveChannels(num);
 }
+
 /// Attach a tag to a channel. A tag can be assigned to several mixer
 /// channels, to form groups of channels.
 /// If 'tag' is -1, the tag is removed (actually -1 is the tag used to
@@ -594,6 +629,7 @@ int Mix_GroupChannel(int which, int tag) {
       int Function(int which, int tag)>('Mix_GroupChannel');
   return _Mix_GroupChannel(which, tag);
 }
+
 /// Assign several consecutive channels to a group
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_GroupChannels(int from, int to, int tag)
@@ -604,6 +640,7 @@ int Mix_GroupChannels(int from, int to, int tag) {
       int Function(int from, int to, int tag)>('Mix_GroupChannels');
   return _Mix_GroupChannels(from, to, tag);
 }
+
 /// Finds the first available channel in a group of channels,
 /// returning -1 if none are available.
 /// /
@@ -616,6 +653,7 @@ int Mix_GroupAvailable(int tag) {
       int Function(int tag)>('Mix_GroupAvailable');
   return _Mix_GroupAvailable(tag);
 }
+
 /// Returns the number of channels in a group. This is also a subtle
 /// way to get the total number of channels when 'tag' is -1
 /// /
@@ -628,6 +666,7 @@ int Mix_GroupCount(int tag) {
       int Function(int tag)>('Mix_GroupCount');
   return _Mix_GroupCount(tag);
 }
+
 /// Finds the "oldest" sample playing in a group of channels
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_GroupOldest(int tag)
@@ -638,6 +677,7 @@ int Mix_GroupOldest(int tag) {
       int Function(int tag)>('Mix_GroupOldest');
   return _Mix_GroupOldest(tag);
 }
+
 /// Finds the "most recent" (i.e. last) sample playing in a group of channels
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_GroupNewer(int tag)
@@ -648,6 +688,7 @@ int Mix_GroupNewer(int tag) {
       int Function(int tag)>('Mix_GroupNewer');
   return _Mix_GroupNewer(tag);
 }
+
 /// The same as above, but the sound is played at most 'ticks' milliseconds
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_PlayChannelTimed(int channel, Mix_Chunk *chunk, int loops, int ticks)
@@ -658,6 +699,7 @@ int Mix_PlayChannelTimed(int channel, Pointer<Mix_Chunk>? chunk, int loops, int 
       int Function(int channel, Pointer<Mix_Chunk>? chunk, int loops, int ticks)>('Mix_PlayChannelTimed');
   return _Mix_PlayChannelTimed(channel, chunk, loops, ticks);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_PlayMusic(Mix_Music *music, int loops)
 /// ```
@@ -667,6 +709,7 @@ int Mix_PlayMusic(Pointer<Mix_Music>? music, int loops) {
       int Function(Pointer<Mix_Music>? music, int loops)>('Mix_PlayMusic');
   return _Mix_PlayMusic(music, loops);
 }
+
 /// Fade in music or a channel over "ms" milliseconds, same semantics as the "Play" functions
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_FadeInMusic(Mix_Music *music, int loops, int ms)
@@ -677,6 +720,7 @@ int Mix_FadeInMusic(Pointer<Mix_Music>? music, int loops, int ms) {
       int Function(Pointer<Mix_Music>? music, int loops, int ms)>('Mix_FadeInMusic');
   return _Mix_FadeInMusic(music, loops, ms);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_FadeInMusicPos(Mix_Music *music, int loops, int ms, double position)
 /// ```
@@ -686,6 +730,7 @@ int Mix_FadeInMusicPos(Pointer<Mix_Music>? music, int loops, int ms, double posi
       int Function(Pointer<Mix_Music>? music, int loops, int ms, double position)>('Mix_FadeInMusicPos');
   return _Mix_FadeInMusicPos(music, loops, ms, position);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_FadeInChannelTimed(int channel, Mix_Chunk *chunk, int loops, int ms, int ticks)
 /// ```
@@ -695,6 +740,7 @@ int Mix_FadeInChannelTimed(int channel, Pointer<Mix_Chunk>? chunk, int loops, in
       int Function(int channel, Pointer<Mix_Chunk>? chunk, int loops, int ms, int ticks)>('Mix_FadeInChannelTimed');
   return _Mix_FadeInChannelTimed(channel, chunk, loops, ms, ticks);
 }
+
 /// Set the volume in the range of 0-128 of a specific channel or chunk.
 /// If the specified channel is -1, set volume for all channels.
 /// Returns the original volume.
@@ -709,6 +755,7 @@ int Mix_Volume(int channel, int volume) {
       int Function(int channel, int volume)>('Mix_Volume');
   return _Mix_Volume(channel, volume);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_VolumeChunk(Mix_Chunk *chunk, int volume)
 /// ```
@@ -718,6 +765,7 @@ int Mix_VolumeChunk(Pointer<Mix_Chunk>? chunk, int volume) {
       int Function(Pointer<Mix_Chunk>? chunk, int volume)>('Mix_VolumeChunk');
   return _Mix_VolumeChunk(chunk, volume);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_VolumeMusic(int volume)
 /// ```
@@ -727,6 +775,7 @@ int Mix_VolumeMusic(int volume) {
       int Function(int volume)>('Mix_VolumeMusic');
   return _Mix_VolumeMusic(volume);
 }
+
 /// Halt playing of a particular channel
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_HaltChannel(int channel)
@@ -737,6 +786,7 @@ int Mix_HaltChannel(int channel) {
       int Function(int channel)>('Mix_HaltChannel');
   return _Mix_HaltChannel(channel);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_HaltGroup(int tag)
 /// ```
@@ -746,6 +796,7 @@ int Mix_HaltGroup(int tag) {
       int Function(int tag)>('Mix_HaltGroup');
   return _Mix_HaltGroup(tag);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_HaltMusic(void)
 /// ```
@@ -755,6 +806,7 @@ int Mix_HaltMusic() {
       int Function()>('Mix_HaltMusic');
   return _Mix_HaltMusic();
 }
+
 /// Change the expiration delay for a particular channel.
 /// The sample will stop playing after the 'ticks' milliseconds have elapsed,
 /// or remove the expiration if 'ticks' is -1
@@ -768,6 +820,7 @@ int Mix_ExpireChannel(int channel, int ticks) {
       int Function(int channel, int ticks)>('Mix_ExpireChannel');
   return _Mix_ExpireChannel(channel, ticks);
 }
+
 /// Halt a channel, fading it out progressively till it's silent
 /// The ms parameter indicates the number of milliseconds the fading
 /// will take.
@@ -781,6 +834,7 @@ int Mix_FadeOutChannel(int which, int ms) {
       int Function(int which, int ms)>('Mix_FadeOutChannel');
   return _Mix_FadeOutChannel(which, ms);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_FadeOutGroup(int tag, int ms)
 /// ```
@@ -790,6 +844,7 @@ int Mix_FadeOutGroup(int tag, int ms) {
       int Function(int tag, int ms)>('Mix_FadeOutGroup');
   return _Mix_FadeOutGroup(tag, ms);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_FadeOutMusic(int ms)
 /// ```
@@ -799,6 +854,7 @@ int Mix_FadeOutMusic(int ms) {
       int Function(int ms)>('Mix_FadeOutMusic');
   return _Mix_FadeOutMusic(ms);
 }
+
 /// Query the fading status of a channel
 /// ```c
 /// extern DECLSPEC Mix_Fading SDLCALL Mix_FadingMusic(void)
@@ -809,6 +865,7 @@ int Mix_FadingMusic() {
       int Function()>('Mix_FadingMusic');
   return _Mix_FadingMusic();
 }
+
 /// ```c
 /// extern DECLSPEC Mix_Fading SDLCALL Mix_FadingChannel(int which)
 /// ```
@@ -818,6 +875,7 @@ int Mix_FadingChannel(int which) {
       int Function(int which)>('Mix_FadingChannel');
   return _Mix_FadingChannel(which);
 }
+
 /// Pause/Resume a particular channel
 /// ```c
 /// extern DECLSPEC void SDLCALL Mix_Pause(int channel)
@@ -828,6 +886,7 @@ void Mix_Pause(int channel) {
       void Function(int channel)>('Mix_Pause');
   return _Mix_Pause(channel);
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL Mix_Resume(int channel)
 /// ```
@@ -837,6 +896,7 @@ void Mix_Resume(int channel) {
       void Function(int channel)>('Mix_Resume');
   return _Mix_Resume(channel);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_Paused(int channel)
 /// ```
@@ -846,6 +906,7 @@ int Mix_Paused(int channel) {
       int Function(int channel)>('Mix_Paused');
   return _Mix_Paused(channel);
 }
+
 /// Pause/Resume the music stream
 /// ```c
 /// extern DECLSPEC void SDLCALL Mix_PauseMusic(void)
@@ -856,6 +917,7 @@ void Mix_PauseMusic() {
       void Function()>('Mix_PauseMusic');
   return _Mix_PauseMusic();
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL Mix_ResumeMusic(void)
 /// ```
@@ -865,6 +927,7 @@ void Mix_ResumeMusic() {
       void Function()>('Mix_ResumeMusic');
   return _Mix_ResumeMusic();
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL Mix_RewindMusic(void)
 /// ```
@@ -874,6 +937,7 @@ void Mix_RewindMusic() {
       void Function()>('Mix_RewindMusic');
   return _Mix_RewindMusic();
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_PausedMusic(void)
 /// ```
@@ -883,6 +947,7 @@ int Mix_PausedMusic() {
       int Function()>('Mix_PausedMusic');
   return _Mix_PausedMusic();
 }
+
 /// Set the current position in the music stream.
 /// This returns 0 if successful, or -1 if it failed or isn't implemented.
 /// This function is only implemented for MOD music formats (set pattern
@@ -898,6 +963,7 @@ int Mix_SetMusicPosition(double position) {
       int Function(double position)>('Mix_SetMusicPosition');
   return _Mix_SetMusicPosition(position);
 }
+
 /// Check the status of a specific channel.
 /// If the specified channel is -1, check all channels.
 /// 
@@ -910,6 +976,7 @@ int Mix_Playing(int channel) {
       int Function(int channel)>('Mix_Playing');
   return _Mix_Playing(channel);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_PlayingMusic(void)
 /// ```
@@ -919,6 +986,7 @@ int Mix_PlayingMusic() {
       int Function()>('Mix_PlayingMusic');
   return _Mix_PlayingMusic();
 }
+
 /// Stop music and set external music playback command
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_SetMusicCMD(const char *command)
@@ -932,6 +1000,7 @@ int Mix_SetMusicCMD(String command) {
   calloc.free(_commandPointer);
   return _result;
 }
+
 /// Synchro value is set by MikMod from modules while playing
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_SetSynchroValue(int value)
@@ -942,6 +1011,7 @@ int Mix_SetSynchroValue(int value) {
       int Function(int value)>('Mix_SetSynchroValue');
   return _Mix_SetSynchroValue(value);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_GetSynchroValue(void)
 /// ```
@@ -951,6 +1021,7 @@ int Mix_GetSynchroValue() {
       int Function()>('Mix_GetSynchroValue');
   return _Mix_GetSynchroValue();
 }
+
 /// Set/Get/Iterate SoundFonts paths to use by supported MIDI backends
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_SetSoundFonts(const char *paths)
@@ -964,6 +1035,7 @@ int Mix_SetSoundFonts(String paths) {
   calloc.free(_pathsPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC const char* SDLCALL Mix_GetSoundFonts(void)
 /// ```
@@ -973,6 +1045,7 @@ String Mix_GetSoundFonts() {
       Pointer<Utf8>? Function()>('Mix_GetSoundFonts');
   return _Mix_GetSoundFonts()!.toDartString();
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_EachSoundFont(int (SDLCALL *function)(const char*, void*), void *data)
 /// ```
@@ -982,6 +1055,7 @@ int Mix_EachSoundFont(Pointer<Void>? function, Pointer<Void>? data) {
       int Function(Pointer<Void>? function, Pointer<Void>? data)>('Mix_EachSoundFont');
   return _Mix_EachSoundFont(function, data);
 }
+
 /// Get the Mix_Chunk currently associated with a mixer channel
 /// Returns NULL if it's an invalid channel, or there's no chunk associated.
 /// 
@@ -994,6 +1068,7 @@ Pointer<Mix_Chunk>? Mix_GetChunk(int channel) {
       Pointer<Mix_Chunk>? Function(int channel)>('Mix_GetChunk');
   return _Mix_GetChunk(channel);
 }
+
 /// Close the mixer, halting all playing audio
 /// ```c
 /// extern DECLSPEC void SDLCALL Mix_CloseAudio(void)
@@ -1004,3 +1079,4 @@ void Mix_CloseAudio() {
       void Function()>('Mix_CloseAudio');
   return _Mix_CloseAudio();
 }
+

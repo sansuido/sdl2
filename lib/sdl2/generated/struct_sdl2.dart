@@ -169,7 +169,7 @@ class SDL_KeyboardEvent extends Struct {
 }
 // ignore: camel_case_extensions
 extension SDL_KeyboardEventExtension on Pointer<SDL_KeyboardEvent> {
-  SDL_Keysym get keysym => cast<Uint8>().elementAt(16).cast<SDL_Keysym>().ref;
+  Pointer<SDL_Keysym> get keysym => cast<Uint8>().elementAt(16).cast<SDL_Keysym>();
 }
 
 class SDL_TextEditingEvent extends Struct {
@@ -770,29 +770,29 @@ class SDL_Event extends Struct {
 // ignore: camel_case_extensions
 extension SDL_EventExtension on Pointer<SDL_Event> {
   int get type => cast<Uint8>().elementAt(0).cast<Uint32>().value;
-  SDL_CommonEvent get common => cast<Uint8>().elementAt(0).cast<SDL_CommonEvent>().ref;
-  SDL_WindowEvent get window => cast<Uint8>().elementAt(0).cast<SDL_WindowEvent>().ref;
-  SDL_KeyboardEvent get key => cast<Uint8>().elementAt(0).cast<SDL_KeyboardEvent>().ref;
-  SDL_TextEditingEvent get edit => cast<Uint8>().elementAt(0).cast<SDL_TextEditingEvent>().ref;
-  SDL_TextInputEvent get text => cast<Uint8>().elementAt(0).cast<SDL_TextInputEvent>().ref;
-  SDL_MouseMotionEvent get motion => cast<Uint8>().elementAt(0).cast<SDL_MouseMotionEvent>().ref;
-  SDL_MouseButtonEvent get button => cast<Uint8>().elementAt(0).cast<SDL_MouseButtonEvent>().ref;
-  SDL_MouseWheelEvent get wheel => cast<Uint8>().elementAt(0).cast<SDL_MouseWheelEvent>().ref;
-  SDL_JoyAxisEvent get jaxis => cast<Uint8>().elementAt(0).cast<SDL_JoyAxisEvent>().ref;
-  SDL_JoyBallEvent get jball => cast<Uint8>().elementAt(0).cast<SDL_JoyBallEvent>().ref;
-  SDL_JoyHatEvent get jhat => cast<Uint8>().elementAt(0).cast<SDL_JoyHatEvent>().ref;
-  SDL_JoyButtonEvent get jbutton => cast<Uint8>().elementAt(0).cast<SDL_JoyButtonEvent>().ref;
-  SDL_JoyDeviceEvent get jdevice => cast<Uint8>().elementAt(0).cast<SDL_JoyDeviceEvent>().ref;
-  SDL_ControllerAxisEvent get caxis => cast<Uint8>().elementAt(0).cast<SDL_ControllerAxisEvent>().ref;
-  SDL_ControllerButtonEvent get cbutton => cast<Uint8>().elementAt(0).cast<SDL_ControllerButtonEvent>().ref;
-  SDL_ControllerDeviceEvent get cdevice => cast<Uint8>().elementAt(0).cast<SDL_ControllerDeviceEvent>().ref;
-  SDL_QuitEvent get quit => cast<Uint8>().elementAt(0).cast<SDL_QuitEvent>().ref;
-  SDL_UserEvent get user => cast<Uint8>().elementAt(0).cast<SDL_UserEvent>().ref;
-  SDL_SysWMEvent get syswm => cast<Uint8>().elementAt(0).cast<SDL_SysWMEvent>().ref;
-  SDL_TouchFingerEvent get tfinger => cast<Uint8>().elementAt(0).cast<SDL_TouchFingerEvent>().ref;
-  SDL_MultiGestureEvent get mgesture => cast<Uint8>().elementAt(0).cast<SDL_MultiGestureEvent>().ref;
-  SDL_DollarGestureEvent get dgesture => cast<Uint8>().elementAt(0).cast<SDL_DollarGestureEvent>().ref;
-  SDL_DropEvent get drop => cast<Uint8>().elementAt(0).cast<SDL_DropEvent>().ref;
+  Pointer<SDL_CommonEvent> get common => cast<Uint8>().elementAt(0).cast<SDL_CommonEvent>();
+  Pointer<SDL_WindowEvent> get window => cast<Uint8>().elementAt(0).cast<SDL_WindowEvent>();
+  Pointer<SDL_KeyboardEvent> get key => cast<Uint8>().elementAt(0).cast<SDL_KeyboardEvent>();
+  Pointer<SDL_TextEditingEvent> get edit => cast<Uint8>().elementAt(0).cast<SDL_TextEditingEvent>();
+  Pointer<SDL_TextInputEvent> get text => cast<Uint8>().elementAt(0).cast<SDL_TextInputEvent>();
+  Pointer<SDL_MouseMotionEvent> get motion => cast<Uint8>().elementAt(0).cast<SDL_MouseMotionEvent>();
+  Pointer<SDL_MouseButtonEvent> get button => cast<Uint8>().elementAt(0).cast<SDL_MouseButtonEvent>();
+  Pointer<SDL_MouseWheelEvent> get wheel => cast<Uint8>().elementAt(0).cast<SDL_MouseWheelEvent>();
+  Pointer<SDL_JoyAxisEvent> get jaxis => cast<Uint8>().elementAt(0).cast<SDL_JoyAxisEvent>();
+  Pointer<SDL_JoyBallEvent> get jball => cast<Uint8>().elementAt(0).cast<SDL_JoyBallEvent>();
+  Pointer<SDL_JoyHatEvent> get jhat => cast<Uint8>().elementAt(0).cast<SDL_JoyHatEvent>();
+  Pointer<SDL_JoyButtonEvent> get jbutton => cast<Uint8>().elementAt(0).cast<SDL_JoyButtonEvent>();
+  Pointer<SDL_JoyDeviceEvent> get jdevice => cast<Uint8>().elementAt(0).cast<SDL_JoyDeviceEvent>();
+  Pointer<SDL_ControllerAxisEvent> get caxis => cast<Uint8>().elementAt(0).cast<SDL_ControllerAxisEvent>();
+  Pointer<SDL_ControllerButtonEvent> get cbutton => cast<Uint8>().elementAt(0).cast<SDL_ControllerButtonEvent>();
+  Pointer<SDL_ControllerDeviceEvent> get cdevice => cast<Uint8>().elementAt(0).cast<SDL_ControllerDeviceEvent>();
+  Pointer<SDL_QuitEvent> get quit => cast<Uint8>().elementAt(0).cast<SDL_QuitEvent>();
+  Pointer<SDL_UserEvent> get user => cast<Uint8>().elementAt(0).cast<SDL_UserEvent>();
+  Pointer<SDL_SysWMEvent> get syswm => cast<Uint8>().elementAt(0).cast<SDL_SysWMEvent>();
+  Pointer<SDL_TouchFingerEvent> get tfinger => cast<Uint8>().elementAt(0).cast<SDL_TouchFingerEvent>();
+  Pointer<SDL_MultiGestureEvent> get mgesture => cast<Uint8>().elementAt(0).cast<SDL_MultiGestureEvent>();
+  Pointer<SDL_DollarGestureEvent> get dgesture => cast<Uint8>().elementAt(0).cast<SDL_DollarGestureEvent>();
+  Pointer<SDL_DropEvent> get drop => cast<Uint8>().elementAt(0).cast<SDL_DropEvent>();
   int get padding => cast<Uint8>().elementAt(0).cast<Uint8>().value;
 }
 
@@ -862,7 +862,7 @@ class SDL_HapticConstant extends Struct {
 }
 // ignore: camel_case_extensions
 extension SDL_HapticConstantExtension on Pointer<SDL_HapticConstant> {
-  SDL_HapticDirection get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
+  Pointer<SDL_HapticDirection> get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>();
 }
 
 class SDL_HapticPeriodic extends Struct {
@@ -915,7 +915,7 @@ class SDL_HapticPeriodic extends Struct {
 }
 // ignore: camel_case_extensions
 extension SDL_HapticPeriodicExtension on Pointer<SDL_HapticPeriodic> {
-  SDL_HapticDirection get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
+  Pointer<SDL_HapticDirection> get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>();
 }
 
 class SDL_HapticCondition extends Struct {
@@ -986,7 +986,7 @@ class SDL_HapticCondition extends Struct {
 }
 // ignore: camel_case_extensions
 extension SDL_HapticConditionExtension on Pointer<SDL_HapticCondition> {
-  SDL_HapticDirection get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
+  Pointer<SDL_HapticDirection> get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>();
 }
 
 class SDL_HapticRamp extends Struct {
@@ -1033,7 +1033,7 @@ class SDL_HapticRamp extends Struct {
 }
 // ignore: camel_case_extensions
 extension SDL_HapticRampExtension on Pointer<SDL_HapticRamp> {
-  SDL_HapticDirection get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
+  Pointer<SDL_HapticDirection> get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>();
 }
 
 class SDL_HapticLeftRight extends Struct {
@@ -1100,7 +1100,7 @@ class SDL_HapticCustom extends Struct {
 }
 // ignore: camel_case_extensions
 extension SDL_HapticCustomExtension on Pointer<SDL_HapticCustom> {
-  SDL_HapticDirection get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>().ref;
+  Pointer<SDL_HapticDirection> get direction => cast<Uint8>().elementAt(2).cast<SDL_HapticDirection>();
 }
 
 class SDL_HapticEffect extends Struct {
@@ -1127,12 +1127,12 @@ class SDL_HapticEffect extends Struct {
 // ignore: camel_case_extensions
 extension SDL_HapticEffectExtension on Pointer<SDL_HapticEffect> {
   int get type => cast<Uint8>().elementAt(0).cast<Uint16>().value;
-  SDL_HapticConstant get ant => cast<Uint8>().elementAt(0).cast<SDL_HapticConstant>().ref;
-  SDL_HapticPeriodic get periodic => cast<Uint8>().elementAt(0).cast<SDL_HapticPeriodic>().ref;
-  SDL_HapticCondition get condition => cast<Uint8>().elementAt(0).cast<SDL_HapticCondition>().ref;
-  SDL_HapticRamp get ramp => cast<Uint8>().elementAt(0).cast<SDL_HapticRamp>().ref;
-  SDL_HapticLeftRight get leftright => cast<Uint8>().elementAt(0).cast<SDL_HapticLeftRight>().ref;
-  SDL_HapticCustom get custom => cast<Uint8>().elementAt(0).cast<SDL_HapticCustom>().ref;
+  Pointer<SDL_HapticConstant> get ant => cast<Uint8>().elementAt(0).cast<SDL_HapticConstant>();
+  Pointer<SDL_HapticPeriodic> get periodic => cast<Uint8>().elementAt(0).cast<SDL_HapticPeriodic>();
+  Pointer<SDL_HapticCondition> get condition => cast<Uint8>().elementAt(0).cast<SDL_HapticCondition>();
+  Pointer<SDL_HapticRamp> get ramp => cast<Uint8>().elementAt(0).cast<SDL_HapticRamp>();
+  Pointer<SDL_HapticLeftRight> get leftright => cast<Uint8>().elementAt(0).cast<SDL_HapticLeftRight>();
+  Pointer<SDL_HapticCustom> get custom => cast<Uint8>().elementAt(0).cast<SDL_HapticCustom>();
 }
 
 class SDL_Joystick extends Opaque {}
@@ -1453,7 +1453,7 @@ class SDL_WindowShapeParams extends Struct {
 // ignore: camel_case_extensions
 extension SDL_WindowShapeParamsExtension on Pointer<SDL_WindowShapeParams> {
   int get binarizationCutoff => cast<Uint8>().elementAt(0).cast<Uint8>().value;
-  SDL_Color get colorKey => cast<Uint8>().elementAt(0).cast<SDL_Color>().ref;
+  Pointer<SDL_Color> get colorKey => cast<Uint8>().elementAt(0).cast<SDL_Color>();
 }
 
 class SDL_WindowShapeMode extends Struct {
@@ -1466,7 +1466,7 @@ class SDL_WindowShapeMode extends Struct {
 }
 // ignore: camel_case_extensions
 extension SDL_WindowShapeModeExtension on Pointer<SDL_WindowShapeMode> {
-  SDL_WindowShapeParams get parameters => cast<Uint8>().elementAt(4).cast<SDL_WindowShapeParams>().ref;
+  Pointer<SDL_WindowShapeParams> get parameters => cast<Uint8>().elementAt(4).cast<SDL_WindowShapeParams>();
 }
 
 class SDL_iconv_t extends Opaque {}
@@ -1508,7 +1508,7 @@ class SDL_Surface extends Struct {
 }
 // ignore: camel_case_extensions
 extension SDL_SurfaceExtension on Pointer<SDL_Surface> {
-  SDL_Rect get clip_rect => cast<Uint8>().elementAt(52).cast<SDL_Rect>().ref;
+  Pointer<SDL_Rect> get clip_rect => cast<Uint8>().elementAt(52).cast<SDL_Rect>();
 }
 
 class NSWindow extends Opaque {}

@@ -20,6 +20,7 @@ int SDL_Init(int flags) {
       int Function(int flags)>('SDL_Init');
   return _SDL_Init(flags);
 }
+
 /// 
 /// This function initializes specific SDL subsystems
 /// 
@@ -32,6 +33,7 @@ int SDL_InitSubSystem(int flags) {
       int Function(int flags)>('SDL_InitSubSystem');
   return _SDL_InitSubSystem(flags);
 }
+
 /// 
 /// This function cleans up specific SDL subsystems
 /// 
@@ -44,6 +46,7 @@ void SDL_QuitSubSystem(int flags) {
       void Function(int flags)>('SDL_QuitSubSystem');
   return _SDL_QuitSubSystem(flags);
 }
+
 /// 
 /// This function returns a mask of the specified subsystems which have
 /// previously been initialized.
@@ -59,6 +62,7 @@ int SDL_WasInit(int flags) {
       int Function(int flags)>('SDL_WasInit');
   return _SDL_WasInit(flags);
 }
+
 /// 
 /// This function cleans up all initialized subsystems. You should
 /// call it upon all exit conditions.
@@ -72,6 +76,7 @@ void SDL_Quit() {
       void Function()>('SDL_Quit');
   return _SDL_Quit();
 }
+
 /// Never call this directly. Use the SDL_assert* macros.
 /// ```c
 /// extern DECLSPEC SDL_assert_state SDLCALL SDL_ReportAssertion(SDL_assert_data *, const char *, const char *, int)
@@ -87,6 +92,7 @@ int SDL_ReportAssertion(Pointer<SDL_assert_data>? arg0, String arg1, String arg2
   calloc.free(_arg2Pointer);
   return _result;
 }
+
 /// 
 /// \brief Set an application-defined assertion handler.
 /// 
@@ -116,6 +122,7 @@ void SDL_SetAssertionHandler(Pointer<Void>? handler, Pointer<Void>? userdata) {
       void Function(Pointer<Void>? handler, Pointer<Void>? userdata)>('SDL_SetAssertionHandler');
   return _SDL_SetAssertionHandler(handler, userdata);
 }
+
 /// 
 /// \brief Get a list of all assertion failures.
 /// 
@@ -147,6 +154,7 @@ Pointer<SDL_assert_data>? SDL_GetAssertionReport() {
       Pointer<SDL_assert_data>? Function()>('SDL_GetAssertionReport');
   return _SDL_GetAssertionReport();
 }
+
 /// 
 /// \brief Reset the list of all assertion failures.
 /// 
@@ -163,6 +171,7 @@ void SDL_ResetAssertionReport() {
       void Function()>('SDL_ResetAssertionReport');
   return _SDL_ResetAssertionReport();
 }
+
 /// 
 /// \brief Try to lock a spin lock by setting it to a non-zero value.
 /// 
@@ -179,6 +188,7 @@ int SDL_AtomicTryLock(Pointer<Int32>? lock) {
       int Function(Pointer<Int32>? lock)>('SDL_AtomicTryLock');
   return _SDL_AtomicTryLock(lock);
 }
+
 /// 
 /// \brief Lock a spin lock by setting it to a non-zero value.
 /// 
@@ -193,6 +203,7 @@ void SDL_AtomicLock(Pointer<Int32>? lock) {
       void Function(Pointer<Int32>? lock)>('SDL_AtomicLock');
   return _SDL_AtomicLock(lock);
 }
+
 /// 
 /// \brief Unlock a spin lock by setting it to 0. Always returns immediately
 /// 
@@ -207,6 +218,7 @@ void SDL_AtomicUnlock(Pointer<Int32>? lock) {
       void Function(Pointer<Int32>? lock)>('SDL_AtomicUnlock');
   return _SDL_AtomicUnlock(lock);
 }
+
 /// The mcr instruction isn't available in thumb mode, use real functions
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_MemoryBarrierRelease()
@@ -217,6 +229,7 @@ void SDL_MemoryBarrierRelease() {
       void Function()>('SDL_MemoryBarrierRelease');
   return _SDL_MemoryBarrierRelease();
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_MemoryBarrierAcquire()
 /// ```
@@ -226,6 +239,7 @@ void SDL_MemoryBarrierAcquire() {
       void Function()>('SDL_MemoryBarrierAcquire');
   return _SDL_MemoryBarrierAcquire();
 }
+
 /// 
 /// \brief Set an atomic variable to a new value if it is currently an old value.
 /// 
@@ -242,6 +256,7 @@ int SDL_AtomicCAS(Pointer<SDL_atomic_t>? a, int oldval, int newval) {
       int Function(Pointer<SDL_atomic_t>? a, int oldval, int newval)>('SDL_AtomicCAS');
   return _SDL_AtomicCAS(a, oldval, newval);
 }
+
 /// 
 /// \brief Set a pointer to a new value if it is currently an old value.
 /// 
@@ -258,6 +273,7 @@ int SDL_AtomicCASPtr(Pointer<Pointer<Void>>? a, Pointer<Void>? oldval, Pointer<V
       int Function(Pointer<Pointer<Void>>? a, Pointer<Void>? oldval, Pointer<Void>? newval)>('SDL_AtomicCASPtr');
   return _SDL_AtomicCASPtr(a, oldval, newval);
 }
+
 /// @{
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetNumAudioDrivers(void)
@@ -268,6 +284,7 @@ int SDL_GetNumAudioDrivers() {
       int Function()>('SDL_GetNumAudioDrivers');
   return _SDL_GetNumAudioDrivers();
 }
+
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetAudioDriver(int index)
 /// ```
@@ -277,6 +294,7 @@ String SDL_GetAudioDriver(int index) {
       Pointer<Utf8>? Function(int index)>('SDL_GetAudioDriver');
   return _SDL_GetAudioDriver(index)!.toDartString();
 }
+
 /// @{
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_AudioInit(const char *driver_name)
@@ -290,6 +308,7 @@ int SDL_AudioInit(String driver_name) {
   calloc.free(_driver_namePointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_AudioQuit(void)
 /// ```
@@ -299,6 +318,7 @@ void SDL_AudioQuit() {
       void Function()>('SDL_AudioQuit');
   return _SDL_AudioQuit();
 }
+
 /// 
 /// This function returns the name of the current audio driver, or NULL
 /// if no driver has been initialized.
@@ -312,6 +332,7 @@ String SDL_GetCurrentAudioDriver() {
       Pointer<Utf8>? Function()>('SDL_GetCurrentAudioDriver');
   return _SDL_GetCurrentAudioDriver()!.toDartString();
 }
+
 /// 
 /// This function opens the audio device with the desired parameters, and
 /// returns 0 if successful, placing the actual hardware parameters in the
@@ -363,6 +384,7 @@ int SDL_OpenAudio(Pointer<SDL_AudioSpec>? desired, Pointer<SDL_AudioSpec>? obtai
       int Function(Pointer<SDL_AudioSpec>? desired, Pointer<SDL_AudioSpec>? obtained)>('SDL_OpenAudio');
   return _SDL_OpenAudio(desired, obtained);
 }
+
 /// 
 /// Get the number of available devices exposed by the current driver.
 /// Only valid after a successfully initializing the audio subsystem.
@@ -384,6 +406,7 @@ int SDL_GetNumAudioDevices(int iscapture) {
       int Function(int iscapture)>('SDL_GetNumAudioDevices');
   return _SDL_GetNumAudioDevices(iscapture);
 }
+
 /// 
 /// Get the human-readable name of a specific audio device.
 /// Must be a value between 0 and (number of audio devices-1).
@@ -406,6 +429,7 @@ String SDL_GetAudioDeviceName(int index, int iscapture) {
       Pointer<Utf8>? Function(int index, int iscapture)>('SDL_GetAudioDeviceName');
   return _SDL_GetAudioDeviceName(index, iscapture)!.toDartString();
 }
+
 /// 
 /// Open a specific audio device. Passing in a device name of NULL requests
 /// the most reasonable default (and is equivalent to calling SDL_OpenAudio()).
@@ -431,6 +455,7 @@ int SDL_OpenAudioDevice(String device, int iscapture, Pointer<SDL_AudioSpec>? de
   calloc.free(_devicePointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC SDL_AudioStatus SDLCALL SDL_GetAudioStatus(void)
 /// ```
@@ -440,6 +465,7 @@ int SDL_GetAudioStatus() {
       int Function()>('SDL_GetAudioStatus');
   return _SDL_GetAudioStatus();
 }
+
 /// ```c
 /// extern DECLSPEC SDL_AudioStatus SDLCALL SDL_GetAudioDeviceStatus(SDL_AudioDeviceID dev)
 /// ```
@@ -449,6 +475,7 @@ int SDL_GetAudioDeviceStatus(int dev) {
       int Function(int dev)>('SDL_GetAudioDeviceStatus');
   return _SDL_GetAudioDeviceStatus(dev);
 }
+
 /// @{
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_PauseAudio(int pause_on)
@@ -459,6 +486,7 @@ void SDL_PauseAudio(int pause_on) {
       void Function(int pause_on)>('SDL_PauseAudio');
   return _SDL_PauseAudio(pause_on);
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_PauseAudioDevice(SDL_AudioDeviceID dev, int pause_on)
 /// ```
@@ -468,6 +496,7 @@ void SDL_PauseAudioDevice(int dev, int pause_on) {
       void Function(int dev, int pause_on)>('SDL_PauseAudioDevice');
   return _SDL_PauseAudioDevice(dev, pause_on);
 }
+
 /// 
 /// This function loads a WAVE from the data source, automatically freeing
 /// that source if \c freesrc is non-zero.  For example, to load a WAVE file,
@@ -496,6 +525,7 @@ Pointer<SDL_AudioSpec>? SDL_LoadWAV_RW(Pointer<SDL_RWops>? src, int freesrc, Poi
       Pointer<SDL_AudioSpec>? Function(Pointer<SDL_RWops>? src, int freesrc, Pointer<SDL_AudioSpec>? spec, Pointer<Pointer<Uint8>>? audio_buf, Pointer<Uint32>? audio_len)>('SDL_LoadWAV_RW');
   return _SDL_LoadWAV_RW(src, freesrc, spec, audio_buf, audio_len);
 }
+
 /// 
 /// This function frees data previously allocated with SDL_LoadWAV_RW()
 /// 
@@ -508,6 +538,7 @@ void SDL_FreeWAV(Pointer<Uint8>? audio_buf) {
       void Function(Pointer<Uint8>? audio_buf)>('SDL_FreeWAV');
   return _SDL_FreeWAV(audio_buf);
 }
+
 /// 
 /// This function takes a source format and rate and a destination format
 /// and rate, and initializes the \c cvt structure with information needed
@@ -526,6 +557,7 @@ int SDL_BuildAudioCVT(Pointer<SDL_AudioCVT>? cvt, int src_format, int src_channe
       int Function(Pointer<SDL_AudioCVT>? cvt, int src_format, int src_channels, int src_rate, int dst_format, int dst_channels, int dst_rate)>('SDL_BuildAudioCVT');
   return _SDL_BuildAudioCVT(cvt, src_format, src_channels, src_rate, dst_format, dst_channels, dst_rate);
 }
+
 /// 
 /// Once you have initialized the \c cvt structure using SDL_BuildAudioCVT(),
 /// created an audio buffer \c cvt->buf, and filled it with \c cvt->len bytes of
@@ -545,6 +577,7 @@ int SDL_ConvertAudio(Pointer<SDL_AudioCVT>? cvt) {
       int Function(Pointer<SDL_AudioCVT>? cvt)>('SDL_ConvertAudio');
   return _SDL_ConvertAudio(cvt);
 }
+
 /// 
 /// This takes two audio buffers of the playing audio format and mixes
 /// them, performing addition, volume adjustment, and overflow clipping.
@@ -561,6 +594,7 @@ void SDL_MixAudio(Pointer<Uint8>? dst, Pointer<Uint8>? src, int len, int volume)
       void Function(Pointer<Uint8>? dst, Pointer<Uint8>? src, int len, int volume)>('SDL_MixAudio');
   return _SDL_MixAudio(dst, src, len, volume);
 }
+
 /// 
 /// This works like SDL_MixAudio(), but you specify the audio format instead of
 /// using the format of audio device 1. Thus it can be used when no audio
@@ -575,6 +609,7 @@ void SDL_MixAudioFormat(Pointer<Uint8>? dst, Pointer<Uint8>? src, int format, in
       void Function(Pointer<Uint8>? dst, Pointer<Uint8>? src, int format, int len, int volume)>('SDL_MixAudioFormat');
   return _SDL_MixAudioFormat(dst, src, format, len, volume);
 }
+
 /// @{
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_LockAudio(void)
@@ -585,6 +620,7 @@ void SDL_LockAudio() {
       void Function()>('SDL_LockAudio');
   return _SDL_LockAudio();
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_LockAudioDevice(SDL_AudioDeviceID dev)
 /// ```
@@ -594,6 +630,7 @@ void SDL_LockAudioDevice(int dev) {
       void Function(int dev)>('SDL_LockAudioDevice');
   return _SDL_LockAudioDevice(dev);
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_UnlockAudio(void)
 /// ```
@@ -603,6 +640,7 @@ void SDL_UnlockAudio() {
       void Function()>('SDL_UnlockAudio');
   return _SDL_UnlockAudio();
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_UnlockAudioDevice(SDL_AudioDeviceID dev)
 /// ```
@@ -612,6 +650,7 @@ void SDL_UnlockAudioDevice(int dev) {
       void Function(int dev)>('SDL_UnlockAudioDevice');
   return _SDL_UnlockAudioDevice(dev);
 }
+
 /// 
 /// This function shuts down audio processing and closes the audio device.
 /// 
@@ -624,6 +663,7 @@ void SDL_CloseAudio() {
       void Function()>('SDL_CloseAudio');
   return _SDL_CloseAudio();
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_CloseAudioDevice(SDL_AudioDeviceID dev)
 /// ```
@@ -633,6 +673,7 @@ void SDL_CloseAudioDevice(int dev) {
       void Function(int dev)>('SDL_CloseAudioDevice');
   return _SDL_CloseAudioDevice(dev);
 }
+
 /// 
 /// \brief Put UTF-8 text into the clipboard
 /// 
@@ -650,6 +691,7 @@ int SDL_SetClipboardText(String text) {
   calloc.free(_textPointer);
   return _result;
 }
+
 /// 
 /// \brief Get UTF-8 text from the clipboard, which must be freed with SDL_free()
 /// 
@@ -664,6 +706,7 @@ Pointer<Int8>? SDL_GetClipboardText() {
       Pointer<Int8>? Function()>('SDL_GetClipboardText');
   return _SDL_GetClipboardText();
 }
+
 /// 
 /// \brief Returns a flag indicating whether the clipboard exists and contains a text string that is non-empty
 /// 
@@ -678,6 +721,7 @@ int SDL_HasClipboardText() {
       int Function()>('SDL_HasClipboardText');
   return _SDL_HasClipboardText();
 }
+
 /// 
 /// This function returns the number of CPU cores available.
 /// 
@@ -690,6 +734,7 @@ int SDL_GetCPUCount() {
       int Function()>('SDL_GetCPUCount');
   return _SDL_GetCPUCount();
 }
+
 /// 
 /// This function returns the L1 cache line size of the CPU
 /// 
@@ -705,6 +750,7 @@ int SDL_GetCPUCacheLineSize() {
       int Function()>('SDL_GetCPUCacheLineSize');
   return _SDL_GetCPUCacheLineSize();
 }
+
 /// 
 /// This function returns true if the CPU has the RDTSC instruction.
 /// 
@@ -717,6 +763,7 @@ int SDL_HasRDTSC() {
       int Function()>('SDL_HasRDTSC');
   return _SDL_HasRDTSC();
 }
+
 /// 
 /// This function returns true if the CPU has AltiVec features.
 /// 
@@ -729,6 +776,7 @@ int SDL_HasAltiVec() {
       int Function()>('SDL_HasAltiVec');
   return _SDL_HasAltiVec();
 }
+
 /// 
 /// This function returns true if the CPU has MMX features.
 /// 
@@ -741,6 +789,7 @@ int SDL_HasMMX() {
       int Function()>('SDL_HasMMX');
   return _SDL_HasMMX();
 }
+
 /// 
 /// This function returns true if the CPU has 3DNow! features.
 /// 
@@ -753,6 +802,7 @@ int SDL_Has3DNow() {
       int Function()>('SDL_Has3DNow');
   return _SDL_Has3DNow();
 }
+
 /// 
 /// This function returns true if the CPU has SSE features.
 /// 
@@ -765,6 +815,7 @@ int SDL_HasSSE() {
       int Function()>('SDL_HasSSE');
   return _SDL_HasSSE();
 }
+
 /// 
 /// This function returns true if the CPU has SSE2 features.
 /// 
@@ -777,6 +828,7 @@ int SDL_HasSSE2() {
       int Function()>('SDL_HasSSE2');
   return _SDL_HasSSE2();
 }
+
 /// 
 /// This function returns true if the CPU has SSE3 features.
 /// 
@@ -789,6 +841,7 @@ int SDL_HasSSE3() {
       int Function()>('SDL_HasSSE3');
   return _SDL_HasSSE3();
 }
+
 /// 
 /// This function returns true if the CPU has SSE4.1 features.
 /// 
@@ -801,6 +854,7 @@ int SDL_HasSSE41() {
       int Function()>('SDL_HasSSE41');
   return _SDL_HasSSE41();
 }
+
 /// 
 /// This function returns true if the CPU has SSE4.2 features.
 /// 
@@ -813,6 +867,7 @@ int SDL_HasSSE42() {
       int Function()>('SDL_HasSSE42');
   return _SDL_HasSSE42();
 }
+
 /// SDL_SetError() unconditionally returns -1.
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetError(const char *fmt, ...)
@@ -826,6 +881,7 @@ int SDL_SetError(String fmt, Pointer<Void>? arg1) {
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetError(void)
 /// ```
@@ -835,6 +891,7 @@ String SDL_GetError() {
       Pointer<Utf8>? Function()>('SDL_GetError');
   return _SDL_GetError()!.toDartString();
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_ClearError(void)
 /// ```
@@ -844,6 +901,7 @@ void SDL_ClearError() {
       void Function()>('SDL_ClearError');
   return _SDL_ClearError();
 }
+
 /// SDL_Error() unconditionally returns -1.
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_Error(SDL_errorcode code)
@@ -854,6 +912,7 @@ int SDL_Error(int code) {
       int Function(int code)>('SDL_Error');
   return _SDL_Error(code);
 }
+
 /// 
 /// Pumps the event loop, gathering events from the input devices.
 /// 
@@ -870,6 +929,7 @@ void SDL_PumpEvents() {
       void Function()>('SDL_PumpEvents');
   return _SDL_PumpEvents();
 }
+
 /// 
 /// Checks the event queue for messages and optionally returns them.
 /// 
@@ -897,6 +957,7 @@ int SDL_PeepEvents(Pointer<SDL_Event>? events, int numevents, int action, int mi
       int Function(Pointer<SDL_Event>? events, int numevents, int action, int minType, int maxType)>('SDL_PeepEvents');
   return _SDL_PeepEvents(events, numevents, action, minType, maxType);
 }
+
 /// 
 /// Checks to see if certain event types are in the event queue.
 /// 
@@ -909,6 +970,7 @@ int SDL_HasEvent(int type) {
       int Function(int type)>('SDL_HasEvent');
   return _SDL_HasEvent(type);
 }
+
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasEvents(Uint32 minType, Uint32 maxType)
 /// ```
@@ -918,6 +980,7 @@ int SDL_HasEvents(int minType, int maxType) {
       int Function(int minType, int maxType)>('SDL_HasEvents');
   return _SDL_HasEvents(minType, maxType);
 }
+
 /// 
 /// This function clears events from the event queue
 /// 
@@ -930,6 +993,7 @@ void SDL_FlushEvent(int type) {
       void Function(int type)>('SDL_FlushEvent');
   return _SDL_FlushEvent(type);
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_FlushEvents(Uint32 minType, Uint32 maxType)
 /// ```
@@ -939,6 +1003,7 @@ void SDL_FlushEvents(int minType, int maxType) {
       void Function(int minType, int maxType)>('SDL_FlushEvents');
   return _SDL_FlushEvents(minType, maxType);
 }
+
 /// 
 /// \brief Polls for currently pending events.
 /// 
@@ -956,6 +1021,7 @@ int SDL_PollEvent(Pointer<SDL_Event>? event) {
       int Function(Pointer<SDL_Event>? event)>('SDL_PollEvent');
   return _SDL_PollEvent(event);
 }
+
 /// 
 /// \brief Waits indefinitely for the next available event.
 /// 
@@ -973,6 +1039,7 @@ int SDL_WaitEvent(Pointer<SDL_Event>? event) {
       int Function(Pointer<SDL_Event>? event)>('SDL_WaitEvent');
   return _SDL_WaitEvent(event);
 }
+
 /// 
 /// \brief Waits until the specified timeout (in milliseconds) for the next
 /// available event.
@@ -992,6 +1059,7 @@ int SDL_WaitEventTimeout(Pointer<SDL_Event>? event, int timeout) {
       int Function(Pointer<SDL_Event>? event, int timeout)>('SDL_WaitEventTimeout');
   return _SDL_WaitEventTimeout(event, timeout);
 }
+
 /// 
 /// \brief Add an event to the event queue.
 /// 
@@ -1007,6 +1075,7 @@ int SDL_PushEvent(Pointer<SDL_Event>? event) {
       int Function(Pointer<SDL_Event>? event)>('SDL_PushEvent');
   return _SDL_PushEvent(event);
 }
+
 /// 
 /// Sets up a filter to process all events before they change internal state and
 /// are posted to the internal event queue.
@@ -1041,6 +1110,7 @@ void SDL_SetEventFilter(Pointer<Void>? filter, Pointer<Void>? userdata) {
       void Function(Pointer<Void>? filter, Pointer<Void>? userdata)>('SDL_SetEventFilter');
   return _SDL_SetEventFilter(filter, userdata);
 }
+
 /// 
 /// Return the current event filter - can be used to "chain" filters.
 /// If there is no event filter set, this function returns SDL_FALSE.
@@ -1054,6 +1124,7 @@ int SDL_GetEventFilter(Pointer<Pointer<Void>>? filter, Pointer<Pointer<Void>>? u
       int Function(Pointer<Pointer<Void>>? filter, Pointer<Pointer<Void>>? userdata)>('SDL_GetEventFilter');
   return _SDL_GetEventFilter(filter, userdata);
 }
+
 /// 
 /// Add a function which is called when an event is added to the queue.
 /// 
@@ -1066,6 +1137,7 @@ void SDL_AddEventWatch(Pointer<Void>? filter, Pointer<Void>? userdata) {
       void Function(Pointer<Void>? filter, Pointer<Void>? userdata)>('SDL_AddEventWatch');
   return _SDL_AddEventWatch(filter, userdata);
 }
+
 /// 
 /// Remove an event watch function added with SDL_AddEventWatch()
 /// 
@@ -1078,6 +1150,7 @@ void SDL_DelEventWatch(Pointer<Void>? filter, Pointer<Void>? userdata) {
       void Function(Pointer<Void>? filter, Pointer<Void>? userdata)>('SDL_DelEventWatch');
   return _SDL_DelEventWatch(filter, userdata);
 }
+
 /// 
 /// Run the filter function on the current event queue, removing any
 /// events for which the filter returns 0.
@@ -1091,6 +1164,7 @@ void SDL_FilterEvents(Pointer<Void>? filter, Pointer<Void>? userdata) {
       void Function(Pointer<Void>? filter, Pointer<Void>? userdata)>('SDL_FilterEvents');
   return _SDL_FilterEvents(filter, userdata);
 }
+
 /// 
 /// This function allows you to set the state of processing certain events.
 /// - If \c state is set to ::SDL_IGNORE, that event will be automatically
@@ -1109,6 +1183,7 @@ int SDL_EventState(int type, int state) {
       int Function(int type, int state)>('SDL_EventState');
   return _SDL_EventState(type, state);
 }
+
 /// 
 /// This function allocates a set of user-defined events, and returns
 /// the beginning event number for that set of events.
@@ -1125,6 +1200,7 @@ int SDL_RegisterEvents(int numevents) {
       int Function(int numevents)>('SDL_RegisterEvents');
   return _SDL_RegisterEvents(numevents);
 }
+
 /// 
 /// Add or update an existing mapping configuration
 /// 
@@ -1142,6 +1218,7 @@ int SDL_GameControllerAddMapping(String mappingString) {
   calloc.free(_mappingStringPointer);
   return _result;
 }
+
 /// 
 /// Get a mapping string for a GUID
 /// 
@@ -1156,6 +1233,7 @@ Pointer<Int8>? SDL_GameControllerMappingForGUID(Pointer<Void>? guid) {
       Pointer<Int8>? Function(Pointer<Void>? guid)>('SDL_GameControllerMappingForGUID');
   return _SDL_GameControllerMappingForGUID(guid);
 }
+
 /// 
 /// Get a mapping string for an open GameController
 /// 
@@ -1170,6 +1248,7 @@ Pointer<Int8>? SDL_GameControllerMapping(Pointer<SDL_GameController>? gamecontro
       Pointer<Int8>? Function(Pointer<SDL_GameController>? gamecontroller)>('SDL_GameControllerMapping');
   return _SDL_GameControllerMapping(gamecontroller);
 }
+
 /// 
 /// Is the joystick on this index supported by the game controller interface?
 /// 
@@ -1182,6 +1261,7 @@ int SDL_IsGameController(int joystick_index) {
       int Function(int joystick_index)>('SDL_IsGameController');
   return _SDL_IsGameController(joystick_index);
 }
+
 /// 
 /// Get the implementation dependent name of a game controller.
 /// This can be called before any controllers are opened.
@@ -1196,6 +1276,7 @@ String SDL_GameControllerNameForIndex(int joystick_index) {
       Pointer<Utf8>? Function(int joystick_index)>('SDL_GameControllerNameForIndex');
   return _SDL_GameControllerNameForIndex(joystick_index)!.toDartString();
 }
+
 /// 
 /// Open a game controller for use.
 /// The index passed as an argument refers to the N'th game controller on the system.
@@ -1213,6 +1294,7 @@ Pointer<SDL_GameController>? SDL_GameControllerOpen(int joystick_index) {
       Pointer<SDL_GameController>? Function(int joystick_index)>('SDL_GameControllerOpen');
   return _SDL_GameControllerOpen(joystick_index);
 }
+
 /// 
 /// Return the name for this currently opened controller
 /// 
@@ -1225,6 +1307,7 @@ String SDL_GameControllerName(Pointer<SDL_GameController>? gamecontroller) {
       Pointer<Utf8>? Function(Pointer<SDL_GameController>? gamecontroller)>('SDL_GameControllerName');
   return _SDL_GameControllerName(gamecontroller)!.toDartString();
 }
+
 /// 
 /// Returns SDL_TRUE if the controller has been opened and currently connected,
 /// or SDL_FALSE if it has not.
@@ -1238,6 +1321,7 @@ int SDL_GameControllerGetAttached(Pointer<SDL_GameController>? gamecontroller) {
       int Function(Pointer<SDL_GameController>? gamecontroller)>('SDL_GameControllerGetAttached');
   return _SDL_GameControllerGetAttached(gamecontroller);
 }
+
 /// 
 /// Get the underlying joystick object used by a controller
 /// 
@@ -1250,6 +1334,7 @@ Pointer<SDL_Joystick>? SDL_GameControllerGetJoystick(Pointer<SDL_GameController>
       Pointer<SDL_Joystick>? Function(Pointer<SDL_GameController>? gamecontroller)>('SDL_GameControllerGetJoystick');
   return _SDL_GameControllerGetJoystick(gamecontroller);
 }
+
 /// 
 /// Enable/disable controller event polling.
 /// 
@@ -1268,6 +1353,7 @@ int SDL_GameControllerEventState(int state) {
       int Function(int state)>('SDL_GameControllerEventState');
   return _SDL_GameControllerEventState(state);
 }
+
 /// 
 /// Update the current state of the open game controllers.
 /// 
@@ -1283,6 +1369,7 @@ void SDL_GameControllerUpdate() {
       void Function()>('SDL_GameControllerUpdate');
   return _SDL_GameControllerUpdate();
 }
+
 /// 
 /// turn this string into a axis mapping
 /// 
@@ -1298,6 +1385,7 @@ int SDL_GameControllerGetAxisFromString(String pchString) {
   calloc.free(_pchStringPointer);
   return _result;
 }
+
 /// 
 /// turn this axis enum into a string mapping
 /// 
@@ -1310,6 +1398,7 @@ String SDL_GameControllerGetStringForAxis(int axis) {
       Pointer<Utf8>? Function(int axis)>('SDL_GameControllerGetStringForAxis');
   return _SDL_GameControllerGetStringForAxis(axis)!.toDartString();
 }
+
 /// 
 /// Get the SDL joystick layer binding for this controller button mapping
 /// 
@@ -1322,6 +1411,7 @@ Pointer<Void>? SDL_GameControllerGetBindForAxis(Pointer<SDL_GameController>? gam
       Pointer<Void>? Function(Pointer<SDL_GameController>? gamecontroller, int axis)>('SDL_GameControllerGetBindForAxis');
   return _SDL_GameControllerGetBindForAxis(gamecontroller, axis);
 }
+
 /// 
 /// Get the current state of an axis control on a game controller.
 /// 
@@ -1338,6 +1428,7 @@ int SDL_GameControllerGetAxis(Pointer<SDL_GameController>? gamecontroller, int a
       int Function(Pointer<SDL_GameController>? gamecontroller, int axis)>('SDL_GameControllerGetAxis');
   return _SDL_GameControllerGetAxis(gamecontroller, axis);
 }
+
 /// 
 /// turn this string into a button mapping
 /// 
@@ -1353,6 +1444,7 @@ int SDL_GameControllerGetButtonFromString(String pchString) {
   calloc.free(_pchStringPointer);
   return _result;
 }
+
 /// 
 /// turn this button enum into a string mapping
 /// 
@@ -1365,6 +1457,7 @@ String SDL_GameControllerGetStringForButton(int button) {
       Pointer<Utf8>? Function(int button)>('SDL_GameControllerGetStringForButton');
   return _SDL_GameControllerGetStringForButton(button)!.toDartString();
 }
+
 /// 
 /// Get the SDL joystick layer binding for this controller button mapping
 /// 
@@ -1377,6 +1470,7 @@ Pointer<Void>? SDL_GameControllerGetBindForButton(Pointer<SDL_GameController>? g
       Pointer<Void>? Function(Pointer<SDL_GameController>? gamecontroller, int button)>('SDL_GameControllerGetBindForButton');
   return _SDL_GameControllerGetBindForButton(gamecontroller, button);
 }
+
 /// 
 /// Get the current state of a button on a game controller.
 /// 
@@ -1391,6 +1485,7 @@ int SDL_GameControllerGetButton(Pointer<SDL_GameController>? gamecontroller, int
       int Function(Pointer<SDL_GameController>? gamecontroller, int button)>('SDL_GameControllerGetButton');
   return _SDL_GameControllerGetButton(gamecontroller, button);
 }
+
 /// 
 /// Close a controller previously opened with SDL_GameControllerOpen().
 /// 
@@ -1403,6 +1498,7 @@ void SDL_GameControllerClose(Pointer<SDL_GameController>? gamecontroller) {
       void Function(Pointer<SDL_GameController>? gamecontroller)>('SDL_GameControllerClose');
   return _SDL_GameControllerClose(gamecontroller);
 }
+
 /// 
 /// \brief Begin Recording a gesture on the specified touch, or all touches (-1)
 /// 
@@ -1417,6 +1513,7 @@ int SDL_RecordGesture(int touchId) {
       int Function(int touchId)>('SDL_RecordGesture');
   return _SDL_RecordGesture(touchId);
 }
+
 /// 
 /// \brief Save all currently loaded Dollar Gesture templates
 /// 
@@ -1431,6 +1528,7 @@ int SDL_SaveAllDollarTemplates(Pointer<SDL_RWops>? src) {
       int Function(Pointer<SDL_RWops>? src)>('SDL_SaveAllDollarTemplates');
   return _SDL_SaveAllDollarTemplates(src);
 }
+
 /// 
 /// \brief Save a currently loaded Dollar Gesture template
 /// 
@@ -1445,6 +1543,7 @@ int SDL_SaveDollarTemplate(int gestureId, Pointer<SDL_RWops>? src) {
       int Function(int gestureId, Pointer<SDL_RWops>? src)>('SDL_SaveDollarTemplate');
   return _SDL_SaveDollarTemplate(gestureId, src);
 }
+
 /// 
 /// \brief Load Dollar Gesture templates from a file
 /// 
@@ -1459,6 +1558,7 @@ int SDL_LoadDollarTemplates(int touchId, Pointer<SDL_RWops>? src) {
       int Function(int touchId, Pointer<SDL_RWops>? src)>('SDL_LoadDollarTemplates');
   return _SDL_LoadDollarTemplates(touchId, src);
 }
+
 /// 
 /// \brief Count the number of haptic devices attached to the system.
 /// 
@@ -1473,6 +1573,7 @@ int SDL_NumHaptics() {
       int Function()>('SDL_NumHaptics');
   return _SDL_NumHaptics();
 }
+
 /// 
 /// \brief Get the implementation dependent name of a Haptic device.
 /// 
@@ -1493,6 +1594,7 @@ String SDL_HapticName(int device_index) {
       Pointer<Utf8>? Function(int device_index)>('SDL_HapticName');
   return _SDL_HapticName(device_index)!.toDartString();
 }
+
 /// 
 /// \brief Opens a Haptic device for usage.
 /// 
@@ -1524,6 +1626,7 @@ Pointer<SDL_Haptic>? SDL_HapticOpen(int device_index) {
       Pointer<SDL_Haptic>? Function(int device_index)>('SDL_HapticOpen');
   return _SDL_HapticOpen(device_index);
 }
+
 /// 
 /// \brief Checks if the haptic device at index has been opened.
 /// 
@@ -1542,6 +1645,7 @@ int SDL_HapticOpened(int device_index) {
       int Function(int device_index)>('SDL_HapticOpened');
   return _SDL_HapticOpened(device_index);
 }
+
 /// 
 /// \brief Gets the index of a haptic device.
 /// 
@@ -1560,6 +1664,7 @@ int SDL_HapticIndex(Pointer<SDL_Haptic>? haptic) {
       int Function(Pointer<SDL_Haptic>? haptic)>('SDL_HapticIndex');
   return _SDL_HapticIndex(haptic);
 }
+
 /// 
 /// \brief Gets whether or not the current mouse has haptic capabilities.
 /// 
@@ -1576,6 +1681,7 @@ int SDL_MouseIsHaptic() {
       int Function()>('SDL_MouseIsHaptic');
   return _SDL_MouseIsHaptic();
 }
+
 /// 
 /// \brief Tries to open a haptic device from the current mouse.
 /// 
@@ -1593,6 +1699,7 @@ Pointer<SDL_Haptic>? SDL_HapticOpenFromMouse() {
       Pointer<SDL_Haptic>? Function()>('SDL_HapticOpenFromMouse');
   return _SDL_HapticOpenFromMouse();
 }
+
 /// 
 /// \brief Checks to see if a joystick has haptic features.
 /// 
@@ -1611,6 +1718,7 @@ int SDL_JoystickIsHaptic(Pointer<SDL_Joystick>? joystick) {
       int Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickIsHaptic');
   return _SDL_JoystickIsHaptic(joystick);
 }
+
 /// 
 /// \brief Opens a Haptic device for usage from a Joystick device.
 /// 
@@ -1637,6 +1745,7 @@ Pointer<SDL_Haptic>? SDL_HapticOpenFromJoystick(Pointer<SDL_Joystick>? joystick)
       Pointer<SDL_Haptic>? Function(Pointer<SDL_Joystick>? joystick)>('SDL_HapticOpenFromJoystick');
   return _SDL_HapticOpenFromJoystick(joystick);
 }
+
 /// 
 /// \brief Closes a Haptic device previously opened with SDL_HapticOpen().
 /// 
@@ -1651,6 +1760,7 @@ void SDL_HapticClose(Pointer<SDL_Haptic>? haptic) {
       void Function(Pointer<SDL_Haptic>? haptic)>('SDL_HapticClose');
   return _SDL_HapticClose(haptic);
 }
+
 /// 
 /// \brief Returns the number of effects a haptic device can store.
 /// 
@@ -1674,6 +1784,7 @@ int SDL_HapticNumEffects(Pointer<SDL_Haptic>? haptic) {
       int Function(Pointer<SDL_Haptic>? haptic)>('SDL_HapticNumEffects');
   return _SDL_HapticNumEffects(haptic);
 }
+
 /// 
 /// \brief Returns the number of effects a haptic device can play at the same
 /// time.
@@ -1697,6 +1808,7 @@ int SDL_HapticNumEffectsPlaying(Pointer<SDL_Haptic>? haptic) {
       int Function(Pointer<SDL_Haptic>? haptic)>('SDL_HapticNumEffectsPlaying');
   return _SDL_HapticNumEffectsPlaying(haptic);
 }
+
 /// 
 /// \brief Gets the haptic devices supported features in bitwise matter.
 /// 
@@ -1722,6 +1834,7 @@ int SDL_HapticQuery(Pointer<SDL_Haptic>? haptic) {
       int Function(Pointer<SDL_Haptic>? haptic)>('SDL_HapticQuery');
   return _SDL_HapticQuery(haptic);
 }
+
 /// 
 /// \brief Gets the number of haptic axes the device has.
 /// 
@@ -1736,6 +1849,7 @@ int SDL_HapticNumAxes(Pointer<SDL_Haptic>? haptic) {
       int Function(Pointer<SDL_Haptic>? haptic)>('SDL_HapticNumAxes');
   return _SDL_HapticNumAxes(haptic);
 }
+
 /// 
 /// \brief Checks to see if effect is supported by haptic.
 /// 
@@ -1755,6 +1869,7 @@ int SDL_HapticEffectSupported(Pointer<SDL_Haptic>? haptic, Pointer<SDL_HapticEff
       int Function(Pointer<SDL_Haptic>? haptic, Pointer<SDL_HapticEffect>? effect)>('SDL_HapticEffectSupported');
   return _SDL_HapticEffectSupported(haptic, effect);
 }
+
 /// 
 /// \brief Creates a new haptic effect on the device.
 /// 
@@ -1775,6 +1890,7 @@ int SDL_HapticNewEffect(Pointer<SDL_Haptic>? haptic, Pointer<SDL_HapticEffect>? 
       int Function(Pointer<SDL_Haptic>? haptic, Pointer<SDL_HapticEffect>? effect)>('SDL_HapticNewEffect');
   return _SDL_HapticNewEffect(haptic, effect);
 }
+
 /// 
 /// \brief Updates the properties of an effect.
 /// 
@@ -1801,6 +1917,7 @@ int SDL_HapticUpdateEffect(Pointer<SDL_Haptic>? haptic, int effect, Pointer<SDL_
       int Function(Pointer<SDL_Haptic>? haptic, int effect, Pointer<SDL_HapticEffect>? data)>('SDL_HapticUpdateEffect');
   return _SDL_HapticUpdateEffect(haptic, effect, data);
 }
+
 /// 
 /// \brief Runs the haptic effect on its associated haptic device.
 /// 
@@ -1828,6 +1945,7 @@ int SDL_HapticRunEffect(Pointer<SDL_Haptic>? haptic, int effect, int iterations)
       int Function(Pointer<SDL_Haptic>? haptic, int effect, int iterations)>('SDL_HapticRunEffect');
   return _SDL_HapticRunEffect(haptic, effect, iterations);
 }
+
 /// 
 /// \brief Stops the haptic effect on its associated haptic device.
 /// 
@@ -1847,6 +1965,7 @@ int SDL_HapticStopEffect(Pointer<SDL_Haptic>? haptic, int effect) {
       int Function(Pointer<SDL_Haptic>? haptic, int effect)>('SDL_HapticStopEffect');
   return _SDL_HapticStopEffect(haptic, effect);
 }
+
 /// 
 /// \brief Destroys a haptic effect on the device.
 /// 
@@ -1867,6 +1986,7 @@ void SDL_HapticDestroyEffect(Pointer<SDL_Haptic>? haptic, int effect) {
       void Function(Pointer<SDL_Haptic>? haptic, int effect)>('SDL_HapticDestroyEffect');
   return _SDL_HapticDestroyEffect(haptic, effect);
 }
+
 /// 
 /// \brief Gets the status of the current effect on the haptic device.
 /// 
@@ -1888,6 +2008,7 @@ int SDL_HapticGetEffectStatus(Pointer<SDL_Haptic>? haptic, int effect) {
       int Function(Pointer<SDL_Haptic>? haptic, int effect)>('SDL_HapticGetEffectStatus');
   return _SDL_HapticGetEffectStatus(haptic, effect);
 }
+
 /// 
 /// \brief Sets the global gain of the device.
 /// 
@@ -1913,6 +2034,7 @@ int SDL_HapticSetGain(Pointer<SDL_Haptic>? haptic, int gain) {
       int Function(Pointer<SDL_Haptic>? haptic, int gain)>('SDL_HapticSetGain');
   return _SDL_HapticSetGain(haptic, gain);
 }
+
 /// 
 /// \brief Sets the global autocenter of the device.
 /// 
@@ -1936,6 +2058,7 @@ int SDL_HapticSetAutocenter(Pointer<SDL_Haptic>? haptic, int autocenter) {
       int Function(Pointer<SDL_Haptic>? haptic, int autocenter)>('SDL_HapticSetAutocenter');
   return _SDL_HapticSetAutocenter(haptic, autocenter);
 }
+
 /// 
 /// \brief Pauses a haptic device.
 /// 
@@ -1959,6 +2082,7 @@ int SDL_HapticPause(Pointer<SDL_Haptic>? haptic) {
       int Function(Pointer<SDL_Haptic>? haptic)>('SDL_HapticPause');
   return _SDL_HapticPause(haptic);
 }
+
 /// 
 /// \brief Unpauses a haptic device.
 /// 
@@ -1978,6 +2102,7 @@ int SDL_HapticUnpause(Pointer<SDL_Haptic>? haptic) {
       int Function(Pointer<SDL_Haptic>? haptic)>('SDL_HapticUnpause');
   return _SDL_HapticUnpause(haptic);
 }
+
 /// 
 /// \brief Stops all the currently playing effects on a haptic device.
 /// 
@@ -1993,6 +2118,7 @@ int SDL_HapticStopAll(Pointer<SDL_Haptic>? haptic) {
       int Function(Pointer<SDL_Haptic>? haptic)>('SDL_HapticStopAll');
   return _SDL_HapticStopAll(haptic);
 }
+
 /// 
 /// \brief Checks to see if rumble is supported on a haptic device.
 /// 
@@ -2012,6 +2138,7 @@ int SDL_HapticRumbleSupported(Pointer<SDL_Haptic>? haptic) {
       int Function(Pointer<SDL_Haptic>? haptic)>('SDL_HapticRumbleSupported');
   return _SDL_HapticRumbleSupported(haptic);
 }
+
 /// 
 /// \brief Initializes the haptic device for simple rumble playback.
 /// 
@@ -2032,6 +2159,7 @@ int SDL_HapticRumbleInit(Pointer<SDL_Haptic>? haptic) {
       int Function(Pointer<SDL_Haptic>? haptic)>('SDL_HapticRumbleInit');
   return _SDL_HapticRumbleInit(haptic);
 }
+
 /// 
 /// \brief Runs simple rumble on a haptic device
 /// 
@@ -2053,6 +2181,7 @@ int SDL_HapticRumblePlay(Pointer<SDL_Haptic>? haptic, double strength, int lengt
       int Function(Pointer<SDL_Haptic>? haptic, double strength, int length)>('SDL_HapticRumblePlay');
   return _SDL_HapticRumblePlay(haptic, strength, length);
 }
+
 /// 
 /// \brief Stops the simple rumble on a haptic device.
 /// 
@@ -2072,6 +2201,7 @@ int SDL_HapticRumbleStop(Pointer<SDL_Haptic>? haptic) {
       int Function(Pointer<SDL_Haptic>? haptic)>('SDL_HapticRumbleStop');
   return _SDL_HapticRumbleStop(haptic);
 }
+
 /// 
 /// \brief Set a hint with a specific priority
 /// 
@@ -2095,6 +2225,7 @@ int SDL_SetHintWithPriority(String name, String value, int priority) {
   calloc.free(_valuePointer);
   return _result;
 }
+
 /// 
 /// \brief Set a hint with normal priority
 /// 
@@ -2114,6 +2245,7 @@ int SDL_SetHint(String name, String value) {
   calloc.free(_valuePointer);
   return _result;
 }
+
 /// 
 /// \brief Get a hint
 /// 
@@ -2131,6 +2263,7 @@ String SDL_GetHint(String name) {
   calloc.free(_namePointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_AddHintCallback(const char *name, SDL_HintCallback callback, void *userdata)
 /// ```
@@ -2143,6 +2276,7 @@ void SDL_AddHintCallback(String name, Pointer<Void>? callback, Pointer<Void>? us
   calloc.free(_namePointer);
   return _result;
 }
+
 /// 
 /// \brief Remove a function watching a particular hint
 /// 
@@ -2162,6 +2296,7 @@ void SDL_DelHintCallback(String name, Pointer<Void>? callback, Pointer<Void>? us
   calloc.free(_namePointer);
   return _result;
 }
+
 /// 
 /// \brief  Clear all hints
 /// 
@@ -2176,6 +2311,7 @@ void SDL_ClearHints() {
       void Function()>('SDL_ClearHints');
   return _SDL_ClearHints();
 }
+
 /// 
 /// Count the number of joysticks attached to the system right now
 /// 
@@ -2188,6 +2324,7 @@ int SDL_NumJoysticks() {
       int Function()>('SDL_NumJoysticks');
   return _SDL_NumJoysticks();
 }
+
 /// 
 /// Get the implementation dependent name of a joystick.
 /// This can be called before any joysticks are opened.
@@ -2202,6 +2339,7 @@ String SDL_JoystickNameForIndex(int device_index) {
       Pointer<Utf8>? Function(int device_index)>('SDL_JoystickNameForIndex');
   return _SDL_JoystickNameForIndex(device_index)!.toDartString();
 }
+
 /// 
 /// Open a joystick for use.
 /// The index passed as an argument refers tothe N'th joystick on the system.
@@ -2219,6 +2357,7 @@ Pointer<SDL_Joystick>? SDL_JoystickOpen(int device_index) {
       Pointer<SDL_Joystick>? Function(int device_index)>('SDL_JoystickOpen');
   return _SDL_JoystickOpen(device_index);
 }
+
 /// 
 /// Return the name for this currently opened joystick.
 /// If no name can be found, this function returns NULL.
@@ -2232,6 +2371,7 @@ String SDL_JoystickName(Pointer<SDL_Joystick>? joystick) {
       Pointer<Utf8>? Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickName');
   return _SDL_JoystickName(joystick)!.toDartString();
 }
+
 /// 
 /// Return the GUID for the joystick at this index
 /// 
@@ -2244,6 +2384,7 @@ Pointer<Void>? SDL_JoystickGetDeviceGUID(int device_index) {
       Pointer<Void>? Function(int device_index)>('SDL_JoystickGetDeviceGUID');
   return _SDL_JoystickGetDeviceGUID(device_index);
 }
+
 /// 
 /// Return the GUID for this opened joystick
 /// 
@@ -2256,6 +2397,7 @@ Pointer<Void>? SDL_JoystickGetGUID(Pointer<SDL_Joystick>? joystick) {
       Pointer<Void>? Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickGetGUID');
   return _SDL_JoystickGetGUID(joystick);
 }
+
 /// 
 /// Return a string representation for this guid. pszGUID must point to at least 33 bytes
 /// (32 for the string plus a NULL terminator).
@@ -2269,6 +2411,7 @@ void SDL_JoystickGetGUIDString(Pointer<Void>? guid, Pointer<Int8>? pszGUID, int 
       void Function(Pointer<Void>? guid, Pointer<Int8>? pszGUID, int cbGUID)>('SDL_JoystickGetGUIDString');
   return _SDL_JoystickGetGUIDString(guid, pszGUID, cbGUID);
 }
+
 /// 
 /// convert a string into a joystick formatted guid
 /// 
@@ -2284,6 +2427,7 @@ Pointer<Void>? SDL_JoystickGetGUIDFromString(String pchGUID) {
   calloc.free(_pchGUIDPointer);
   return _result;
 }
+
 /// 
 /// Returns SDL_TRUE if the joystick has been opened and currently connected, or SDL_FALSE if it has not.
 /// 
@@ -2296,6 +2440,7 @@ int SDL_JoystickGetAttached(Pointer<SDL_Joystick>? joystick) {
       int Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickGetAttached');
   return _SDL_JoystickGetAttached(joystick);
 }
+
 /// 
 /// Get the instance ID of an opened joystick or -1 if the joystick is invalid.
 /// 
@@ -2308,6 +2453,7 @@ int SDL_JoystickInstanceID(Pointer<SDL_Joystick>? joystick) {
       int Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickInstanceID');
   return _SDL_JoystickInstanceID(joystick);
 }
+
 /// 
 /// Get the number of general axis controls on a joystick.
 /// 
@@ -2320,6 +2466,7 @@ int SDL_JoystickNumAxes(Pointer<SDL_Joystick>? joystick) {
       int Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickNumAxes');
   return _SDL_JoystickNumAxes(joystick);
 }
+
 /// 
 /// Get the number of trackballs on a joystick.
 /// 
@@ -2335,6 +2482,7 @@ int SDL_JoystickNumBalls(Pointer<SDL_Joystick>? joystick) {
       int Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickNumBalls');
   return _SDL_JoystickNumBalls(joystick);
 }
+
 /// 
 /// Get the number of POV hats on a joystick.
 /// 
@@ -2347,6 +2495,7 @@ int SDL_JoystickNumHats(Pointer<SDL_Joystick>? joystick) {
       int Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickNumHats');
   return _SDL_JoystickNumHats(joystick);
 }
+
 /// 
 /// Get the number of buttons on a joystick.
 /// 
@@ -2359,6 +2508,7 @@ int SDL_JoystickNumButtons(Pointer<SDL_Joystick>? joystick) {
       int Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickNumButtons');
   return _SDL_JoystickNumButtons(joystick);
 }
+
 /// 
 /// Update the current state of the open joysticks.
 /// 
@@ -2374,6 +2524,7 @@ void SDL_JoystickUpdate() {
       void Function()>('SDL_JoystickUpdate');
   return _SDL_JoystickUpdate();
 }
+
 /// 
 /// Enable/disable joystick event polling.
 /// 
@@ -2392,6 +2543,7 @@ int SDL_JoystickEventState(int state) {
       int Function(int state)>('SDL_JoystickEventState');
   return _SDL_JoystickEventState(state);
 }
+
 /// 
 /// Get the current state of an axis control on a joystick.
 /// 
@@ -2408,6 +2560,7 @@ int SDL_JoystickGetAxis(Pointer<SDL_Joystick>? joystick, int axis) {
       int Function(Pointer<SDL_Joystick>? joystick, int axis)>('SDL_JoystickGetAxis');
   return _SDL_JoystickGetAxis(joystick, axis);
 }
+
 /// 
 /// Get the current state of a POV hat on a joystick.
 /// 
@@ -2433,6 +2586,7 @@ int SDL_JoystickGetHat(Pointer<SDL_Joystick>? joystick, int hat) {
       int Function(Pointer<SDL_Joystick>? joystick, int hat)>('SDL_JoystickGetHat');
   return _SDL_JoystickGetHat(joystick, hat);
 }
+
 /// 
 /// Get the ball axis change since the last poll.
 /// 
@@ -2449,6 +2603,7 @@ int SDL_JoystickGetBall(Pointer<SDL_Joystick>? joystick, int ball, Pointer<Int32
       int Function(Pointer<SDL_Joystick>? joystick, int ball, Pointer<Int32>? dx, Pointer<Int32>? dy)>('SDL_JoystickGetBall');
   return _SDL_JoystickGetBall(joystick, ball, dx, dy);
 }
+
 /// 
 /// Get the current state of a button on a joystick.
 /// 
@@ -2463,6 +2618,7 @@ int SDL_JoystickGetButton(Pointer<SDL_Joystick>? joystick, int button) {
       int Function(Pointer<SDL_Joystick>? joystick, int button)>('SDL_JoystickGetButton');
   return _SDL_JoystickGetButton(joystick, button);
 }
+
 /// 
 /// Close a joystick previously opened with SDL_JoystickOpen().
 /// 
@@ -2475,6 +2631,7 @@ void SDL_JoystickClose(Pointer<SDL_Joystick>? joystick) {
       void Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickClose');
   return _SDL_JoystickClose(joystick);
 }
+
 /// 
 /// \brief Get the window which currently has keyboard focus.
 /// 
@@ -2487,6 +2644,7 @@ Pointer<SDL_Window>? SDL_GetKeyboardFocus() {
       Pointer<SDL_Window>? Function()>('SDL_GetKeyboardFocus');
   return _SDL_GetKeyboardFocus();
 }
+
 /// 
 /// \brief Get a snapshot of the current state of the keyboard.
 /// 
@@ -2511,6 +2669,7 @@ Pointer<Uint8>? SDL_GetKeyboardState(Pointer<Int32>? numkeys) {
       Pointer<Uint8>? Function(Pointer<Int32>? numkeys)>('SDL_GetKeyboardState');
   return _SDL_GetKeyboardState(numkeys);
 }
+
 /// 
 /// \brief Get the current key modifier state for the keyboard.
 /// 
@@ -2523,6 +2682,7 @@ int SDL_GetModState() {
       int Function()>('SDL_GetModState');
   return _SDL_GetModState();
 }
+
 /// 
 /// \brief Set the current key modifier state for the keyboard.
 /// 
@@ -2537,6 +2697,7 @@ void SDL_SetModState(int modstate) {
       void Function(int modstate)>('SDL_SetModState');
   return _SDL_SetModState(modstate);
 }
+
 /// 
 /// \brief Get the key code corresponding to the given scancode according
 /// to the current keyboard layout.
@@ -2554,6 +2715,7 @@ int SDL_GetKeyFromScancode(int scancode) {
       int Function(int scancode)>('SDL_GetKeyFromScancode');
   return _SDL_GetKeyFromScancode(scancode);
 }
+
 /// 
 /// \brief Get the scancode corresponding to the given key code according to the
 /// current keyboard layout.
@@ -2571,6 +2733,7 @@ int SDL_GetScancodeFromKey(int key) {
       int Function(int key)>('SDL_GetScancodeFromKey');
   return _SDL_GetScancodeFromKey(key);
 }
+
 /// 
 /// \brief Get a human-readable name for a scancode.
 /// 
@@ -2589,6 +2752,7 @@ String SDL_GetScancodeName(int scancode) {
       Pointer<Utf8>? Function(int scancode)>('SDL_GetScancodeName');
   return _SDL_GetScancodeName(scancode)!.toDartString();
 }
+
 /// 
 /// \brief Get a scancode from a human-readable name
 /// 
@@ -2608,6 +2772,7 @@ int SDL_GetScancodeFromName(String name) {
   calloc.free(_namePointer);
   return _result;
 }
+
 /// 
 /// \brief Get a human-readable name for a key.
 /// 
@@ -2627,6 +2792,7 @@ String SDL_GetKeyName(int key) {
       Pointer<Utf8>? Function(int key)>('SDL_GetKeyName');
   return _SDL_GetKeyName(key)!.toDartString();
 }
+
 /// 
 /// \brief Get a key code from a human-readable name
 /// 
@@ -2646,6 +2812,7 @@ int SDL_GetKeyFromName(String name) {
   calloc.free(_namePointer);
   return _result;
 }
+
 /// 
 /// \brief Start accepting Unicode text input events.
 /// This function will show the on-screen keyboard if supported.
@@ -2663,6 +2830,7 @@ void SDL_StartTextInput() {
       void Function()>('SDL_StartTextInput');
   return _SDL_StartTextInput();
 }
+
 /// 
 /// \brief Return whether or not Unicode text input events are enabled.
 /// 
@@ -2678,6 +2846,7 @@ int SDL_IsTextInputActive() {
       int Function()>('SDL_IsTextInputActive');
   return _SDL_IsTextInputActive();
 }
+
 /// 
 /// \brief Stop receiving any text input events.
 /// This function will hide the on-screen keyboard if supported.
@@ -2694,6 +2863,7 @@ void SDL_StopTextInput() {
       void Function()>('SDL_StopTextInput');
   return _SDL_StopTextInput();
 }
+
 /// 
 /// \brief Set the rectangle used to type Unicode text inputs.
 /// This is used as a hint for IME and on-screen keyboard placement.
@@ -2709,6 +2879,7 @@ void SDL_SetTextInputRect(Pointer<SDL_Rect>? rect) {
       void Function(Pointer<SDL_Rect>? rect)>('SDL_SetTextInputRect');
   return _SDL_SetTextInputRect(rect);
 }
+
 /// 
 /// \brief Returns whether the platform has some screen keyboard support.
 /// 
@@ -2727,6 +2898,7 @@ int SDL_HasScreenKeyboardSupport() {
       int Function()>('SDL_HasScreenKeyboardSupport');
   return _SDL_HasScreenKeyboardSupport();
 }
+
 /// 
 /// \brief Returns whether the screen keyboard is shown for given window.
 /// 
@@ -2745,6 +2917,7 @@ int SDL_IsScreenKeyboardShown(Pointer<SDL_Window>? window) {
       int Function(Pointer<SDL_Window>? window)>('SDL_IsScreenKeyboardShown');
   return _SDL_IsScreenKeyboardShown(window);
 }
+
 /// 
 /// This function dynamically loads a shared object and returns a pointer
 /// to the object handle (or NULL if there was an error).
@@ -2762,6 +2935,7 @@ Pointer<Void>? SDL_LoadObject(String sofile) {
   calloc.free(_sofilePointer);
   return _result;
 }
+
 /// 
 /// Given an object handle, this function looks up the address of the
 /// named function in the shared object and returns it.  This address
@@ -2779,6 +2953,7 @@ Pointer<Void>? SDL_LoadFunction(Pointer<Void>? handle, String name) {
   calloc.free(_namePointer);
   return _result;
 }
+
 /// 
 /// Unload a shared object from memory.
 /// 
@@ -2791,6 +2966,7 @@ void SDL_UnloadObject(Pointer<Void>? handle) {
       void Function(Pointer<Void>? handle)>('SDL_UnloadObject');
   return _SDL_UnloadObject(handle);
 }
+
 /// 
 /// \brief Set the priority of all log categories
 /// 
@@ -2803,6 +2979,7 @@ void SDL_LogSetAllPriority(int priority) {
       void Function(int priority)>('SDL_LogSetAllPriority');
   return _SDL_LogSetAllPriority(priority);
 }
+
 /// 
 /// \brief Set the priority of a particular log category
 /// 
@@ -2815,6 +2992,7 @@ void SDL_LogSetPriority(int category, int priority) {
       void Function(int category, int priority)>('SDL_LogSetPriority');
   return _SDL_LogSetPriority(category, priority);
 }
+
 /// 
 /// \brief Get the priority of a particular log category
 /// 
@@ -2827,6 +3005,7 @@ int SDL_LogGetPriority(int category) {
       int Function(int category)>('SDL_LogGetPriority');
   return _SDL_LogGetPriority(category);
 }
+
 /// 
 /// \brief Reset all priorities to default.
 /// 
@@ -2841,6 +3020,7 @@ void SDL_LogResetPriorities() {
       void Function()>('SDL_LogResetPriorities');
   return _SDL_LogResetPriorities();
 }
+
 /// 
 /// \brief Log a message with SDL_LOG_CATEGORY_APPLICATION and SDL_LOG_PRIORITY_INFO
 /// 
@@ -2856,6 +3036,7 @@ void SDL_Log(String fmt, Pointer<Void>? arg1) {
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// 
 /// \brief Log a message with SDL_LOG_PRIORITY_VERBOSE
 /// 
@@ -2871,6 +3052,7 @@ void SDL_LogVerbose(int category, String fmt, Pointer<Void>? arg2) {
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// 
 /// \brief Log a message with SDL_LOG_PRIORITY_DEBUG
 /// 
@@ -2886,6 +3068,7 @@ void SDL_LogDebug(int category, String fmt, Pointer<Void>? arg2) {
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// 
 /// \brief Log a message with SDL_LOG_PRIORITY_INFO
 /// 
@@ -2901,6 +3084,7 @@ void SDL_LogInfo(int category, String fmt, Pointer<Void>? arg2) {
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// 
 /// \brief Log a message with SDL_LOG_PRIORITY_WARN
 /// 
@@ -2916,6 +3100,7 @@ void SDL_LogWarn(int category, String fmt, Pointer<Void>? arg2) {
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// 
 /// \brief Log a message with SDL_LOG_PRIORITY_ERROR
 /// 
@@ -2931,6 +3116,7 @@ void SDL_LogError(int category, String fmt, Pointer<Void>? arg2) {
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// 
 /// \brief Log a message with SDL_LOG_PRIORITY_CRITICAL
 /// 
@@ -2946,6 +3132,7 @@ void SDL_LogCritical(int category, String fmt, Pointer<Void>? arg2) {
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// 
 /// \brief Log a message with the specified category and priority.
 /// 
@@ -2961,6 +3148,7 @@ void SDL_LogMessage(int category, int priority, String fmt, Pointer<Void>? arg3)
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// 
 /// \brief Log a message with the specified category and priority.
 /// 
@@ -2976,6 +3164,7 @@ void SDL_LogMessageV(int category, int priority, String fmt, Pointer<Void>? ap) 
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// 
 /// \brief Get the current log output function.
 /// 
@@ -2988,6 +3177,7 @@ void SDL_LogGetOutputFunction(Pointer<Pointer<Void>>? callback, Pointer<Pointer<
       void Function(Pointer<Pointer<Void>>? callback, Pointer<Pointer<Void>>? userdata)>('SDL_LogGetOutputFunction');
   return _SDL_LogGetOutputFunction(callback, userdata);
 }
+
 /// 
 /// \brief This function allows you to replace the default log output
 /// function with one of your own.
@@ -3001,6 +3191,7 @@ void SDL_LogSetOutputFunction(Pointer<Void>? callback, Pointer<Void>? userdata) 
       void Function(Pointer<Void>? callback, Pointer<Void>? userdata)>('SDL_LogSetOutputFunction');
   return _SDL_LogSetOutputFunction(callback, userdata);
 }
+
 /// 
 /// This is called by the real SDL main function to let the rest of the
 /// library know that initialization was done properly.
@@ -3017,6 +3208,7 @@ void SDL_SetMainReady() {
       void Function()>('SDL_SetMainReady');
   return _SDL_SetMainReady();
 }
+
 /// 
 /// This can be called to set the application class at startup
 /// 
@@ -3029,6 +3221,7 @@ int SDL_RegisterApp(Pointer<Int8>? name, int style, Pointer<Void>? hInst) {
       int Function(Pointer<Int8>? name, int style, Pointer<Void>? hInst)>('SDL_RegisterApp');
   return _SDL_RegisterApp(name, style, hInst);
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_UnregisterApp(void)
 /// ```
@@ -3038,6 +3231,7 @@ void SDL_UnregisterApp() {
       void Function()>('SDL_UnregisterApp');
   return _SDL_UnregisterApp();
 }
+
 /// 
 /// \brief Create a modal message box.
 /// 
@@ -3061,6 +3255,7 @@ int SDL_ShowMessageBox(Pointer<SDL_MessageBoxData>? messageboxdata, Pointer<Int3
       int Function(Pointer<SDL_MessageBoxData>? messageboxdata, Pointer<Int32>? buttonid)>('SDL_ShowMessageBox');
   return _SDL_ShowMessageBox(messageboxdata, buttonid);
 }
+
 /// 
 /// \brief Create a simple modal message box
 /// 
@@ -3087,6 +3282,7 @@ int SDL_ShowSimpleMessageBox(int flags, String title, String message, Pointer<SD
   calloc.free(_messagePointer);
   return _result;
 }
+
 /// 
 /// \brief Get the window which currently has mouse focus.
 /// 
@@ -3099,6 +3295,7 @@ Pointer<SDL_Window>? SDL_GetMouseFocus() {
       Pointer<SDL_Window>? Function()>('SDL_GetMouseFocus');
   return _SDL_GetMouseFocus();
 }
+
 /// 
 /// \brief Retrieve the current state of the mouse.
 /// 
@@ -3116,6 +3313,7 @@ int SDL_GetMouseState(Pointer<Int32>? x, Pointer<Int32>? y) {
       int Function(Pointer<Int32>? x, Pointer<Int32>? y)>('SDL_GetMouseState');
   return _SDL_GetMouseState(x, y);
 }
+
 /// 
 /// \brief Retrieve the relative state of the mouse.
 /// 
@@ -3132,6 +3330,7 @@ int SDL_GetRelativeMouseState(Pointer<Int32>? x, Pointer<Int32>? y) {
       int Function(Pointer<Int32>? x, Pointer<Int32>? y)>('SDL_GetRelativeMouseState');
   return _SDL_GetRelativeMouseState(x, y);
 }
+
 /// 
 /// \brief Moves the mouse to the given position within the window.
 /// 
@@ -3150,6 +3349,7 @@ void SDL_WarpMouseInWindow(Pointer<SDL_Window>? window, int x, int y) {
       void Function(Pointer<SDL_Window>? window, int x, int y)>('SDL_WarpMouseInWindow');
   return _SDL_WarpMouseInWindow(window, x, y);
 }
+
 /// 
 /// \brief Set relative mouse mode.
 /// 
@@ -3175,6 +3375,7 @@ int SDL_SetRelativeMouseMode(int enabled) {
       int Function(int enabled)>('SDL_SetRelativeMouseMode');
   return _SDL_SetRelativeMouseMode(enabled);
 }
+
 /// 
 /// \brief Query whether relative mouse mode is enabled.
 /// 
@@ -3189,6 +3390,7 @@ int SDL_GetRelativeMouseMode() {
       int Function()>('SDL_GetRelativeMouseMode');
   return _SDL_GetRelativeMouseMode();
 }
+
 /// 
 /// \brief Create a cursor, using the specified bitmap data and
 /// mask (in MSB format).
@@ -3216,6 +3418,7 @@ Pointer<SDL_Cursor>? SDL_CreateCursor(Pointer<Uint8>? data, Pointer<Uint8>? mask
       Pointer<SDL_Cursor>? Function(Pointer<Uint8>? data, Pointer<Uint8>? mask, int w, int h, int hot_x, int hot_y)>('SDL_CreateCursor');
   return _SDL_CreateCursor(data, mask, w, h, hot_x, hot_y);
 }
+
 /// 
 /// \brief Create a color cursor.
 /// 
@@ -3230,6 +3433,7 @@ Pointer<SDL_Cursor>? SDL_CreateColorCursor(Pointer<SDL_Surface>? surface, int ho
       Pointer<SDL_Cursor>? Function(Pointer<SDL_Surface>? surface, int hot_x, int hot_y)>('SDL_CreateColorCursor');
   return _SDL_CreateColorCursor(surface, hot_x, hot_y);
 }
+
 /// 
 /// \brief Create a system cursor.
 /// 
@@ -3244,6 +3448,7 @@ Pointer<SDL_Cursor>? SDL_CreateSystemCursor(int id) {
       Pointer<SDL_Cursor>? Function(int id)>('SDL_CreateSystemCursor');
   return _SDL_CreateSystemCursor(id);
 }
+
 /// 
 /// \brief Set the active cursor.
 /// 
@@ -3256,6 +3461,7 @@ void SDL_SetCursor(Pointer<SDL_Cursor>? cursor) {
       void Function(Pointer<SDL_Cursor>? cursor)>('SDL_SetCursor');
   return _SDL_SetCursor(cursor);
 }
+
 /// 
 /// \brief Return the active cursor.
 /// 
@@ -3268,6 +3474,7 @@ Pointer<SDL_Cursor>? SDL_GetCursor() {
       Pointer<SDL_Cursor>? Function()>('SDL_GetCursor');
   return _SDL_GetCursor();
 }
+
 /// 
 /// \brief Return the default cursor.
 /// 
@@ -3280,6 +3487,7 @@ Pointer<SDL_Cursor>? SDL_GetDefaultCursor() {
       Pointer<SDL_Cursor>? Function()>('SDL_GetDefaultCursor');
   return _SDL_GetDefaultCursor();
 }
+
 /// 
 /// \brief Frees a cursor created with SDL_CreateCursor().
 /// 
@@ -3294,6 +3502,7 @@ void SDL_FreeCursor(Pointer<SDL_Cursor>? cursor) {
       void Function(Pointer<SDL_Cursor>? cursor)>('SDL_FreeCursor');
   return _SDL_FreeCursor(cursor);
 }
+
 /// 
 /// \brief Toggle whether or not the cursor is shown.
 /// 
@@ -3311,6 +3520,7 @@ int SDL_ShowCursor(int toggle) {
       int Function(int toggle)>('SDL_ShowCursor');
   return _SDL_ShowCursor(toggle);
 }
+
 /// 
 /// Create a mutex, initialized unlocked.
 /// 
@@ -3323,6 +3533,7 @@ Pointer<SDL_mutex>? SDL_CreateMutex() {
       Pointer<SDL_mutex>? Function()>('SDL_CreateMutex');
   return _SDL_CreateMutex();
 }
+
 /// 
 /// Lock the mutex.
 /// 
@@ -3337,6 +3548,7 @@ int SDL_LockMutex(Pointer<SDL_mutex>? mutex) {
       int Function(Pointer<SDL_mutex>? mutex)>('SDL_LockMutex');
   return _SDL_LockMutex(mutex);
 }
+
 /// 
 /// Try to lock the mutex
 /// 
@@ -3351,6 +3563,7 @@ int SDL_TryLockMutex(Pointer<SDL_mutex>? mutex) {
       int Function(Pointer<SDL_mutex>? mutex)>('SDL_TryLockMutex');
   return _SDL_TryLockMutex(mutex);
 }
+
 /// 
 /// Unlock the mutex.
 /// 
@@ -3368,6 +3581,7 @@ int SDL_UnlockMutex(Pointer<SDL_mutex>? mutex) {
       int Function(Pointer<SDL_mutex>? mutex)>('SDL_UnlockMutex');
   return _SDL_UnlockMutex(mutex);
 }
+
 /// 
 /// Destroy a mutex.
 /// 
@@ -3380,6 +3594,7 @@ void SDL_DestroyMutex(Pointer<SDL_mutex>? mutex) {
       void Function(Pointer<SDL_mutex>? mutex)>('SDL_DestroyMutex');
   return _SDL_DestroyMutex(mutex);
 }
+
 /// 
 /// Create a semaphore, initialized with value, returns NULL on failure.
 /// 
@@ -3392,6 +3607,7 @@ Pointer<SDL_sem>? SDL_CreateSemaphore(int initial_value) {
       Pointer<SDL_sem>? Function(int initial_value)>('SDL_CreateSemaphore');
   return _SDL_CreateSemaphore(initial_value);
 }
+
 /// 
 /// Destroy a semaphore.
 /// 
@@ -3404,6 +3620,7 @@ void SDL_DestroySemaphore(Pointer<SDL_sem>? sem) {
       void Function(Pointer<SDL_sem>? sem)>('SDL_DestroySemaphore');
   return _SDL_DestroySemaphore(sem);
 }
+
 /// 
 /// This function suspends the calling thread until the semaphore pointed
 /// to by \c sem has a positive count. It then atomically decreases the
@@ -3418,6 +3635,7 @@ int SDL_SemWait(Pointer<SDL_sem>? sem) {
       int Function(Pointer<SDL_sem>? sem)>('SDL_SemWait');
   return _SDL_SemWait(sem);
 }
+
 /// 
 /// Non-blocking variant of SDL_SemWait().
 /// 
@@ -3433,6 +3651,7 @@ int SDL_SemTryWait(Pointer<SDL_sem>? sem) {
       int Function(Pointer<SDL_sem>? sem)>('SDL_SemTryWait');
   return _SDL_SemTryWait(sem);
 }
+
 /// 
 /// Variant of SDL_SemWait() with a timeout in milliseconds.
 /// 
@@ -3451,6 +3670,7 @@ int SDL_SemWaitTimeout(Pointer<SDL_sem>? sem, int ms) {
       int Function(Pointer<SDL_sem>? sem, int ms)>('SDL_SemWaitTimeout');
   return _SDL_SemWaitTimeout(sem, ms);
 }
+
 /// 
 /// Atomically increases the semaphore's count (not blocking).
 /// 
@@ -3465,6 +3685,7 @@ int SDL_SemPost(Pointer<SDL_sem>? sem) {
       int Function(Pointer<SDL_sem>? sem)>('SDL_SemPost');
   return _SDL_SemPost(sem);
 }
+
 /// 
 /// Returns the current count of the semaphore.
 /// 
@@ -3477,6 +3698,7 @@ int SDL_SemValue(Pointer<SDL_sem>? sem) {
       int Function(Pointer<SDL_sem>? sem)>('SDL_SemValue');
   return _SDL_SemValue(sem);
 }
+
 /// 
 /// Create a condition variable.
 /// 
@@ -3514,6 +3736,7 @@ Pointer<SDL_cond>? SDL_CreateCond() {
       Pointer<SDL_cond>? Function()>('SDL_CreateCond');
   return _SDL_CreateCond();
 }
+
 /// 
 /// Destroy a condition variable.
 /// 
@@ -3526,6 +3749,7 @@ void SDL_DestroyCond(Pointer<SDL_cond>? cond) {
       void Function(Pointer<SDL_cond>? cond)>('SDL_DestroyCond');
   return _SDL_DestroyCond(cond);
 }
+
 /// 
 /// Restart one of the threads that are waiting on the condition variable.
 /// 
@@ -3540,6 +3764,7 @@ int SDL_CondSignal(Pointer<SDL_cond>? cond) {
       int Function(Pointer<SDL_cond>? cond)>('SDL_CondSignal');
   return _SDL_CondSignal(cond);
 }
+
 /// 
 /// Restart all threads that are waiting on the condition variable.
 /// 
@@ -3554,6 +3779,7 @@ int SDL_CondBroadcast(Pointer<SDL_cond>? cond) {
       int Function(Pointer<SDL_cond>? cond)>('SDL_CondBroadcast');
   return _SDL_CondBroadcast(cond);
 }
+
 /// 
 /// Wait on the condition variable, unlocking the provided mutex.
 /// 
@@ -3572,6 +3798,7 @@ int SDL_CondWait(Pointer<SDL_cond>? cond, Pointer<SDL_mutex>? mutex) {
       int Function(Pointer<SDL_cond>? cond, Pointer<SDL_mutex>? mutex)>('SDL_CondWait');
   return _SDL_CondWait(cond, mutex);
 }
+
 /// 
 /// Waits for at most \c ms milliseconds, and returns 0 if the condition
 /// variable is signaled, ::SDL_MUTEX_TIMEDOUT if the condition is not
@@ -3589,6 +3816,7 @@ int SDL_CondWaitTimeout(Pointer<SDL_cond>? cond, Pointer<SDL_mutex>? mutex, int 
       int Function(Pointer<SDL_cond>? cond, Pointer<SDL_mutex>? mutex, int ms)>('SDL_CondWaitTimeout');
   return _SDL_CondWaitTimeout(cond, mutex, ms);
 }
+
 /// 
 /// \brief Get the human readable name of a pixel format
 /// 
@@ -3601,6 +3829,7 @@ String SDL_GetPixelFormatName(int format) {
       Pointer<Utf8>? Function(int format)>('SDL_GetPixelFormatName');
   return _SDL_GetPixelFormatName(format)!.toDartString();
 }
+
 /// 
 /// \brief Convert one of the enumerated pixel formats to a bpp and RGBA masks.
 /// 
@@ -3617,6 +3846,7 @@ int SDL_PixelFormatEnumToMasks(int format, Pointer<Int32>? bpp, Pointer<Uint32>?
       int Function(int format, Pointer<Int32>? bpp, Pointer<Uint32>? Rmask, Pointer<Uint32>? Gmask, Pointer<Uint32>? Bmask, Pointer<Uint32>? Amask)>('SDL_PixelFormatEnumToMasks');
   return _SDL_PixelFormatEnumToMasks(format, bpp, Rmask, Gmask, Bmask, Amask);
 }
+
 /// 
 /// \brief Convert a bpp and RGBA masks to an enumerated pixel format.
 /// 
@@ -3634,6 +3864,7 @@ int SDL_MasksToPixelFormatEnum(int bpp, int Rmask, int Gmask, int Bmask, int Ama
       int Function(int bpp, int Rmask, int Gmask, int Bmask, int Amask)>('SDL_MasksToPixelFormatEnum');
   return _SDL_MasksToPixelFormatEnum(bpp, Rmask, Gmask, Bmask, Amask);
 }
+
 /// 
 /// \brief Create an SDL_PixelFormat structure from a pixel format enum.
 /// 
@@ -3646,6 +3877,7 @@ Pointer<SDL_PixelFormat>? SDL_AllocFormat(int pixel_format) {
       Pointer<SDL_PixelFormat>? Function(int pixel_format)>('SDL_AllocFormat');
   return _SDL_AllocFormat(pixel_format);
 }
+
 /// 
 /// \brief Free an SDL_PixelFormat structure.
 /// 
@@ -3658,6 +3890,7 @@ void SDL_FreeFormat(Pointer<SDL_PixelFormat>? format) {
       void Function(Pointer<SDL_PixelFormat>? format)>('SDL_FreeFormat');
   return _SDL_FreeFormat(format);
 }
+
 /// 
 /// \brief Create a palette structure with the specified number of color
 /// entries.
@@ -3677,6 +3910,7 @@ Pointer<SDL_Palette>? SDL_AllocPalette(int ncolors) {
       Pointer<SDL_Palette>? Function(int ncolors)>('SDL_AllocPalette');
   return _SDL_AllocPalette(ncolors);
 }
+
 /// 
 /// \brief Set the palette for a pixel format structure.
 /// 
@@ -3689,6 +3923,7 @@ int SDL_SetPixelFormatPalette(Pointer<SDL_PixelFormat>? format, Pointer<SDL_Pale
       int Function(Pointer<SDL_PixelFormat>? format, Pointer<SDL_Palette>? palette)>('SDL_SetPixelFormatPalette');
   return _SDL_SetPixelFormatPalette(format, palette);
 }
+
 /// 
 /// \brief Set a range of colors in a palette.
 /// 
@@ -3708,6 +3943,7 @@ int SDL_SetPaletteColors(Pointer<SDL_Palette>? palette, Pointer<SDL_Color>? colo
       int Function(Pointer<SDL_Palette>? palette, Pointer<SDL_Color>? colors, int firstcolor, int ncolors)>('SDL_SetPaletteColors');
   return _SDL_SetPaletteColors(palette, colors, firstcolor, ncolors);
 }
+
 /// 
 /// \brief Free a palette created with SDL_AllocPalette().
 /// 
@@ -3722,6 +3958,7 @@ void SDL_FreePalette(Pointer<SDL_Palette>? palette) {
       void Function(Pointer<SDL_Palette>? palette)>('SDL_FreePalette');
   return _SDL_FreePalette(palette);
 }
+
 /// 
 /// \brief Maps an RGB triple to an opaque pixel value for a given pixel format.
 /// 
@@ -3736,6 +3973,7 @@ int SDL_MapRGB(Pointer<SDL_PixelFormat>? format, int r, int g, int b) {
       int Function(Pointer<SDL_PixelFormat>? format, int r, int g, int b)>('SDL_MapRGB');
   return _SDL_MapRGB(format, r, g, b);
 }
+
 /// 
 /// \brief Maps an RGBA quadruple to a pixel value for a given pixel format.
 /// 
@@ -3750,6 +3988,7 @@ int SDL_MapRGBA(Pointer<SDL_PixelFormat>? format, int r, int g, int b, int a) {
       int Function(Pointer<SDL_PixelFormat>? format, int r, int g, int b, int a)>('SDL_MapRGBA');
   return _SDL_MapRGBA(format, r, g, b, a);
 }
+
 /// 
 /// \brief Get the RGB components from a pixel of the specified format.
 /// 
@@ -3764,6 +4003,7 @@ void SDL_GetRGB(int pixel, Pointer<SDL_PixelFormat>? format, Pointer<Uint8>? r, 
       void Function(int pixel, Pointer<SDL_PixelFormat>? format, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b)>('SDL_GetRGB');
   return _SDL_GetRGB(pixel, format, r, g, b);
 }
+
 /// 
 /// \brief Get the RGBA components from a pixel of the specified format.
 /// 
@@ -3778,6 +4018,7 @@ void SDL_GetRGBA(int pixel, Pointer<SDL_PixelFormat>? format, Pointer<Uint8>? r,
       void Function(int pixel, Pointer<SDL_PixelFormat>? format, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b, Pointer<Uint8>? a)>('SDL_GetRGBA');
   return _SDL_GetRGBA(pixel, format, r, g, b, a);
 }
+
 /// 
 /// \brief Calculate a 256 entry gamma ramp for a gamma value.
 /// 
@@ -3790,6 +4031,7 @@ void SDL_CalculateGammaRamp(double gamma, Pointer<Uint16>? ramp) {
       void Function(double gamma, Pointer<Uint16>? ramp)>('SDL_CalculateGammaRamp');
   return _SDL_CalculateGammaRamp(gamma, ramp);
 }
+
 /// 
 /// \brief Gets the name of the platform.
 /// 
@@ -3802,6 +4044,7 @@ String SDL_GetPlatform() {
       Pointer<Utf8>? Function()>('SDL_GetPlatform');
   return _SDL_GetPlatform()!.toDartString();
 }
+
 /// 
 /// \brief Get the current power supply details.
 /// 
@@ -3824,6 +4067,7 @@ int SDL_GetPowerInfo(Pointer<Int32>? secs, Pointer<Int32>? pct) {
       int Function(Pointer<Int32>? secs, Pointer<Int32>? pct)>('SDL_GetPowerInfo');
   return _SDL_GetPowerInfo(secs, pct);
 }
+
 /// 
 /// \brief Determine whether two rectangles intersect.
 /// 
@@ -3838,6 +4082,7 @@ int SDL_HasIntersection(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B) {
       int Function(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B)>('SDL_HasIntersection');
   return _SDL_HasIntersection(A, B);
 }
+
 /// 
 /// \brief Calculate the intersection of two rectangles.
 /// 
@@ -3852,6 +4097,7 @@ int SDL_IntersectRect(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B, Pointer<SDL_Re
       int Function(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B, Pointer<SDL_Rect>? result)>('SDL_IntersectRect');
   return _SDL_IntersectRect(A, B, result);
 }
+
 /// 
 /// \brief Calculate the union of two rectangles.
 /// 
@@ -3864,6 +4110,7 @@ void SDL_UnionRect(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B, Pointer<SDL_Rect>
       void Function(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B, Pointer<SDL_Rect>? result)>('SDL_UnionRect');
   return _SDL_UnionRect(A, B, result);
 }
+
 /// 
 /// \brief Calculate a minimal rectangle enclosing a set of points
 /// 
@@ -3878,6 +4125,7 @@ int SDL_EnclosePoints(Pointer<SDL_Point>? points, int count, Pointer<SDL_Rect>? 
       int Function(Pointer<SDL_Point>? points, int count, Pointer<SDL_Rect>? clip, Pointer<SDL_Rect>? result)>('SDL_EnclosePoints');
   return _SDL_EnclosePoints(points, count, clip, result);
 }
+
 /// 
 /// \brief Calculate the intersection of a rectangle and line segment.
 /// 
@@ -3892,6 +4140,7 @@ int SDL_IntersectRectAndLine(Pointer<SDL_Rect>? rect, Pointer<Int32>? X1, Pointe
       int Function(Pointer<SDL_Rect>? rect, Pointer<Int32>? X1, Pointer<Int32>? Y1, Pointer<Int32>? X2, Pointer<Int32>? Y2)>('SDL_IntersectRectAndLine');
   return _SDL_IntersectRectAndLine(rect, X1, Y1, X2, Y2);
 }
+
 /// 
 /// \brief Get the number of 2D rendering drivers available for the current
 /// display.
@@ -3912,6 +4161,7 @@ int SDL_GetNumRenderDrivers() {
       int Function()>('SDL_GetNumRenderDrivers');
   return _SDL_GetNumRenderDrivers();
 }
+
 /// 
 /// \brief Get information about a specific 2D rendering driver for the current
 /// display.
@@ -3933,6 +4183,7 @@ int SDL_GetRenderDriverInfo(int index, Pointer<SDL_RendererInfo>? info) {
       int Function(int index, Pointer<SDL_RendererInfo>? info)>('SDL_GetRenderDriverInfo');
   return _SDL_GetRenderDriverInfo(index, info);
 }
+
 /// 
 /// \brief Create a window and default renderer
 /// 
@@ -3953,6 +4204,7 @@ int SDL_CreateWindowAndRenderer(int width, int height, int window_flags, Pointer
       int Function(int width, int height, int window_flags, Pointer<Pointer<SDL_Window>>? window, Pointer<Pointer<SDL_Renderer>>? renderer)>('SDL_CreateWindowAndRenderer');
   return _SDL_CreateWindowAndRenderer(width, height, window_flags, window, renderer);
 }
+
 /// 
 /// \brief Create a 2D rendering context for a window.
 /// 
@@ -3976,6 +4228,7 @@ Pointer<SDL_Renderer>? SDL_CreateRenderer(Pointer<SDL_Window>? window, int index
       Pointer<SDL_Renderer>? Function(Pointer<SDL_Window>? window, int index, int flags)>('SDL_CreateRenderer');
   return _SDL_CreateRenderer(window, index, flags);
 }
+
 /// 
 /// \brief Create a 2D software rendering context for a surface.
 /// 
@@ -3995,6 +4248,7 @@ Pointer<SDL_Renderer>? SDL_CreateSoftwareRenderer(Pointer<SDL_Surface>? surface)
       Pointer<SDL_Renderer>? Function(Pointer<SDL_Surface>? surface)>('SDL_CreateSoftwareRenderer');
   return _SDL_CreateSoftwareRenderer(surface);
 }
+
 /// 
 /// \brief Get the renderer associated with a window.
 /// 
@@ -4007,6 +4261,7 @@ Pointer<SDL_Renderer>? SDL_GetRenderer(Pointer<SDL_Window>? window) {
       Pointer<SDL_Renderer>? Function(Pointer<SDL_Window>? window)>('SDL_GetRenderer');
   return _SDL_GetRenderer(window);
 }
+
 /// 
 /// \brief Get information about a rendering context.
 /// 
@@ -4019,6 +4274,7 @@ int SDL_GetRendererInfo(Pointer<SDL_Renderer>? renderer, Pointer<SDL_RendererInf
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_RendererInfo>? info)>('SDL_GetRendererInfo');
   return _SDL_GetRendererInfo(renderer, info);
 }
+
 /// 
 /// \brief Get the output size of a rendering context.
 /// 
@@ -4031,6 +4287,7 @@ int SDL_GetRendererOutputSize(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? w
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_GetRendererOutputSize');
   return _SDL_GetRendererOutputSize(renderer, w, h);
 }
+
 /// 
 /// \brief Create a texture for a rendering context.
 /// 
@@ -4057,6 +4314,7 @@ Pointer<SDL_Texture>? SDL_CreateTexture(Pointer<SDL_Renderer>? renderer, int for
       Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer, int format, int access, int w, int h)>('SDL_CreateTexture');
   return _SDL_CreateTexture(renderer, format, access, w, h);
 }
+
 /// 
 /// \brief Create a texture from an existing surface.
 /// 
@@ -4079,6 +4337,7 @@ Pointer<SDL_Texture>? SDL_CreateTextureFromSurface(Pointer<SDL_Renderer>? render
       Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Surface>? surface)>('SDL_CreateTextureFromSurface');
   return _SDL_CreateTextureFromSurface(renderer, surface);
 }
+
 /// 
 /// \brief Query the attributes of a texture
 /// 
@@ -4101,6 +4360,7 @@ int SDL_QueryTexture(Pointer<SDL_Texture>? texture, Pointer<Uint32>? format, Poi
       int Function(Pointer<SDL_Texture>? texture, Pointer<Uint32>? format, Pointer<Int32>? access, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_QueryTexture');
   return _SDL_QueryTexture(texture, format, access, w, h);
 }
+
 /// 
 /// \brief Set an additional color value used in render copy operations.
 /// 
@@ -4123,6 +4383,7 @@ int SDL_SetTextureColorMod(Pointer<SDL_Texture>? texture, int r, int g, int b) {
       int Function(Pointer<SDL_Texture>? texture, int r, int g, int b)>('SDL_SetTextureColorMod');
   return _SDL_SetTextureColorMod(texture, r, g, b);
 }
+
 /// 
 /// \brief Get the additional color value used in render copy operations.
 /// 
@@ -4144,6 +4405,7 @@ int SDL_GetTextureColorMod(Pointer<SDL_Texture>? texture, Pointer<Uint8>? r, Poi
       int Function(Pointer<SDL_Texture>? texture, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b)>('SDL_GetTextureColorMod');
   return _SDL_GetTextureColorMod(texture, r, g, b);
 }
+
 /// 
 /// \brief Set an additional alpha value used in render copy operations.
 /// 
@@ -4164,6 +4426,7 @@ int SDL_SetTextureAlphaMod(Pointer<SDL_Texture>? texture, int alpha) {
       int Function(Pointer<SDL_Texture>? texture, int alpha)>('SDL_SetTextureAlphaMod');
   return _SDL_SetTextureAlphaMod(texture, alpha);
 }
+
 /// 
 /// \brief Get the additional alpha value used in render copy operations.
 /// 
@@ -4183,6 +4446,7 @@ int SDL_GetTextureAlphaMod(Pointer<SDL_Texture>? texture, Pointer<Uint8>? alpha)
       int Function(Pointer<SDL_Texture>? texture, Pointer<Uint8>? alpha)>('SDL_GetTextureAlphaMod');
   return _SDL_GetTextureAlphaMod(texture, alpha);
 }
+
 /// 
 /// \brief Set the blend mode used for texture copy operations.
 /// 
@@ -4206,6 +4470,7 @@ int SDL_SetTextureBlendMode(Pointer<SDL_Texture>? texture, int blendMode) {
       int Function(Pointer<SDL_Texture>? texture, int blendMode)>('SDL_SetTextureBlendMode');
   return _SDL_SetTextureBlendMode(texture, blendMode);
 }
+
 /// 
 /// \brief Get the blend mode used for texture copy operations.
 /// 
@@ -4225,6 +4490,7 @@ int SDL_GetTextureBlendMode(Pointer<SDL_Texture>? texture, Pointer<Int32>? blend
       int Function(Pointer<SDL_Texture>? texture, Pointer<Int32>? blendMode)>('SDL_GetTextureBlendMode');
   return _SDL_GetTextureBlendMode(texture, blendMode);
 }
+
 /// 
 /// \brief Update the given texture rectangle with new pixel data.
 /// 
@@ -4247,6 +4513,7 @@ int SDL_UpdateTexture(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Po
       int Function(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Void>? pixels, int pitch)>('SDL_UpdateTexture');
   return _SDL_UpdateTexture(texture, rect, pixels, pitch);
 }
+
 /// 
 /// \brief Lock a portion of the texture for write-only pixel access.
 /// 
@@ -4271,6 +4538,7 @@ int SDL_LockTexture(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Poin
       int Function(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Pointer<Void>>? pixels, Pointer<Int32>? pitch)>('SDL_LockTexture');
   return _SDL_LockTexture(texture, rect, pixels, pitch);
 }
+
 /// 
 /// \brief Unlock a texture, uploading the changes to video memory, if needed.
 /// 
@@ -4285,6 +4553,7 @@ void SDL_UnlockTexture(Pointer<SDL_Texture>? texture) {
       void Function(Pointer<SDL_Texture>? texture)>('SDL_UnlockTexture');
   return _SDL_UnlockTexture(texture);
 }
+
 /// 
 /// \brief Determines whether a window supports the use of render targets
 /// 
@@ -4301,6 +4570,7 @@ int SDL_RenderTargetSupported(Pointer<SDL_Renderer>? renderer) {
       int Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderTargetSupported');
   return _SDL_RenderTargetSupported(renderer);
 }
+
 /// 
 /// \brief Set a texture as the current rendering target.
 /// 
@@ -4320,6 +4590,7 @@ int SDL_SetRenderTarget(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? t
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture)>('SDL_SetRenderTarget');
   return _SDL_SetRenderTarget(renderer, texture);
 }
+
 /// 
 /// \brief Get the current render target or NULL for the default render target.
 /// 
@@ -4336,6 +4607,7 @@ Pointer<SDL_Texture>? SDL_GetRenderTarget(Pointer<SDL_Renderer>? renderer) {
       Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer)>('SDL_GetRenderTarget');
   return _SDL_GetRenderTarget(renderer);
 }
+
 /// 
 /// \brief Set device independent resolution for rendering
 /// 
@@ -4368,6 +4640,7 @@ int SDL_RenderSetLogicalSize(Pointer<SDL_Renderer>? renderer, int w, int h) {
       int Function(Pointer<SDL_Renderer>? renderer, int w, int h)>('SDL_RenderSetLogicalSize');
   return _SDL_RenderSetLogicalSize(renderer, w, h);
 }
+
 /// 
 /// \brief Get device independent resolution for rendering
 /// 
@@ -4386,6 +4659,7 @@ void SDL_RenderGetLogicalSize(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? w
       void Function(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_RenderGetLogicalSize');
   return _SDL_RenderGetLogicalSize(renderer, w, h);
 }
+
 /// 
 /// \brief Set the drawing area for rendering on the current target.
 /// 
@@ -4410,6 +4684,7 @@ int SDL_RenderSetViewport(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? re
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)>('SDL_RenderSetViewport');
   return _SDL_RenderSetViewport(renderer, rect);
 }
+
 /// 
 /// \brief Get the drawing area for the current target.
 /// 
@@ -4424,6 +4699,7 @@ void SDL_RenderGetViewport(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? r
       void Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)>('SDL_RenderGetViewport');
   return _SDL_RenderGetViewport(renderer, rect);
 }
+
 /// 
 /// \brief Set the clip rectangle for the current target.
 /// 
@@ -4444,6 +4720,7 @@ int SDL_RenderSetClipRect(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? re
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)>('SDL_RenderSetClipRect');
   return _SDL_RenderSetClipRect(renderer, rect);
 }
+
 /// 
 /// \brief Get the clip rectangle for the current target.
 /// 
@@ -4462,6 +4739,7 @@ void SDL_RenderGetClipRect(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? r
       void Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)>('SDL_RenderGetClipRect');
   return _SDL_RenderGetClipRect(renderer, rect);
 }
+
 /// 
 /// \brief Set the drawing scale for rendering on the current target.
 /// 
@@ -4489,6 +4767,7 @@ int SDL_RenderSetScale(Pointer<SDL_Renderer>? renderer, double scaleX, double sc
       int Function(Pointer<SDL_Renderer>? renderer, double scaleX, double scaleY)>('SDL_RenderSetScale');
   return _SDL_RenderSetScale(renderer, scaleX, scaleY);
 }
+
 /// 
 /// \brief Get the drawing scale for the current target.
 /// 
@@ -4507,6 +4786,7 @@ void SDL_RenderGetScale(Pointer<SDL_Renderer>? renderer, Pointer<Float>? scaleX,
       void Function(Pointer<SDL_Renderer>? renderer, Pointer<Float>? scaleX, Pointer<Float>? scaleY)>('SDL_RenderGetScale');
   return _SDL_RenderGetScale(renderer, scaleX, scaleY);
 }
+
 /// 
 /// \brief Set the color used for drawing operations (Rect, Line and Clear).
 /// 
@@ -4528,6 +4808,7 @@ int SDL_SetRenderDrawColor(Pointer<SDL_Renderer>? renderer, int r, int g, int b,
       int Function(Pointer<SDL_Renderer>? renderer, int r, int g, int b, int a)>('SDL_SetRenderDrawColor');
   return _SDL_SetRenderDrawColor(renderer, r, g, b, a);
 }
+
 /// 
 /// \brief Get the color used for drawing operations (Rect, Line and Clear).
 /// 
@@ -4549,6 +4830,7 @@ int SDL_GetRenderDrawColor(Pointer<SDL_Renderer>? renderer, Pointer<Uint8>? r, P
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b, Pointer<Uint8>? a)>('SDL_GetRenderDrawColor');
   return _SDL_GetRenderDrawColor(renderer, r, g, b, a);
 }
+
 /// 
 /// \brief Set the blend mode used for drawing operations (Fill and Line).
 /// 
@@ -4571,6 +4853,7 @@ int SDL_SetRenderDrawBlendMode(Pointer<SDL_Renderer>? renderer, int blendMode) {
       int Function(Pointer<SDL_Renderer>? renderer, int blendMode)>('SDL_SetRenderDrawBlendMode');
   return _SDL_SetRenderDrawBlendMode(renderer, blendMode);
 }
+
 /// 
 /// \brief Get the blend mode used for drawing operations.
 /// 
@@ -4590,6 +4873,7 @@ int SDL_GetRenderDrawBlendMode(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? 
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? blendMode)>('SDL_GetRenderDrawBlendMode');
   return _SDL_GetRenderDrawBlendMode(renderer, blendMode);
 }
+
 /// 
 /// \brief Clear the current rendering target with the drawing color
 /// 
@@ -4606,6 +4890,7 @@ int SDL_RenderClear(Pointer<SDL_Renderer>? renderer) {
       int Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderClear');
   return _SDL_RenderClear(renderer);
 }
+
 /// 
 /// \brief Draw a point on the current rendering target.
 /// 
@@ -4624,6 +4909,7 @@ int SDL_RenderDrawPoint(Pointer<SDL_Renderer>? renderer, int x, int y) {
       int Function(Pointer<SDL_Renderer>? renderer, int x, int y)>('SDL_RenderDrawPoint');
   return _SDL_RenderDrawPoint(renderer, x, y);
 }
+
 /// 
 /// \brief Draw multiple points on the current rendering target.
 /// 
@@ -4642,6 +4928,7 @@ int SDL_RenderDrawPoints(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Point>? po
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Point>? points, int count)>('SDL_RenderDrawPoints');
   return _SDL_RenderDrawPoints(renderer, points, count);
 }
+
 /// 
 /// \brief Draw a line on the current rendering target.
 /// 
@@ -4662,6 +4949,7 @@ int SDL_RenderDrawLine(Pointer<SDL_Renderer>? renderer, int x1, int y1, int x2, 
       int Function(Pointer<SDL_Renderer>? renderer, int x1, int y1, int x2, int y2)>('SDL_RenderDrawLine');
   return _SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
 }
+
 /// 
 /// \brief Draw a series of connected lines on the current rendering target.
 /// 
@@ -4680,6 +4968,7 @@ int SDL_RenderDrawLines(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Point>? poi
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Point>? points, int count)>('SDL_RenderDrawLines');
   return _SDL_RenderDrawLines(renderer, points, count);
 }
+
 /// 
 /// \brief Draw a rectangle on the current rendering target.
 /// 
@@ -4697,6 +4986,7 @@ int SDL_RenderDrawRect(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)>('SDL_RenderDrawRect');
   return _SDL_RenderDrawRect(renderer, rect);
 }
+
 /// 
 /// \brief Draw some number of rectangles on the current rendering target.
 /// 
@@ -4715,6 +5005,7 @@ int SDL_RenderDrawRects(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rects, int count)>('SDL_RenderDrawRects');
   return _SDL_RenderDrawRects(renderer, rects, count);
 }
+
 /// 
 /// \brief Fill a rectangle on the current rendering target with the drawing color.
 /// 
@@ -4733,6 +5024,7 @@ int SDL_RenderFillRect(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)>('SDL_RenderFillRect');
   return _SDL_RenderFillRect(renderer, rect);
 }
+
 /// 
 /// \brief Fill some number of rectangles on the current rendering target with the drawing color.
 /// 
@@ -4751,6 +5043,7 @@ int SDL_RenderFillRects(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rects, int count)>('SDL_RenderFillRects');
   return _SDL_RenderFillRects(renderer, rects, count);
 }
+
 /// 
 /// \brief Copy a portion of the texture to the current rendering target.
 /// 
@@ -4772,6 +5065,7 @@ int SDL_RenderCopy(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? textur
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Rect>? dstrect)>('SDL_RenderCopy');
   return _SDL_RenderCopy(renderer, texture, srcrect, dstrect);
 }
+
 /// 
 /// \brief Copy a portion of the source texture to the current rendering target, rotating it by angle around the given center
 /// 
@@ -4796,6 +5090,7 @@ int SDL_RenderCopyEx(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? text
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Rect>? dstrect, double angle, Pointer<SDL_Point>? center, int flip)>('SDL_RenderCopyEx');
   return _SDL_RenderCopyEx(renderer, texture, srcrect, dstrect, angle, center, flip);
 }
+
 /// 
 /// \brief Read pixels from the current rendering target.
 /// 
@@ -4820,6 +5115,7 @@ int SDL_RenderReadPixels(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rec
       int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect, int format, Pointer<Void>? pixels, int pitch)>('SDL_RenderReadPixels');
   return _SDL_RenderReadPixels(renderer, rect, format, pixels, pitch);
 }
+
 /// 
 /// \brief Update the screen with rendering performed.
 /// 
@@ -4832,6 +5128,7 @@ void SDL_RenderPresent(Pointer<SDL_Renderer>? renderer) {
       void Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderPresent');
   return _SDL_RenderPresent(renderer);
 }
+
 /// 
 /// \brief Destroy the specified texture.
 /// 
@@ -4847,6 +5144,7 @@ void SDL_DestroyTexture(Pointer<SDL_Texture>? texture) {
       void Function(Pointer<SDL_Texture>? texture)>('SDL_DestroyTexture');
   return _SDL_DestroyTexture(texture);
 }
+
 /// 
 /// \brief Destroy the rendering context for a window and free associated
 /// textures.
@@ -4862,6 +5160,7 @@ void SDL_DestroyRenderer(Pointer<SDL_Renderer>? renderer) {
       void Function(Pointer<SDL_Renderer>? renderer)>('SDL_DestroyRenderer');
   return _SDL_DestroyRenderer(renderer);
 }
+
 /// 
 /// \brief Bind the texture to the current OpenGL/ES/ES2 context for use with
 /// OpenGL instructions.
@@ -4881,6 +5180,7 @@ int SDL_GL_BindTexture(Pointer<SDL_Texture>? texture, Pointer<Float>? texw, Poin
       int Function(Pointer<SDL_Texture>? texture, Pointer<Float>? texw, Pointer<Float>? texh)>('SDL_GL_BindTexture');
   return _SDL_GL_BindTexture(texture, texw, texh);
 }
+
 /// 
 /// \brief Unbind a texture from the current OpenGL/ES/ES2 context.
 /// 
@@ -4897,6 +5197,7 @@ int SDL_GL_UnbindTexture(Pointer<SDL_Texture>? texture) {
       int Function(Pointer<SDL_Texture>? texture)>('SDL_GL_UnbindTexture');
   return _SDL_GL_UnbindTexture(texture);
 }
+
 /// @{
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_RWFromFile(const char *file, const char *mode)
@@ -4912,6 +5213,7 @@ Pointer<SDL_RWops>? SDL_RWFromFile(String file, String mode) {
   calloc.free(_modePointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_RWFromFP(FILE * fp, SDL_bool autoclose)
 /// ```
@@ -4921,6 +5223,7 @@ Pointer<SDL_RWops>? SDL_RWFromFP(Pointer<IntPtr>? fp, int autoclose) {
       Pointer<SDL_RWops>? Function(Pointer<IntPtr>? fp, int autoclose)>('SDL_RWFromFP');
   return _SDL_RWFromFP(fp, autoclose);
 }
+
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_RWFromMem(void *mem, int size)
 /// ```
@@ -4930,6 +5233,7 @@ Pointer<SDL_RWops>? SDL_RWFromMem(Pointer<Void>? mem, int size) {
       Pointer<SDL_RWops>? Function(Pointer<Void>? mem, int size)>('SDL_RWFromMem');
   return _SDL_RWFromMem(mem, size);
 }
+
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_RWFromConstMem(const void *mem, int size)
 /// ```
@@ -4939,6 +5243,7 @@ Pointer<SDL_RWops>? SDL_RWFromConstMem(Pointer<Void>? mem, int size) {
       Pointer<SDL_RWops>? Function(Pointer<Void>? mem, int size)>('SDL_RWFromConstMem');
   return _SDL_RWFromConstMem(mem, size);
 }
+
 /// RWFrom functions
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_AllocRW(void)
@@ -4949,6 +5254,7 @@ Pointer<SDL_RWops>? SDL_AllocRW() {
       Pointer<SDL_RWops>? Function()>('SDL_AllocRW');
   return _SDL_AllocRW();
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_FreeRW(SDL_RWops * area)
 /// ```
@@ -4958,6 +5264,7 @@ void SDL_FreeRW(Pointer<SDL_RWops>? area) {
       void Function(Pointer<SDL_RWops>? area)>('SDL_FreeRW');
   return _SDL_FreeRW(area);
 }
+
 /// @{
 /// ```c
 /// extern DECLSPEC Uint8 SDLCALL SDL_ReadU8(SDL_RWops * src)
@@ -4968,6 +5275,7 @@ int SDL_ReadU8(Pointer<SDL_RWops>? src) {
       int Function(Pointer<SDL_RWops>? src)>('SDL_ReadU8');
   return _SDL_ReadU8(src);
 }
+
 /// ```c
 /// extern DECLSPEC Uint16 SDLCALL SDL_ReadLE16(SDL_RWops * src)
 /// ```
@@ -4977,6 +5285,7 @@ int SDL_ReadLE16(Pointer<SDL_RWops>? src) {
       int Function(Pointer<SDL_RWops>? src)>('SDL_ReadLE16');
   return _SDL_ReadLE16(src);
 }
+
 /// ```c
 /// extern DECLSPEC Uint16 SDLCALL SDL_ReadBE16(SDL_RWops * src)
 /// ```
@@ -4986,6 +5295,7 @@ int SDL_ReadBE16(Pointer<SDL_RWops>? src) {
       int Function(Pointer<SDL_RWops>? src)>('SDL_ReadBE16');
   return _SDL_ReadBE16(src);
 }
+
 /// ```c
 /// extern DECLSPEC Uint32 SDLCALL SDL_ReadLE32(SDL_RWops * src)
 /// ```
@@ -4995,6 +5305,7 @@ int SDL_ReadLE32(Pointer<SDL_RWops>? src) {
       int Function(Pointer<SDL_RWops>? src)>('SDL_ReadLE32');
   return _SDL_ReadLE32(src);
 }
+
 /// ```c
 /// extern DECLSPEC Uint32 SDLCALL SDL_ReadBE32(SDL_RWops * src)
 /// ```
@@ -5004,6 +5315,7 @@ int SDL_ReadBE32(Pointer<SDL_RWops>? src) {
       int Function(Pointer<SDL_RWops>? src)>('SDL_ReadBE32');
   return _SDL_ReadBE32(src);
 }
+
 /// ```c
 /// extern DECLSPEC Uint64 SDLCALL SDL_ReadLE64(SDL_RWops * src)
 /// ```
@@ -5013,6 +5325,7 @@ int SDL_ReadLE64(Pointer<SDL_RWops>? src) {
       int Function(Pointer<SDL_RWops>? src)>('SDL_ReadLE64');
   return _SDL_ReadLE64(src);
 }
+
 /// ```c
 /// extern DECLSPEC Uint64 SDLCALL SDL_ReadBE64(SDL_RWops * src)
 /// ```
@@ -5022,6 +5335,7 @@ int SDL_ReadBE64(Pointer<SDL_RWops>? src) {
       int Function(Pointer<SDL_RWops>? src)>('SDL_ReadBE64');
   return _SDL_ReadBE64(src);
 }
+
 /// @{
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteU8(SDL_RWops * dst, Uint8 value)
@@ -5032,6 +5346,7 @@ int SDL_WriteU8(Pointer<SDL_RWops>? dst, int value) {
       int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteU8');
   return _SDL_WriteU8(dst, value);
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteLE16(SDL_RWops * dst, Uint16 value)
 /// ```
@@ -5041,6 +5356,7 @@ int SDL_WriteLE16(Pointer<SDL_RWops>? dst, int value) {
       int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteLE16');
   return _SDL_WriteLE16(dst, value);
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteBE16(SDL_RWops * dst, Uint16 value)
 /// ```
@@ -5050,6 +5366,7 @@ int SDL_WriteBE16(Pointer<SDL_RWops>? dst, int value) {
       int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteBE16');
   return _SDL_WriteBE16(dst, value);
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteLE32(SDL_RWops * dst, Uint32 value)
 /// ```
@@ -5059,6 +5376,7 @@ int SDL_WriteLE32(Pointer<SDL_RWops>? dst, int value) {
       int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteLE32');
   return _SDL_WriteLE32(dst, value);
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteBE32(SDL_RWops * dst, Uint32 value)
 /// ```
@@ -5068,6 +5386,7 @@ int SDL_WriteBE32(Pointer<SDL_RWops>? dst, int value) {
       int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteBE32');
   return _SDL_WriteBE32(dst, value);
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteLE64(SDL_RWops * dst, Uint64 value)
 /// ```
@@ -5077,6 +5396,7 @@ int SDL_WriteLE64(Pointer<SDL_RWops>? dst, int value) {
       int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteLE64');
   return _SDL_WriteLE64(dst, value);
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteBE64(SDL_RWops * dst, Uint64 value)
 /// ```
@@ -5086,6 +5406,7 @@ int SDL_WriteBE64(Pointer<SDL_RWops>? dst, int value) {
       int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteBE64');
   return _SDL_WriteBE64(dst, value);
 }
+
 /// 
 /// \brief Create a window that can be shaped with the specified position, dimensions, and flags.
 /// 
@@ -5118,6 +5439,7 @@ Pointer<SDL_Window>? SDL_CreateShapedWindow(String title, int x, int y, int w, i
   calloc.free(_titlePointer);
   return _result;
 }
+
 /// 
 /// \brief Return whether the given window is a shaped window.
 /// 
@@ -5135,6 +5457,7 @@ int SDL_IsShapedWindow(Pointer<SDL_Window>? window) {
       int Function(Pointer<SDL_Window>? window)>('SDL_IsShapedWindow');
   return _SDL_IsShapedWindow(window);
 }
+
 /// 
 /// \brief Set the shape and parameters of a shaped window.
 /// 
@@ -5157,6 +5480,7 @@ int SDL_SetWindowShape(Pointer<SDL_Window>? window, Pointer<SDL_Surface>? shape,
       int Function(Pointer<SDL_Window>? window, Pointer<SDL_Surface>? shape, Pointer<SDL_WindowShapeMode>? shape_mode)>('SDL_SetWindowShape');
   return _SDL_SetWindowShape(window, shape, shape_mode);
 }
+
 /// 
 /// \brief Get the shape parameters of a shaped window.
 /// 
@@ -5179,6 +5503,7 @@ int SDL_GetShapedWindowMode(Pointer<SDL_Window>? window, Pointer<SDL_WindowShape
       int Function(Pointer<SDL_Window>? window, Pointer<SDL_WindowShapeMode>? shape_mode)>('SDL_GetShapedWindowMode');
   return _SDL_GetShapedWindowMode(window, shape_mode);
 }
+
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_malloc(size_t size)
 /// ```
@@ -5188,6 +5513,7 @@ Pointer<Void>? SDL_malloc(int size) {
       Pointer<Void>? Function(int size)>('SDL_malloc');
   return _SDL_malloc(size);
 }
+
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_calloc(size_t nmemb, size_t size)
 /// ```
@@ -5197,6 +5523,7 @@ Pointer<Void>? SDL_calloc(int nmemb, int size) {
       Pointer<Void>? Function(int nmemb, int size)>('SDL_calloc');
   return _SDL_calloc(nmemb, size);
 }
+
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_realloc(void *mem, size_t size)
 /// ```
@@ -5206,6 +5533,7 @@ Pointer<Void>? SDL_realloc(Pointer<Void>? mem, int size) {
       Pointer<Void>? Function(Pointer<Void>? mem, int size)>('SDL_realloc');
   return _SDL_realloc(mem, size);
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_free(void *mem)
 /// ```
@@ -5215,6 +5543,7 @@ void SDL_free(Pointer<Void>? mem) {
       void Function(Pointer<Void>? mem)>('SDL_free');
   return _SDL_free(mem);
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_getenv(const char *name)
 /// ```
@@ -5227,6 +5556,7 @@ Pointer<Int8>? SDL_getenv(String name) {
   calloc.free(_namePointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_setenv(const char *name, const char *value, int overwrite)
 /// ```
@@ -5241,6 +5571,7 @@ int SDL_setenv(String name, String value, int overwrite) {
   calloc.free(_valuePointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_qsort(void *base, size_t nmemb, size_t size, int (*compare) (const void *, const void *))
 /// ```
@@ -5250,6 +5581,7 @@ void SDL_qsort(Pointer<Void>? base, int nmemb, int size, Pointer<Void>? compare)
       void Function(Pointer<Void>? base, int nmemb, int size, Pointer<Void>? compare)>('SDL_qsort');
   return _SDL_qsort(base, nmemb, size, compare);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_abs(int x)
 /// ```
@@ -5259,6 +5591,7 @@ int SDL_abs(int x) {
       int Function(int x)>('SDL_abs');
   return _SDL_abs(x);
 }
+
 /// !!! FIXME: Maybe we do forceinline functions of SDL_mini, SDL_minf, etc?
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_isdigit(int x)
@@ -5269,6 +5602,7 @@ int SDL_isdigit(int x) {
       int Function(int x)>('SDL_isdigit');
   return _SDL_isdigit(x);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_isspace(int x)
 /// ```
@@ -5278,6 +5612,7 @@ int SDL_isspace(int x) {
       int Function(int x)>('SDL_isspace');
   return _SDL_isspace(x);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_toupper(int x)
 /// ```
@@ -5287,6 +5622,7 @@ int SDL_toupper(int x) {
       int Function(int x)>('SDL_toupper');
   return _SDL_toupper(x);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_tolower(int x)
 /// ```
@@ -5296,6 +5632,7 @@ int SDL_tolower(int x) {
       int Function(int x)>('SDL_tolower');
   return _SDL_tolower(x);
 }
+
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_memset(void *dst, int c, size_t len)
 /// ```
@@ -5305,6 +5642,7 @@ Pointer<Void>? SDL_memset(Pointer<Void>? dst, int c, int len) {
       Pointer<Void>? Function(Pointer<Void>? dst, int c, int len)>('SDL_memset');
   return _SDL_memset(dst, c, len);
 }
+
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_memcpy(void *dst, const void *src, size_t len)
 /// ```
@@ -5314,6 +5652,7 @@ Pointer<Void>? SDL_memcpy(Pointer<Void>? dst, Pointer<Void>? src, int len) {
       Pointer<Void>? Function(Pointer<Void>? dst, Pointer<Void>? src, int len)>('SDL_memcpy');
   return _SDL_memcpy(dst, src, len);
 }
+
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_memmove(void *dst, const void *src, size_t len)
 /// ```
@@ -5323,6 +5662,7 @@ Pointer<Void>? SDL_memmove(Pointer<Void>? dst, Pointer<Void>? src, int len) {
       Pointer<Void>? Function(Pointer<Void>? dst, Pointer<Void>? src, int len)>('SDL_memmove');
   return _SDL_memmove(dst, src, len);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_memcmp(const void *s1, const void *s2, size_t len)
 /// ```
@@ -5332,6 +5672,7 @@ int SDL_memcmp(Pointer<Void>? s1, Pointer<Void>? s2, int len) {
       int Function(Pointer<Void>? s1, Pointer<Void>? s2, int len)>('SDL_memcmp');
   return _SDL_memcmp(s1, s2, len);
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_wcslen(const wchar_t *wstr)
 /// ```
@@ -5341,6 +5682,7 @@ int SDL_wcslen(Pointer<Int16>? wstr) {
       int Function(Pointer<Int16>? wstr)>('SDL_wcslen');
   return _SDL_wcslen(wstr);
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_wcslcpy(wchar_t *dst, const wchar_t *src, size_t maxlen)
 /// ```
@@ -5350,6 +5692,7 @@ int SDL_wcslcpy(Pointer<Int16>? dst, Pointer<Int16>? src, int maxlen) {
       int Function(Pointer<Int16>? dst, Pointer<Int16>? src, int maxlen)>('SDL_wcslcpy');
   return _SDL_wcslcpy(dst, src, maxlen);
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_wcslcat(wchar_t *dst, const wchar_t *src, size_t maxlen)
 /// ```
@@ -5359,6 +5702,7 @@ int SDL_wcslcat(Pointer<Int16>? dst, Pointer<Int16>? src, int maxlen) {
       int Function(Pointer<Int16>? dst, Pointer<Int16>? src, int maxlen)>('SDL_wcslcat');
   return _SDL_wcslcat(dst, src, maxlen);
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_strlen(const char *str)
 /// ```
@@ -5371,6 +5715,7 @@ int SDL_strlen(String str) {
   calloc.free(_strPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_strlcpy(char *dst, const char *src, size_t maxlen)
 /// ```
@@ -5383,6 +5728,7 @@ int SDL_strlcpy(Pointer<Int8>? dst, String src, int maxlen) {
   calloc.free(_srcPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_utf8strlcpy(char *dst, const char *src, size_t dst_bytes)
 /// ```
@@ -5395,6 +5741,7 @@ int SDL_utf8strlcpy(Pointer<Int8>? dst, String src, int dst_bytes) {
   calloc.free(_srcPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_strlcat(char *dst, const char *src, size_t maxlen)
 /// ```
@@ -5407,6 +5754,7 @@ int SDL_strlcat(Pointer<Int8>? dst, String src, int maxlen) {
   calloc.free(_srcPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_strdup(const char *str)
 /// ```
@@ -5419,6 +5767,7 @@ Pointer<Int8>? SDL_strdup(String str) {
   calloc.free(_strPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_strrev(char *str)
 /// ```
@@ -5428,6 +5777,7 @@ Pointer<Int8>? SDL_strrev(Pointer<Int8>? str) {
       Pointer<Int8>? Function(Pointer<Int8>? str)>('SDL_strrev');
   return _SDL_strrev(str);
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_strupr(char *str)
 /// ```
@@ -5437,6 +5787,7 @@ Pointer<Int8>? SDL_strupr(Pointer<Int8>? str) {
       Pointer<Int8>? Function(Pointer<Int8>? str)>('SDL_strupr');
   return _SDL_strupr(str);
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_strlwr(char *str)
 /// ```
@@ -5446,6 +5797,7 @@ Pointer<Int8>? SDL_strlwr(Pointer<Int8>? str) {
       Pointer<Int8>? Function(Pointer<Int8>? str)>('SDL_strlwr');
   return _SDL_strlwr(str);
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_strchr(const char *str, int c)
 /// ```
@@ -5458,6 +5810,7 @@ Pointer<Int8>? SDL_strchr(String str, int c) {
   calloc.free(_strPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_strrchr(const char *str, int c)
 /// ```
@@ -5470,6 +5823,7 @@ Pointer<Int8>? SDL_strrchr(String str, int c) {
   calloc.free(_strPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_strstr(const char *haystack, const char *needle)
 /// ```
@@ -5484,6 +5838,7 @@ Pointer<Int8>? SDL_strstr(String haystack, String needle) {
   calloc.free(_needlePointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_itoa(int value, char *str, int radix)
 /// ```
@@ -5493,6 +5848,7 @@ Pointer<Int8>? SDL_itoa(int value, Pointer<Int8>? str, int radix) {
       Pointer<Int8>? Function(int value, Pointer<Int8>? str, int radix)>('SDL_itoa');
   return _SDL_itoa(value, str, radix);
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_uitoa(unsigned int value, char *str, int radix)
 /// ```
@@ -5502,6 +5858,7 @@ Pointer<Int8>? SDL_uitoa(int value, Pointer<Int8>? str, int radix) {
       Pointer<Int8>? Function(int value, Pointer<Int8>? str, int radix)>('SDL_uitoa');
   return _SDL_uitoa(value, str, radix);
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_ltoa(long value, char *str, int radix)
 /// ```
@@ -5511,6 +5868,7 @@ Pointer<Int8>? SDL_ltoa(int value, Pointer<Int8>? str, int radix) {
       Pointer<Int8>? Function(int value, Pointer<Int8>? str, int radix)>('SDL_ltoa');
   return _SDL_ltoa(value, str, radix);
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_ultoa(unsigned long value, char *str, int radix)
 /// ```
@@ -5520,6 +5878,7 @@ Pointer<Int8>? SDL_ultoa(int value, Pointer<Int8>? str, int radix) {
       Pointer<Int8>? Function(int value, Pointer<Int8>? str, int radix)>('SDL_ultoa');
   return _SDL_ultoa(value, str, radix);
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_lltoa(Sint64 value, char *str, int radix)
 /// ```
@@ -5529,6 +5888,7 @@ Pointer<Int8>? SDL_lltoa(int value, Pointer<Int8>? str, int radix) {
       Pointer<Int8>? Function(int value, Pointer<Int8>? str, int radix)>('SDL_lltoa');
   return _SDL_lltoa(value, str, radix);
 }
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_ulltoa(Uint64 value, char *str, int radix)
 /// ```
@@ -5538,6 +5898,7 @@ Pointer<Int8>? SDL_ulltoa(int value, Pointer<Int8>? str, int radix) {
       Pointer<Int8>? Function(int value, Pointer<Int8>? str, int radix)>('SDL_ulltoa');
   return _SDL_ulltoa(value, str, radix);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_atoi(const char *str)
 /// ```
@@ -5550,6 +5911,7 @@ int SDL_atoi(String str) {
   calloc.free(_strPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_atof(const char *str)
 /// ```
@@ -5562,6 +5924,7 @@ double SDL_atof(String str) {
   calloc.free(_strPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC long SDLCALL SDL_strtol(const char *str, char **endp, int base)
 /// ```
@@ -5574,6 +5937,7 @@ int SDL_strtol(String str, Pointer<Pointer<Int8>>? endp, int base) {
   calloc.free(_strPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC unsigned long SDLCALL SDL_strtoul(const char *str, char **endp, int base)
 /// ```
@@ -5586,6 +5950,7 @@ int SDL_strtoul(String str, Pointer<Pointer<Int8>>? endp, int base) {
   calloc.free(_strPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC Sint64 SDLCALL SDL_strtoll(const char *str, char **endp, int base)
 /// ```
@@ -5598,6 +5963,7 @@ int SDL_strtoll(String str, Pointer<Pointer<Int8>>? endp, int base) {
   calloc.free(_strPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC Uint64 SDLCALL SDL_strtoull(const char *str, char **endp, int base)
 /// ```
@@ -5610,6 +5976,7 @@ int SDL_strtoull(String str, Pointer<Pointer<Int8>>? endp, int base) {
   calloc.free(_strPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_strtod(const char *str, char **endp)
 /// ```
@@ -5622,6 +5989,7 @@ double SDL_strtod(String str, Pointer<Pointer<Int8>>? endp) {
   calloc.free(_strPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_strcmp(const char *str1, const char *str2)
 /// ```
@@ -5636,6 +6004,7 @@ int SDL_strcmp(String str1, String str2) {
   calloc.free(_str2Pointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_strncmp(const char *str1, const char *str2, size_t maxlen)
 /// ```
@@ -5650,6 +6019,7 @@ int SDL_strncmp(String str1, String str2, int maxlen) {
   calloc.free(_str2Pointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_strcasecmp(const char *str1, const char *str2)
 /// ```
@@ -5664,6 +6034,7 @@ int SDL_strcasecmp(String str1, String str2) {
   calloc.free(_str2Pointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_strncasecmp(const char *str1, const char *str2, size_t len)
 /// ```
@@ -5678,6 +6049,7 @@ int SDL_strncasecmp(String str1, String str2, int len) {
   calloc.free(_str2Pointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_sscanf(const char *text, const char *fmt, ...)
 /// ```
@@ -5692,6 +6064,7 @@ int SDL_sscanf(String text, String fmt, Pointer<Void>? arg2) {
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_snprintf(char *text, size_t maxlen, const char *fmt, ...)
 /// ```
@@ -5704,6 +6077,7 @@ int SDL_snprintf(Pointer<Int8>? text, int maxlen, String fmt, Pointer<Void>? arg
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_vsnprintf(char *text, size_t maxlen, const char *fmt, va_list ap)
 /// ```
@@ -5716,6 +6090,7 @@ int SDL_vsnprintf(Pointer<Int8>? text, int maxlen, String fmt, Pointer<Void>? ap
   calloc.free(_fmtPointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_atan(double x)
 /// ```
@@ -5725,6 +6100,7 @@ double SDL_atan(double x) {
       double Function(double x)>('SDL_atan');
   return _SDL_atan(x);
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_atan2(double x, double y)
 /// ```
@@ -5734,6 +6110,7 @@ double SDL_atan2(double x, double y) {
       double Function(double x, double y)>('SDL_atan2');
   return _SDL_atan2(x, y);
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_ceil(double x)
 /// ```
@@ -5743,6 +6120,7 @@ double SDL_ceil(double x) {
       double Function(double x)>('SDL_ceil');
   return _SDL_ceil(x);
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_copysign(double x, double y)
 /// ```
@@ -5752,6 +6130,7 @@ double SDL_copysign(double x, double y) {
       double Function(double x, double y)>('SDL_copysign');
   return _SDL_copysign(x, y);
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_cos(double x)
 /// ```
@@ -5761,6 +6140,7 @@ double SDL_cos(double x) {
       double Function(double x)>('SDL_cos');
   return _SDL_cos(x);
 }
+
 /// ```c
 /// extern DECLSPEC float SDLCALL SDL_cosf(float x)
 /// ```
@@ -5770,6 +6150,7 @@ double SDL_cosf(double x) {
       double Function(double x)>('SDL_cosf');
   return _SDL_cosf(x);
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_fabs(double x)
 /// ```
@@ -5779,6 +6160,7 @@ double SDL_fabs(double x) {
       double Function(double x)>('SDL_fabs');
   return _SDL_fabs(x);
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_floor(double x)
 /// ```
@@ -5788,6 +6170,7 @@ double SDL_floor(double x) {
       double Function(double x)>('SDL_floor');
   return _SDL_floor(x);
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_log(double x)
 /// ```
@@ -5797,6 +6180,7 @@ double SDL_log(double x) {
       double Function(double x)>('SDL_log');
   return _SDL_log(x);
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_pow(double x, double y)
 /// ```
@@ -5806,6 +6190,7 @@ double SDL_pow(double x, double y) {
       double Function(double x, double y)>('SDL_pow');
   return _SDL_pow(x, y);
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_scalbn(double x, int n)
 /// ```
@@ -5815,6 +6200,7 @@ double SDL_scalbn(double x, int n) {
       double Function(double x, int n)>('SDL_scalbn');
   return _SDL_scalbn(x, n);
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_sin(double x)
 /// ```
@@ -5824,6 +6210,7 @@ double SDL_sin(double x) {
       double Function(double x)>('SDL_sin');
   return _SDL_sin(x);
 }
+
 /// ```c
 /// extern DECLSPEC float SDLCALL SDL_sinf(float x)
 /// ```
@@ -5833,6 +6220,7 @@ double SDL_sinf(double x) {
       double Function(double x)>('SDL_sinf');
   return _SDL_sinf(x);
 }
+
 /// ```c
 /// extern DECLSPEC double SDLCALL SDL_sqrt(double x)
 /// ```
@@ -5842,6 +6230,7 @@ double SDL_sqrt(double x) {
       double Function(double x)>('SDL_sqrt');
   return _SDL_sqrt(x);
 }
+
 /// ```c
 /// extern DECLSPEC SDL_iconv_t SDLCALL SDL_iconv_open(const char *tocode, const char *fromcode)
 /// ```
@@ -5856,6 +6245,7 @@ Pointer<Void>? SDL_iconv_open(String tocode, String fromcode) {
   calloc.free(_fromcodePointer);
   return _result;
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_iconv_close(SDL_iconv_t cd)
 /// ```
@@ -5865,6 +6255,7 @@ int SDL_iconv_close(Pointer<Void>? cd) {
       int Function(Pointer<Void>? cd)>('SDL_iconv_close');
   return _SDL_iconv_close(cd);
 }
+
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_iconv(SDL_iconv_t cd, const char **inbuf, size_t * inbytesleft, char **outbuf, size_t * outbytesleft)
 /// ```
@@ -5874,6 +6265,7 @@ int SDL_iconv(Pointer<Void>? cd, Pointer<Pointer<Int8>>? inbuf, Pointer<Uint32>?
       int Function(Pointer<Void>? cd, Pointer<Pointer<Int8>>? inbuf, Pointer<Uint32>? inbytesleft, Pointer<Pointer<Int8>>? outbuf, Pointer<Uint32>? outbytesleft)>('SDL_iconv');
   return _SDL_iconv(cd, inbuf, inbytesleft, outbuf, outbytesleft);
 }
+
 /// 
 /// This function converts a string between encodings in one pass, returning a
 /// string that must be freed with SDL_free() or NULL on error.
@@ -5894,6 +6286,7 @@ Pointer<Int8>? SDL_iconv_string(String tocode, String fromcode, String inbuf, in
   calloc.free(_inbufPointer);
   return _result;
 }
+
 /// 
 /// Allocate and free an RGB surface.
 /// 
@@ -5921,6 +6314,7 @@ Pointer<SDL_Surface>? SDL_CreateRGBSurface(int flags, int width, int height, int
       Pointer<SDL_Surface>? Function(int flags, int width, int height, int depth, int Rmask, int Gmask, int Bmask, int Amask)>('SDL_CreateRGBSurface');
   return _SDL_CreateRGBSurface(flags, width, height, depth, Rmask, Gmask, Bmask, Amask);
 }
+
 /// ```c
 /// extern DECLSPEC SDL_Surface *SDLCALL SDL_CreateRGBSurfaceFrom(void *pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask)
 /// ```
@@ -5930,6 +6324,7 @@ Pointer<SDL_Surface>? SDL_CreateRGBSurfaceFrom(Pointer<Void>? pixels, int width,
       Pointer<SDL_Surface>? Function(Pointer<Void>? pixels, int width, int height, int depth, int pitch, int Rmask, int Gmask, int Bmask, int Amask)>('SDL_CreateRGBSurfaceFrom');
   return _SDL_CreateRGBSurfaceFrom(pixels, width, height, depth, pitch, Rmask, Gmask, Bmask, Amask);
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_FreeSurface(SDL_Surface * surface)
 /// ```
@@ -5939,6 +6334,7 @@ void SDL_FreeSurface(Pointer<SDL_Surface>? surface) {
       void Function(Pointer<SDL_Surface>? surface)>('SDL_FreeSurface');
   return _SDL_FreeSurface(surface);
 }
+
 /// 
 /// \brief Set the palette used by a surface.
 /// 
@@ -5955,6 +6351,7 @@ int SDL_SetSurfacePalette(Pointer<SDL_Surface>? surface, Pointer<SDL_Palette>? p
       int Function(Pointer<SDL_Surface>? surface, Pointer<SDL_Palette>? palette)>('SDL_SetSurfacePalette');
   return _SDL_SetSurfacePalette(surface, palette);
 }
+
 /// 
 /// \brief Sets up a surface for directly accessing the pixels.
 /// 
@@ -5983,6 +6380,7 @@ int SDL_LockSurface(Pointer<SDL_Surface>? surface) {
       int Function(Pointer<SDL_Surface>? surface)>('SDL_LockSurface');
   return _SDL_LockSurface(surface);
 }
+
 /// * \sa SDL_LockSurface()
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_UnlockSurface(SDL_Surface * surface)
@@ -5993,6 +6391,7 @@ void SDL_UnlockSurface(Pointer<SDL_Surface>? surface) {
       void Function(Pointer<SDL_Surface>? surface)>('SDL_UnlockSurface');
   return _SDL_UnlockSurface(surface);
 }
+
 /// 
 /// Load a surface from a seekable SDL data stream (memory or file).
 /// 
@@ -6011,6 +6410,7 @@ Pointer<SDL_Surface>? SDL_LoadBMP_RW(Pointer<SDL_RWops>? src, int freesrc) {
       Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src, int freesrc)>('SDL_LoadBMP_RW');
   return _SDL_LoadBMP_RW(src, freesrc);
 }
+
 /// 
 /// Save a surface to a seekable SDL data stream (memory or file).
 /// 
@@ -6027,6 +6427,7 @@ int SDL_SaveBMP_RW(Pointer<SDL_Surface>? surface, Pointer<SDL_RWops>? dst, int f
       int Function(Pointer<SDL_Surface>? surface, Pointer<SDL_RWops>? dst, int freedst)>('SDL_SaveBMP_RW');
   return _SDL_SaveBMP_RW(surface, dst, freedst);
 }
+
 /// 
 /// \brief Sets the RLE acceleration hint for a surface.
 /// 
@@ -6044,6 +6445,7 @@ int SDL_SetSurfaceRLE(Pointer<SDL_Surface>? surface, int flag) {
       int Function(Pointer<SDL_Surface>? surface, int flag)>('SDL_SetSurfaceRLE');
   return _SDL_SetSurfaceRLE(surface, flag);
 }
+
 /// 
 /// \brief Sets the color key (transparent pixel) in a blittable surface.
 /// 
@@ -6064,6 +6466,7 @@ int SDL_SetColorKey(Pointer<SDL_Surface>? surface, int flag, int key) {
       int Function(Pointer<SDL_Surface>? surface, int flag, int key)>('SDL_SetColorKey');
   return _SDL_SetColorKey(surface, flag, key);
 }
+
 /// 
 /// \brief Gets the color key (transparent pixel) in a blittable surface.
 /// 
@@ -6083,6 +6486,7 @@ int SDL_GetColorKey(Pointer<SDL_Surface>? surface, Pointer<Uint32>? key) {
       int Function(Pointer<SDL_Surface>? surface, Pointer<Uint32>? key)>('SDL_GetColorKey');
   return _SDL_GetColorKey(surface, key);
 }
+
 /// 
 /// \brief Set an additional color value used in blit operations.
 /// 
@@ -6104,6 +6508,7 @@ int SDL_SetSurfaceColorMod(Pointer<SDL_Surface>? surface, int r, int g, int b) {
       int Function(Pointer<SDL_Surface>? surface, int r, int g, int b)>('SDL_SetSurfaceColorMod');
   return _SDL_SetSurfaceColorMod(surface, r, g, b);
 }
+
 /// 
 /// \brief Get the additional color value used in blit operations.
 /// 
@@ -6125,6 +6530,7 @@ int SDL_GetSurfaceColorMod(Pointer<SDL_Surface>? surface, Pointer<Uint8>? r, Poi
       int Function(Pointer<SDL_Surface>? surface, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b)>('SDL_GetSurfaceColorMod');
   return _SDL_GetSurfaceColorMod(surface, r, g, b);
 }
+
 /// 
 /// \brief Set an additional alpha value used in blit operations.
 /// 
@@ -6144,6 +6550,7 @@ int SDL_SetSurfaceAlphaMod(Pointer<SDL_Surface>? surface, int alpha) {
       int Function(Pointer<SDL_Surface>? surface, int alpha)>('SDL_SetSurfaceAlphaMod');
   return _SDL_SetSurfaceAlphaMod(surface, alpha);
 }
+
 /// 
 /// \brief Get the additional alpha value used in blit operations.
 /// 
@@ -6163,6 +6570,7 @@ int SDL_GetSurfaceAlphaMod(Pointer<SDL_Surface>? surface, Pointer<Uint8>? alpha)
       int Function(Pointer<SDL_Surface>? surface, Pointer<Uint8>? alpha)>('SDL_GetSurfaceAlphaMod');
   return _SDL_GetSurfaceAlphaMod(surface, alpha);
 }
+
 /// 
 /// \brief Set the blend mode used for blit operations.
 /// 
@@ -6182,6 +6590,7 @@ int SDL_SetSurfaceBlendMode(Pointer<SDL_Surface>? surface, int blendMode) {
       int Function(Pointer<SDL_Surface>? surface, int blendMode)>('SDL_SetSurfaceBlendMode');
   return _SDL_SetSurfaceBlendMode(surface, blendMode);
 }
+
 /// 
 /// \brief Get the blend mode used for blit operations.
 /// 
@@ -6201,6 +6610,7 @@ int SDL_GetSurfaceBlendMode(Pointer<SDL_Surface>? surface, Pointer<Int32>? blend
       int Function(Pointer<SDL_Surface>? surface, Pointer<Int32>? blendMode)>('SDL_GetSurfaceBlendMode');
   return _SDL_GetSurfaceBlendMode(surface, blendMode);
 }
+
 /// 
 /// Sets the clipping rectangle for the destination surface in a blit.
 /// 
@@ -6223,6 +6633,7 @@ int SDL_SetClipRect(Pointer<SDL_Surface>? surface, Pointer<SDL_Rect>? rect) {
       int Function(Pointer<SDL_Surface>? surface, Pointer<SDL_Rect>? rect)>('SDL_SetClipRect');
   return _SDL_SetClipRect(surface, rect);
 }
+
 /// 
 /// Gets the clipping rectangle for the destination surface in a blit.
 /// 
@@ -6238,6 +6649,7 @@ void SDL_GetClipRect(Pointer<SDL_Surface>? surface, Pointer<SDL_Rect>? rect) {
       void Function(Pointer<SDL_Surface>? surface, Pointer<SDL_Rect>? rect)>('SDL_GetClipRect');
   return _SDL_GetClipRect(surface, rect);
 }
+
 /// 
 /// Creates a new surface of the specified format, and then copies and maps
 /// the given surface to it so the blit of the converted surface will be as
@@ -6257,6 +6669,7 @@ Pointer<SDL_Surface>? SDL_ConvertSurface(Pointer<SDL_Surface>? src, Pointer<SDL_
       Pointer<SDL_Surface>? Function(Pointer<SDL_Surface>? src, Pointer<SDL_PixelFormat>? fmt, int flags)>('SDL_ConvertSurface');
   return _SDL_ConvertSurface(src, fmt, flags);
 }
+
 /// ```c
 /// extern DECLSPEC SDL_Surface *SDLCALL SDL_ConvertSurfaceFormat (SDL_Surface * src, Uint32 pixel_format, Uint32 flags)
 /// ```
@@ -6266,6 +6679,7 @@ Pointer<SDL_Surface>? SDL_ConvertSurfaceFormat(Pointer<SDL_Surface>? src, int pi
       Pointer<SDL_Surface>? Function(Pointer<SDL_Surface>? src, int pixel_format, int flags)>('SDL_ConvertSurfaceFormat');
   return _SDL_ConvertSurfaceFormat(src, pixel_format, flags);
 }
+
 /// 
 /// \brief Copy a block of pixels of one format to another format
 /// 
@@ -6280,6 +6694,7 @@ int SDL_ConvertPixels(int width, int height, int src_format, Pointer<Void>? src,
       int Function(int width, int height, int src_format, Pointer<Void>? src, int src_pitch, int dst_format, Pointer<Void>? dst, int dst_pitch)>('SDL_ConvertPixels');
   return _SDL_ConvertPixels(width, height, src_format, src, src_pitch, dst_format, dst, dst_pitch);
 }
+
 /// 
 /// Performs a fast fill of the given rectangle with \c color.
 /// 
@@ -6299,6 +6714,7 @@ int SDL_FillRect(Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? rect, int color) 
       int Function(Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? rect, int color)>('SDL_FillRect');
   return _SDL_FillRect(dst, rect, color);
 }
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_FillRects (SDL_Surface * dst, const SDL_Rect * rects, int count, Uint32 color)
 /// ```
@@ -6308,6 +6724,7 @@ int SDL_FillRects(Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? rects, int count
       int Function(Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? rects, int count, int color)>('SDL_FillRects');
   return _SDL_FillRects(dst, rects, count, color);
 }
+
 /// 
 /// This is the public blit function, SDL_BlitSurface(), and it performs
 /// rectangle validation and clipping before passing it to SDL_LowerBlit()
@@ -6321,6 +6738,7 @@ int SDL_UpperBlit(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, Pointer
       int Function(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? dstrect)>('SDL_UpperBlit');
   return _SDL_UpperBlit(src, srcrect, dst, dstrect);
 }
+
 /// 
 /// This is a semi-private blit function and it performs low-level surface
 /// blitting only.
@@ -6334,6 +6752,7 @@ int SDL_LowerBlit(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, Pointer
       int Function(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? dstrect)>('SDL_LowerBlit');
   return _SDL_LowerBlit(src, srcrect, dst, dstrect);
 }
+
 /// 
 /// \brief Perform a fast, low quality, stretch blit between two surfaces of the
 /// same pixel format.
@@ -6349,6 +6768,7 @@ int SDL_SoftStretch(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, Point
       int Function(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? dstrect)>('SDL_SoftStretch');
   return _SDL_SoftStretch(src, srcrect, dst, dstrect);
 }
+
 /// 
 /// This is the public scaled blit function, SDL_BlitScaled(), and it performs
 /// rectangle validation and clipping before passing it to SDL_LowerBlitScaled()
@@ -6362,6 +6782,7 @@ int SDL_UpperBlitScaled(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, P
       int Function(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? dstrect)>('SDL_UpperBlitScaled');
   return _SDL_UpperBlitScaled(src, srcrect, dst, dstrect);
 }
+
 /// 
 /// This is a semi-private blit function and it performs low-level surface
 /// scaled blitting only.
@@ -6375,6 +6796,7 @@ int SDL_LowerBlitScaled(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, P
       int Function(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? dstrect)>('SDL_LowerBlitScaled');
   return _SDL_LowerBlitScaled(src, srcrect, dst, dstrect);
 }
+
 /// Platform specific functions for iOS
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_iPhoneSetAnimationCallback(SDL_Window * window, int interval, void (*callback)(void*), void *callbackParam)
@@ -6385,6 +6807,7 @@ int SDL_iPhoneSetAnimationCallback(Pointer<SDL_Window>? window, int interval, Po
       int Function(Pointer<SDL_Window>? window, int interval, Pointer<Void>? callback, Pointer<Void>? callbackParam)>('SDL_iPhoneSetAnimationCallback');
   return _SDL_iPhoneSetAnimationCallback(window, interval, callback, callbackParam);
 }
+
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_iPhoneSetEventPump(SDL_bool enabled)
 /// ```
@@ -6394,6 +6817,7 @@ void SDL_iPhoneSetEventPump(int enabled) {
       void Function(int enabled)>('SDL_iPhoneSetEventPump');
   return _SDL_iPhoneSetEventPump(enabled);
 }
+
 /// Get the JNI environment for the current thread
 /// This returns JNIEnv*, but the prototype is void* so we don't need jni.h
 /// /
@@ -6406,6 +6830,7 @@ Pointer<Void>? SDL_AndroidGetJNIEnv() {
       Pointer<Void>? Function()>('SDL_AndroidGetJNIEnv');
   return _SDL_AndroidGetJNIEnv();
 }
+
 /// Get the SDL Activity object for the application
 /// This returns jobject, but the prototype is void* so we don't need jni.h
 /// The jobject returned by SDL_AndroidGetActivity is a local reference.
@@ -6421,6 +6846,7 @@ Pointer<Void>? SDL_AndroidGetActivity() {
       Pointer<Void>? Function()>('SDL_AndroidGetActivity');
   return _SDL_AndroidGetActivity();
 }
+
 /// Get the path used for internal storage for this application.
 /// This path is unique to your application and cannot be written to
 /// by other applications.
@@ -6434,6 +6860,7 @@ String SDL_AndroidGetInternalStoragePath() {
       Pointer<Utf8>? Function()>('SDL_AndroidGetInternalStoragePath');
   return _SDL_AndroidGetInternalStoragePath()!.toDartString();
 }
+
 /// Get the current state of external storage, a bitmask of these values:
 /// SDL_ANDROID_EXTERNAL_STORAGE_READ
 /// SDL_ANDROID_EXTERNAL_STORAGE_WRITE
@@ -6448,6 +6875,7 @@ int SDL_AndroidGetExternalStorageState() {
       int Function()>('SDL_AndroidGetExternalStorageState');
   return _SDL_AndroidGetExternalStorageState();
 }
+
 /// Get the path used for external storage for this application.
 /// This path is unique to your application, but is public and can be
 /// written to by other applications.
@@ -6461,6 +6889,7 @@ String SDL_AndroidGetExternalStoragePath() {
       Pointer<Utf8>? Function()>('SDL_AndroidGetExternalStoragePath');
   return _SDL_AndroidGetExternalStoragePath()!.toDartString();
 }
+
 /// 
 /// \brief This function allows access to driver-dependent window information.
 /// 
@@ -6487,6 +6916,7 @@ int SDL_GetWindowWMInfo(Pointer<SDL_Window>? window, Pointer<SDL_SysWMinfo>? inf
       int Function(Pointer<SDL_Window>? window, Pointer<SDL_SysWMinfo>? info)>('SDL_GetWindowWMInfo');
   return _SDL_GetWindowWMInfo(window, info);
 }
+
 /// 
 /// Create a thread.
 /// 
@@ -6502,6 +6932,7 @@ Pointer<SDL_Thread>? SDL_CreateThread(Pointer<Void>? fn, String name, Pointer<Vo
   calloc.free(_namePointer);
   return _result;
 }
+
 /// 
 /// Get the thread name, as it was specified in SDL_CreateThread().
 /// This function returns a pointer to a UTF-8 string that names the
@@ -6518,6 +6949,7 @@ String SDL_GetThreadName(Pointer<SDL_Thread>? thread) {
       Pointer<Utf8>? Function(Pointer<SDL_Thread>? thread)>('SDL_GetThreadName');
   return _SDL_GetThreadName(thread)!.toDartString();
 }
+
 /// 
 /// Get the thread identifier for the current thread.
 /// 
@@ -6530,6 +6962,7 @@ int SDL_ThreadID() {
       int Function()>('SDL_ThreadID');
   return _SDL_ThreadID();
 }
+
 /// 
 /// Get the thread identifier for the specified thread.
 /// 
@@ -6544,6 +6977,7 @@ int SDL_GetThreadID(Pointer<SDL_Thread>? thread) {
       int Function(Pointer<SDL_Thread>? thread)>('SDL_GetThreadID');
   return _SDL_GetThreadID(thread);
 }
+
 /// 
 /// Set the priority for the current thread
 /// 
@@ -6556,6 +6990,7 @@ int SDL_SetThreadPriority(int priority) {
       int Function(int priority)>('SDL_SetThreadPriority');
   return _SDL_SetThreadPriority(priority);
 }
+
 /// 
 /// Wait for a thread to finish.
 /// 
@@ -6571,6 +7006,7 @@ void SDL_WaitThread(Pointer<SDL_Thread>? thread, Pointer<Int32>? status) {
       void Function(Pointer<SDL_Thread>? thread, Pointer<Int32>? status)>('SDL_WaitThread');
   return _SDL_WaitThread(thread, status);
 }
+
 /// 
 /// \brief Create an identifier that is globally visible to all threads but refers to data that is thread-specific.
 /// 
@@ -6610,6 +7046,7 @@ int SDL_TLSCreate() {
       int Function()>('SDL_TLSCreate');
   return _SDL_TLSCreate();
 }
+
 /// 
 /// \brief Get the value associated with a thread local storage ID for the current thread.
 /// 
@@ -6629,6 +7066,7 @@ Pointer<Void>? SDL_TLSGet(int id) {
       Pointer<Void>? Function(int id)>('SDL_TLSGet');
   return _SDL_TLSGet(id);
 }
+
 /// 
 /// \brief Set the value associated with a thread local storage ID for the current thread.
 /// 
@@ -6650,6 +7088,7 @@ int SDL_TLSSet(int id, Pointer<Void>? value, Pointer<Void>? deor) {
       int Function(int id, Pointer<Void>? value, Pointer<Void>? deor)>('SDL_TLSSet');
   return _SDL_TLSSet(id, value, deor);
 }
+
 /// 
 /// \brief Get the number of milliseconds since the SDL library initialization.
 /// 
@@ -6664,6 +7103,7 @@ int SDL_GetTicks() {
       int Function()>('SDL_GetTicks');
   return _SDL_GetTicks();
 }
+
 /// 
 /// \brief Get the current value of the high resolution counter
 /// 
@@ -6676,6 +7116,7 @@ int SDL_GetPerformanceCounter() {
       int Function()>('SDL_GetPerformanceCounter');
   return _SDL_GetPerformanceCounter();
 }
+
 /// 
 /// \brief Get the count per second of the high resolution counter
 /// 
@@ -6688,6 +7129,7 @@ int SDL_GetPerformanceFrequency() {
       int Function()>('SDL_GetPerformanceFrequency');
   return _SDL_GetPerformanceFrequency();
 }
+
 /// 
 /// \brief Wait a specified number of milliseconds before returning.
 /// 
@@ -6700,6 +7142,7 @@ void SDL_Delay(int ms) {
       void Function(int ms)>('SDL_Delay');
   return _SDL_Delay(ms);
 }
+
 /// 
 /// \brief Add a new timer to the pool of timers already running.
 /// 
@@ -6714,6 +7157,7 @@ int SDL_AddTimer(int interval, Pointer<Void>? callback, Pointer<Void>? param) {
       int Function(int interval, Pointer<Void>? callback, Pointer<Void>? param)>('SDL_AddTimer');
   return _SDL_AddTimer(interval, callback, param);
 }
+
 /// 
 /// \brief Remove a timer knowing its ID.
 /// 
@@ -6730,6 +7174,7 @@ int SDL_RemoveTimer(int id) {
       int Function(int id)>('SDL_RemoveTimer');
   return _SDL_RemoveTimer(id);
 }
+
 /// 
 /// \brief Get the number of registered touch devices.
 /// 
@@ -6742,6 +7187,7 @@ int SDL_GetNumTouchDevices() {
       int Function()>('SDL_GetNumTouchDevices');
   return _SDL_GetNumTouchDevices();
 }
+
 /// 
 /// \brief Get the touch ID with the given index, or 0 if the index is invalid.
 /// 
@@ -6754,6 +7200,7 @@ int SDL_GetTouchDevice(int index) {
       int Function(int index)>('SDL_GetTouchDevice');
   return _SDL_GetTouchDevice(index);
 }
+
 /// 
 /// \brief Get the number of active fingers for a given touch device.
 /// 
@@ -6766,6 +7213,7 @@ int SDL_GetNumTouchFingers(int touchID) {
       int Function(int touchID)>('SDL_GetNumTouchFingers');
   return _SDL_GetNumTouchFingers(touchID);
 }
+
 /// 
 /// \brief Get the finger object of the given touch, with the given index.
 /// 
@@ -6778,6 +7226,7 @@ Pointer<SDL_Finger>? SDL_GetTouchFinger(int touchID, int index) {
       Pointer<SDL_Finger>? Function(int touchID, int index)>('SDL_GetTouchFinger');
   return _SDL_GetTouchFinger(touchID, index);
 }
+
 /// 
 /// \brief Get the version of SDL that is linked against your program.
 /// 
@@ -6811,6 +7260,7 @@ void SDL_GetVersion(Pointer<SDL_version>? ver) {
       void Function(Pointer<SDL_version>? ver)>('SDL_GetVersion');
   return _SDL_GetVersion(ver);
 }
+
 /// 
 /// \brief Get the code revision of SDL that is linked against your program.
 /// 
@@ -6827,6 +7277,7 @@ String SDL_GetRevision() {
       Pointer<Utf8>? Function()>('SDL_GetRevision');
   return _SDL_GetRevision()!.toDartString();
 }
+
 /// 
 /// \brief Get the revision number of SDL that is linked against your program.
 /// 
@@ -6843,6 +7294,7 @@ int SDL_GetRevisionNumber() {
       int Function()>('SDL_GetRevisionNumber');
   return _SDL_GetRevisionNumber();
 }
+
 /// 
 /// \brief Get the number of video drivers compiled into SDL
 /// 
@@ -6857,6 +7309,7 @@ int SDL_GetNumVideoDrivers() {
       int Function()>('SDL_GetNumVideoDrivers');
   return _SDL_GetNumVideoDrivers();
 }
+
 /// 
 /// \brief Get the name of a built in video driver.
 /// 
@@ -6874,6 +7327,7 @@ String SDL_GetVideoDriver(int index) {
       Pointer<Utf8>? Function(int index)>('SDL_GetVideoDriver');
   return _SDL_GetVideoDriver(index)!.toDartString();
 }
+
 /// 
 /// \brief Initialize the video subsystem, optionally specifying a video driver.
 /// 
@@ -6900,6 +7354,7 @@ int SDL_VideoInit(String driver_name) {
   calloc.free(_driver_namePointer);
   return _result;
 }
+
 /// 
 /// \brief Shuts down the video subsystem.
 /// 
@@ -6916,6 +7371,7 @@ void SDL_VideoQuit() {
       void Function()>('SDL_VideoQuit');
   return _SDL_VideoQuit();
 }
+
 /// 
 /// \brief Returns the name of the currently initialized video driver.
 /// 
@@ -6934,6 +7390,7 @@ String SDL_GetCurrentVideoDriver() {
       Pointer<Utf8>? Function()>('SDL_GetCurrentVideoDriver');
   return _SDL_GetCurrentVideoDriver()!.toDartString();
 }
+
 /// 
 /// \brief Returns the number of available video displays.
 /// 
@@ -6948,6 +7405,7 @@ int SDL_GetNumVideoDisplays() {
       int Function()>('SDL_GetNumVideoDisplays');
   return _SDL_GetNumVideoDisplays();
 }
+
 /// 
 /// \brief Get the name of a display in UTF-8 encoding
 /// 
@@ -6964,6 +7422,7 @@ String SDL_GetDisplayName(int displayIndex) {
       Pointer<Utf8>? Function(int displayIndex)>('SDL_GetDisplayName');
   return _SDL_GetDisplayName(displayIndex)!.toDartString();
 }
+
 /// 
 /// \brief Get the desktop area represented by a display, with the primary
 /// display located at 0,0
@@ -6981,6 +7440,7 @@ int SDL_GetDisplayBounds(int displayIndex, Pointer<SDL_Rect>? rect) {
       int Function(int displayIndex, Pointer<SDL_Rect>? rect)>('SDL_GetDisplayBounds');
   return _SDL_GetDisplayBounds(displayIndex, rect);
 }
+
 /// 
 /// \brief Returns the number of available display modes.
 /// 
@@ -6995,6 +7455,7 @@ int SDL_GetNumDisplayModes(int displayIndex) {
       int Function(int displayIndex)>('SDL_GetNumDisplayModes');
   return _SDL_GetNumDisplayModes(displayIndex);
 }
+
 /// 
 /// \brief Fill in information about a specific display mode.
 /// 
@@ -7015,6 +7476,7 @@ int SDL_GetDisplayMode(int displayIndex, int modeIndex, Pointer<SDL_DisplayMode>
       int Function(int displayIndex, int modeIndex, Pointer<SDL_DisplayMode>? mode)>('SDL_GetDisplayMode');
   return _SDL_GetDisplayMode(displayIndex, modeIndex, mode);
 }
+
 /// 
 /// \brief Fill in information about the desktop display mode.
 /// 
@@ -7027,6 +7489,7 @@ int SDL_GetDesktopDisplayMode(int displayIndex, Pointer<SDL_DisplayMode>? mode) 
       int Function(int displayIndex, Pointer<SDL_DisplayMode>? mode)>('SDL_GetDesktopDisplayMode');
   return _SDL_GetDesktopDisplayMode(displayIndex, mode);
 }
+
 /// 
 /// \brief Fill in information about the current display mode.
 /// 
@@ -7039,6 +7502,7 @@ int SDL_GetCurrentDisplayMode(int displayIndex, Pointer<SDL_DisplayMode>? mode) 
       int Function(int displayIndex, Pointer<SDL_DisplayMode>? mode)>('SDL_GetCurrentDisplayMode');
   return _SDL_GetCurrentDisplayMode(displayIndex, mode);
 }
+
 /// 
 /// \brief Get the closest match to the requested display mode.
 /// 
@@ -7069,6 +7533,7 @@ Pointer<SDL_DisplayMode>? SDL_GetClosestDisplayMode(int displayIndex, Pointer<SD
       Pointer<SDL_DisplayMode>? Function(int displayIndex, Pointer<SDL_DisplayMode>? mode, Pointer<SDL_DisplayMode>? closest)>('SDL_GetClosestDisplayMode');
   return _SDL_GetClosestDisplayMode(displayIndex, mode, closest);
 }
+
 /// 
 /// \brief Get the display index associated with a window.
 /// 
@@ -7084,6 +7549,7 @@ int SDL_GetWindowDisplayIndex(Pointer<SDL_Window>? window) {
       int Function(Pointer<SDL_Window>? window)>('SDL_GetWindowDisplayIndex');
   return _SDL_GetWindowDisplayIndex(window);
 }
+
 /// 
 /// \brief Set the display mode used when a fullscreen window is visible.
 /// 
@@ -7107,6 +7573,7 @@ int SDL_SetWindowDisplayMode(Pointer<SDL_Window>? window, Pointer<SDL_DisplayMod
       int Function(Pointer<SDL_Window>? window, Pointer<SDL_DisplayMode>? mode)>('SDL_SetWindowDisplayMode');
   return _SDL_SetWindowDisplayMode(window, mode);
 }
+
 /// 
 /// \brief Fill in information about the display mode used when a fullscreen
 /// window is visible.
@@ -7123,6 +7590,7 @@ int SDL_GetWindowDisplayMode(Pointer<SDL_Window>? window, Pointer<SDL_DisplayMod
       int Function(Pointer<SDL_Window>? window, Pointer<SDL_DisplayMode>? mode)>('SDL_GetWindowDisplayMode');
   return _SDL_GetWindowDisplayMode(window, mode);
 }
+
 /// 
 /// \brief Get the pixel format associated with the window.
 /// 
@@ -7135,6 +7603,7 @@ int SDL_GetWindowPixelFormat(Pointer<SDL_Window>? window) {
       int Function(Pointer<SDL_Window>? window)>('SDL_GetWindowPixelFormat');
   return _SDL_GetWindowPixelFormat(window);
 }
+
 /// 
 /// \brief Create a window with the specified position, dimensions, and flags.
 /// 
@@ -7167,6 +7636,7 @@ Pointer<SDL_Window>? SDL_CreateWindow(String title, int x, int y, int w, int h, 
   calloc.free(_titlePointer);
   return _result;
 }
+
 /// 
 /// \brief Create an SDL window from an existing native window.
 /// 
@@ -7185,6 +7655,7 @@ Pointer<SDL_Window>? SDL_CreateWindowFrom(Pointer<Void>? data) {
       Pointer<SDL_Window>? Function(Pointer<Void>? data)>('SDL_CreateWindowFrom');
   return _SDL_CreateWindowFrom(data);
 }
+
 /// 
 /// \brief Get the numeric ID of a window, for logging purposes.
 /// 
@@ -7197,6 +7668,7 @@ int SDL_GetWindowID(Pointer<SDL_Window>? window) {
       int Function(Pointer<SDL_Window>? window)>('SDL_GetWindowID');
   return _SDL_GetWindowID(window);
 }
+
 /// 
 /// \brief Get a window from a stored ID, or NULL if it doesn't exist.
 /// 
@@ -7209,6 +7681,7 @@ Pointer<SDL_Window>? SDL_GetWindowFromID(int id) {
       Pointer<SDL_Window>? Function(int id)>('SDL_GetWindowFromID');
   return _SDL_GetWindowFromID(id);
 }
+
 /// 
 /// \brief Get the window flags.
 /// 
@@ -7221,6 +7694,7 @@ int SDL_GetWindowFlags(Pointer<SDL_Window>? window) {
       int Function(Pointer<SDL_Window>? window)>('SDL_GetWindowFlags');
   return _SDL_GetWindowFlags(window);
 }
+
 /// 
 /// \brief Set the title of a window, in UTF-8 format.
 /// 
@@ -7238,6 +7712,7 @@ void SDL_SetWindowTitle(Pointer<SDL_Window>? window, String title) {
   calloc.free(_titlePointer);
   return _result;
 }
+
 /// 
 /// \brief Get the title of a window, in UTF-8 format.
 /// 
@@ -7252,6 +7727,7 @@ String SDL_GetWindowTitle(Pointer<SDL_Window>? window) {
       Pointer<Utf8>? Function(Pointer<SDL_Window>? window)>('SDL_GetWindowTitle');
   return _SDL_GetWindowTitle(window)!.toDartString();
 }
+
 /// 
 /// \brief Set the icon for a window.
 /// 
@@ -7267,6 +7743,7 @@ void SDL_SetWindowIcon(Pointer<SDL_Window>? window, Pointer<SDL_Surface>? icon) 
       void Function(Pointer<SDL_Window>? window, Pointer<SDL_Surface>? icon)>('SDL_SetWindowIcon');
   return _SDL_SetWindowIcon(window, icon);
 }
+
 /// 
 /// \brief Associate an arbitrary named pointer with a window.
 /// 
@@ -7292,6 +7769,7 @@ Pointer<Void>? SDL_SetWindowData(Pointer<SDL_Window>? window, String name, Point
   calloc.free(_namePointer);
   return _result;
 }
+
 /// 
 /// \brief Retrieve the data pointer associated with a window.
 /// 
@@ -7314,6 +7792,7 @@ Pointer<Void>? SDL_GetWindowData(Pointer<SDL_Window>? window, String name) {
   calloc.free(_namePointer);
   return _result;
 }
+
 /// 
 /// \brief Set the position of a window.
 /// 
@@ -7336,6 +7815,7 @@ void SDL_SetWindowPosition(Pointer<SDL_Window>? window, int x, int y) {
       void Function(Pointer<SDL_Window>? window, int x, int y)>('SDL_SetWindowPosition');
   return _SDL_SetWindowPosition(window, x, y);
 }
+
 /// 
 /// \brief Get the position of a window.
 /// 
@@ -7354,6 +7834,7 @@ void SDL_GetWindowPosition(Pointer<SDL_Window>? window, Pointer<Int32>? x, Point
       void Function(Pointer<SDL_Window>? window, Pointer<Int32>? x, Pointer<Int32>? y)>('SDL_GetWindowPosition');
   return _SDL_GetWindowPosition(window, x, y);
 }
+
 /// 
 /// \brief Set the size of a window's client area.
 /// 
@@ -7375,6 +7856,7 @@ void SDL_SetWindowSize(Pointer<SDL_Window>? window, int w, int h) {
       void Function(Pointer<SDL_Window>? window, int w, int h)>('SDL_SetWindowSize');
   return _SDL_SetWindowSize(window, w, h);
 }
+
 /// 
 /// \brief Get the size of a window's client area.
 /// 
@@ -7393,6 +7875,7 @@ void SDL_GetWindowSize(Pointer<SDL_Window>? window, Pointer<Int32>? w, Pointer<I
       void Function(Pointer<SDL_Window>? window, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_GetWindowSize');
   return _SDL_GetWindowSize(window, w, h);
 }
+
 /// 
 /// \brief Set the minimum size of a window's client area.
 /// 
@@ -7415,6 +7898,7 @@ void SDL_SetWindowMinimumSize(Pointer<SDL_Window>? window, int min_w, int min_h)
       void Function(Pointer<SDL_Window>? window, int min_w, int min_h)>('SDL_SetWindowMinimumSize');
   return _SDL_SetWindowMinimumSize(window, min_w, min_h);
 }
+
 /// 
 /// \brief Get the minimum size of a window's client area.
 /// 
@@ -7434,6 +7918,7 @@ void SDL_GetWindowMinimumSize(Pointer<SDL_Window>? window, Pointer<Int32>? w, Po
       void Function(Pointer<SDL_Window>? window, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_GetWindowMinimumSize');
   return _SDL_GetWindowMinimumSize(window, w, h);
 }
+
 /// 
 /// \brief Set the maximum size of a window's client area.
 /// 
@@ -7456,6 +7941,7 @@ void SDL_SetWindowMaximumSize(Pointer<SDL_Window>? window, int max_w, int max_h)
       void Function(Pointer<SDL_Window>? window, int max_w, int max_h)>('SDL_SetWindowMaximumSize');
   return _SDL_SetWindowMaximumSize(window, max_w, max_h);
 }
+
 /// 
 /// \brief Get the maximum size of a window's client area.
 /// 
@@ -7475,6 +7961,7 @@ void SDL_GetWindowMaximumSize(Pointer<SDL_Window>? window, Pointer<Int32>? w, Po
       void Function(Pointer<SDL_Window>? window, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_GetWindowMaximumSize');
   return _SDL_GetWindowMaximumSize(window, w, h);
 }
+
 /// 
 /// \brief Set the border state of a window.
 /// 
@@ -7498,6 +7985,7 @@ void SDL_SetWindowBordered(Pointer<SDL_Window>? window, int bordered) {
       void Function(Pointer<SDL_Window>? window, int bordered)>('SDL_SetWindowBordered');
   return _SDL_SetWindowBordered(window, bordered);
 }
+
 /// 
 /// \brief Show a window.
 /// 
@@ -7512,6 +8000,7 @@ void SDL_ShowWindow(Pointer<SDL_Window>? window) {
       void Function(Pointer<SDL_Window>? window)>('SDL_ShowWindow');
   return _SDL_ShowWindow(window);
 }
+
 /// 
 /// \brief Hide a window.
 /// 
@@ -7526,6 +8015,7 @@ void SDL_HideWindow(Pointer<SDL_Window>? window) {
       void Function(Pointer<SDL_Window>? window)>('SDL_HideWindow');
   return _SDL_HideWindow(window);
 }
+
 /// 
 /// \brief Raise a window above other windows and set the input focus.
 /// 
@@ -7538,6 +8028,7 @@ void SDL_RaiseWindow(Pointer<SDL_Window>? window) {
       void Function(Pointer<SDL_Window>? window)>('SDL_RaiseWindow');
   return _SDL_RaiseWindow(window);
 }
+
 /// 
 /// \brief Make a window as large as possible.
 /// 
@@ -7552,6 +8043,7 @@ void SDL_MaximizeWindow(Pointer<SDL_Window>? window) {
       void Function(Pointer<SDL_Window>? window)>('SDL_MaximizeWindow');
   return _SDL_MaximizeWindow(window);
 }
+
 /// 
 /// \brief Minimize a window to an iconic representation.
 /// 
@@ -7566,6 +8058,7 @@ void SDL_MinimizeWindow(Pointer<SDL_Window>? window) {
       void Function(Pointer<SDL_Window>? window)>('SDL_MinimizeWindow');
   return _SDL_MinimizeWindow(window);
 }
+
 /// 
 /// \brief Restore the size and position of a minimized or maximized window.
 /// 
@@ -7581,6 +8074,7 @@ void SDL_RestoreWindow(Pointer<SDL_Window>? window) {
       void Function(Pointer<SDL_Window>? window)>('SDL_RestoreWindow');
   return _SDL_RestoreWindow(window);
 }
+
 /// 
 /// \brief Set a window's fullscreen state.
 /// 
@@ -7598,6 +8092,7 @@ int SDL_SetWindowFullscreen(Pointer<SDL_Window>? window, int flags) {
       int Function(Pointer<SDL_Window>? window, int flags)>('SDL_SetWindowFullscreen');
   return _SDL_SetWindowFullscreen(window, flags);
 }
+
 /// 
 /// \brief Get the SDL surface associated with the window.
 /// 
@@ -7620,6 +8115,7 @@ Pointer<SDL_Surface>? SDL_GetWindowSurface(Pointer<SDL_Window>? window) {
       Pointer<SDL_Surface>? Function(Pointer<SDL_Window>? window)>('SDL_GetWindowSurface');
   return _SDL_GetWindowSurface(window);
 }
+
 /// 
 /// \brief Copy the window surface to the screen.
 /// 
@@ -7637,6 +8133,7 @@ int SDL_UpdateWindowSurface(Pointer<SDL_Window>? window) {
       int Function(Pointer<SDL_Window>? window)>('SDL_UpdateWindowSurface');
   return _SDL_UpdateWindowSurface(window);
 }
+
 /// 
 /// \brief Copy a number of rectangles on the window surface to the screen.
 /// 
@@ -7654,6 +8151,7 @@ int SDL_UpdateWindowSurfaceRects(Pointer<SDL_Window>? window, Pointer<SDL_Rect>?
       int Function(Pointer<SDL_Window>? window, Pointer<SDL_Rect>? rects, int numrects)>('SDL_UpdateWindowSurfaceRects');
   return _SDL_UpdateWindowSurfaceRects(window, rects, numrects);
 }
+
 /// 
 /// \brief Set a window's input grab mode.
 /// 
@@ -7671,6 +8169,7 @@ void SDL_SetWindowGrab(Pointer<SDL_Window>? window, int grabbed) {
       void Function(Pointer<SDL_Window>? window, int grabbed)>('SDL_SetWindowGrab');
   return _SDL_SetWindowGrab(window, grabbed);
 }
+
 /// 
 /// \brief Get a window's input grab mode.
 /// 
@@ -7687,6 +8186,7 @@ int SDL_GetWindowGrab(Pointer<SDL_Window>? window) {
       int Function(Pointer<SDL_Window>? window)>('SDL_GetWindowGrab');
   return _SDL_GetWindowGrab(window);
 }
+
 /// 
 /// \brief Set the brightness (gamma correction) for a window.
 /// 
@@ -7704,6 +8204,7 @@ int SDL_SetWindowBrightness(Pointer<SDL_Window>? window, double brightness) {
       int Function(Pointer<SDL_Window>? window, double brightness)>('SDL_SetWindowBrightness');
   return _SDL_SetWindowBrightness(window, brightness);
 }
+
 /// 
 /// \brief Get the brightness (gamma correction) for a window.
 /// 
@@ -7720,6 +8221,7 @@ double SDL_GetWindowBrightness(Pointer<SDL_Window>? window) {
       double Function(Pointer<SDL_Window>? window)>('SDL_GetWindowBrightness');
   return _SDL_GetWindowBrightness(window);
 }
+
 /// 
 /// \brief Set the gamma ramp for a window.
 /// 
@@ -7747,6 +8249,7 @@ int SDL_SetWindowGammaRamp(Pointer<SDL_Window>? window, Pointer<Uint16>? red, Po
       int Function(Pointer<SDL_Window>? window, Pointer<Uint16>? red, Pointer<Uint16>? green, Pointer<Uint16>? blue)>('SDL_SetWindowGammaRamp');
   return _SDL_SetWindowGammaRamp(window, red, green, blue);
 }
+
 /// 
 /// \brief Get the gamma ramp for a window.
 /// 
@@ -7771,6 +8274,7 @@ int SDL_GetWindowGammaRamp(Pointer<SDL_Window>? window, Pointer<Uint16>? red, Po
       int Function(Pointer<SDL_Window>? window, Pointer<Uint16>? red, Pointer<Uint16>? green, Pointer<Uint16>? blue)>('SDL_GetWindowGammaRamp');
   return _SDL_GetWindowGammaRamp(window, red, green, blue);
 }
+
 /// 
 /// \brief Destroy a window.
 /// 
@@ -7783,6 +8287,7 @@ void SDL_DestroyWindow(Pointer<SDL_Window>? window) {
       void Function(Pointer<SDL_Window>? window)>('SDL_DestroyWindow');
   return _SDL_DestroyWindow(window);
 }
+
 /// 
 /// \brief Returns whether the screensaver is currently enabled (default on).
 /// 
@@ -7798,6 +8303,7 @@ int SDL_IsScreenSaverEnabled() {
       int Function()>('SDL_IsScreenSaverEnabled');
   return _SDL_IsScreenSaverEnabled();
 }
+
 /// 
 /// \brief Allow the screen to be blanked by a screensaver
 /// 
@@ -7813,6 +8319,7 @@ void SDL_EnableScreenSaver() {
       void Function()>('SDL_EnableScreenSaver');
   return _SDL_EnableScreenSaver();
 }
+
 /// 
 /// \brief Prevent the screen from being blanked by a screensaver
 /// 
@@ -7828,6 +8335,7 @@ void SDL_DisableScreenSaver() {
       void Function()>('SDL_DisableScreenSaver');
   return _SDL_DisableScreenSaver();
 }
+
 /// 
 /// \brief Dynamically load an OpenGL library.
 /// 
@@ -7858,6 +8366,7 @@ int SDL_GL_LoadLibrary(String path) {
   calloc.free(_pathPointer);
   return _result;
 }
+
 /// 
 /// \brief Get the address of an OpenGL function.
 /// 
@@ -7873,6 +8382,7 @@ Pointer<Void>? SDL_GL_GetProcAddress(String proc) {
   calloc.free(_procPointer);
   return _result;
 }
+
 /// 
 /// \brief Unload the OpenGL library previously loaded by SDL_GL_LoadLibrary().
 /// 
@@ -7887,6 +8397,7 @@ void SDL_GL_UnloadLibrary() {
       void Function()>('SDL_GL_UnloadLibrary');
   return _SDL_GL_UnloadLibrary();
 }
+
 /// 
 /// \brief Return true if an OpenGL extension is supported for the current
 /// context.
@@ -7903,6 +8414,7 @@ int SDL_GL_ExtensionSupported(String extension) {
   calloc.free(_extensionPointer);
   return _result;
 }
+
 /// 
 /// \brief Set an OpenGL window attribute before window creation.
 /// 
@@ -7915,6 +8427,7 @@ int SDL_GL_SetAttribute(int attr, int value) {
       int Function(int attr, int value)>('SDL_GL_SetAttribute');
   return _SDL_GL_SetAttribute(attr, value);
 }
+
 /// 
 /// \brief Get the actual value for an attribute from the current context.
 /// 
@@ -7927,6 +8440,7 @@ int SDL_GL_GetAttribute(int attr, Pointer<Int32>? value) {
       int Function(int attr, Pointer<Int32>? value)>('SDL_GL_GetAttribute');
   return _SDL_GL_GetAttribute(attr, value);
 }
+
 /// 
 /// \brief Create an OpenGL context for use with an OpenGL window, and make it
 /// current.
@@ -7942,6 +8456,7 @@ Pointer<Void>? SDL_GL_CreateContext(Pointer<SDL_Window>? window) {
       Pointer<Void>? Function(Pointer<SDL_Window>? window)>('SDL_GL_CreateContext');
   return _SDL_GL_CreateContext(window);
 }
+
 /// 
 /// \brief Set up an OpenGL context for rendering into an OpenGL window.
 /// 
@@ -7956,6 +8471,7 @@ int SDL_GL_MakeCurrent(Pointer<SDL_Window>? window, Pointer<Void>? context) {
       int Function(Pointer<SDL_Window>? window, Pointer<Void>? context)>('SDL_GL_MakeCurrent');
   return _SDL_GL_MakeCurrent(window, context);
 }
+
 /// 
 /// \brief Get the currently active OpenGL window.
 /// 
@@ -7968,6 +8484,7 @@ Pointer<SDL_Window>? SDL_GL_GetCurrentWindow() {
       Pointer<SDL_Window>? Function()>('SDL_GL_GetCurrentWindow');
   return _SDL_GL_GetCurrentWindow();
 }
+
 /// 
 /// \brief Get the currently active OpenGL context.
 /// 
@@ -7980,6 +8497,7 @@ Pointer<Void>? SDL_GL_GetCurrentContext() {
       Pointer<Void>? Function()>('SDL_GL_GetCurrentContext');
   return _SDL_GL_GetCurrentContext();
 }
+
 /// 
 /// \brief Set the swap interval for the current OpenGL context.
 /// 
@@ -8001,6 +8519,7 @@ int SDL_GL_SetSwapInterval(int interval) {
       int Function(int interval)>('SDL_GL_SetSwapInterval');
   return _SDL_GL_SetSwapInterval(interval);
 }
+
 /// 
 /// \brief Get the swap interval for the current OpenGL context.
 /// 
@@ -8021,6 +8540,7 @@ int SDL_GL_GetSwapInterval() {
       int Function()>('SDL_GL_GetSwapInterval');
   return _SDL_GL_GetSwapInterval();
 }
+
 /// 
 /// \brief Swap the OpenGL buffers for a window, if double-buffering is
 /// supported.
@@ -8034,6 +8554,7 @@ void SDL_GL_SwapWindow(Pointer<SDL_Window>? window) {
       void Function(Pointer<SDL_Window>? window)>('SDL_GL_SwapWindow');
   return _SDL_GL_SwapWindow(window);
 }
+
 /// 
 /// \brief Delete an OpenGL context.
 /// 
@@ -8048,3 +8569,4 @@ void SDL_GL_DeleteContext(Pointer<Void>? context) {
       void Function(Pointer<Void>? context)>('SDL_GL_DeleteContext');
   return _SDL_GL_DeleteContext(context);
 }
+
