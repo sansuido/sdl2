@@ -1,3 +1,8 @@
+## 1.0.8
+
+- [add] Added gl functions.
+- [fix] File name change for uniformity.
+
 ## 1.0.7
 
 - [fix] Fixed Struct extension.
@@ -5,7 +10,7 @@
 
 ## 1.0.6
 
-- [add] Add comment to function.
+- [add] Added comment to function.
 
 ## 1.0.5
 

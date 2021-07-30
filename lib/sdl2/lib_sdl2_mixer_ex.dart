@@ -5,7 +5,7 @@ import './generated/lib_sdl2.dart';
 import './generated/lib_sdl2_mixer.dart';
 import './generated/struct_sdl2.dart';
 import './generated/struct_sdl2_mixer.dart';
-import './sdl2_handwritten.dart';
+import 'lib_sdl2_ex.dart';
 
 /// ```c
 /// const SDL_MIXER_VERSION = (X) \{ \ (X)->major = SDL_MIXER_MAJOR_VERSION; \ (X)->minor = SDL_MIXER_MINOR_VERSION; \ (X)->patch = SDL_MIXER_PATCHLEVEL; \};

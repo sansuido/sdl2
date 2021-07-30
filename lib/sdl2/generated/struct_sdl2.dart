@@ -161,11 +161,11 @@ class SDL_KeyboardEvent extends Struct {
   external int padding3;
   // [16]+(14)
   @Uint64()
-  external int? keysym_1;
+  external int keysym_1;
   @Uint32()
-  external int? keysym_2;
+  external int keysym_2;
   @Uint16()
-  external int? keysym_3;
+  external int keysym_3;
 }
 // ignore: camel_case_extensions
 extension SDL_KeyboardEventExtension on Pointer<SDL_KeyboardEvent> {
@@ -753,19 +753,19 @@ class SDL_SysWMEvent extends Struct {
 class SDL_Event extends Struct {
   // [0]+(56)
   @Uint64()
-  external int? union_1;
+  external int union_1;
   @Uint64()
-  external int? union_2;
+  external int union_2;
   @Uint64()
-  external int? union_3;
+  external int union_3;
   @Uint64()
-  external int? union_4;
+  external int union_4;
   @Uint64()
-  external int? union_5;
+  external int union_5;
   @Uint64()
-  external int? union_6;
+  external int union_6;
   @Uint64()
-  external int? union_7;
+  external int union_7;
 }
 // ignore: camel_case_extensions
 extension SDL_EventExtension on Pointer<SDL_Event> {
@@ -827,11 +827,11 @@ class SDL_HapticConstant extends Struct {
   external int type;
   // [2]+(13)
   @Uint64()
-  external int? direction_1;
+  external int direction_1;
   @Uint32()
-  external int? direction_2;
+  external int direction_2;
   @Uint8()
-  external int? direction_3;
+  external int direction_3;
   // [15]+(4)
   @Uint32()
   external int length;
@@ -871,11 +871,11 @@ class SDL_HapticPeriodic extends Struct {
   external int type;
   // [2]+(13)
   @Uint64()
-  external int? direction_1;
+  external int direction_1;
   @Uint32()
-  external int? direction_2;
+  external int direction_2;
   @Uint8()
-  external int? direction_3;
+  external int direction_3;
   // [15]+(4)
   @Uint32()
   external int length;
@@ -924,11 +924,11 @@ class SDL_HapticCondition extends Struct {
   external int type;
   // [2]+(13)
   @Uint64()
-  external int? direction_1;
+  external int direction_1;
   @Uint32()
-  external int? direction_2;
+  external int direction_2;
   @Uint8()
-  external int? direction_3;
+  external int direction_3;
   // [15]+(4)
   @Uint32()
   external int length;
@@ -995,11 +995,11 @@ class SDL_HapticRamp extends Struct {
   external int type;
   // [2]+(13)
   @Uint64()
-  external int? direction_1;
+  external int direction_1;
   @Uint32()
-  external int? direction_2;
+  external int direction_2;
   @Uint8()
-  external int? direction_3;
+  external int direction_3;
   // [15]+(4)
   @Uint32()
   external int length;
@@ -1057,11 +1057,11 @@ class SDL_HapticCustom extends Struct {
   external int type;
   // [2]+(13)
   @Uint64()
-  external int? direction_1;
+  external int direction_1;
   @Uint32()
-  external int? direction_2;
+  external int direction_2;
   @Uint8()
-  external int? direction_3;
+  external int direction_3;
   // [15]+(4)
   @Uint32()
   external int length;
@@ -1106,23 +1106,23 @@ extension SDL_HapticCustomExtension on Pointer<SDL_HapticCustom> {
 class SDL_HapticEffect extends Struct {
   // [0]+(61)
   @Uint64()
-  external int? union_1;
+  external int union_1;
   @Uint64()
-  external int? union_2;
+  external int union_2;
   @Uint64()
-  external int? union_3;
+  external int union_3;
   @Uint64()
-  external int? union_4;
+  external int union_4;
   @Uint64()
-  external int? union_5;
+  external int union_5;
   @Uint64()
-  external int? union_6;
+  external int union_6;
   @Uint64()
-  external int? union_7;
+  external int union_7;
   @Uint32()
-  external int? union_8;
+  external int union_8;
   @Uint8()
-  external int? union_9;
+  external int union_9;
 }
 // ignore: camel_case_extensions
 extension SDL_HapticEffectExtension on Pointer<SDL_HapticEffect> {
@@ -1214,13 +1214,13 @@ class SDL_MessageBoxColor extends Struct {
 class SDL_MessageBoxColorScheme extends Struct {
   // [0]+(3*5)
   @Uint64()
-  external int? colors_1;
+  external int colors_1;
   @Uint32()
-  external int? colors_2;
+  external int colors_2;
   @Uint16()
-  external int? colors_3;
+  external int colors_3;
   @Uint8()
-  external int? colors_4;
+  external int colors_4;
 }
 // ignore: camel_case_extensions
 extension SDL_MessageBoxColorSchemeExtension on Pointer<SDL_MessageBoxColorScheme> {
@@ -1259,6 +1259,8 @@ class SDL_mutex extends Opaque {}
 class SDL_sem extends Opaque {}
 
 class SDL_cond extends Opaque {}
+
+class GLsync extends Opaque {}
 
 class SDL_Color extends Struct {
   // [0]+(1)
@@ -1448,7 +1450,7 @@ class SDL_RWops extends Struct {
 class SDL_WindowShapeParams extends Struct {
   // [0]+(4)
   @Uint32()
-  external int? union_1;
+  external int union_1;
 }
 // ignore: camel_case_extensions
 extension SDL_WindowShapeParamsExtension on Pointer<SDL_WindowShapeParams> {
@@ -1462,7 +1464,7 @@ class SDL_WindowShapeMode extends Struct {
   external int mode;
   // [4]+(4)
   @Uint32()
-  external int? parameters_1;
+  external int parameters_1;
 }
 // ignore: camel_case_extensions
 extension SDL_WindowShapeModeExtension on Pointer<SDL_WindowShapeMode> {
@@ -1497,9 +1499,9 @@ class SDL_Surface extends Struct {
   external Pointer<Void>? lock_data;
   // [52]+(16)
   @Uint64()
-  external int? clip_rect_1;
+  external int clip_rect_1;
   @Uint64()
-  external int? clip_rect_2;
+  external int clip_rect_2;
   // [68]+(8)
   external Pointer<Pointer<Void>>? map;
   // [76]+(4)

@@ -14,8 +14,8 @@ export 'sdl2/generated/struct_sdl2_mixer.dart';
 export 'sdl2/generated/struct_sdl2_net.dart';
 export 'sdl2/generated/struct_sdl2_ttf.dart';
 
-export 'sdl2/sdl2_handwritten.dart';
-export 'sdl2/sdl2_image_handwritten.dart';
-export 'sdl2/sdl2_mixer_handwritten.dart';
-export 'sdl2/sdl2_net_handwritten.dart';
-export 'sdl2/sdl2_ttf_handwritten.dart';
+export 'sdl2/lib_sdl2_ex.dart';
+export 'sdl2/lib_sdl2_image_ex.dart';
+export 'sdl2/lib_sdl2_mixer_ex.dart';
+export 'sdl2/lib_sdl2_net_ex.dart';
+export 'sdl2/lib_sdl2_ttf_ex.dart';

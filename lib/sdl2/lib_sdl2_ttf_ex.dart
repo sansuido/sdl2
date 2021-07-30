@@ -4,7 +4,7 @@ import './generated/lib_sdl2.dart';
 import './generated/lib_sdl2_ttf.dart';
 import './generated/struct_sdl2.dart';
 import './generated/struct_sdl2_ttf.dart';
-import './sdl2_handwritten.dart';
+import 'lib_sdl2_ex.dart';
 
 /// ```c
 /// const SDL_TTF_VERSION = (X) \{ \ (X)->major = SDL_TTF_MAJOR_VERSION; \ (X)->minor = SDL_TTF_MINOR_VERSION; \ (X)->patch = SDL_TTF_PATCHLEVEL; \};

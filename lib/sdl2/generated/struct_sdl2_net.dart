@@ -42,9 +42,9 @@ class UDPpacket extends Struct {
   external int status;
   // [24]+(6)
   @Uint32()
-  external int? address_1;
+  external int address_1;
   @Uint16()
-  external int? address_2;
+  external int address_2;
 }
 // ignore: camel_case_extensions
 extension UDPpacketExtension on Pointer<UDPpacket> {
