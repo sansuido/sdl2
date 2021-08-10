@@ -1,11 +1,12 @@
 import 'dart:ffi';
-import './generated/const_sdl2.dart';
-import './generated/const_sdl2_mixer.dart';
-import './generated/lib_sdl2.dart';
-import './generated/lib_sdl2_mixer.dart';
-import './generated/struct_sdl2.dart';
-import './generated/struct_sdl2_mixer.dart';
-import 'lib_sdl2_ex.dart';
+import './generated/const_sdl.dart';
+import './generated/const_sdl_mixer.dart';
+import './generated/lib_sdl_error.dart';
+import './generated/lib_sdl_rwops.dart';
+import './generated/lib_sdl_mixer.dart';
+import './generated/struct_sdl.dart';
+import './generated/struct_sdl_mixer.dart';
+import 'lib_sdl_ex.dart';
 
 /// ```c
 /// const SDL_MIXER_VERSION = (X) \{ \ (X)->major = SDL_MIXER_MAJOR_VERSION; \ (X)->minor = SDL_MIXER_MINOR_VERSION; \ (X)->patch = SDL_MIXER_PATCHLEVEL; \};

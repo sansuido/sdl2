@@ -1,7 +1,7 @@
 import 'dart:ffi';
 import 'dart:convert';
 import 'dart:typed_data';
-import './generated/struct_sdl2.dart';
+import './generated/struct_sdl.dart';
 
 // ignore: camel_case_extensions
 extension SDL_TextEditingEventExtension on Pointer<SDL_TextEditingEvent> {

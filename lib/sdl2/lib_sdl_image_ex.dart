@@ -1,8 +1,8 @@
 import 'dart:ffi';
-import './generated/const_sdl2_image.dart';
-import './generated/lib_sdl2.dart';
-import './generated/struct_sdl2.dart';
-import 'lib_sdl2_ex.dart';
+import './generated/const_sdl_image.dart';
+import './generated/lib_sdl_error.dart';
+import './generated/struct_sdl.dart';
+import 'lib_sdl_ex.dart';
 
 /// ```c
 /// const SDL_IMAGE_VERSION = (X) \{ \ (X)->major = SDL_IMAGE_MAJOR_VERSION; \ (X)->minor = SDL_IMAGE_MINOR_VERSION; \ (X)->patch = SDL_IMAGE_PATCHLEVEL; \};

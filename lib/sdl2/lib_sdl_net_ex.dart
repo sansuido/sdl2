@@ -1,6 +1,6 @@
 import 'dart:ffi';
-import './generated/const_sdl2_net.dart';
-import './generated/struct_sdl2.dart';
+import './generated/const_sdl_net.dart';
+import './generated/struct_sdl.dart';
 
 /// ```c
 /// const SDL_NET_VERSION = (X) \{ \ (X)->major = SDL_NET_MAJOR_VERSION; \ (X)->minor = SDL_NET_MINOR_VERSION; \ (X)->patch = SDL_NET_PATCHLEVEL; \};

@@ -1,10 +1,10 @@
 import 'dart:ffi';
-import './generated/const_sdl2_ttf.dart';
-import './generated/lib_sdl2.dart';
-import './generated/lib_sdl2_ttf.dart';
-import './generated/struct_sdl2.dart';
-import './generated/struct_sdl2_ttf.dart';
-import 'lib_sdl2_ex.dart';
+import './generated/const_sdl_ttf.dart';
+import './generated/lib_sdl_error.dart';
+import './generated/lib_sdl_ttf.dart';
+import './generated/struct_sdl.dart';
+import './generated/struct_sdl_ttf.dart';
+import 'lib_sdl_ex.dart';
 
 /// ```c
 /// const SDL_TTF_VERSION = (X) \{ \ (X)->major = SDL_TTF_MAJOR_VERSION; \ (X)->minor = SDL_TTF_MINOR_VERSION; \ (X)->patch = SDL_TTF_PATCHLEVEL; \};
