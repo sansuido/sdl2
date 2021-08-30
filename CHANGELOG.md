@@ -1,3 +1,7 @@
+## 1.0.10
+
+- [update] Updated assuming GLEW.
+
 ## 1.0.9
 
 - [fix] File name change for uniformity.

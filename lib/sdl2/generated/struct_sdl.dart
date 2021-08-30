@@ -1260,8 +1260,6 @@ class SDL_sem extends Opaque {}
 
 class SDL_cond extends Opaque {}
 
-class GLsync extends Opaque {}
-
 class SDL_Color extends Struct {
   // [0]+(1)
   @Uint8()
