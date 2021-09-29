@@ -1,3 +1,6 @@
+## 1.0.11
+- [fix] SDLK_ const value change to int.
+
 ## 1.0.10
 
 - [update] Updated assuming GLEW.
