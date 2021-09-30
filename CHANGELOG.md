@@ -1,3 +1,6 @@
+## 1.0.12
+- [fix] Fix version.
+
 ## 1.0.11
 - [fix] SDLK_ const value change to int.
 
