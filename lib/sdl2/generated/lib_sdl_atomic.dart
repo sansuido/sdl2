@@ -4,11 +4,19 @@ import 'lib_sdl.dart';
 import 'struct_sdl.dart';
 
 /// 
-/// \brief Try to lock a spin lock by setting it to a non-zero value.
+/// Try to lock a spin lock by setting it to a non-zero value.
 /// 
-/// \param lock Points to the lock.
+/// ***Please note that spinlocks are dangerous if you don't know what you're
+/// doing. Please be careful using any sort of spinlock!***
 /// 
-/// \return SDL_TRUE if the lock succeeded, SDL_FALSE if the lock is already held.
+/// \param lock a pointer to a lock variable
+/// \returns SDL_TRUE if the lock succeeded, SDL_FALSE if the lock is already
+/// held.
+/// 
+/// \since This function is available since SDL 2.0.0.
+/// 
+/// \sa SDL_AtomicLock
+/// \sa SDL_AtomicUnlock
 /// 
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_AtomicTryLock(SDL_SpinLock *lock)
@@ -21,9 +29,17 @@ int SDL_AtomicTryLock(Pointer<Int32>? lock) {
 }
 
 /// 
-/// \brief Lock a spin lock by setting it to a non-zero value.
+/// Lock a spin lock by setting it to a non-zero value.
 /// 
-/// \param lock Points to the lock.
+/// ***Please note that spinlocks are dangerous if you don't know what you're
+/// doing. Please be careful using any sort of spinlock!***
+/// 
+/// \param lock a pointer to a lock variable
+/// 
+/// \since This function is available since SDL 2.0.0.
+/// 
+/// \sa SDL_AtomicTryLock
+/// \sa SDL_AtomicUnlock
 /// 
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_AtomicLock(SDL_SpinLock *lock)
@@ -36,9 +52,19 @@ void SDL_AtomicLock(Pointer<Int32>? lock) {
 }
 
 /// 
-/// \brief Unlock a spin lock by setting it to 0. Always returns immediately
+/// Unlock a spin lock by setting it to 0.
 /// 
-/// \param lock Points to the lock.
+/// Always returns immediately.
+/// 
+/// ***Please note that spinlocks are dangerous if you don't know what you're
+/// doing. Please be careful using any sort of spinlock!***
+/// 
+/// \param lock a pointer to a lock variable
+/// 
+/// \since This function is available since SDL 2.0.0.
+/// 
+/// \sa SDL_AtomicLock
+/// \sa SDL_AtomicTryLock
 /// 
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_AtomicUnlock(SDL_SpinLock *lock)
@@ -50,33 +76,63 @@ void SDL_AtomicUnlock(Pointer<Int32>? lock) {
   return _SDL_AtomicUnlock(lock);
 }
 
-/// The mcr instruction isn't available in thumb mode, use real functions
+/// 
+/// Memory barriers are designed to prevent reads and writes from being
+/// reordered by the compiler and being seen out of order on multi-core CPUs.
+/// 
+/// A typical pattern would be for thread A to write some data and a flag, and
+/// for thread B to read the flag and get the data. In this case you would
+/// insert a release barrier between writing the data and the flag,
+/// guaranteeing that the data write completes no later than the flag is
+/// written, and you would insert an acquire barrier between reading the flag
+/// and reading the data, to ensure that all the reads associated with the flag
+/// have completed.
+/// 
+/// In this pattern you should always see a release barrier paired with an
+/// acquire barrier and you should gate the data reads/writes with a single
+/// flag variable.
+/// 
+/// For more information on these semantics, take a look at the blog post:
+/// http://preshing.com/20120913/acquire-and-release-semantics
+/// 
+/// \since This function is available since SDL 2.0.6.
+/// 
 /// ```c
-/// extern DECLSPEC void SDLCALL SDL_MemoryBarrierRelease()
+/// extern DECLSPEC void SDLCALL SDL_MemoryBarrierReleaseFunction(void)
 /// ```
-void SDL_MemoryBarrierRelease() {
-  final _SDL_MemoryBarrierRelease = DLL_SDL2.lookupFunction<
+void SDL_MemoryBarrierReleaseFunction() {
+  final _SDL_MemoryBarrierReleaseFunction = DLL_SDL2.lookupFunction<
       Void Function(),
-      void Function()>('SDL_MemoryBarrierRelease');
-  return _SDL_MemoryBarrierRelease();
+      void Function()>('SDL_MemoryBarrierReleaseFunction');
+  return _SDL_MemoryBarrierReleaseFunction();
 }
 
 /// ```c
-/// extern DECLSPEC void SDLCALL SDL_MemoryBarrierAcquire()
+/// extern DECLSPEC void SDLCALL SDL_MemoryBarrierAcquireFunction(void)
 /// ```
-void SDL_MemoryBarrierAcquire() {
-  final _SDL_MemoryBarrierAcquire = DLL_SDL2.lookupFunction<
+void SDL_MemoryBarrierAcquireFunction() {
+  final _SDL_MemoryBarrierAcquireFunction = DLL_SDL2.lookupFunction<
       Void Function(),
-      void Function()>('SDL_MemoryBarrierAcquire');
-  return _SDL_MemoryBarrierAcquire();
+      void Function()>('SDL_MemoryBarrierAcquireFunction');
+  return _SDL_MemoryBarrierAcquireFunction();
 }
 
 /// 
-/// \brief Set an atomic variable to a new value if it is currently an old value.
+/// Set an atomic variable to a new value if it is currently an old value.
 /// 
-/// \return SDL_TRUE if the atomic variable was set, SDL_FALSE otherwise.
+/// ***Note: If you don't know what this function is for, you shouldn't use
+/// it!***
 /// 
-/// \note If you don't know what this function is for, you shouldn't use it!
+/// \param a a pointer to an SDL_atomic_t variable to be modified
+/// \param oldval the old value
+/// \param newval the new value
+/// \returns SDL_TRUE if the atomic variable was set, SDL_FALSE otherwise.
+/// 
+/// \since This function is available since SDL 2.0.0.
+/// 
+/// \sa SDL_AtomicCASPtr
+/// \sa SDL_AtomicGet
+/// \sa SDL_AtomicSet
 /// 
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_AtomicCAS(SDL_atomic_t *a, int oldval, int newval)
@@ -89,19 +145,154 @@ int SDL_AtomicCAS(Pointer<SDL_atomic_t>? a, int oldval, int newval) {
 }
 
 /// 
-/// \brief Set a pointer to a new value if it is currently an old value.
+/// Set an atomic variable to a value.
 /// 
-/// \return SDL_TRUE if the pointer was set, SDL_FALSE otherwise.
+/// This function also acts as a full memory barrier.
 /// 
-/// \note If you don't know what this function is for, you shouldn't use it!
+/// ***Note: If you don't know what this function is for, you shouldn't use
+/// it!***
+/// 
+/// \param a a pointer to an SDL_atomic_t variable to be modified
+/// \param v the desired value
+/// \returns the previous value of the atomic variable.
+/// 
+/// \since This function is available since SDL 2.0.2.
+/// 
+/// \sa SDL_AtomicGet
 /// 
 /// ```c
-/// extern DECLSPEC SDL_bool SDLCALL SDL_AtomicCASPtr(void* *a, void *oldval, void *newval)
+/// extern DECLSPEC int SDLCALL SDL_AtomicSet(SDL_atomic_t *a, int v)
+/// ```
+int SDL_AtomicSet(Pointer<SDL_atomic_t>? a, int v) {
+  final _SDL_AtomicSet = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<SDL_atomic_t>? a, Int32 v),
+      int Function(Pointer<SDL_atomic_t>? a, int v)>('SDL_AtomicSet');
+  return _SDL_AtomicSet(a, v);
+}
+
+/// 
+/// Get the value of an atomic variable.
+/// 
+/// ***Note: If you don't know what this function is for, you shouldn't use
+/// it!***
+/// 
+/// \param a a pointer to an SDL_atomic_t variable
+/// \returns the current value of an atomic variable.
+/// 
+/// \since This function is available since SDL 2.0.2.
+/// 
+/// \sa SDL_AtomicSet
+/// 
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_AtomicGet(SDL_atomic_t *a)
+/// ```
+int SDL_AtomicGet(Pointer<SDL_atomic_t>? a) {
+  final _SDL_AtomicGet = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<SDL_atomic_t>? a),
+      int Function(Pointer<SDL_atomic_t>? a)>('SDL_AtomicGet');
+  return _SDL_AtomicGet(a);
+}
+
+/// 
+/// Add to an atomic variable.
+/// 
+/// This function also acts as a full memory barrier.
+/// 
+/// ***Note: If you don't know what this function is for, you shouldn't use
+/// it!***
+/// 
+/// \param a a pointer to an SDL_atomic_t variable to be modified
+/// \param v the desired value to add
+/// \returns the previous value of the atomic variable.
+/// 
+/// \since This function is available since SDL 2.0.2.
+/// 
+/// \sa SDL_AtomicDecRef
+/// \sa SDL_AtomicIncRef
+/// 
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_AtomicAdd(SDL_atomic_t *a, int v)
+/// ```
+int SDL_AtomicAdd(Pointer<SDL_atomic_t>? a, int v) {
+  final _SDL_AtomicAdd = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<SDL_atomic_t>? a, Int32 v),
+      int Function(Pointer<SDL_atomic_t>? a, int v)>('SDL_AtomicAdd');
+  return _SDL_AtomicAdd(a, v);
+}
+
+/// 
+/// Set a pointer to a new value if it is currently an old value.
+/// 
+/// ***Note: If you don't know what this function is for, you shouldn't use
+/// it!***
+/// 
+/// \param a a pointer to a pointer
+/// \param oldval the old pointer value
+/// \param newval the new pointer value
+/// \returns SDL_TRUE if the pointer was set, SDL_FALSE otherwise.
+/// 
+/// \since This function is available since SDL 2.0.0.
+/// 
+/// \sa SDL_AtomicCAS
+/// \sa SDL_AtomicGetPtr
+/// \sa SDL_AtomicSetPtr
+/// 
+/// ```c
+/// extern DECLSPEC SDL_bool SDLCALL SDL_AtomicCASPtr(void **a, void *oldval, void *newval)
 /// ```
 int SDL_AtomicCASPtr(Pointer<Pointer<Void>>? a, Pointer<Void>? oldval, Pointer<Void>? newval) {
   final _SDL_AtomicCASPtr = DLL_SDL2.lookupFunction<
       Int32 Function(Pointer<Pointer<Void>>? a, Pointer<Void>? oldval, Pointer<Void>? newval),
       int Function(Pointer<Pointer<Void>>? a, Pointer<Void>? oldval, Pointer<Void>? newval)>('SDL_AtomicCASPtr');
   return _SDL_AtomicCASPtr(a, oldval, newval);
+}
+
+/// 
+/// Set a pointer to a value atomically.
+/// 
+/// ***Note: If you don't know what this function is for, you shouldn't use
+/// it!***
+/// 
+/// \param a a pointer to a pointer
+/// \param v the desired pointer value
+/// \returns the previous value of the pointer.
+/// 
+/// \since This function is available since SDL 2.0.2.
+/// 
+/// \sa SDL_AtomicCASPtr
+/// \sa SDL_AtomicGetPtr
+/// 
+/// ```c
+/// extern DECLSPEC void* SDLCALL SDL_AtomicSetPtr(void **a, void* v)
+/// ```
+Pointer<Void>? SDL_AtomicSetPtr(Pointer<Pointer<Void>>? a, Pointer<Void>? v) {
+  final _SDL_AtomicSetPtr = DLL_SDL2.lookupFunction<
+      Pointer<Void>? Function(Pointer<Pointer<Void>>? a, Pointer<Void>? v),
+      Pointer<Void>? Function(Pointer<Pointer<Void>>? a, Pointer<Void>? v)>('SDL_AtomicSetPtr');
+  return _SDL_AtomicSetPtr(a, v);
+}
+
+/// 
+/// Get the value of a pointer atomically.
+/// 
+/// ***Note: If you don't know what this function is for, you shouldn't use
+/// it!***
+/// 
+/// \param a a pointer to a pointer
+/// \returns the current value of a pointer.
+/// 
+/// \since This function is available since SDL 2.0.2.
+/// 
+/// \sa SDL_AtomicCASPtr
+/// \sa SDL_AtomicSetPtr
+/// 
+/// ```c
+/// extern DECLSPEC void* SDLCALL SDL_AtomicGetPtr(void **a)
+/// ```
+Pointer<Void>? SDL_AtomicGetPtr(Pointer<Pointer<Void>>? a) {
+  final _SDL_AtomicGetPtr = DLL_SDL2.lookupFunction<
+      Pointer<Void>? Function(Pointer<Pointer<Void>>? a),
+      Pointer<Void>? Function(Pointer<Pointer<Void>>? a)>('SDL_AtomicGetPtr');
+  return _SDL_AtomicGetPtr(a);
 }
 

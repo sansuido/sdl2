@@ -1,3 +1,7 @@
+## 1.1.0
+- [update] Support multi platform.
+- [update] Support SDL version 2.0.20 (stable).
+
 ## 1.0.12
 - [fix] Fix version.
 

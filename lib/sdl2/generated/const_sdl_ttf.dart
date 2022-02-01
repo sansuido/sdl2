@@ -2,7 +2,7 @@
 //const SDL_TTF_H_ = ;
 const SDL_TTF_MAJOR_VERSION = 2;
 const SDL_TTF_MINOR_VERSION = 0;
-const SDL_TTF_PATCHLEVEL = 15;
+const SDL_TTF_PATCHLEVEL = 18;
 //const SDL_TTF_VERSION = (X) { (X)->major = SDL_TTF_MAJOR_VERSION; (X)->minor = SDL_TTF_MINOR_VERSION; (X)->patch = SDL_TTF_PATCHLEVEL; };
 const TTF_MAJOR_VERSION = SDL_TTF_MAJOR_VERSION;
 const TTF_MINOR_VERSION = SDL_TTF_MINOR_VERSION;
@@ -22,6 +22,7 @@ const TTF_HINTING_NORMAL = 0;
 const TTF_HINTING_LIGHT = 1;
 const TTF_HINTING_MONO = 2;
 const TTF_HINTING_NONE = 3;
+const TTF_HINTING_LIGHT_SUBPIXEL = 4;
 //const TTF_RenderText = (font, text, fg, bg) TTF_RenderText_Shaded(font, text, fg, bg);
 //const TTF_RenderUTF8 = (font, text, fg, bg) TTF_RenderUTF8_Shaded(font, text, fg, bg);
 //const TTF_RenderUNICODE = (font, text, fg, bg) TTF_RenderUNICODE_Shaded(font, text, fg, bg);

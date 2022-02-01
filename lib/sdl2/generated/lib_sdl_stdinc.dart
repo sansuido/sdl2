@@ -43,6 +43,51 @@ void SDL_free(Pointer<Void>? mem) {
   return _SDL_free(mem);
 }
 
+/// 
+/// Get the current set of SDL memory functions
+/// 
+/// \since This function is available since SDL 2.0.7.
+/// 
+/// ```c
+/// extern DECLSPEC void SDLCALL SDL_GetMemoryFunctions(SDL_malloc_func *malloc_func, SDL_calloc_func *calloc_func, SDL_realloc_func *realloc_func, SDL_free_func *free_func)
+/// ```
+void SDL_GetMemoryFunctions(Pointer<Pointer<Void>>? malloc_func, Pointer<Pointer<Void>>? calloc_func, Pointer<Pointer<Void>>? realloc_func, Pointer<Pointer<Void>>? free_func) {
+  final _SDL_GetMemoryFunctions = DLL_SDL2.lookupFunction<
+      Void Function(Pointer<Pointer<Void>>? malloc_func, Pointer<Pointer<Void>>? calloc_func, Pointer<Pointer<Void>>? realloc_func, Pointer<Pointer<Void>>? free_func),
+      void Function(Pointer<Pointer<Void>>? malloc_func, Pointer<Pointer<Void>>? calloc_func, Pointer<Pointer<Void>>? realloc_func, Pointer<Pointer<Void>>? free_func)>('SDL_GetMemoryFunctions');
+  return _SDL_GetMemoryFunctions(malloc_func, calloc_func, realloc_func, free_func);
+}
+
+/// 
+/// Replace SDL's memory allocation functions with a custom set
+/// 
+/// \since This function is available since SDL 2.0.7.
+/// 
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_SetMemoryFunctions(SDL_malloc_func malloc_func, SDL_calloc_func calloc_func, SDL_realloc_func realloc_func, SDL_free_func free_func)
+/// ```
+int SDL_SetMemoryFunctions(Pointer<Void>? malloc_func, Pointer<Void>? calloc_func, Pointer<Void>? realloc_func, Pointer<Void>? free_func) {
+  final _SDL_SetMemoryFunctions = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Void>? malloc_func, Pointer<Void>? calloc_func, Pointer<Void>? realloc_func, Pointer<Void>? free_func),
+      int Function(Pointer<Void>? malloc_func, Pointer<Void>? calloc_func, Pointer<Void>? realloc_func, Pointer<Void>? free_func)>('SDL_SetMemoryFunctions');
+  return _SDL_SetMemoryFunctions(malloc_func, calloc_func, realloc_func, free_func);
+}
+
+/// 
+/// Get the number of outstanding (unfreed) allocations
+/// 
+/// \since This function is available since SDL 2.0.7.
+/// 
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_GetNumAllocations(void)
+/// ```
+int SDL_GetNumAllocations() {
+  final _SDL_GetNumAllocations = DLL_SDL2.lookupFunction<
+      Int32 Function(),
+      int Function()>('SDL_GetNumAllocations');
+  return _SDL_GetNumAllocations();
+}
+
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_getenv(const char *name)
 /// ```
@@ -91,7 +136,47 @@ int SDL_abs(int x) {
   return _SDL_abs(x);
 }
 
-/// !!! FIXME: Maybe we do forceinline functions of SDL_mini, SDL_minf, etc?
+/// NOTE: these double-evaluate their arguments, so you should never have side effects in the parameters
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_isalpha(int x)
+/// ```
+int SDL_isalpha(int x) {
+  final _SDL_isalpha = DLL_SDL2.lookupFunction<
+      Int32 Function(Int32 x),
+      int Function(int x)>('SDL_isalpha');
+  return _SDL_isalpha(x);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_isalnum(int x)
+/// ```
+int SDL_isalnum(int x) {
+  final _SDL_isalnum = DLL_SDL2.lookupFunction<
+      Int32 Function(Int32 x),
+      int Function(int x)>('SDL_isalnum');
+  return _SDL_isalnum(x);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_isblank(int x)
+/// ```
+int SDL_isblank(int x) {
+  final _SDL_isblank = DLL_SDL2.lookupFunction<
+      Int32 Function(Int32 x),
+      int Function(int x)>('SDL_isblank');
+  return _SDL_isblank(x);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_iscntrl(int x)
+/// ```
+int SDL_iscntrl(int x) {
+  final _SDL_iscntrl = DLL_SDL2.lookupFunction<
+      Int32 Function(Int32 x),
+      int Function(int x)>('SDL_iscntrl');
+  return _SDL_iscntrl(x);
+}
+
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_isdigit(int x)
 /// ```
@@ -103,6 +188,26 @@ int SDL_isdigit(int x) {
 }
 
 /// ```c
+/// extern DECLSPEC int SDLCALL SDL_isxdigit(int x)
+/// ```
+int SDL_isxdigit(int x) {
+  final _SDL_isxdigit = DLL_SDL2.lookupFunction<
+      Int32 Function(Int32 x),
+      int Function(int x)>('SDL_isxdigit');
+  return _SDL_isxdigit(x);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_ispunct(int x)
+/// ```
+int SDL_ispunct(int x) {
+  final _SDL_ispunct = DLL_SDL2.lookupFunction<
+      Int32 Function(Int32 x),
+      int Function(int x)>('SDL_ispunct');
+  return _SDL_ispunct(x);
+}
+
+/// ```c
 /// extern DECLSPEC int SDLCALL SDL_isspace(int x)
 /// ```
 int SDL_isspace(int x) {
@@ -110,6 +215,46 @@ int SDL_isspace(int x) {
       Int32 Function(Int32 x),
       int Function(int x)>('SDL_isspace');
   return _SDL_isspace(x);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_isupper(int x)
+/// ```
+int SDL_isupper(int x) {
+  final _SDL_isupper = DLL_SDL2.lookupFunction<
+      Int32 Function(Int32 x),
+      int Function(int x)>('SDL_isupper');
+  return _SDL_isupper(x);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_islower(int x)
+/// ```
+int SDL_islower(int x) {
+  final _SDL_islower = DLL_SDL2.lookupFunction<
+      Int32 Function(Int32 x),
+      int Function(int x)>('SDL_islower');
+  return _SDL_islower(x);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_isprint(int x)
+/// ```
+int SDL_isprint(int x) {
+  final _SDL_isprint = DLL_SDL2.lookupFunction<
+      Int32 Function(Int32 x),
+      int Function(int x)>('SDL_isprint');
+  return _SDL_isprint(x);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_isgraph(int x)
+/// ```
+int SDL_isgraph(int x) {
+  final _SDL_isgraph = DLL_SDL2.lookupFunction<
+      Int32 Function(Int32 x),
+      int Function(int x)>('SDL_isgraph');
+  return _SDL_isgraph(x);
 }
 
 /// ```c
@@ -133,33 +278,43 @@ int SDL_tolower(int x) {
 }
 
 /// ```c
-/// extern DECLSPEC void *SDLCALL SDL_memset(void *dst, int c, size_t len)
+/// extern DECLSPEC Uint32 SDLCALL SDL_crc32(Uint32 crc, const void *data, size_t len)
 /// ```
-Pointer<Void>? SDL_memset(Pointer<Void>? dst, int c, int len) {
+int SDL_crc32(int crc, Pointer<Void>? data, int len) {
+  final _SDL_crc32 = DLL_SDL2.lookupFunction<
+      Uint32 Function(Uint32 crc, Pointer<Void>? data, Uint32 len),
+      int Function(int crc, Pointer<Void>? data, int len)>('SDL_crc32');
+  return _SDL_crc32(crc, data, len);
+}
+
+/// ```c
+/// extern DECLSPEC void *SDLCALL SDL_memset(SDL_OUT_BYTECAP(len) void *dst, int c, size_t len)
+/// ```
+Pointer<Void>? SDL_memset(Pointer<Void>? arg0, int c, int len) {
   final _SDL_memset = DLL_SDL2.lookupFunction<
-      Pointer<Void>? Function(Pointer<Void>? dst, Int32 c, Uint32 len),
-      Pointer<Void>? Function(Pointer<Void>? dst, int c, int len)>('SDL_memset');
-  return _SDL_memset(dst, c, len);
+      Pointer<Void>? Function(Pointer<Void>? arg0, Int32 c, Uint32 len),
+      Pointer<Void>? Function(Pointer<Void>? arg0, int c, int len)>('SDL_memset');
+  return _SDL_memset(arg0, c, len);
 }
 
 /// ```c
-/// extern DECLSPEC void *SDLCALL SDL_memcpy(void *dst, const void *src, size_t len)
+/// extern DECLSPEC void *SDLCALL SDL_memcpy(SDL_OUT_BYTECAP(len) void *dst, SDL_IN_BYTECAP(len) const void *src, size_t len)
 /// ```
-Pointer<Void>? SDL_memcpy(Pointer<Void>? dst, Pointer<Void>? src, int len) {
+Pointer<Void>? SDL_memcpy(Pointer<Void>? arg0, Pointer<Void>? arg1, int len) {
   final _SDL_memcpy = DLL_SDL2.lookupFunction<
-      Pointer<Void>? Function(Pointer<Void>? dst, Pointer<Void>? src, Uint32 len),
-      Pointer<Void>? Function(Pointer<Void>? dst, Pointer<Void>? src, int len)>('SDL_memcpy');
-  return _SDL_memcpy(dst, src, len);
+      Pointer<Void>? Function(Pointer<Void>? arg0, Pointer<Void>? arg1, Uint32 len),
+      Pointer<Void>? Function(Pointer<Void>? arg0, Pointer<Void>? arg1, int len)>('SDL_memcpy');
+  return _SDL_memcpy(arg0, arg1, len);
 }
 
 /// ```c
-/// extern DECLSPEC void *SDLCALL SDL_memmove(void *dst, const void *src, size_t len)
+/// extern DECLSPEC void *SDLCALL SDL_memmove(SDL_OUT_BYTECAP(len) void *dst, SDL_IN_BYTECAP(len) const void *src, size_t len)
 /// ```
-Pointer<Void>? SDL_memmove(Pointer<Void>? dst, Pointer<Void>? src, int len) {
+Pointer<Void>? SDL_memmove(Pointer<Void>? arg0, Pointer<Void>? arg1, int len) {
   final _SDL_memmove = DLL_SDL2.lookupFunction<
-      Pointer<Void>? Function(Pointer<Void>? dst, Pointer<Void>? src, Uint32 len),
-      Pointer<Void>? Function(Pointer<Void>? dst, Pointer<Void>? src, int len)>('SDL_memmove');
-  return _SDL_memmove(dst, src, len);
+      Pointer<Void>? Function(Pointer<Void>? arg0, Pointer<Void>? arg1, Uint32 len),
+      Pointer<Void>? Function(Pointer<Void>? arg0, Pointer<Void>? arg1, int len)>('SDL_memmove');
+  return _SDL_memmove(arg0, arg1, len);
 }
 
 /// ```c
@@ -183,23 +338,83 @@ int SDL_wcslen(Pointer<Int16>? wstr) {
 }
 
 /// ```c
-/// extern DECLSPEC size_t SDLCALL SDL_wcslcpy(wchar_t *dst, const wchar_t *src, size_t maxlen)
+/// extern DECLSPEC size_t SDLCALL SDL_wcslcpy(SDL_OUT_Z_CAP(maxlen) wchar_t *dst, const wchar_t *src, size_t maxlen)
 /// ```
-int SDL_wcslcpy(Pointer<Int16>? dst, Pointer<Int16>? src, int maxlen) {
+int SDL_wcslcpy(Pointer<Void>? arg0, Pointer<Int16>? src, int maxlen) {
   final _SDL_wcslcpy = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<Int16>? dst, Pointer<Int16>? src, Uint32 maxlen),
-      int Function(Pointer<Int16>? dst, Pointer<Int16>? src, int maxlen)>('SDL_wcslcpy');
-  return _SDL_wcslcpy(dst, src, maxlen);
+      Uint32 Function(Pointer<Void>? arg0, Pointer<Int16>? src, Uint32 maxlen),
+      int Function(Pointer<Void>? arg0, Pointer<Int16>? src, int maxlen)>('SDL_wcslcpy');
+  return _SDL_wcslcpy(arg0, src, maxlen);
 }
 
 /// ```c
-/// extern DECLSPEC size_t SDLCALL SDL_wcslcat(wchar_t *dst, const wchar_t *src, size_t maxlen)
+/// extern DECLSPEC size_t SDLCALL SDL_wcslcat(SDL_INOUT_Z_CAP(maxlen) wchar_t *dst, const wchar_t *src, size_t maxlen)
 /// ```
-int SDL_wcslcat(Pointer<Int16>? dst, Pointer<Int16>? src, int maxlen) {
+int SDL_wcslcat(Pointer<Void>? arg0, Pointer<Int16>? src, int maxlen) {
   final _SDL_wcslcat = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<Int16>? dst, Pointer<Int16>? src, Uint32 maxlen),
-      int Function(Pointer<Int16>? dst, Pointer<Int16>? src, int maxlen)>('SDL_wcslcat');
-  return _SDL_wcslcat(dst, src, maxlen);
+      Uint32 Function(Pointer<Void>? arg0, Pointer<Int16>? src, Uint32 maxlen),
+      int Function(Pointer<Void>? arg0, Pointer<Int16>? src, int maxlen)>('SDL_wcslcat');
+  return _SDL_wcslcat(arg0, src, maxlen);
+}
+
+/// ```c
+/// extern DECLSPEC wchar_t *SDLCALL SDL_wcsdup(const wchar_t *wstr)
+/// ```
+Pointer<Int16>? SDL_wcsdup(Pointer<Int16>? wstr) {
+  final _SDL_wcsdup = DLL_SDL2.lookupFunction<
+      Pointer<Int16>? Function(Pointer<Int16>? wstr),
+      Pointer<Int16>? Function(Pointer<Int16>? wstr)>('SDL_wcsdup');
+  return _SDL_wcsdup(wstr);
+}
+
+/// ```c
+/// extern DECLSPEC wchar_t *SDLCALL SDL_wcsstr(const wchar_t *haystack, const wchar_t *needle)
+/// ```
+Pointer<Int16>? SDL_wcsstr(Pointer<Int16>? haystack, Pointer<Int16>? needle) {
+  final _SDL_wcsstr = DLL_SDL2.lookupFunction<
+      Pointer<Int16>? Function(Pointer<Int16>? haystack, Pointer<Int16>? needle),
+      Pointer<Int16>? Function(Pointer<Int16>? haystack, Pointer<Int16>? needle)>('SDL_wcsstr');
+  return _SDL_wcsstr(haystack, needle);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_wcscmp(const wchar_t *str1, const wchar_t *str2)
+/// ```
+int SDL_wcscmp(Pointer<Int16>? str1, Pointer<Int16>? str2) {
+  final _SDL_wcscmp = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Int16>? str1, Pointer<Int16>? str2),
+      int Function(Pointer<Int16>? str1, Pointer<Int16>? str2)>('SDL_wcscmp');
+  return _SDL_wcscmp(str1, str2);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_wcsncmp(const wchar_t *str1, const wchar_t *str2, size_t maxlen)
+/// ```
+int SDL_wcsncmp(Pointer<Int16>? str1, Pointer<Int16>? str2, int maxlen) {
+  final _SDL_wcsncmp = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Int16>? str1, Pointer<Int16>? str2, Uint32 maxlen),
+      int Function(Pointer<Int16>? str1, Pointer<Int16>? str2, int maxlen)>('SDL_wcsncmp');
+  return _SDL_wcsncmp(str1, str2, maxlen);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_wcscasecmp(const wchar_t *str1, const wchar_t *str2)
+/// ```
+int SDL_wcscasecmp(Pointer<Int16>? str1, Pointer<Int16>? str2) {
+  final _SDL_wcscasecmp = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Int16>? str1, Pointer<Int16>? str2),
+      int Function(Pointer<Int16>? str1, Pointer<Int16>? str2)>('SDL_wcscasecmp');
+  return _SDL_wcscasecmp(str1, str2);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_wcsncasecmp(const wchar_t *str1, const wchar_t *str2, size_t len)
+/// ```
+int SDL_wcsncasecmp(Pointer<Int16>? str1, Pointer<Int16>? str2, int len) {
+  final _SDL_wcsncasecmp = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Int16>? str1, Pointer<Int16>? str2, Uint32 len),
+      int Function(Pointer<Int16>? str1, Pointer<Int16>? str2, int len)>('SDL_wcsncasecmp');
+  return _SDL_wcsncasecmp(str1, str2, len);
 }
 
 /// ```c
@@ -216,40 +431,40 @@ int SDL_strlen(String str) {
 }
 
 /// ```c
-/// extern DECLSPEC size_t SDLCALL SDL_strlcpy(char *dst, const char *src, size_t maxlen)
+/// extern DECLSPEC size_t SDLCALL SDL_strlcpy(SDL_OUT_Z_CAP(maxlen) char *dst, const char *src, size_t maxlen)
 /// ```
-int SDL_strlcpy(Pointer<Int8>? dst, String src, int maxlen) {
+int SDL_strlcpy(Pointer<Void>? arg0, String src, int maxlen) {
   final _SDL_strlcpy = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<Int8>? dst, Pointer<Utf8>? src, Uint32 maxlen),
-      int Function(Pointer<Int8>? dst, Pointer<Utf8>? src, int maxlen)>('SDL_strlcpy');
+      Uint32 Function(Pointer<Void>? arg0, Pointer<Utf8>? src, Uint32 maxlen),
+      int Function(Pointer<Void>? arg0, Pointer<Utf8>? src, int maxlen)>('SDL_strlcpy');
   final _srcPointer = src.toNativeUtf8();
-  final _result = _SDL_strlcpy(dst, _srcPointer, maxlen);
+  final _result = _SDL_strlcpy(arg0, _srcPointer, maxlen);
   calloc.free(_srcPointer);
   return _result;
 }
 
 /// ```c
-/// extern DECLSPEC size_t SDLCALL SDL_utf8strlcpy(char *dst, const char *src, size_t dst_bytes)
+/// extern DECLSPEC size_t SDLCALL SDL_utf8strlcpy(SDL_OUT_Z_CAP(dst_bytes) char *dst, const char *src, size_t dst_bytes)
 /// ```
-int SDL_utf8strlcpy(Pointer<Int8>? dst, String src, int dst_bytes) {
+int SDL_utf8strlcpy(Pointer<Void>? arg0, String src, int dst_bytes) {
   final _SDL_utf8strlcpy = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<Int8>? dst, Pointer<Utf8>? src, Uint32 dst_bytes),
-      int Function(Pointer<Int8>? dst, Pointer<Utf8>? src, int dst_bytes)>('SDL_utf8strlcpy');
+      Uint32 Function(Pointer<Void>? arg0, Pointer<Utf8>? src, Uint32 dst_bytes),
+      int Function(Pointer<Void>? arg0, Pointer<Utf8>? src, int dst_bytes)>('SDL_utf8strlcpy');
   final _srcPointer = src.toNativeUtf8();
-  final _result = _SDL_utf8strlcpy(dst, _srcPointer, dst_bytes);
+  final _result = _SDL_utf8strlcpy(arg0, _srcPointer, dst_bytes);
   calloc.free(_srcPointer);
   return _result;
 }
 
 /// ```c
-/// extern DECLSPEC size_t SDLCALL SDL_strlcat(char *dst, const char *src, size_t maxlen)
+/// extern DECLSPEC size_t SDLCALL SDL_strlcat(SDL_INOUT_Z_CAP(maxlen) char *dst, const char *src, size_t maxlen)
 /// ```
-int SDL_strlcat(Pointer<Int8>? dst, String src, int maxlen) {
+int SDL_strlcat(Pointer<Void>? arg0, String src, int maxlen) {
   final _SDL_strlcat = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<Int8>? dst, Pointer<Utf8>? src, Uint32 maxlen),
-      int Function(Pointer<Int8>? dst, Pointer<Utf8>? src, int maxlen)>('SDL_strlcat');
+      Uint32 Function(Pointer<Void>? arg0, Pointer<Utf8>? src, Uint32 maxlen),
+      int Function(Pointer<Void>? arg0, Pointer<Utf8>? src, int maxlen)>('SDL_strlcat');
   final _srcPointer = src.toNativeUtf8();
-  final _result = _SDL_strlcat(dst, _srcPointer, maxlen);
+  final _result = _SDL_strlcat(arg0, _srcPointer, maxlen);
   calloc.free(_srcPointer);
   return _result;
 }
@@ -335,6 +550,32 @@ Pointer<Int8>? SDL_strstr(String haystack, String needle) {
   final _result = _SDL_strstr(_haystackPointer, _needlePointer);
   calloc.free(_haystackPointer);
   calloc.free(_needlePointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC char *SDLCALL SDL_strtokr(char *s1, const char *s2, char **saveptr)
+/// ```
+Pointer<Int8>? SDL_strtokr(Pointer<Int8>? s1, String s2, Pointer<Pointer<Int8>>? saveptr) {
+  final _SDL_strtokr = DLL_SDL2.lookupFunction<
+      Pointer<Int8>? Function(Pointer<Int8>? s1, Pointer<Utf8>? s2, Pointer<Pointer<Int8>>? saveptr),
+      Pointer<Int8>? Function(Pointer<Int8>? s1, Pointer<Utf8>? s2, Pointer<Pointer<Int8>>? saveptr)>('SDL_strtokr');
+  final _s2Pointer = s2.toNativeUtf8();
+  final _result = _SDL_strtokr(s1, _s2Pointer, saveptr);
+  calloc.free(_s2Pointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC size_t SDLCALL SDL_utf8strlen(const char *str)
+/// ```
+int SDL_utf8strlen(String str) {
+  final _SDL_utf8strlen = DLL_SDL2.lookupFunction<
+      Uint32 Function(Pointer<Utf8>? str),
+      int Function(Pointer<Utf8>? str)>('SDL_utf8strlen');
+  final _strPointer = str.toNativeUtf8();
+  final _result = _SDL_utf8strlen(_strPointer);
+  calloc.free(_strPointer);
   return _result;
 }
 
@@ -550,7 +791,7 @@ int SDL_strncasecmp(String str1, String str2, int len) {
 }
 
 /// ```c
-/// extern DECLSPEC int SDLCALL SDL_sscanf(const char *text, const char *fmt, ...)
+/// extern DECLSPEC int SDLCALL SDL_sscanf(const char *text, SDL_SCANF_FORMAT_STRING const char *fmt, ...) SDL_SCANF_VARARG_FUNC(2)
 /// ```
 int SDL_sscanf(String text, String fmt, Pointer<Void>? arg2) {
   final _SDL_sscanf = DLL_SDL2.lookupFunction<
@@ -565,29 +806,124 @@ int SDL_sscanf(String text, String fmt, Pointer<Void>? arg2) {
 }
 
 /// ```c
-/// extern DECLSPEC int SDLCALL SDL_snprintf(char *text, size_t maxlen, const char *fmt, ...)
+/// extern DECLSPEC int SDLCALL SDL_vsscanf(const char *text, const char *fmt, va_list ap)
 /// ```
-int SDL_snprintf(Pointer<Int8>? text, int maxlen, String fmt, Pointer<Void>? arg3) {
-  final _SDL_snprintf = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<Int8>? text, Uint32 maxlen, Pointer<Utf8>? fmt, Pointer<Void>? arg3),
-      int Function(Pointer<Int8>? text, int maxlen, Pointer<Utf8>? fmt, Pointer<Void>? arg3)>('SDL_snprintf');
+int SDL_vsscanf(String text, String fmt, Pointer<Void>? ap) {
+  final _SDL_vsscanf = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Utf8>? text, Pointer<Utf8>? fmt, Pointer<Void>? ap),
+      int Function(Pointer<Utf8>? text, Pointer<Utf8>? fmt, Pointer<Void>? ap)>('SDL_vsscanf');
+  final _textPointer = text.toNativeUtf8();
   final _fmtPointer = fmt.toNativeUtf8();
-  final _result = _SDL_snprintf(text, maxlen, _fmtPointer, arg3);
+  final _result = _SDL_vsscanf(_textPointer, _fmtPointer, ap);
+  calloc.free(_textPointer);
   calloc.free(_fmtPointer);
   return _result;
 }
 
 /// ```c
-/// extern DECLSPEC int SDLCALL SDL_vsnprintf(char *text, size_t maxlen, const char *fmt, va_list ap)
+/// extern DECLSPEC int SDLCALL SDL_snprintf(SDL_OUT_Z_CAP(maxlen) char *text, size_t maxlen, SDL_PRINTF_FORMAT_STRING const char *fmt, ... ) SDL_PRINTF_VARARG_FUNC(3)
 /// ```
-int SDL_vsnprintf(Pointer<Int8>? text, int maxlen, String fmt, Pointer<Void>? ap) {
-  final _SDL_vsnprintf = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<Int8>? text, Uint32 maxlen, Pointer<Utf8>? fmt, Pointer<Void>? ap),
-      int Function(Pointer<Int8>? text, int maxlen, Pointer<Utf8>? fmt, Pointer<Void>? ap)>('SDL_vsnprintf');
+int SDL_snprintf(Pointer<Void>? arg0, int maxlen, String fmt, Pointer<Void>? arg3) {
+  final _SDL_snprintf = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Void>? arg0, Uint32 maxlen, Pointer<Utf8>? fmt, Pointer<Void>? arg3),
+      int Function(Pointer<Void>? arg0, int maxlen, Pointer<Utf8>? fmt, Pointer<Void>? arg3)>('SDL_snprintf');
   final _fmtPointer = fmt.toNativeUtf8();
-  final _result = _SDL_vsnprintf(text, maxlen, _fmtPointer, ap);
+  final _result = _SDL_snprintf(arg0, maxlen, _fmtPointer, arg3);
   calloc.free(_fmtPointer);
   return _result;
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_vsnprintf(SDL_OUT_Z_CAP(maxlen) char *text, size_t maxlen, const char *fmt, va_list ap)
+/// ```
+int SDL_vsnprintf(Pointer<Void>? arg0, int maxlen, String fmt, Pointer<Void>? ap) {
+  final _SDL_vsnprintf = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Void>? arg0, Uint32 maxlen, Pointer<Utf8>? fmt, Pointer<Void>? ap),
+      int Function(Pointer<Void>? arg0, int maxlen, Pointer<Utf8>? fmt, Pointer<Void>? ap)>('SDL_vsnprintf');
+  final _fmtPointer = fmt.toNativeUtf8();
+  final _result = _SDL_vsnprintf(arg0, maxlen, _fmtPointer, ap);
+  calloc.free(_fmtPointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_asprintf(char **strp, SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(2)
+/// ```
+int SDL_asprintf(Pointer<Pointer<Int8>>? strp, String fmt, Pointer<Void>? arg2) {
+  final _SDL_asprintf = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Pointer<Int8>>? strp, Pointer<Utf8>? fmt, Pointer<Void>? arg2),
+      int Function(Pointer<Pointer<Int8>>? strp, Pointer<Utf8>? fmt, Pointer<Void>? arg2)>('SDL_asprintf');
+  final _fmtPointer = fmt.toNativeUtf8();
+  final _result = _SDL_asprintf(strp, _fmtPointer, arg2);
+  calloc.free(_fmtPointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_vasprintf(char **strp, const char *fmt, va_list ap)
+/// ```
+int SDL_vasprintf(Pointer<Pointer<Int8>>? strp, String fmt, Pointer<Void>? ap) {
+  final _SDL_vasprintf = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Pointer<Int8>>? strp, Pointer<Utf8>? fmt, Pointer<Void>? ap),
+      int Function(Pointer<Pointer<Int8>>? strp, Pointer<Utf8>? fmt, Pointer<Void>? ap)>('SDL_vasprintf');
+  final _fmtPointer = fmt.toNativeUtf8();
+  final _result = _SDL_vasprintf(strp, _fmtPointer, ap);
+  calloc.free(_fmtPointer);
+  return _result;
+}
+
+/// 
+/// Use this function to compute arc cosine of `x`.
+/// 
+/// The definition of `y = acos(x)` is `x = cos(y)`.
+/// 
+/// Domain: `-1 <= x <= 1`
+/// 
+/// Range: `0 <= y <= Pi`
+/// 
+/// \param x floating point value, in radians.
+/// \returns arc cosine of `x`.
+/// 
+/// \since This function is available since SDL 2.0.2.
+/// 
+/// ```c
+/// extern DECLSPEC double SDLCALL SDL_acos(double x)
+/// ```
+double SDL_acos(double x) {
+  final _SDL_acos = DLL_SDL2.lookupFunction<
+      Double Function(Double x),
+      double Function(double x)>('SDL_acos');
+  return _SDL_acos(x);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_acosf(float x)
+/// ```
+double SDL_acosf(double x) {
+  final _SDL_acosf = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_acosf');
+  return _SDL_acosf(x);
+}
+
+/// ```c
+/// extern DECLSPEC double SDLCALL SDL_asin(double x)
+/// ```
+double SDL_asin(double x) {
+  final _SDL_asin = DLL_SDL2.lookupFunction<
+      Double Function(Double x),
+      double Function(double x)>('SDL_asin');
+  return _SDL_asin(x);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_asinf(float x)
+/// ```
+double SDL_asinf(double x) {
+  final _SDL_asinf = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_asinf');
+  return _SDL_asinf(x);
 }
 
 /// ```c
@@ -601,13 +937,33 @@ double SDL_atan(double x) {
 }
 
 /// ```c
-/// extern DECLSPEC double SDLCALL SDL_atan2(double x, double y)
+/// extern DECLSPEC float SDLCALL SDL_atanf(float x)
 /// ```
-double SDL_atan2(double x, double y) {
+double SDL_atanf(double x) {
+  final _SDL_atanf = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_atanf');
+  return _SDL_atanf(x);
+}
+
+/// ```c
+/// extern DECLSPEC double SDLCALL SDL_atan2(double y, double x)
+/// ```
+double SDL_atan2(double y, double x) {
   final _SDL_atan2 = DLL_SDL2.lookupFunction<
-      Double Function(Double x, Double y),
-      double Function(double x, double y)>('SDL_atan2');
-  return _SDL_atan2(x, y);
+      Double Function(Double y, Double x),
+      double Function(double y, double x)>('SDL_atan2');
+  return _SDL_atan2(y, x);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_atan2f(float y, float x)
+/// ```
+double SDL_atan2f(double y, double x) {
+  final _SDL_atan2f = DLL_SDL2.lookupFunction<
+      Float Function(Float y, Float x),
+      double Function(double y, double x)>('SDL_atan2f');
+  return _SDL_atan2f(y, x);
 }
 
 /// ```c
@@ -621,6 +977,16 @@ double SDL_ceil(double x) {
 }
 
 /// ```c
+/// extern DECLSPEC float SDLCALL SDL_ceilf(float x)
+/// ```
+double SDL_ceilf(double x) {
+  final _SDL_ceilf = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_ceilf');
+  return _SDL_ceilf(x);
+}
+
+/// ```c
 /// extern DECLSPEC double SDLCALL SDL_copysign(double x, double y)
 /// ```
 double SDL_copysign(double x, double y) {
@@ -628,6 +994,16 @@ double SDL_copysign(double x, double y) {
       Double Function(Double x, Double y),
       double Function(double x, double y)>('SDL_copysign');
   return _SDL_copysign(x, y);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_copysignf(float x, float y)
+/// ```
+double SDL_copysignf(double x, double y) {
+  final _SDL_copysignf = DLL_SDL2.lookupFunction<
+      Float Function(Float x, Float y),
+      double Function(double x, double y)>('SDL_copysignf');
+  return _SDL_copysignf(x, y);
 }
 
 /// ```c
@@ -651,6 +1027,26 @@ double SDL_cosf(double x) {
 }
 
 /// ```c
+/// extern DECLSPEC double SDLCALL SDL_exp(double x)
+/// ```
+double SDL_exp(double x) {
+  final _SDL_exp = DLL_SDL2.lookupFunction<
+      Double Function(Double x),
+      double Function(double x)>('SDL_exp');
+  return _SDL_exp(x);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_expf(float x)
+/// ```
+double SDL_expf(double x) {
+  final _SDL_expf = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_expf');
+  return _SDL_expf(x);
+}
+
+/// ```c
 /// extern DECLSPEC double SDLCALL SDL_fabs(double x)
 /// ```
 double SDL_fabs(double x) {
@@ -658,6 +1054,16 @@ double SDL_fabs(double x) {
       Double Function(Double x),
       double Function(double x)>('SDL_fabs');
   return _SDL_fabs(x);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_fabsf(float x)
+/// ```
+double SDL_fabsf(double x) {
+  final _SDL_fabsf = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_fabsf');
+  return _SDL_fabsf(x);
 }
 
 /// ```c
@@ -671,6 +1077,56 @@ double SDL_floor(double x) {
 }
 
 /// ```c
+/// extern DECLSPEC float SDLCALL SDL_floorf(float x)
+/// ```
+double SDL_floorf(double x) {
+  final _SDL_floorf = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_floorf');
+  return _SDL_floorf(x);
+}
+
+/// ```c
+/// extern DECLSPEC double SDLCALL SDL_trunc(double x)
+/// ```
+double SDL_trunc(double x) {
+  final _SDL_trunc = DLL_SDL2.lookupFunction<
+      Double Function(Double x),
+      double Function(double x)>('SDL_trunc');
+  return _SDL_trunc(x);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_truncf(float x)
+/// ```
+double SDL_truncf(double x) {
+  final _SDL_truncf = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_truncf');
+  return _SDL_truncf(x);
+}
+
+/// ```c
+/// extern DECLSPEC double SDLCALL SDL_fmod(double x, double y)
+/// ```
+double SDL_fmod(double x, double y) {
+  final _SDL_fmod = DLL_SDL2.lookupFunction<
+      Double Function(Double x, Double y),
+      double Function(double x, double y)>('SDL_fmod');
+  return _SDL_fmod(x, y);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_fmodf(float x, float y)
+/// ```
+double SDL_fmodf(double x, double y) {
+  final _SDL_fmodf = DLL_SDL2.lookupFunction<
+      Float Function(Float x, Float y),
+      double Function(double x, double y)>('SDL_fmodf');
+  return _SDL_fmodf(x, y);
+}
+
+/// ```c
 /// extern DECLSPEC double SDLCALL SDL_log(double x)
 /// ```
 double SDL_log(double x) {
@@ -678,6 +1134,36 @@ double SDL_log(double x) {
       Double Function(Double x),
       double Function(double x)>('SDL_log');
   return _SDL_log(x);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_logf(float x)
+/// ```
+double SDL_logf(double x) {
+  final _SDL_logf = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_logf');
+  return _SDL_logf(x);
+}
+
+/// ```c
+/// extern DECLSPEC double SDLCALL SDL_log10(double x)
+/// ```
+double SDL_log10(double x) {
+  final _SDL_log10 = DLL_SDL2.lookupFunction<
+      Double Function(Double x),
+      double Function(double x)>('SDL_log10');
+  return _SDL_log10(x);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_log10f(float x)
+/// ```
+double SDL_log10f(double x) {
+  final _SDL_log10f = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_log10f');
+  return _SDL_log10f(x);
 }
 
 /// ```c
@@ -691,6 +1177,56 @@ double SDL_pow(double x, double y) {
 }
 
 /// ```c
+/// extern DECLSPEC float SDLCALL SDL_powf(float x, float y)
+/// ```
+double SDL_powf(double x, double y) {
+  final _SDL_powf = DLL_SDL2.lookupFunction<
+      Float Function(Float x, Float y),
+      double Function(double x, double y)>('SDL_powf');
+  return _SDL_powf(x, y);
+}
+
+/// ```c
+/// extern DECLSPEC double SDLCALL SDL_round(double x)
+/// ```
+double SDL_round(double x) {
+  final _SDL_round = DLL_SDL2.lookupFunction<
+      Double Function(Double x),
+      double Function(double x)>('SDL_round');
+  return _SDL_round(x);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_roundf(float x)
+/// ```
+double SDL_roundf(double x) {
+  final _SDL_roundf = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_roundf');
+  return _SDL_roundf(x);
+}
+
+/// ```c
+/// extern DECLSPEC long SDLCALL SDL_lround(double x)
+/// ```
+int SDL_lround(double x) {
+  final _SDL_lround = DLL_SDL2.lookupFunction<
+      Int32 Function(Double x),
+      int Function(double x)>('SDL_lround');
+  return _SDL_lround(x);
+}
+
+/// ```c
+/// extern DECLSPEC long SDLCALL SDL_lroundf(float x)
+/// ```
+int SDL_lroundf(double x) {
+  final _SDL_lroundf = DLL_SDL2.lookupFunction<
+      Int32 Function(Float x),
+      int Function(double x)>('SDL_lroundf');
+  return _SDL_lroundf(x);
+}
+
+/// ```c
 /// extern DECLSPEC double SDLCALL SDL_scalbn(double x, int n)
 /// ```
 double SDL_scalbn(double x, int n) {
@@ -698,6 +1234,16 @@ double SDL_scalbn(double x, int n) {
       Double Function(Double x, Int32 n),
       double Function(double x, int n)>('SDL_scalbn');
   return _SDL_scalbn(x, n);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_scalbnf(float x, int n)
+/// ```
+double SDL_scalbnf(double x, int n) {
+  final _SDL_scalbnf = DLL_SDL2.lookupFunction<
+      Float Function(Float x, Int32 n),
+      double Function(double x, int n)>('SDL_scalbnf');
+  return _SDL_scalbnf(x, n);
 }
 
 /// ```c
@@ -728,6 +1274,36 @@ double SDL_sqrt(double x) {
       Double Function(Double x),
       double Function(double x)>('SDL_sqrt');
   return _SDL_sqrt(x);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_sqrtf(float x)
+/// ```
+double SDL_sqrtf(double x) {
+  final _SDL_sqrtf = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_sqrtf');
+  return _SDL_sqrtf(x);
+}
+
+/// ```c
+/// extern DECLSPEC double SDLCALL SDL_tan(double x)
+/// ```
+double SDL_tan(double x) {
+  final _SDL_tan = DLL_SDL2.lookupFunction<
+      Double Function(Double x),
+      double Function(double x)>('SDL_tan');
+  return _SDL_tan(x);
+}
+
+/// ```c
+/// extern DECLSPEC float SDLCALL SDL_tanf(float x)
+/// ```
+double SDL_tanf(double x) {
+  final _SDL_tanf = DLL_SDL2.lookupFunction<
+      Float Function(Float x),
+      double Function(double x)>('SDL_tanf');
+  return _SDL_tanf(x);
 }
 
 /// ```c
@@ -768,6 +1344,8 @@ int SDL_iconv(Pointer<Void>? cd, Pointer<Pointer<Int8>>? inbuf, Pointer<Uint32>?
 /// 
 /// This function converts a string between encodings in one pass, returning a
 /// string that must be freed with SDL_free() or NULL on error.
+/// 
+/// \since This function is available since SDL 2.0.0.
 /// 
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_iconv_string(const char *tocode, const char *fromcode, const char *inbuf, size_t inbytesleft)

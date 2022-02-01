@@ -1,10 +1,10 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
-import 'dart:io';
 import 'package:ffi/ffi.dart';
+import '../dylib.dart' as dylib;
 import 'struct_sdl.dart';
 
-final DLL_SDL2_image = DynamicLibrary.open(Platform.isWindows ? 'SDL2_image.dll' : 'libSDL2_image.so');
+final DLL_SDL2_image = dylib.dylibOpen('SDL2_image');
 
 /// This function gets the version of the dynamically linked SDL_image library.
 /// it should NOT be used to fill a version structure, instead you should

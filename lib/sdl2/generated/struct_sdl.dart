@@ -1,7 +1,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
 import 'package:ffi/ffi.dart';
-class SDL_assert_data extends Struct {
+class SDL_AssertData extends Struct {
   // [0]+(4)
   @Int32()
   external int always_ignore;
@@ -18,7 +18,7 @@ class SDL_assert_data extends Struct {
   // [28]+(8)
   external Pointer<Utf8>? function;
   // [36]+(8)
-  external Pointer<SDL_assert_data>? next;
+  external Pointer<SDL_AssertData>? next;
 }
 
 class SDL_atomic_t extends Struct {
@@ -98,6 +98,8 @@ class SDL_AudioCVT extends Struct {
   external int filter_index;
 }
 
+class SDL_AudioStream extends Opaque {}
+
 class SDL_CommonEvent extends Struct {
   // [0]+(4)
   @Uint32()
@@ -105,6 +107,33 @@ class SDL_CommonEvent extends Struct {
   // [4]+(4)
   @Uint32()
   external int timestamp;
+}
+
+class SDL_DisplayEvent extends Struct {
+  // [0]+(4)
+  @Uint32()
+  external int type;
+  // [4]+(4)
+  @Uint32()
+  external int timestamp;
+  // [8]+(4)
+  @Uint32()
+  external int display;
+  // [12]+(1)
+  @Uint8()
+  external int event;
+  // [13]+(1)
+  @Uint8()
+  external int padding1;
+  // [14]+(1)
+  @Uint8()
+  external int padding2;
+  // [15]+(1)
+  @Uint8()
+  external int padding3;
+  // [16]+(4)
+  @Int32()
+  external int data1;
 }
 
 class SDL_WindowEvent extends Struct {
@@ -383,10 +412,10 @@ class SDL_MouseButtonEvent extends Struct {
   external int state;
   // [18]+(1)
   @Uint8()
-  external int padding1;
+  external int clicks;
   // [19]+(1)
   @Uint8()
-  external int padding2;
+  external int padding1;
   // [20]+(4)
   @Int32()
   external int x;
@@ -414,6 +443,15 @@ class SDL_MouseWheelEvent extends Struct {
   // [20]+(4)
   @Int32()
   external int y;
+  // [24]+(4)
+  @Uint32()
+  external int direction;
+  // [28]+(4)
+  @Float()
+  external double preciseX;
+  // [32]+(4)
+  @Float()
+  external double preciseY;
 }
 
 class SDL_JoyAxisEvent extends Struct {
@@ -602,6 +640,79 @@ class SDL_ControllerDeviceEvent extends Struct {
   external int which;
 }
 
+class SDL_ControllerTouchpadEvent extends Struct {
+  // [0]+(4)
+  @Uint32()
+  external int type;
+  // [4]+(4)
+  @Uint32()
+  external int timestamp;
+  // [8]+(4)
+  @Int32()
+  external int which;
+  // [12]+(4)
+  @Int32()
+  external int touchpad;
+  // [16]+(4)
+  @Int32()
+  external int finger;
+  // [20]+(4)
+  @Float()
+  external double x;
+  // [24]+(4)
+  @Float()
+  external double y;
+  // [28]+(4)
+  @Float()
+  external double pressure;
+}
+
+class SDL_ControllerSensorEvent extends Struct {
+  // [0]+(4)
+  @Uint32()
+  external int type;
+  // [4]+(4)
+  @Uint32()
+  external int timestamp;
+  // [8]+(4)
+  @Int32()
+  external int which;
+  // [12]+(4)
+  @Int32()
+  external int sensor;
+  // [16]+(4*3)
+  @Float()
+  external double data_1;
+  @Float()
+  external double data_2;
+  @Float()
+  external double data_3;
+}
+
+class SDL_AudioDeviceEvent extends Struct {
+  // [0]+(4)
+  @Uint32()
+  external int type;
+  // [4]+(4)
+  @Uint32()
+  external int timestamp;
+  // [8]+(4)
+  @Uint32()
+  external int which;
+  // [12]+(1)
+  @Uint8()
+  external int iscapture;
+  // [13]+(1)
+  @Uint8()
+  external int padding1;
+  // [14]+(1)
+  @Uint8()
+  external int padding2;
+  // [15]+(1)
+  @Uint8()
+  external int padding3;
+}
+
 class SDL_TouchFingerEvent extends Struct {
   // [0]+(4)
   @Uint32()
@@ -630,6 +741,9 @@ class SDL_TouchFingerEvent extends Struct {
   // [40]+(4)
   @Float()
   external double pressure;
+  // [44]+(4)
+  @Uint32()
+  external int windowID;
 }
 
 class SDL_MultiGestureEvent extends Struct {
@@ -698,6 +812,34 @@ class SDL_DropEvent extends Struct {
   external int timestamp;
   // [8]+(8)
   external Pointer<Int8>? file;
+  // [16]+(4)
+  @Uint32()
+  external int windowID;
+}
+
+class SDL_SensorEvent extends Struct {
+  // [0]+(4)
+  @Uint32()
+  external int type;
+  // [4]+(4)
+  @Uint32()
+  external int timestamp;
+  // [8]+(4)
+  @Int32()
+  external int which;
+  // [12]+(4*6)
+  @Float()
+  external double data_1;
+  @Float()
+  external double data_2;
+  @Float()
+  external double data_3;
+  @Float()
+  external double data_4;
+  @Float()
+  external double data_5;
+  @Float()
+  external double data_6;
 }
 
 class SDL_QuitEvent extends Struct {
@@ -751,7 +893,7 @@ class SDL_SysWMEvent extends Struct {
 }
 
 class SDL_Event extends Struct {
-  // [0]+(56)
+  // [0]+(64)
   @Uint64()
   external int union_1;
   @Uint64()
@@ -766,11 +908,14 @@ class SDL_Event extends Struct {
   external int union_6;
   @Uint64()
   external int union_7;
+  @Uint64()
+  external int union_8;
 }
 // ignore: camel_case_extensions
 extension SDL_EventExtension on Pointer<SDL_Event> {
   int get type => cast<Uint8>().elementAt(0).cast<Uint32>().value;
   Pointer<SDL_CommonEvent> get common => cast<Uint8>().elementAt(0).cast<SDL_CommonEvent>();
+  Pointer<SDL_DisplayEvent> get display => cast<Uint8>().elementAt(0).cast<SDL_DisplayEvent>();
   Pointer<SDL_WindowEvent> get window => cast<Uint8>().elementAt(0).cast<SDL_WindowEvent>();
   Pointer<SDL_KeyboardEvent> get key => cast<Uint8>().elementAt(0).cast<SDL_KeyboardEvent>();
   Pointer<SDL_TextEditingEvent> get edit => cast<Uint8>().elementAt(0).cast<SDL_TextEditingEvent>();
@@ -786,6 +931,10 @@ extension SDL_EventExtension on Pointer<SDL_Event> {
   Pointer<SDL_ControllerAxisEvent> get caxis => cast<Uint8>().elementAt(0).cast<SDL_ControllerAxisEvent>();
   Pointer<SDL_ControllerButtonEvent> get cbutton => cast<Uint8>().elementAt(0).cast<SDL_ControllerButtonEvent>();
   Pointer<SDL_ControllerDeviceEvent> get cdevice => cast<Uint8>().elementAt(0).cast<SDL_ControllerDeviceEvent>();
+  Pointer<SDL_ControllerTouchpadEvent> get ctouchpad => cast<Uint8>().elementAt(0).cast<SDL_ControllerTouchpadEvent>();
+  Pointer<SDL_ControllerSensorEvent> get csensor => cast<Uint8>().elementAt(0).cast<SDL_ControllerSensorEvent>();
+  Pointer<SDL_AudioDeviceEvent> get adevice => cast<Uint8>().elementAt(0).cast<SDL_AudioDeviceEvent>();
+  Pointer<SDL_SensorEvent> get sensor => cast<Uint8>().elementAt(0).cast<SDL_SensorEvent>();
   Pointer<SDL_QuitEvent> get quit => cast<Uint8>().elementAt(0).cast<SDL_QuitEvent>();
   Pointer<SDL_UserEvent> get user => cast<Uint8>().elementAt(0).cast<SDL_UserEvent>();
   Pointer<SDL_SysWMEvent> get syswm => cast<Uint8>().elementAt(0).cast<SDL_SysWMEvent>();
@@ -1135,6 +1284,48 @@ extension SDL_HapticEffectExtension on Pointer<SDL_HapticEffect> {
   Pointer<SDL_HapticCustom> get custom => cast<Uint8>().elementAt(0).cast<SDL_HapticCustom>();
 }
 
+class SDL_hid_device extends Opaque {}
+
+class SDL_hid_device_info extends Struct {
+  // [0]+(8)
+  external Pointer<Int8>? path;
+  // [8]+(2)
+  @Uint16()
+  external int vendor_id;
+  // [10]+(2)
+  @Uint16()
+  external int product_id;
+  // [12]+(8)
+  external Pointer<Int16>? serial_number;
+  // [20]+(2)
+  @Uint16()
+  external int release_number;
+  // [22]+(8)
+  external Pointer<Int16>? manufacturer_string;
+  // [30]+(8)
+  external Pointer<Int16>? product_string;
+  // [38]+(2)
+  @Uint16()
+  external int usage_page;
+  // [40]+(2)
+  @Uint16()
+  external int usage;
+  // [42]+(4)
+  @Int32()
+  external int interface_number;
+  // [46]+(4)
+  @Int32()
+  external int interface_class;
+  // [50]+(4)
+  @Int32()
+  external int interface_subclass;
+  // [54]+(4)
+  @Int32()
+  external int interface_protocol;
+  // [58]+(8)
+  external Pointer<SDL_hid_device_info>? next;
+}
+
 class SDL_Joystick extends Opaque {}
 
 class SDL_JoystickGUID extends Struct {
@@ -1186,6 +1377,13 @@ class SDL_Keysym extends Struct {
   // [10]+(4)
   @Uint32()
   external int unused;
+}
+
+class SDL_Locale extends Struct {
+  // [0]+(8)
+  external Pointer<Utf8>? language;
+  // [8]+(8)
+  external Pointer<Utf8>? country;
 }
 
 class SDL_MessageBoxButtonData extends Struct {
@@ -1358,6 +1556,15 @@ class SDL_Point extends Struct {
   external int y;
 }
 
+class SDL_FPoint extends Struct {
+  // [0]+(4)
+  @Float()
+  external double x;
+  // [4]+(4)
+  @Float()
+  external double y;
+}
+
 class SDL_Rect extends Struct {
   // [0]+(4)
   @Int32()
@@ -1371,6 +1578,21 @@ class SDL_Rect extends Struct {
   // [12]+(4)
   @Int32()
   external int h;
+}
+
+class SDL_FRect extends Struct {
+  // [0]+(4)
+  @Float()
+  external double x;
+  // [4]+(4)
+  @Float()
+  external double y;
+  // [8]+(4)
+  @Float()
+  external double w;
+  // [12]+(4)
+  @Float()
+  external double h;
 }
 
 class SDL_RendererInfo extends Struct {
@@ -1423,6 +1645,24 @@ class SDL_RendererInfo extends Struct {
   external int max_texture_height;
 }
 
+class SDL_Vertex extends Struct {
+  // [0]+(8)
+  @Uint64()
+  external int position_1;
+  // [8]+(4)
+  @Uint32()
+  external int color_1;
+  // [12]+(8)
+  @Uint64()
+  external int tex_coord_1;
+}
+// ignore: camel_case_extensions
+extension SDL_VertexExtension on Pointer<SDL_Vertex> {
+  Pointer<SDL_FPoint> get position => cast<Uint8>().elementAt(0).cast<SDL_FPoint>();
+  Pointer<SDL_Color> get color => cast<Uint8>().elementAt(8).cast<SDL_Color>();
+  Pointer<SDL_FPoint> get tex_coord => cast<Uint8>().elementAt(12).cast<SDL_FPoint>();
+}
+
 class SDL_Renderer extends Opaque {}
 
 class SDL_Texture extends Opaque {}
@@ -1444,6 +1684,8 @@ class SDL_RWops extends Struct {
   // [44]+(8)
   external Pointer<Void>?  hidden;
 }
+
+class SDL_Sensor extends Opaque {}
 
 class SDL_WindowShapeParams extends Struct {
   // [0]+(4)
@@ -1494,7 +1736,7 @@ class SDL_Surface extends Struct {
   @Int32()
   external int locked;
   // [44]+(8)
-  external Pointer<Void>? lock_data;
+  external Pointer<Void>? list_blitmap;
   // [52]+(16)
   @Uint64()
   external int clip_rect_1;
@@ -1511,9 +1753,17 @@ extension SDL_SurfaceExtension on Pointer<SDL_Surface> {
   Pointer<SDL_Rect> get clip_rect => cast<Uint8>().elementAt(52).cast<SDL_Rect>();
 }
 
+class IDirect3DDevice9 extends Opaque {}
+
+class ID3D11Device extends Opaque {}
+
 class NSWindow extends Opaque {}
 
 class UIWindow extends Opaque {}
+
+class UIViewController extends Opaque {}
+
+class ANativeWindow extends Opaque {}
 
 class SDL_SysWMinfo extends Opaque {}
 

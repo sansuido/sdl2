@@ -5,18 +5,37 @@ import 'lib_sdl.dart';
 import 'struct_sdl.dart';
 
 /// 
-/// \brief Create a modal message box.
+/// Create a modal message box.
 /// 
-/// \param messageboxdata The SDL_MessageBoxData structure with title, text, etc.
-/// \param buttonid The pointer to which user id of hit button should be copied.
+/// If your needs aren't complex, it might be easier to use
+/// SDL_ShowSimpleMessageBox.
 /// 
-/// \return -1 on error, otherwise 0 and buttonid contains user id of button
-/// hit or -1 if dialog was closed.
+/// This function should be called on the thread that created the parent
+/// window, or on the main thread if the messagebox has no parent. It will
+/// block execution of that thread until the user clicks a button or closes the
+/// messagebox.
 /// 
-/// \note This function should be called on the thread that created the parent
-/// window, or on the main thread if the messagebox has no parent.  It will
-/// block execution of that thread until the user clicks a button or
-/// closes the messagebox.
+/// This function may be called at any time, even before SDL_Init(). This makes
+/// it useful for reporting errors like a failure to create a renderer or
+/// OpenGL context.
+/// 
+/// On X11, SDL rolls its own dialog box with X11 primitives instead of a
+/// formal toolkit like GTK+ or Qt.
+/// 
+/// Note that if SDL_Init() would fail because there isn't any available video
+/// target, this function is likely to fail for the same reasons. If this is a
+/// concern, check the return value from this function and fall back to writing
+/// to stderr if you can.
+/// 
+/// \param messageboxdata the SDL_MessageBoxData structure with title, text and
+/// other options
+/// \param buttonid the pointer to which user id of hit button should be copied
+/// \returns 0 on success or a negative error code on failure; call
+/// SDL_GetError() for more information.
+/// 
+/// \since This function is available since SDL 2.0.0.
+/// 
+/// \sa SDL_ShowSimpleMessageBox
 /// 
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_ShowMessageBox(const SDL_MessageBoxData *messageboxdata, int *buttonid)
@@ -29,14 +48,42 @@ int SDL_ShowMessageBox(Pointer<SDL_MessageBoxData>? messageboxdata, Pointer<Int3
 }
 
 /// 
-/// \brief Create a simple modal message box
+/// Display a simple modal message box.
 /// 
-/// \param flags    ::SDL_MessageBoxFlags
-/// \param title    UTF-8 title text
-/// \param message  UTF-8 message text
-/// \param window   The parent window, or NULL for no parent
+/// If your needs aren't complex, this function is preferred over
+/// SDL_ShowMessageBox.
 /// 
-/// \return 0 on success, -1 on error
+/// `flags` may be any of the following:
+/// 
+/// - `SDL_MESSAGEBOX_ERROR`: error dialog
+/// - `SDL_MESSAGEBOX_WARNING`: warning dialog
+/// - `SDL_MESSAGEBOX_INFORMATION`: informational dialog
+/// 
+/// This function should be called on the thread that created the parent
+/// window, or on the main thread if the messagebox has no parent. It will
+/// block execution of that thread until the user clicks a button or closes the
+/// messagebox.
+/// 
+/// This function may be called at any time, even before SDL_Init(). This makes
+/// it useful for reporting errors like a failure to create a renderer or
+/// OpenGL context.
+/// 
+/// On X11, SDL rolls its own dialog box with X11 primitives instead of a
+/// formal toolkit like GTK+ or Qt.
+/// 
+/// Note that if SDL_Init() would fail because there isn't any available video
+/// target, this function is likely to fail for the same reasons. If this is a
+/// concern, check the return value from this function and fall back to writing
+/// to stderr if you can.
+/// 
+/// \param flags an SDL_MessageBoxFlags value
+/// \param title UTF-8 title text
+/// \param message UTF-8 message text
+/// \param window the parent window, or NULL for no parent
+/// \returns 0 on success or a negative error code on failure; call
+/// SDL_GetError() for more information.
+/// 
+/// \since This function is available since SDL 2.0.0.
 /// 
 /// \sa SDL_ShowMessageBox
 /// 

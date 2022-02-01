@@ -1,11 +1,11 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
-import 'dart:io';
 import 'package:ffi/ffi.dart';
+import '../dylib.dart' as dylib;
 import 'struct_sdl.dart';
 import 'struct_sdl_mixer.dart';
 
-final DLL_SDL2_mixer = DynamicLibrary.open(Platform.isWindows ? 'SDL2_mixer.dll' : 'libSDL2_mixer.so');
+final DLL_SDL2_mixer = dylib.dylibOpen('SDL2_mixer');
 
 /// This function gets the version of the dynamically linked SDL_mixer library.
 /// it should NOT be used to fill a version structure, instead you should

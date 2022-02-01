@@ -1,11 +1,11 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
-import 'dart:io';
 import 'package:ffi/ffi.dart';
+import '../dylib.dart' as dylib;
 import 'struct_sdl.dart';
 import 'struct_sdl_ttf.dart';
 
-final DLL_SDL2_ttf = DynamicLibrary.open(Platform.isWindows ? 'SDL2_ttf.dll' : 'libSDL2_ttf.so');
+final DLL_SDL2_ttf = dylib.dylibOpen('SDL2_ttf');
 
 /// This function gets the version of the dynamically linked SDL_ttf library.
 /// it should NOT be used to fill a version structure, instead you should
@@ -21,12 +21,38 @@ Pointer<SDL_version>? TTF_Linked_Version() {
   return _TTF_Linked_Version();
 }
 
+/// This function stores the version of the FreeType2 library in use.
+/// TTF_Init() should be called before calling this function.
+/// /
+/// ```c
+/// extern DECLSPEC void SDLCALL TTF_GetFreeTypeVersion(int *major, int *minor, int *patch)
+/// ```
+void TTF_GetFreeTypeVersion(Pointer<Int32>? major, Pointer<Int32>? minor, Pointer<Int32>? patch) {
+  final _TTF_GetFreeTypeVersion = DLL_SDL2_ttf.lookupFunction<
+      Void Function(Pointer<Int32>? major, Pointer<Int32>? minor, Pointer<Int32>? patch),
+      void Function(Pointer<Int32>? major, Pointer<Int32>? minor, Pointer<Int32>? patch)>('TTF_GetFreeTypeVersion');
+  return _TTF_GetFreeTypeVersion(major, minor, patch);
+}
+
+/// This function stores the version of the HarfBuzz library in use,
+/// or 0 if HarfBuzz is not available.
+/// /
+/// ```c
+/// extern DECLSPEC void SDLCALL TTF_GetHarfBuzzVersion(int *major, int *minor, int *patch)
+/// ```
+void TTF_GetHarfBuzzVersion(Pointer<Int32>? major, Pointer<Int32>? minor, Pointer<Int32>? patch) {
+  final _TTF_GetHarfBuzzVersion = DLL_SDL2_ttf.lookupFunction<
+      Void Function(Pointer<Int32>? major, Pointer<Int32>? minor, Pointer<Int32>? patch),
+      void Function(Pointer<Int32>? major, Pointer<Int32>? minor, Pointer<Int32>? patch)>('TTF_GetHarfBuzzVersion');
+  return _TTF_GetHarfBuzzVersion(major, minor, patch);
+}
+
 /// This function tells the library whether UNICODE text is generally
 /// byteswapped.  A UNICODE BOM character in a string will override
 /// this setting for the remainder of that string.
 /// 
 /// ```c
-/// extern DECLSPEC void SDLCALL TTF_ByteSwappedUNICODE(int swapped)
+/// extern DECLSPEC void SDLCALL TTF_ByteSwappedUNICODE(SDL_bool swapped)
 /// ```
 void TTF_ByteSwappedUNICODE(int swapped) {
   final _TTF_ByteSwappedUNICODE = DLL_SDL2_ttf.lookupFunction<
@@ -76,6 +102,8 @@ Pointer<TTF_Font>? TTF_OpenFontIndex(String file, int ptsize, int index) {
   return _result;
 }
 
+/// Open a font file from a SDL_RWops: 'src' must be kept alive for the lifetime of the TTF_Font.
+/// 'freesrc' can be set so that TTF_CloseFont closes the RWops */
 /// ```c
 /// extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontRW(SDL_RWops *src, int freesrc, int ptsize)
 /// ```
@@ -94,6 +122,75 @@ Pointer<TTF_Font>? TTF_OpenFontIndexRW(Pointer<SDL_RWops>? src, int freesrc, int
       Pointer<TTF_Font>? Function(Pointer<SDL_RWops>? src, Int32 freesrc, Int32 ptsize, Int32 index),
       Pointer<TTF_Font>? Function(Pointer<SDL_RWops>? src, int freesrc, int ptsize, int index)>('TTF_OpenFontIndexRW');
   return _TTF_OpenFontIndexRW(src, freesrc, ptsize, index);
+}
+
+/// Opens a font using the given horizontal and vertical target resolutions (in DPI).
+/// DPI scaling only applies to scalable fonts (e.g. TrueType). */
+/// ```c
+/// extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontDPI(const char *file, int ptsize, unsigned int hdpi, unsigned int vdpi)
+/// ```
+Pointer<TTF_Font>? TTF_OpenFontDPI(String file, int ptsize, int hdpi, int vdpi) {
+  final _TTF_OpenFontDPI = DLL_SDL2_ttf.lookupFunction<
+      Pointer<TTF_Font>? Function(Pointer<Utf8>? file, Int32 ptsize, Uint32 hdpi, Uint32 vdpi),
+      Pointer<TTF_Font>? Function(Pointer<Utf8>? file, int ptsize, int hdpi, int vdpi)>('TTF_OpenFontDPI');
+  final _filePointer = file.toNativeUtf8();
+  final _result = _TTF_OpenFontDPI(_filePointer, ptsize, hdpi, vdpi);
+  calloc.free(_filePointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontIndexDPI(const char *file, int ptsize, long index, unsigned int hdpi, unsigned int vdpi)
+/// ```
+Pointer<TTF_Font>? TTF_OpenFontIndexDPI(String file, int ptsize, int index, int hdpi, int vdpi) {
+  final _TTF_OpenFontIndexDPI = DLL_SDL2_ttf.lookupFunction<
+      Pointer<TTF_Font>? Function(Pointer<Utf8>? file, Int32 ptsize, Int32 index, Uint32 hdpi, Uint32 vdpi),
+      Pointer<TTF_Font>? Function(Pointer<Utf8>? file, int ptsize, int index, int hdpi, int vdpi)>('TTF_OpenFontIndexDPI');
+  final _filePointer = file.toNativeUtf8();
+  final _result = _TTF_OpenFontIndexDPI(_filePointer, ptsize, index, hdpi, vdpi);
+  calloc.free(_filePointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontDPIRW(SDL_RWops *src, int freesrc, int ptsize, unsigned int hdpi, unsigned int vdpi)
+/// ```
+Pointer<TTF_Font>? TTF_OpenFontDPIRW(Pointer<SDL_RWops>? src, int freesrc, int ptsize, int hdpi, int vdpi) {
+  final _TTF_OpenFontDPIRW = DLL_SDL2_ttf.lookupFunction<
+      Pointer<TTF_Font>? Function(Pointer<SDL_RWops>? src, Int32 freesrc, Int32 ptsize, Uint32 hdpi, Uint32 vdpi),
+      Pointer<TTF_Font>? Function(Pointer<SDL_RWops>? src, int freesrc, int ptsize, int hdpi, int vdpi)>('TTF_OpenFontDPIRW');
+  return _TTF_OpenFontDPIRW(src, freesrc, ptsize, hdpi, vdpi);
+}
+
+/// ```c
+/// extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontIndexDPIRW(SDL_RWops *src, int freesrc, int ptsize, long index, unsigned int hdpi, unsigned int vdpi)
+/// ```
+Pointer<TTF_Font>? TTF_OpenFontIndexDPIRW(Pointer<SDL_RWops>? src, int freesrc, int ptsize, int index, int hdpi, int vdpi) {
+  final _TTF_OpenFontIndexDPIRW = DLL_SDL2_ttf.lookupFunction<
+      Pointer<TTF_Font>? Function(Pointer<SDL_RWops>? src, Int32 freesrc, Int32 ptsize, Int32 index, Uint32 hdpi, Uint32 vdpi),
+      Pointer<TTF_Font>? Function(Pointer<SDL_RWops>? src, int freesrc, int ptsize, int index, int hdpi, int vdpi)>('TTF_OpenFontIndexDPIRW');
+  return _TTF_OpenFontIndexDPIRW(src, freesrc, ptsize, index, hdpi, vdpi);
+}
+
+/// Set font size dynamically
+/// ```c
+/// extern DECLSPEC int SDLCALL TTF_SetFontSize(TTF_Font *font, int ptsize)
+/// ```
+int TTF_SetFontSize(Pointer<TTF_Font>? font, int ptsize) {
+  final _TTF_SetFontSize = DLL_SDL2_ttf.lookupFunction<
+      Int32 Function(Pointer<TTF_Font>? font, Int32 ptsize),
+      int Function(Pointer<TTF_Font>? font, int ptsize)>('TTF_SetFontSize');
+  return _TTF_SetFontSize(font, ptsize);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL TTF_SetFontSizeDPI(TTF_Font *font, int ptsize, unsigned int hdpi, unsigned int vdpi)
+/// ```
+int TTF_SetFontSizeDPI(Pointer<TTF_Font>? font, int ptsize, int hdpi, int vdpi) {
+  final _TTF_SetFontSizeDPI = DLL_SDL2_ttf.lookupFunction<
+      Int32 Function(Pointer<TTF_Font>? font, Int32 ptsize, Uint32 hdpi, Uint32 vdpi),
+      int Function(Pointer<TTF_Font>? font, int ptsize, int hdpi, int vdpi)>('TTF_SetFontSizeDPI');
+  return _TTF_SetFontSizeDPI(font, ptsize, hdpi, vdpi);
 }
 
 /// Set and retrieve the font style
@@ -271,13 +368,23 @@ Pointer<Int8>? TTF_FontFaceStyleName(Pointer<TTF_Font>? font) {
 
 /// Check wether a glyph is provided by the font or not
 /// ```c
-/// extern DECLSPEC int SDLCALL TTF_GlyphIsProvided(const TTF_Font *font, Uint16 ch)
+/// extern DECLSPEC int SDLCALL TTF_GlyphIsProvided(TTF_Font *font, Uint16 ch)
 /// ```
 int TTF_GlyphIsProvided(Pointer<TTF_Font>? font, int ch) {
   final _TTF_GlyphIsProvided = DLL_SDL2_ttf.lookupFunction<
       Int32 Function(Pointer<TTF_Font>? font, Uint16 ch),
       int Function(Pointer<TTF_Font>? font, int ch)>('TTF_GlyphIsProvided');
   return _TTF_GlyphIsProvided(font, ch);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL TTF_GlyphIsProvided32(TTF_Font *font, Uint32 ch)
+/// ```
+int TTF_GlyphIsProvided32(Pointer<TTF_Font>? font, int ch) {
+  final _TTF_GlyphIsProvided32 = DLL_SDL2_ttf.lookupFunction<
+      Int32 Function(Pointer<TTF_Font>? font, Uint32 ch),
+      int Function(Pointer<TTF_Font>? font, int ch)>('TTF_GlyphIsProvided32');
+  return _TTF_GlyphIsProvided32(font, ch);
 }
 
 /// Get the metrics (dimensions) of a glyph
@@ -292,6 +399,16 @@ int TTF_GlyphMetrics(Pointer<TTF_Font>? font, int ch, Pointer<Int32>? minx, Poin
       Int32 Function(Pointer<TTF_Font>? font, Uint16 ch, Pointer<Int32>? minx, Pointer<Int32>? maxx, Pointer<Int32>? miny, Pointer<Int32>? maxy, Pointer<Int32>? advance),
       int Function(Pointer<TTF_Font>? font, int ch, Pointer<Int32>? minx, Pointer<Int32>? maxx, Pointer<Int32>? miny, Pointer<Int32>? maxy, Pointer<Int32>? advance)>('TTF_GlyphMetrics');
   return _TTF_GlyphMetrics(font, ch, minx, maxx, miny, maxy, advance);
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL TTF_GlyphMetrics32(TTF_Font *font, Uint32 ch, int *minx, int *maxx, int *miny, int *maxy, int *advance)
+/// ```
+int TTF_GlyphMetrics32(Pointer<TTF_Font>? font, int ch, Pointer<Int32>? minx, Pointer<Int32>? maxx, Pointer<Int32>? miny, Pointer<Int32>? maxy, Pointer<Int32>? advance) {
+  final _TTF_GlyphMetrics32 = DLL_SDL2_ttf.lookupFunction<
+      Int32 Function(Pointer<TTF_Font>? font, Uint32 ch, Pointer<Int32>? minx, Pointer<Int32>? maxx, Pointer<Int32>? miny, Pointer<Int32>? maxy, Pointer<Int32>? advance),
+      int Function(Pointer<TTF_Font>? font, int ch, Pointer<Int32>? minx, Pointer<Int32>? maxx, Pointer<Int32>? miny, Pointer<Int32>? maxy, Pointer<Int32>? advance)>('TTF_GlyphMetrics32');
+  return _TTF_GlyphMetrics32(font, ch, minx, maxx, miny, maxy, advance);
 }
 
 /// Get the dimensions of a rendered string of text
@@ -329,6 +446,51 @@ int TTF_SizeUNICODE(Pointer<TTF_Font>? font, Pointer<Uint16>? text, Pointer<Int3
       Int32 Function(Pointer<TTF_Font>? font, Pointer<Uint16>? text, Pointer<Int32>? w, Pointer<Int32>? h),
       int Function(Pointer<TTF_Font>? font, Pointer<Uint16>? text, Pointer<Int32>? w, Pointer<Int32>? h)>('TTF_SizeUNICODE');
   return _TTF_SizeUNICODE(font, text, w, h);
+}
+
+/// Get the measurement string of text without rendering
+/// e.g. the number of characters that can be rendered before reaching 'measure_width'
+/// 
+/// in:
+/// measure_width - in pixels to measure this text
+/// out:
+/// count  - number of characters that can be rendered
+/// extent - latest calculated width
+/// 
+/// ```c
+/// extern DECLSPEC int SDLCALL TTF_MeasureText(TTF_Font *font, const char *text, int measure_width, int *extent, int *count)
+/// ```
+int TTF_MeasureText(Pointer<TTF_Font>? font, String text, int measure_width, Pointer<Int32>? extent, Pointer<Int32>? count) {
+  final _TTF_MeasureText = DLL_SDL2_ttf.lookupFunction<
+      Int32 Function(Pointer<TTF_Font>? font, Pointer<Utf8>? text, Int32 measure_width, Pointer<Int32>? extent, Pointer<Int32>? count),
+      int Function(Pointer<TTF_Font>? font, Pointer<Utf8>? text, int measure_width, Pointer<Int32>? extent, Pointer<Int32>? count)>('TTF_MeasureText');
+  final _textPointer = text.toNativeUtf8();
+  final _result = _TTF_MeasureText(font, _textPointer, measure_width, extent, count);
+  calloc.free(_textPointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL TTF_MeasureUTF8(TTF_Font *font, const char *text, int measure_width, int *extent, int *count)
+/// ```
+int TTF_MeasureUTF8(Pointer<TTF_Font>? font, String text, int measure_width, Pointer<Int32>? extent, Pointer<Int32>? count) {
+  final _TTF_MeasureUTF8 = DLL_SDL2_ttf.lookupFunction<
+      Int32 Function(Pointer<TTF_Font>? font, Pointer<Utf8>? text, Int32 measure_width, Pointer<Int32>? extent, Pointer<Int32>? count),
+      int Function(Pointer<TTF_Font>? font, Pointer<Utf8>? text, int measure_width, Pointer<Int32>? extent, Pointer<Int32>? count)>('TTF_MeasureUTF8');
+  final _textPointer = text.toNativeUtf8();
+  final _result = _TTF_MeasureUTF8(font, _textPointer, measure_width, extent, count);
+  calloc.free(_textPointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC int SDLCALL TTF_MeasureUNICODE(TTF_Font *font, const Uint16 *text, int measure_width, int *extent, int *count)
+/// ```
+int TTF_MeasureUNICODE(Pointer<TTF_Font>? font, Pointer<Uint16>? text, int measure_width, Pointer<Int32>? extent, Pointer<Int32>? count) {
+  final _TTF_MeasureUNICODE = DLL_SDL2_ttf.lookupFunction<
+      Int32 Function(Pointer<TTF_Font>? font, Pointer<Uint16>? text, Int32 measure_width, Pointer<Int32>? extent, Pointer<Int32>? count),
+      int Function(Pointer<TTF_Font>? font, Pointer<Uint16>? text, int measure_width, Pointer<Int32>? extent, Pointer<Int32>? count)>('TTF_MeasureUNICODE');
+  return _TTF_MeasureUNICODE(font, text, measure_width, extent, count);
 }
 
 /// Create an 8-bit palettized surface and render the given text at
@@ -373,6 +535,51 @@ Pointer<SDL_Surface>? TTF_RenderUNICODE_Solid(Pointer<TTF_Font>? font, Pointer<U
   return _TTF_RenderUNICODE_Solid(font, text, fg);
 }
 
+/// Create an 8-bit palettized surface and render the given text at
+/// fast quality with the given font and color.  The 0 pixel is the
+/// colorkey, giving a transparent background, and the 1 pixel is set
+/// to the text color.
+/// Text is wrapped to multiple lines on line endings and on word boundaries
+/// if it extends beyond wrapLength in pixels.
+/// If wrapLength is 0, only wrap on new lines.
+/// This function returns the new surface, or NULL if there was an error.
+/// 
+/// ```c
+/// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Solid_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, Uint32 wrapLength)
+/// ```
+Pointer<SDL_Surface>? TTF_RenderText_Solid_Wrapped(Pointer<TTF_Font>? font, String text, SDL_Color fg, int wrapLength) {
+  final _TTF_RenderText_Solid_Wrapped = DLL_SDL2_ttf.lookupFunction<
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Pointer<Utf8>? text, SDL_Color? fg, Uint32 wrapLength),
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Pointer<Utf8>? text, SDL_Color fg, int wrapLength)>('TTF_RenderText_Solid_Wrapped');
+  final _textPointer = text.toNativeUtf8();
+  final _result = _TTF_RenderText_Solid_Wrapped(font, _textPointer, fg, wrapLength);
+  calloc.free(_textPointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Solid_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, Uint32 wrapLength)
+/// ```
+Pointer<SDL_Surface>? TTF_RenderUTF8_Solid_Wrapped(Pointer<TTF_Font>? font, String text, SDL_Color fg, int wrapLength) {
+  final _TTF_RenderUTF8_Solid_Wrapped = DLL_SDL2_ttf.lookupFunction<
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Pointer<Utf8>? text, SDL_Color? fg, Uint32 wrapLength),
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Pointer<Utf8>? text, SDL_Color fg, int wrapLength)>('TTF_RenderUTF8_Solid_Wrapped');
+  final _textPointer = text.toNativeUtf8();
+  final _result = _TTF_RenderUTF8_Solid_Wrapped(font, _textPointer, fg, wrapLength);
+  calloc.free(_textPointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Solid_Wrapped(TTF_Font *font, const Uint16 *text, SDL_Color fg, Uint32 wrapLength)
+/// ```
+Pointer<SDL_Surface>? TTF_RenderUNICODE_Solid_Wrapped(Pointer<TTF_Font>? font, Pointer<Uint16>? text, SDL_Color fg, int wrapLength) {
+  final _TTF_RenderUNICODE_Solid_Wrapped = DLL_SDL2_ttf.lookupFunction<
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Pointer<Uint16>? text, SDL_Color? fg, Uint32 wrapLength),
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Pointer<Uint16>? text, SDL_Color fg, int wrapLength)>('TTF_RenderUNICODE_Solid_Wrapped');
+  return _TTF_RenderUNICODE_Solid_Wrapped(font, text, fg, wrapLength);
+}
+
 /// Create an 8-bit palettized surface and render the given glyph at
 /// fast quality with the given font and color.  The 0 pixel is the
 /// colorkey, giving a transparent background, and the 1 pixel is set
@@ -388,6 +595,16 @@ Pointer<SDL_Surface>? TTF_RenderGlyph_Solid(Pointer<TTF_Font>? font, int ch, SDL
       Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Uint16 ch, SDL_Color? fg),
       Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, int ch, SDL_Color fg)>('TTF_RenderGlyph_Solid');
   return _TTF_RenderGlyph_Solid(font, ch, fg);
+}
+
+/// ```c
+/// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_Solid(TTF_Font *font, Uint32 ch, SDL_Color fg)
+/// ```
+Pointer<SDL_Surface>? TTF_RenderGlyph32_Solid(Pointer<TTF_Font>? font, int ch, SDL_Color fg) {
+  final _TTF_RenderGlyph32_Solid = DLL_SDL2_ttf.lookupFunction<
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Uint32 ch, SDL_Color? fg),
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, int ch, SDL_Color fg)>('TTF_RenderGlyph32_Solid');
+  return _TTF_RenderGlyph32_Solid(font, ch, fg);
 }
 
 /// Create an 8-bit palettized surface and render the given text at
@@ -431,6 +648,50 @@ Pointer<SDL_Surface>? TTF_RenderUNICODE_Shaded(Pointer<TTF_Font>? font, Pointer<
   return _TTF_RenderUNICODE_Shaded(font, text, fg, bg);
 }
 
+/// Create an 8-bit palettized surface and render the given text at
+/// high quality with the given font and colors.  The 0 pixel is background,
+/// while other pixels have varying degrees of the foreground color.
+/// Text is wrapped to multiple lines on line endings and on word boundaries
+/// if it extends beyond wrapLength in pixels.
+/// If wrapLength is 0, only wrap on new lines.
+/// This function returns the new surface, or NULL if there was an error.
+/// 
+/// ```c
+/// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Shaded_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength)
+/// ```
+Pointer<SDL_Surface>? TTF_RenderText_Shaded_Wrapped(Pointer<TTF_Font>? font, String text, SDL_Color fg, SDL_Color bg, int wrapLength) {
+  final _TTF_RenderText_Shaded_Wrapped = DLL_SDL2_ttf.lookupFunction<
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Pointer<Utf8>? text, SDL_Color? fg, SDL_Color? bg, Uint32 wrapLength),
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Pointer<Utf8>? text, SDL_Color fg, SDL_Color bg, int wrapLength)>('TTF_RenderText_Shaded_Wrapped');
+  final _textPointer = text.toNativeUtf8();
+  final _result = _TTF_RenderText_Shaded_Wrapped(font, _textPointer, fg, bg, wrapLength);
+  calloc.free(_textPointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Shaded_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength)
+/// ```
+Pointer<SDL_Surface>? TTF_RenderUTF8_Shaded_Wrapped(Pointer<TTF_Font>? font, String text, SDL_Color fg, SDL_Color bg, int wrapLength) {
+  final _TTF_RenderUTF8_Shaded_Wrapped = DLL_SDL2_ttf.lookupFunction<
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Pointer<Utf8>? text, SDL_Color? fg, SDL_Color? bg, Uint32 wrapLength),
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Pointer<Utf8>? text, SDL_Color fg, SDL_Color bg, int wrapLength)>('TTF_RenderUTF8_Shaded_Wrapped');
+  final _textPointer = text.toNativeUtf8();
+  final _result = _TTF_RenderUTF8_Shaded_Wrapped(font, _textPointer, fg, bg, wrapLength);
+  calloc.free(_textPointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUNICODE_Shaded_Wrapped(TTF_Font *font, const Uint16 *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength)
+/// ```
+Pointer<SDL_Surface>? TTF_RenderUNICODE_Shaded_Wrapped(Pointer<TTF_Font>? font, Pointer<Uint16>? text, SDL_Color fg, SDL_Color bg, int wrapLength) {
+  final _TTF_RenderUNICODE_Shaded_Wrapped = DLL_SDL2_ttf.lookupFunction<
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Pointer<Uint16>? text, SDL_Color? fg, SDL_Color? bg, Uint32 wrapLength),
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Pointer<Uint16>? text, SDL_Color fg, SDL_Color bg, int wrapLength)>('TTF_RenderUNICODE_Shaded_Wrapped');
+  return _TTF_RenderUNICODE_Shaded_Wrapped(font, text, fg, bg, wrapLength);
+}
+
 /// Create an 8-bit palettized surface and render the given glyph at
 /// high quality with the given font and colors.  The 0 pixel is background,
 /// while other pixels have varying degrees of the foreground color.
@@ -446,6 +707,16 @@ Pointer<SDL_Surface>? TTF_RenderGlyph_Shaded(Pointer<TTF_Font>? font, int ch, SD
       Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Uint16 ch, SDL_Color? fg, SDL_Color? bg),
       Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, int ch, SDL_Color fg, SDL_Color bg)>('TTF_RenderGlyph_Shaded');
   return _TTF_RenderGlyph_Shaded(font, ch, fg, bg);
+}
+
+/// ```c
+/// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_Shaded(TTF_Font *font, Uint32 ch, SDL_Color fg, SDL_Color bg)
+/// ```
+Pointer<SDL_Surface>? TTF_RenderGlyph32_Shaded(Pointer<TTF_Font>? font, int ch, SDL_Color fg, SDL_Color bg) {
+  final _TTF_RenderGlyph32_Shaded = DLL_SDL2_ttf.lookupFunction<
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Uint32 ch, SDL_Color? fg, SDL_Color? bg),
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, int ch, SDL_Color fg, SDL_Color bg)>('TTF_RenderGlyph32_Shaded');
+  return _TTF_RenderGlyph32_Shaded(font, ch, fg, bg);
 }
 
 /// Create a 32-bit ARGB surface and render the given text at high quality,
@@ -492,6 +763,7 @@ Pointer<SDL_Surface>? TTF_RenderUNICODE_Blended(Pointer<TTF_Font>? font, Pointer
 /// using alpha blending to dither the font with the given color.
 /// Text is wrapped to multiple lines on line endings and on word boundaries
 /// if it extends beyond wrapLength in pixels.
+/// If wrapLength is 0, only wrap on new lines.
 /// This function returns the new surface, or NULL if there was an error.
 /// 
 /// ```c
@@ -546,6 +818,43 @@ Pointer<SDL_Surface>? TTF_RenderGlyph_Blended(Pointer<TTF_Font>? font, int ch, S
   return _TTF_RenderGlyph_Blended(font, ch, fg);
 }
 
+/// ```c
+/// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderGlyph32_Blended(TTF_Font *font, Uint32 ch, SDL_Color fg)
+/// ```
+Pointer<SDL_Surface>? TTF_RenderGlyph32_Blended(Pointer<TTF_Font>? font, int ch, SDL_Color fg) {
+  final _TTF_RenderGlyph32_Blended = DLL_SDL2_ttf.lookupFunction<
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, Uint32 ch, SDL_Color? fg),
+      Pointer<SDL_Surface>? Function(Pointer<TTF_Font>? font, int ch, SDL_Color fg)>('TTF_RenderGlyph32_Blended');
+  return _TTF_RenderGlyph32_Blended(font, ch, fg);
+}
+
+/// Set Direction and Script to be used for text shaping.
+/// - direction is of type hb_direction_t
+/// - script is of type hb_script_t
+/// 
+/// This functions returns always 0, or -1 if SDL_ttf is not compiled with HarfBuzz
+/// 
+/// ```c
+/// extern DECLSPEC int SDLCALL TTF_SetDirection(int direction)
+/// ```
+int TTF_SetDirection(int direction) {
+  final _TTF_SetDirection = DLL_SDL2_ttf.lookupFunction<
+      Int32 Function(Int32 direction),
+      int Function(int direction)>('TTF_SetDirection');
+  return _TTF_SetDirection(direction);
+}
+
+/// hb_direction_t
+/// ```c
+/// extern DECLSPEC int SDLCALL TTF_SetScript(int script)
+/// ```
+int TTF_SetScript(int script) {
+  final _TTF_SetScript = DLL_SDL2_ttf.lookupFunction<
+      Int32 Function(Int32 script),
+      int Function(int script)>('TTF_SetScript');
+  return _TTF_SetScript(script);
+}
+
 /// Close an opened font file
 /// ```c
 /// extern DECLSPEC void SDLCALL TTF_CloseFont(TTF_Font *font)
@@ -588,5 +897,36 @@ int TTF_GetFontKerningSizeGlyphs(Pointer<TTF_Font>? font, int previous_ch, int c
       Int32 Function(Pointer<TTF_Font>? font, Uint16 previous_ch, Uint16 ch),
       int Function(Pointer<TTF_Font>? font, int previous_ch, int ch)>('TTF_GetFontKerningSizeGlyphs');
   return _TTF_GetFontKerningSizeGlyphs(font, previous_ch, ch);
+}
+
+/// ```c
+/// extern DECLSPEC int TTF_GetFontKerningSizeGlyphs32(TTF_Font *font, Uint32 previous_ch, Uint32 ch)
+/// ```
+int TTF_GetFontKerningSizeGlyphs32(Pointer<TTF_Font>? font, int previous_ch, int ch) {
+  final _TTF_GetFontKerningSizeGlyphs32 = DLL_SDL2_ttf.lookupFunction<
+      Int32 Function(Pointer<TTF_Font>? font, Uint32 previous_ch, Uint32 ch),
+      int Function(Pointer<TTF_Font>? font, int previous_ch, int ch)>('TTF_GetFontKerningSizeGlyphs32');
+  return _TTF_GetFontKerningSizeGlyphs32(font, previous_ch, ch);
+}
+
+/// Enable Signed Distance Field rendering (with the Blended APIs)
+/// ```c
+/// extern DECLSPEC int TTF_SetFontSDF(TTF_Font *font, SDL_bool on_off)
+/// ```
+int TTF_SetFontSDF(Pointer<TTF_Font>? font, int on_off) {
+  final _TTF_SetFontSDF = DLL_SDL2_ttf.lookupFunction<
+      Int32 Function(Pointer<TTF_Font>? font, Int32 on_off),
+      int Function(Pointer<TTF_Font>? font, int on_off)>('TTF_SetFontSDF');
+  return _TTF_SetFontSDF(font, on_off);
+}
+
+/// ```c
+/// extern DECLSPEC SDL_bool TTF_GetFontSDF(const TTF_Font *font)
+/// ```
+int TTF_GetFontSDF(Pointer<TTF_Font>? font) {
+  final _TTF_GetFontSDF = DLL_SDL2_ttf.lookupFunction<
+      Int32 Function(Pointer<TTF_Font>? font),
+      int Function(Pointer<TTF_Font>? font)>('TTF_GetFontSDF');
+  return _TTF_GetFontSDF(font);
 }
 
