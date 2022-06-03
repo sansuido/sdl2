@@ -47,10 +47,10 @@ import 'lib_sdl.dart';
 /// SDL 2.0.6. All renderers support the four blend modes listed in the
 /// SDL_BlendMode enumeration.
 /// 
-/// - **direct3d**: Supports `SDL_BLENDOPERATION_ADD` with all factors.
-/// - **direct3d11**: Supports all operations with all factors. However, some
+/// - **direct3d**: Supports all operations with all factors. However, some
 /// factors produce unexpected results with `SDL_BLENDOPERATION_MINIMUM` and
 /// `SDL_BLENDOPERATION_MAXIMUM`.
+/// - **direct3d11**: Same as Direct3D 9.
 /// - **opengl**: Supports the `SDL_BLENDOPERATION_ADD` operation with all
 /// factors. OpenGL versions 1.1, 1.2, and 1.3 do not work correctly with SDL
 /// 2.0.6.

@@ -527,6 +527,26 @@ int SDL_AndroidShowToast(String message, int duration, int gravity, int xoffset,
 }
 
 /// 
+/// Send a user command to SDLActivity.
+/// 
+/// Override "boolean onUnhandledMessage(Message msg)" to handle the message.
+/// 
+/// \param command user command that must be greater or equal to 0x8000
+/// \param param user parameter
+/// 
+/// \since This function is available since SDL 2.0.22.
+/// 
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_AndroidSendMessage(Uint32 command, int param)
+/// ```
+int SDL_AndroidSendMessage(int command, int param) {
+  final _SDL_AndroidSendMessage = DLL_SDL2.lookupFunction<
+      Int32 Function(Uint32 command, Int32 param),
+      int Function(int command, int param)>('SDL_AndroidSendMessage');
+  return _SDL_AndroidSendMessage(command, param);
+}
+
+/// 
 /// Retrieve a WinRT defined path on the local file system.
 /// 
 /// Not all paths are available on all versions of Windows. This is especially

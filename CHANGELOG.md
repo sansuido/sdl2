@@ -1,3 +1,6 @@
+## 1.1.1
+- [update] Support SDL version 2.0.22 (stable).
+
 ## 1.1.0
 - [update] Support multi platform.
 - [update] Support SDL version 2.0.20 (stable).

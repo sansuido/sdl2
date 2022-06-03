@@ -1,5 +1,6 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
+import 'package:ffi/ffi.dart';
 import 'lib_sdl.dart';
 import 'struct_sdl.dart';
 
@@ -48,6 +49,22 @@ int SDL_GetTouchDevice(int index) {
       Int64 Function(Int32 index),
       int Function(int index)>('SDL_GetTouchDevice');
   return _SDL_GetTouchDevice(index);
+}
+
+/// 
+/// Get the touch device name as reported from the driver or NULL if the index
+/// is invalid.
+/// 
+/// \since This function is available since SDL 2.0.22.
+/// 
+/// ```c
+/// extern DECLSPEC const char* SDLCALL SDL_GetTouchName(int index)
+/// ```
+String SDL_GetTouchName(int index) {
+  final _SDL_GetTouchName = DLL_SDL2.lookupFunction<
+      Pointer<Utf8>? Function(Int32 index),
+      Pointer<Utf8>? Function(int index)>('SDL_GetTouchName');
+  return _SDL_GetTouchName(index)!.toDartString();
 }
 
 /// 

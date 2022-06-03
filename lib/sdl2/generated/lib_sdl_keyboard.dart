@@ -329,7 +329,44 @@ void SDL_StopTextInput() {
 }
 
 /// 
+/// Dismiss the composition window/IME without disabling the subsystem.
+/// 
+/// \since This function is available since SDL 2.0.22.
+/// 
+/// \sa SDL_StartTextInput
+/// \sa SDL_StopTextInput
+/// 
+/// ```c
+/// extern DECLSPEC void SDLCALL SDL_ClearComposition(void)
+/// ```
+void SDL_ClearComposition() {
+  final _SDL_ClearComposition = DLL_SDL2.lookupFunction<
+      Void Function(),
+      void Function()>('SDL_ClearComposition');
+  return _SDL_ClearComposition();
+}
+
+/// 
+/// Returns if an IME Composite or Candidate window is currently shown.
+/// 
+/// \since This function is available since SDL 2.0.22.
+/// 
+/// ```c
+/// extern DECLSPEC SDL_bool SDLCALL SDL_IsTextInputShown(void)
+/// ```
+int SDL_IsTextInputShown() {
+  final _SDL_IsTextInputShown = DLL_SDL2.lookupFunction<
+      Int32 Function(),
+      int Function()>('SDL_IsTextInputShown');
+  return _SDL_IsTextInputShown();
+}
+
+/// 
 /// Set the rectangle used to type Unicode text inputs.
+/// 
+/// Note: If you want use system native IME window, try to set hint
+/// **SDL_HINT_IME_SHOW_UI** to **1**, otherwise this function won't give you
+/// any feedback.
 /// 
 /// \param rect the SDL_Rect structure representing the rectangle to receive
 /// text (ignored if NULL)

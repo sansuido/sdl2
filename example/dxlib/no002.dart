@@ -13,7 +13,6 @@ const SCREEN_WIDTH = 640;
 const SCREEN_HEIGHT = 480;
 const PLAYER_WIDTH = 32;
 const PLAYER_HEIGHT = 32;
-const FONT_PATH = 'res/SourceHanCodeJP.ttc';
 
 var gWindow;
 var gRenderer;
