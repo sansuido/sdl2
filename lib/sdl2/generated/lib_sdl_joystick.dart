@@ -57,6 +57,7 @@ void SDL_UnlockJoysticks() {
 /// \since This function is available since SDL 2.0.0.
 /// 
 /// \sa SDL_JoystickName
+/// \sa SDL_JoystickPath
 /// \sa SDL_JoystickOpen
 /// 
 /// ```c
@@ -92,6 +93,31 @@ String SDL_JoystickNameForIndex(int device_index) {
       Pointer<Utf8>? Function(Int32 device_index),
       Pointer<Utf8>? Function(int device_index)>('SDL_JoystickNameForIndex');
   return _SDL_JoystickNameForIndex(device_index)!.toDartString();
+}
+
+/// 
+/// Get the implementation dependent path of a joystick.
+/// 
+/// This can be called before any joysticks are opened.
+/// 
+/// \param device_index the index of the joystick to query (the N'th joystick
+/// on the system)
+/// \returns the path of the selected joystick. If no path can be found, this
+/// function returns NULL; call SDL_GetError() for more information.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// \sa SDL_JoystickPath
+/// \sa SDL_JoystickOpen
+/// 
+/// ```c
+/// extern DECLSPEC const char *SDLCALL SDL_JoystickPathForIndex(int device_index)
+/// ```
+String SDL_JoystickPathForIndex(int device_index) {
+  final _SDL_JoystickPathForIndex = DLL_SDL2.lookupFunction<
+      Pointer<Utf8>? Function(Int32 device_index),
+      Pointer<Utf8>? Function(int device_index)>('SDL_JoystickPathForIndex');
+  return _SDL_JoystickPathForIndex(device_index)!.toDartString();
 }
 
 /// 
@@ -336,6 +362,23 @@ int SDL_JoystickAttachVirtual(int type, int naxes, int nbuttons, int nhats) {
 }
 
 /// 
+/// Attach a new virtual joystick with extended properties.
+/// 
+/// \returns the joystick's device index, or -1 if an error occurred.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_JoystickAttachVirtualEx(const SDL_VirtualJoystickDesc *desc)
+/// ```
+int SDL_JoystickAttachVirtualEx(Pointer<SDL_VirtualJoystickDesc>? desc) {
+  final _SDL_JoystickAttachVirtualEx = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<SDL_VirtualJoystickDesc>? desc),
+      int Function(Pointer<SDL_VirtualJoystickDesc>? desc)>('SDL_JoystickAttachVirtualEx');
+  return _SDL_JoystickAttachVirtualEx(desc);
+}
+
+/// 
 /// Detach a virtual joystick.
 /// 
 /// \param device_index a value previously returned from
@@ -473,6 +516,27 @@ String SDL_JoystickName(Pointer<SDL_Joystick>? joystick) {
 }
 
 /// 
+/// Get the implementation dependent path of a joystick.
+/// 
+/// \param joystick the SDL_Joystick obtained from SDL_JoystickOpen()
+/// \returns the path of the selected joystick. If no path can be found, this
+/// function returns NULL; call SDL_GetError() for more information.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// \sa SDL_JoystickPathForIndex
+/// 
+/// ```c
+/// extern DECLSPEC const char *SDLCALL SDL_JoystickPath(SDL_Joystick *joystick)
+/// ```
+String SDL_JoystickPath(Pointer<SDL_Joystick>? joystick) {
+  final _SDL_JoystickPath = DLL_SDL2.lookupFunction<
+      Pointer<Utf8>? Function(Pointer<SDL_Joystick>? joystick),
+      Pointer<Utf8>? Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickPath');
+  return _SDL_JoystickPath(joystick)!.toDartString();
+}
+
+/// 
 /// Get the player index of an opened joystick.
 /// 
 /// For XInput controllers this returns the XInput user index. Many joysticks
@@ -497,7 +561,8 @@ int SDL_JoystickGetPlayerIndex(Pointer<SDL_Joystick>? joystick) {
 /// Set the player index of an opened joystick.
 /// 
 /// \param joystick the SDL_Joystick obtained from SDL_JoystickOpen()
-/// \param player_index the player index to set.
+/// \param player_index Player index to assign to this joystick, or -1 to clear
+/// the player index and turn off player LEDs.
 /// 
 /// \since This function is available since SDL 2.0.12.
 /// 
@@ -594,6 +659,27 @@ int SDL_JoystickGetProductVersion(Pointer<SDL_Joystick>? joystick) {
       Uint16 Function(Pointer<SDL_Joystick>? joystick),
       int Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickGetProductVersion');
   return _SDL_JoystickGetProductVersion(joystick);
+}
+
+/// 
+/// Get the firmware version of an opened joystick, if available.
+/// 
+/// If the firmware version isn't available this function returns 0.
+/// 
+/// \param joystick the SDL_Joystick obtained from SDL_JoystickOpen()
+/// \returns the firmware version of the selected joystick, or 0 if
+/// unavailable.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// ```c
+/// extern DECLSPEC Uint16 SDLCALL SDL_JoystickGetFirmwareVersion(SDL_Joystick *joystick)
+/// ```
+int SDL_JoystickGetFirmwareVersion(Pointer<SDL_Joystick>? joystick) {
+  final _SDL_JoystickGetFirmwareVersion = DLL_SDL2.lookupFunction<
+      Uint16 Function(Pointer<SDL_Joystick>? joystick),
+      int Function(Pointer<SDL_Joystick>? joystick)>('SDL_JoystickGetFirmwareVersion');
+  return _SDL_JoystickGetFirmwareVersion(joystick);
 }
 
 /// 

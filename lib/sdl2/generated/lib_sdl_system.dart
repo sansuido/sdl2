@@ -90,6 +90,28 @@ Pointer<ID3D11Device>? SDL_RenderGetD3D11Device(Pointer<SDL_Renderer>? renderer)
 }
 
 /// 
+/// Get the D3D12 device associated with a renderer.
+/// 
+/// Once you are done using the device, you should release it to avoid a
+/// resource leak.
+/// 
+/// \param renderer the renderer from which to get the associated D3D12 device
+/// \returns the D3D12 device associated with given renderer or NULL if it is
+/// not a D3D12 renderer; call SDL_GetError() for more information.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// ```c
+/// extern DECLSPEC ID3D12Device* SDLCALL SDL_RenderGetD3D12Device(SDL_Renderer* renderer)
+/// ```
+Pointer<ID3D12Device>? SDL_RenderGetD3D12Device(Pointer<SDL_Renderer>? renderer) {
+  final _SDL_RenderGetD3D12Device = DLL_SDL2.lookupFunction<
+      Pointer<ID3D12Device>? Function(Pointer<SDL_Renderer>? renderer),
+      Pointer<ID3D12Device>? Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderGetD3D12Device');
+  return _SDL_RenderGetD3D12Device(renderer);
+}
+
+/// 
 /// Get the DXGI Adapter and Output indices for the specified display index.
 /// 
 /// The DXGI Adapter and Output indices can be passed to `EnumAdapters` and
@@ -176,7 +198,7 @@ int SDL_LinuxSetThreadPriorityAndPolicy(int threadID, int sdlPriority, int sched
 /// This function is only available on Apple iOS.
 /// 
 /// For more information see:
-/// [README-ios.md](https://hg.libsdl.org/SDL/file/default/docs/README-ios.md)
+/// https://github.com/libsdl-org/SDL/blob/main/docs/README-ios.md
 /// 
 /// This functions is also accessible using the macro
 /// SDL_iOSSetAnimationCallback() since SDL 2.0.4.
@@ -194,7 +216,7 @@ int SDL_LinuxSetThreadPriorityAndPolicy(int threadID, int sdlPriority, int sched
 /// \sa SDL_iPhoneSetEventPump
 /// 
 /// ```c
-/// extern DECLSPEC int SDLCALL SDL_iPhoneSetAnimationCallback(SDL_Window * window, int interval, void (*callback)(void*), void *callbackParam)
+/// extern DECLSPEC int SDLCALL SDL_iPhoneSetAnimationCallback(SDL_Window * window, int interval, void (SDLCALL *callback)(void*), void *callbackParam)
 /// ```
 int SDL_iPhoneSetAnimationCallback(Pointer<SDL_Window>? window, int interval, Pointer<Void>? callback, Pointer<Void>? callbackParam) {
   final _SDL_iPhoneSetAnimationCallback = DLL_SDL2.lookupFunction<
@@ -609,7 +631,7 @@ String SDL_WinRTGetFSPathUTF8(int pathType) {
 }
 
 /// 
-/// Detects the device family of WinRT plattform at runtime.
+/// Detects the device family of WinRT platform at runtime.
 /// 
 /// \returns a value from the SDL_WinRT_DeviceFamily enum.
 /// 
@@ -713,5 +735,28 @@ void SDL_OnApplicationDidChangeStatusBarOrientation() {
       Void Function(),
       void Function()>('SDL_OnApplicationDidChangeStatusBarOrientation');
   return _SDL_OnApplicationDidChangeStatusBarOrientation();
+}
+
+/// 
+/// Gets a reference to the global async task queue handle for GDK,
+/// initializing if needed.
+/// 
+/// Once you are done with the task queue, you should call
+/// XTaskQueueCloseHandle to reduce the reference count to avoid a resource
+/// leak.
+/// 
+/// \param outTaskQueue a pointer to be filled in with task queue handle.
+/// \returns 0 if success, -1 if any error occurs.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_GDKGetTaskQueue(XTaskQueueHandle * outTaskQueue)
+/// ```
+int SDL_GDKGetTaskQueue(Pointer<XTaskQueueHandle>? outTaskQueue) {
+  final _SDL_GDKGetTaskQueue = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<XTaskQueueHandle>? outTaskQueue),
+      int Function(Pointer<XTaskQueueHandle>? outTaskQueue)>('SDL_GDKGetTaskQueue');
+  return _SDL_GDKGetTaskQueue(outTaskQueue);
 }
 

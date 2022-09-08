@@ -127,3 +127,23 @@ int SDL_UIKitRunApp(int argc, Pointer<Int8>? argv, Pointer<Void>? mainFunction) 
   return _SDL_UIKitRunApp(argc, argv, mainFunction);
 }
 
+/// 
+/// Initialize and launch an SDL GDK application.
+/// 
+/// \param mainFunction the SDL app's C-style main(), an SDL_main_func
+/// \param reserved reserved for future use; should be NULL
+/// \returns 0 on success or -1 on failure; call SDL_GetError() to retrieve
+/// more information on the failure.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_GDKRunApp(SDL_main_func mainFunction, void *reserved)
+/// ```
+int SDL_GDKRunApp(Pointer<Void>? mainFunction, Pointer<Void>? reserved) {
+  final _SDL_GDKRunApp = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Void>? mainFunction, Pointer<Void>? reserved),
+      int Function(Pointer<Void>? mainFunction, Pointer<Void>? reserved)>('SDL_GDKRunApp');
+  return _SDL_GDKRunApp(mainFunction, reserved);
+}
+

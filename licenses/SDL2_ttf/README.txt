@@ -1,25 +1,22 @@
+This library is distributed under the terms of the zlib license:
 
-This library is a wrapper around the excellent FreeType 2.0 library,
-available at:
-	http://www.freetype.org/
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-This library allows you to use TrueType fonts to render text in SDL
-applications.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-To make the library, first install the FreeType library, then type
-'./configure' then 'make' to build the SDL truetype library and the
-showfont and glfont example applications.
-
-Be careful when including fonts with your application, as many of them
-are copyrighted.  The Microsoft fonts, for example, are not freely 
-redistributable and even the free "web" fonts they provide are only 
-redistributable in their special executable installer form (May 1998).
-There are plenty of freeware and shareware fonts available on the Internet
-though, and may suit your purposes.
-
-This library is under the zlib license, see the file "COPYING.txt" for details.
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 
 Portions of this software are copyright © 2013 The FreeType Project (www.freetype.org).  All rights reserved.
 
-Enjoy!
-	-Sam Lantinga <slouken@libsdl.org>		(6/20/2001)
+The source is available from the SDL website:
+http://www.libsdl.org/projects/SDL_ttf

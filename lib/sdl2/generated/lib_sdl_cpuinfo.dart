@@ -436,9 +436,51 @@ int SDL_HasNEON() {
 }
 
 /// 
+/// Determine whether the CPU has LSX (LOONGARCH SIMD) features.
+/// 
+/// This always returns false on CPUs that aren't using LOONGARCH instruction
+/// sets.
+/// 
+/// \returns SDL_TRUE if the CPU has LOONGARCH LSX features or SDL_FALSE if
+/// not.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// ```c
+/// extern DECLSPEC SDL_bool SDLCALL SDL_HasLSX(void)
+/// ```
+int SDL_HasLSX() {
+  final _SDL_HasLSX = DLL_SDL2.lookupFunction<
+      Int32 Function(),
+      int Function()>('SDL_HasLSX');
+  return _SDL_HasLSX();
+}
+
+/// 
+/// Determine whether the CPU has LASX (LOONGARCH SIMD) features.
+/// 
+/// This always returns false on CPUs that aren't using LOONGARCH instruction
+/// sets.
+/// 
+/// \returns SDL_TRUE if the CPU has LOONGARCH LASX features or SDL_FALSE if
+/// not.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// ```c
+/// extern DECLSPEC SDL_bool SDLCALL SDL_HasLASX(void)
+/// ```
+int SDL_HasLASX() {
+  final _SDL_HasLASX = DLL_SDL2.lookupFunction<
+      Int32 Function(),
+      int Function()>('SDL_HasLASX');
+  return _SDL_HasLASX();
+}
+
+/// 
 /// Get the amount of RAM configured in the system.
 /// 
-/// \returns the amount of RAM configured in the system in MB.
+/// \returns the amount of RAM configured in the system in MiB.
 /// 
 /// \since This function is available since SDL 2.0.1.
 /// 
@@ -512,7 +554,7 @@ int SDL_SIMDGetAlignment() {
 /// 
 /// \since This function is available since SDL 2.0.10.
 /// 
-/// \sa SDL_SIMDAlignment
+/// \sa SDL_SIMDGetAlignment
 /// \sa SDL_SIMDRealloc
 /// \sa SDL_SIMDFree
 /// 
@@ -544,7 +586,7 @@ Pointer<Void>? SDL_SIMDAlloc(int len) {
 /// 
 /// \since This function is available since SDL 2.0.14.
 /// 
-/// \sa SDL_SIMDAlignment
+/// \sa SDL_SIMDGetAlignment
 /// \sa SDL_SIMDAlloc
 /// \sa SDL_SIMDFree
 /// 

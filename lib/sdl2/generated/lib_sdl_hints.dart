@@ -67,6 +67,34 @@ int SDL_SetHint(String name, String value) {
 }
 
 /// 
+/// Reset a hint to the default value.
+/// 
+/// This will reset a hint to the value of the environment variable, or NULL if
+/// the environment isn't set. Callbacks will be called normally with this
+/// change.
+/// 
+/// \param name the hint to set
+/// \returns SDL_TRUE if the hint was set, SDL_FALSE otherwise.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// \sa SDL_GetHint
+/// \sa SDL_SetHint
+/// 
+/// ```c
+/// extern DECLSPEC SDL_bool SDLCALL SDL_ResetHint(const char *name)
+/// ```
+int SDL_ResetHint(String name) {
+  final _SDL_ResetHint = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Utf8>? name),
+      int Function(Pointer<Utf8>? name)>('SDL_ResetHint');
+  final _namePointer = name.toNativeUtf8();
+  final _result = _SDL_ResetHint(_namePointer);
+  calloc.free(_namePointer);
+  return _result;
+}
+
+/// 
 /// Get the value of a hint.
 /// 
 /// \param name the hint to query

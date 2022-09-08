@@ -273,6 +273,7 @@ int SDL_GetNumAudioDevices(int iscapture) {
 /// \since This function is available since SDL 2.0.0.
 /// 
 /// \sa SDL_GetNumAudioDevices
+/// \sa SDL_GetDefaultAudioInfo
 /// 
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetAudioDeviceName(int index, int iscapture)
@@ -305,6 +306,7 @@ String SDL_GetAudioDeviceName(int index, int iscapture) {
 /// \since This function is available since SDL 2.0.16.
 /// 
 /// \sa SDL_GetNumAudioDevices
+/// \sa SDL_GetDefaultAudioInfo
 /// 
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetAudioDeviceSpec(int index, int iscapture, SDL_AudioSpec *spec)
@@ -314,6 +316,46 @@ int SDL_GetAudioDeviceSpec(int index, int iscapture, Pointer<SDL_AudioSpec>? spe
       Int32 Function(Int32 index, Int32 iscapture, Pointer<SDL_AudioSpec>? spec),
       int Function(int index, int iscapture, Pointer<SDL_AudioSpec>? spec)>('SDL_GetAudioDeviceSpec');
   return _SDL_GetAudioDeviceSpec(index, iscapture, spec);
+}
+
+/// 
+/// Get the name and preferred format of the default audio device.
+/// 
+/// Some (but not all!) platforms have an isolated mechanism to get information
+/// about the "default" device. This can actually be a completely different
+/// device that's not in the list you get from SDL_GetAudioDeviceSpec(). It can
+/// even be a network address! (This is discussed in SDL_OpenAudioDevice().)
+/// 
+/// As a result, this call is not guaranteed to be performant, as it can query
+/// the sound server directly every time, unlike the other query functions. You
+/// should call this function sparingly!
+/// 
+/// `spec` will be filled with the sample rate, sample format, and channel
+/// count, if a default device exists on the system. If `name` is provided,
+/// will be filled with either a dynamically-allocated UTF-8 string or NULL.
+/// 
+/// \param name A pointer to be filled with the name of the default device (can
+/// be NULL). Please call SDL_free() when you are done with this
+/// pointer!
+/// \param spec The SDL_AudioSpec to be initialized by this function.
+/// \param iscapture non-zero to query the default recording device, zero to
+/// query the default output device.
+/// \returns 0 on success, nonzero on error
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// \sa SDL_GetAudioDeviceName
+/// \sa SDL_GetAudioDeviceSpec
+/// \sa SDL_OpenAudioDevice
+/// 
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_GetDefaultAudioInfo(char **name, SDL_AudioSpec *spec, int iscapture)
+/// ```
+int SDL_GetDefaultAudioInfo(Pointer<Pointer<Int8>>? name, Pointer<SDL_AudioSpec>? spec, int iscapture) {
+  final _SDL_GetDefaultAudioInfo = DLL_SDL2.lookupFunction<
+      Int32 Function(Pointer<Pointer<Int8>>? name, Pointer<SDL_AudioSpec>? spec, Int32 iscapture),
+      int Function(Pointer<Pointer<Int8>>? name, Pointer<SDL_AudioSpec>? spec, int iscapture)>('SDL_GetDefaultAudioInfo');
+  return _SDL_GetDefaultAudioInfo(name, spec, iscapture);
 }
 
 /// 
@@ -382,6 +424,7 @@ int SDL_GetAudioDeviceSpec(int index, int iscapture, Pointer<SDL_AudioSpec>? spe
 /// - `SDL_AUDIO_ALLOW_FREQUENCY_CHANGE`
 /// - `SDL_AUDIO_ALLOW_FORMAT_CHANGE`
 /// - `SDL_AUDIO_ALLOW_CHANNELS_CHANGE`
+/// - `SDL_AUDIO_ALLOW_SAMPLES_CHANGE`
 /// - `SDL_AUDIO_ALLOW_ANY_CHANGE`
 /// 
 /// These flags specify how SDL should behave when a device cannot offer a

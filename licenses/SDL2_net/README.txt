@@ -1,27 +1,20 @@
+This library is distributed under the terms of the zlib license:
 
-SDL_net 2.0
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-The latest version of this library is available from:
-http://www.libsdl.org/projects/SDL_net/
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-This is an example portable network library for use with SDL.
-It is available under the zlib license, found in the file COPYING.txt.
-The API can be found in the file SDL_net.h
-This library supports UNIX, Windows, MacOS Classic, MacOS X,
-BeOS and QNX.
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 
-The demo program is a chat client and server.
-The chat client requires the sample GUI library available at:
-http://www.libsdl.org/projects/GUIlib/
-The chat client connects to the server via TCP, registering itself.
-The server sends back a list of connected clients, and keeps the
-client updated with the status of other clients.
-Every line of text from a client is sent via UDP to every other client.
-
-Note that this isn't necessarily how you would want to write a chat
-program, but it demonstrates how to use the basic features of the 
-network library.
-
-Enjoy!
-	-Sam Lantinga and Roy Wood
-
+The source is available from the SDL website:
+http://www.libsdl.org/projects/SDL_net

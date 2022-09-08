@@ -1,3 +1,10 @@
+## 1.2.0
+- [update] Support SDL version 2.24.0 (stable).
+- [update] Support SDL2_image version 2.6.2.
+- [update] Support SDL2_mixer version 2.6.2.
+- [update] Support SDL2_net version 2.2.0.
+- [update] Support SDL2_ttf version 2.20.1.
+
 ## 1.1.1
 - [update] Support SDL version 2.0.22 (stable).
 

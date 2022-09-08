@@ -224,6 +224,33 @@ String SDL_GameControllerNameForIndex(int joystick_index) {
 }
 
 /// 
+/// Get the implementation dependent path for the game controller.
+/// 
+/// This function can be called before any controllers are opened.
+/// 
+/// `joystick_index` is the same as the `device_index` passed to
+/// SDL_JoystickOpen().
+/// 
+/// \param joystick_index the device_index of a device, from zero to
+/// SDL_NumJoysticks()-1
+/// \returns the implementation-dependent path for the game controller, or NULL
+/// if there is no path or the index is invalid.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// \sa SDL_GameControllerPath
+/// 
+/// ```c
+/// extern DECLSPEC const char *SDLCALL SDL_GameControllerPathForIndex(int joystick_index)
+/// ```
+String SDL_GameControllerPathForIndex(int joystick_index) {
+  final _SDL_GameControllerPathForIndex = DLL_SDL2.lookupFunction<
+      Pointer<Utf8>? Function(Int32 joystick_index),
+      Pointer<Utf8>? Function(int joystick_index)>('SDL_GameControllerPathForIndex');
+  return _SDL_GameControllerPathForIndex(joystick_index)!.toDartString();
+}
+
+/// 
 /// Get the type of a game controller.
 /// 
 /// This can be called before any controllers are opened.
@@ -369,6 +396,31 @@ String SDL_GameControllerName(Pointer<SDL_GameController>? gamecontroller) {
 }
 
 /// 
+/// Get the implementation-dependent path for an opened game controller.
+/// 
+/// This is the same path as returned by SDL_GameControllerNameForIndex(), but
+/// it takes a controller identifier instead of the (unstable) device index.
+/// 
+/// \param gamecontroller a game controller identifier previously returned by
+/// SDL_GameControllerOpen()
+/// \returns the implementation dependent path for the game controller, or NULL
+/// if there is no path or the identifier passed is invalid.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// \sa SDL_GameControllerPathForIndex
+/// 
+/// ```c
+/// extern DECLSPEC const char *SDLCALL SDL_GameControllerPath(SDL_GameController *gamecontroller)
+/// ```
+String SDL_GameControllerPath(Pointer<SDL_GameController>? gamecontroller) {
+  final _SDL_GameControllerPath = DLL_SDL2.lookupFunction<
+      Pointer<Utf8>? Function(Pointer<SDL_GameController>? gamecontroller),
+      Pointer<Utf8>? Function(Pointer<SDL_GameController>? gamecontroller)>('SDL_GameControllerPath');
+  return _SDL_GameControllerPath(gamecontroller)!.toDartString();
+}
+
+/// 
 /// Get the type of this currently opened controller
 /// 
 /// This is the same name as returned by SDL_GameControllerTypeForIndex(), but
@@ -413,7 +465,8 @@ int SDL_GameControllerGetPlayerIndex(Pointer<SDL_GameController>? gamecontroller
 /// Set the player index of an opened game controller.
 /// 
 /// \param gamecontroller the game controller object to adjust.
-/// \param player_index Player index to assign to this controller.
+/// \param player_index Player index to assign to this controller, or -1 to
+/// clear the player index and turn off player LEDs.
 /// 
 /// \since This function is available since SDL 2.0.12.
 /// 
@@ -485,6 +538,26 @@ int SDL_GameControllerGetProductVersion(Pointer<SDL_GameController>? gamecontrol
       Uint16 Function(Pointer<SDL_GameController>? gamecontroller),
       int Function(Pointer<SDL_GameController>? gamecontroller)>('SDL_GameControllerGetProductVersion');
   return _SDL_GameControllerGetProductVersion(gamecontroller);
+}
+
+/// 
+/// Get the firmware version of an opened controller, if available.
+/// 
+/// If the firmware version isn't available this function returns 0.
+/// 
+/// \param gamecontroller the game controller object to query.
+/// \return the controller firmware version, or zero if unavailable.
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// ```c
+/// extern DECLSPEC Uint16 SDLCALL SDL_GameControllerGetFirmwareVersion(SDL_GameController *gamecontroller)
+/// ```
+int SDL_GameControllerGetFirmwareVersion(Pointer<SDL_GameController>? gamecontroller) {
+  final _SDL_GameControllerGetFirmwareVersion = DLL_SDL2.lookupFunction<
+      Uint16 Function(Pointer<SDL_GameController>? gamecontroller),
+      int Function(Pointer<SDL_GameController>? gamecontroller)>('SDL_GameControllerGetFirmwareVersion');
+  return _SDL_GameControllerGetFirmwareVersion(gamecontroller);
 }
 
 /// 

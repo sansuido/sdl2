@@ -44,6 +44,21 @@ void SDL_free(Pointer<Void>? mem) {
 }
 
 /// 
+/// Get the original set of SDL memory functions
+/// 
+/// \since This function is available since SDL 2.24.0.
+/// 
+/// ```c
+/// extern DECLSPEC void SDLCALL SDL_GetOriginalMemoryFunctions(SDL_malloc_func *malloc_func, SDL_calloc_func *calloc_func, SDL_realloc_func *realloc_func, SDL_free_func *free_func)
+/// ```
+void SDL_GetOriginalMemoryFunctions(Pointer<Pointer<Void>>? malloc_func, Pointer<Pointer<Void>>? calloc_func, Pointer<Pointer<Void>>? realloc_func, Pointer<Pointer<Void>>? free_func) {
+  final _SDL_GetOriginalMemoryFunctions = DLL_SDL2.lookupFunction<
+      Void Function(Pointer<Pointer<Void>>? malloc_func, Pointer<Pointer<Void>>? calloc_func, Pointer<Pointer<Void>>? realloc_func, Pointer<Pointer<Void>>? free_func),
+      void Function(Pointer<Pointer<Void>>? malloc_func, Pointer<Pointer<Void>>? calloc_func, Pointer<Pointer<Void>>? realloc_func, Pointer<Pointer<Void>>? free_func)>('SDL_GetOriginalMemoryFunctions');
+  return _SDL_GetOriginalMemoryFunctions(malloc_func, calloc_func, realloc_func, free_func);
+}
+
+/// 
 /// Get the current set of SDL memory functions
 /// 
 /// \since This function is available since SDL 2.0.7.
@@ -117,13 +132,23 @@ int SDL_setenv(String name, String value, int overwrite) {
 }
 
 /// ```c
-/// extern DECLSPEC void SDLCALL SDL_qsort(void *base, size_t nmemb, size_t size, int (*compare) (const void *, const void *))
+/// extern DECLSPEC void SDLCALL SDL_qsort(void *base, size_t nmemb, size_t size, int (SDLCALL *compare) (const void *, const void *))
 /// ```
 void SDL_qsort(Pointer<Void>? base, int nmemb, int size, Pointer<Void>? compare) {
   final _SDL_qsort = DLL_SDL2.lookupFunction<
       Void Function(Pointer<Void>? base, Uint32 nmemb, Uint32 size, Pointer<Void>? compare),
       void Function(Pointer<Void>? base, int nmemb, int size, Pointer<Void>? compare)>('SDL_qsort');
   return _SDL_qsort(base, nmemb, size, compare);
+}
+
+/// ```c
+/// extern DECLSPEC void * SDLCALL SDL_bsearch(const void *key, const void *base, size_t nmemb, size_t size, int (SDLCALL *compare) (const void *, const void *))
+/// ```
+Pointer<Void>? SDL_bsearch(Pointer<Void>? key, Pointer<Void>? base, int nmemb, int size, Pointer<Void>? compare) {
+  final _SDL_bsearch = DLL_SDL2.lookupFunction<
+      Pointer<Void>? Function(Pointer<Void>? key, Pointer<Void>? base, Uint32 nmemb, Uint32 size, Pointer<Void>? compare),
+      Pointer<Void>? Function(Pointer<Void>? key, Pointer<Void>? base, int nmemb, int size, Pointer<Void>? compare)>('SDL_bsearch');
+  return _SDL_bsearch(key, base, nmemb, size, compare);
 }
 
 /// ```c
@@ -275,6 +300,16 @@ int SDL_tolower(int x) {
       Int32 Function(Int32 x),
       int Function(int x)>('SDL_tolower');
   return _SDL_tolower(x);
+}
+
+/// ```c
+/// extern DECLSPEC Uint16 SDLCALL SDL_crc16(Uint16 crc, const void *data, size_t len)
+/// ```
+int SDL_crc16(int crc, Pointer<Void>? data, int len) {
+  final _SDL_crc16 = DLL_SDL2.lookupFunction<
+      Uint16 Function(Uint16 crc, Pointer<Void>? data, Uint32 len),
+      int Function(int crc, Pointer<Void>? data, int len)>('SDL_crc16');
+  return _SDL_crc16(crc, data, len);
 }
 
 /// ```c
@@ -575,6 +610,19 @@ int SDL_utf8strlen(String str) {
       int Function(Pointer<Utf8>? str)>('SDL_utf8strlen');
   final _strPointer = str.toNativeUtf8();
   final _result = _SDL_utf8strlen(_strPointer);
+  calloc.free(_strPointer);
+  return _result;
+}
+
+/// ```c
+/// extern DECLSPEC size_t SDLCALL SDL_utf8strnlen(const char *str, size_t bytes)
+/// ```
+int SDL_utf8strnlen(String str, int bytes) {
+  final _SDL_utf8strnlen = DLL_SDL2.lookupFunction<
+      Uint32 Function(Pointer<Utf8>? str, Uint32 bytes),
+      int Function(Pointer<Utf8>? str, int bytes)>('SDL_utf8strnlen');
+  final _strPointer = str.toNativeUtf8();
+  final _result = _SDL_utf8strnlen(_strPointer, bytes);
   calloc.free(_strPointer);
   return _result;
 }

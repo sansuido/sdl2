@@ -594,6 +594,21 @@ class SDL_JoyDeviceEvent extends Struct {
   external int which;
 }
 
+class SDL_JoyBatteryEvent extends Struct {
+  // [0]+(4)
+  @Uint32()
+  external int type;
+  // [4]+(4)
+  @Uint32()
+  external int timestamp;
+  // [8]+(4)
+  @Int32()
+  external int which;
+  // [12]+(4)
+  @Int32()
+  external int level;
+}
+
 class SDL_ControllerAxisEvent extends Struct {
   // [0]+(4)
   @Uint32()
@@ -949,6 +964,7 @@ extension SDL_EventExtension on Pointer<SDL_Event> {
   Pointer<SDL_JoyHatEvent> get jhat => cast<Uint8>().elementAt(0).cast<SDL_JoyHatEvent>();
   Pointer<SDL_JoyButtonEvent> get jbutton => cast<Uint8>().elementAt(0).cast<SDL_JoyButtonEvent>();
   Pointer<SDL_JoyDeviceEvent> get jdevice => cast<Uint8>().elementAt(0).cast<SDL_JoyDeviceEvent>();
+  Pointer<SDL_JoyBatteryEvent> get jbattery => cast<Uint8>().elementAt(0).cast<SDL_JoyBatteryEvent>();
   Pointer<SDL_ControllerAxisEvent> get caxis => cast<Uint8>().elementAt(0).cast<SDL_ControllerAxisEvent>();
   Pointer<SDL_ControllerButtonEvent> get cbutton => cast<Uint8>().elementAt(0).cast<SDL_ControllerButtonEvent>();
   Pointer<SDL_ControllerDeviceEvent> get cdevice => cast<Uint8>().elementAt(0).cast<SDL_ControllerDeviceEvent>();
@@ -974,6 +990,42 @@ class SDL_GameControllerButtonBind extends Struct {
   external int bindType;
   // [4]+(8)
   external Pointer<Void>?  value;
+}
+
+class SDL_GUID extends Struct {
+  // [0]+(1*16)
+  @Uint8()
+  external int data_1;
+  @Uint8()
+  external int data_2;
+  @Uint8()
+  external int data_3;
+  @Uint8()
+  external int data_4;
+  @Uint8()
+  external int data_5;
+  @Uint8()
+  external int data_6;
+  @Uint8()
+  external int data_7;
+  @Uint8()
+  external int data_8;
+  @Uint8()
+  external int data_9;
+  @Uint8()
+  external int data_10;
+  @Uint8()
+  external int data_11;
+  @Uint8()
+  external int data_12;
+  @Uint8()
+  external int data_13;
+  @Uint8()
+  external int data_14;
+  @Uint8()
+  external int data_15;
+  @Uint8()
+  external int data_16;
 }
 
 class SDL_Haptic extends Opaque {}
@@ -1349,40 +1401,53 @@ class SDL_hid_device_info extends Struct {
 
 class SDL_Joystick extends Opaque {}
 
-class SDL_JoystickGUID extends Struct {
-  // [0]+(1*16)
-  @Uint8()
-  external int data_1;
-  @Uint8()
-  external int data_2;
-  @Uint8()
-  external int data_3;
-  @Uint8()
-  external int data_4;
-  @Uint8()
-  external int data_5;
-  @Uint8()
-  external int data_6;
-  @Uint8()
-  external int data_7;
-  @Uint8()
-  external int data_8;
-  @Uint8()
-  external int data_9;
-  @Uint8()
-  external int data_10;
-  @Uint8()
-  external int data_11;
-  @Uint8()
-  external int data_12;
-  @Uint8()
-  external int data_13;
-  @Uint8()
-  external int data_14;
-  @Uint8()
-  external int data_15;
-  @Uint8()
-  external int data_16;
+class SDL_VirtualJoystickDesc extends Struct {
+  // [0]+(2)
+  @Uint16()
+  external int version;
+  // [2]+(2)
+  @Uint16()
+  external int type;
+  // [4]+(2)
+  @Uint16()
+  external int naxes;
+  // [6]+(2)
+  @Uint16()
+  external int nbuttons;
+  // [8]+(2)
+  @Uint16()
+  external int nhats;
+  // [10]+(2)
+  @Uint16()
+  external int vendor_id;
+  // [12]+(2)
+  @Uint16()
+  external int product_id;
+  // [14]+(2)
+  @Uint16()
+  external int padding;
+  // [16]+(4)
+  @Uint32()
+  external int button_mask;
+  // [20]+(4)
+  @Uint32()
+  external int axis_mask;
+  // [24]+(8)
+  external Pointer<Utf8>? name;
+  // [32]+(8)
+  external Pointer<Void>? userdata;
+  // [40]+(8)
+  external Pointer<Void>? Update;
+  // [48]+(8)
+  external Pointer<Void>? SetPlayerIndex;
+  // [56]+(8)
+  external Pointer<Void>? Rumble;
+  // [64]+(8)
+  external Pointer<Void>? RumbleTriggers;
+  // [72]+(8)
+  external Pointer<Void>? SetLED;
+  // [80]+(8)
+  external Pointer<Void>? SendEffect;
 }
 
 class SDL_Keysym extends Struct {
@@ -1734,6 +1799,8 @@ extension SDL_WindowShapeModeExtension on Pointer<SDL_WindowShapeMode> {
 
 class SDL_iconv_t extends Opaque {}
 
+class SDL_BlitMap extends Opaque {}
+
 class SDL_Surface extends Struct {
   // [0]+(4)
   @Uint32()
@@ -1777,6 +1844,10 @@ extension SDL_SurfaceExtension on Pointer<SDL_Surface> {
 class IDirect3DDevice9 extends Opaque {}
 
 class ID3D11Device extends Opaque {}
+
+class ID3D12Device extends Opaque {}
+
+class XTaskQueueHandle extends Opaque {}
 
 class NSWindow extends Opaque {}
 

@@ -3,7 +3,7 @@ SDL2 for Dart
 
 # Requirement
 
-* ffi ^2.0.0
+* ffi ^2.0.1
 
 # Note
 

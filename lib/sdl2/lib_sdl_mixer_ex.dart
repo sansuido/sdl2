@@ -2,10 +2,7 @@ import 'dart:ffi';
 import './generated/const_sdl.dart';
 import './generated/const_sdl_mixer.dart';
 import './generated/lib_sdl_error.dart';
-import './generated/lib_sdl_rwops.dart';
-import './generated/lib_sdl_mixer.dart';
 import './generated/struct_sdl.dart';
-import './generated/struct_sdl_mixer.dart';
 import 'lib_sdl_ex.dart';
 
 /// ```c
@@ -47,27 +44,6 @@ const MIX_DEFAULT_FORMAT = AUDIO_S16LSB;
 /// const MIX_MAX_VOLUME = SDL_MIX_MAXVOLUME;
 /// ```
 const MIX_MAX_VOLUME = SDL_MIX_MAXVOLUME;
-
-/// ```c
-/// const Mix_LoadWAV = (file) Mix_LoadWAV_RW(SDL_RWFromFile(file, 'rb'), 1);
-/// ```
-Pointer<Mix_Chunk>? Mix_LoadWAV(String file) {
-  return Mix_LoadWAV_RW(SDL_RWFromFile(file, 'rb'), 1);
-}
-
-/// ```c
-/// const Mix_PlayChannel = (channel,chunk,loops) Mix_PlayChannelTimed(channel,chunk,loops,-1);
-/// ```
-int Mix_PlayChannel(int channel, Pointer<Mix_Chunk>? chunk, int loops) {
-  return Mix_PlayChannelTimed(channel, chunk, loops, -1);
-}
-
-/// ```c
-/// const Mix_FadeInChannel = (channel,chunk,loops,ms) Mix_FadeInChannelTimed(channel,chunk,loops,ms,-1);
-/// ```
-int Mix_FadeInChannel(int channel, Pointer<Mix_Chunk>? chunk, int loops, int ms) {
-  return Mix_FadeInChannelTimed(channel, chunk, loops, ms, -1);
-}
 
 /// ```c
 /// const Mix_SetError = SDL_SetError;

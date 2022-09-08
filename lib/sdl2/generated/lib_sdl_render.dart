@@ -898,9 +898,13 @@ int SDL_RenderSetLogicalSize(Pointer<SDL_Renderer>? renderer, int w, int h) {
 /// 
 /// Get device independent resolution for rendering.
 /// 
-/// This may return 0 for `w` and `h` if the SDL_Renderer has never had its
-/// logical size set by SDL_RenderSetLogicalSize() and never had a render
-/// target set.
+/// When using the main rendering target (eg no target texture is set): this
+/// may return 0 for `w` and `h` if the SDL_Renderer has never had its logical
+/// size set by SDL_RenderSetLogicalSize(). Otherwise it returns the logical
+/// width and height.
+/// 
+/// When using a target texture: Never return 0 for `w` and `h` at first. Then
+/// it returns the logical width and height that are set.
 /// 
 /// \param renderer a rendering context
 /// \param w an int to be filled with the width
@@ -1145,7 +1149,7 @@ void SDL_RenderGetScale(Pointer<SDL_Renderer>? renderer, Pointer<Float>? scaleX,
 /// and logical renderer size set
 /// 
 /// \param renderer the renderer from which the logical coordinates should be
-/// calcualted
+/// calculated
 /// \param windowX the real X coordinate in the window
 /// \param windowY the real Y coordinate in the window
 /// \param logicalX the pointer filled with the logical x coordinate
@@ -1169,15 +1173,18 @@ void SDL_RenderWindowToLogical(Pointer<SDL_Renderer>? renderer, int windowX, int
 }
 
 /// 
-/// Get real coordinates of point in window when given logical coordinates of point in renderer.
-/// Logical coordinates will differ from real coordinates when render is scaled and logical renderer size set
+/// Get real coordinates of point in window when given logical coordinates of
+/// point in renderer.
 /// 
-/// \param renderer the renderer from which the window coordinates should be calculated
+/// Logical coordinates will differ from real coordinates when render is scaled
+/// and logical renderer size set
+/// 
+/// \param renderer the renderer from which the window coordinates should be
+/// calculated
 /// \param logicalX the logical x coordinate
 /// \param logicalY the logical y coordinate
 /// \param windowX the pointer filled with the real X coordinate in the window
 /// \param windowY the pointer filled with the real Y coordinate in the window
-/// 
 /// 
 /// \since This function is available since SDL 2.0.18.
 /// 
