@@ -1,3 +1,7 @@
+## 1.0.12
+## 1.3.1
+- [fix] Fix version.
+
 ## 1.3.0
 - [update] Functions and structs follow lint rules.
 
