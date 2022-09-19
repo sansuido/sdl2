@@ -21,11 +21,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_AtomicTryLock(SDL_SpinLock *lock)
 /// ```
-int SDL_AtomicTryLock(Pointer<Int32>? lock) {
-  final _SDL_AtomicTryLock = DLL_SDL2.lookupFunction<
+int sdlAtomicTryLock(Pointer<Int32>? lock) {
+  final sdlAtomicTryLockLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Int32>? lock),
       int Function(Pointer<Int32>? lock)>('SDL_AtomicTryLock');
-  return _SDL_AtomicTryLock(lock);
+  return sdlAtomicTryLockLookupFunction(lock);
 }
 
 /// 
@@ -44,11 +44,11 @@ int SDL_AtomicTryLock(Pointer<Int32>? lock) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_AtomicLock(SDL_SpinLock *lock)
 /// ```
-void SDL_AtomicLock(Pointer<Int32>? lock) {
-  final _SDL_AtomicLock = DLL_SDL2.lookupFunction<
+void sdlAtomicLock(Pointer<Int32>? lock) {
+  final sdlAtomicLockLookupFunction = libSdl2.lookupFunction<
       Void Function(Pointer<Int32>? lock),
       void Function(Pointer<Int32>? lock)>('SDL_AtomicLock');
-  return _SDL_AtomicLock(lock);
+  return sdlAtomicLockLookupFunction(lock);
 }
 
 /// 
@@ -69,11 +69,11 @@ void SDL_AtomicLock(Pointer<Int32>? lock) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_AtomicUnlock(SDL_SpinLock *lock)
 /// ```
-void SDL_AtomicUnlock(Pointer<Int32>? lock) {
-  final _SDL_AtomicUnlock = DLL_SDL2.lookupFunction<
+void sdlAtomicUnlock(Pointer<Int32>? lock) {
+  final sdlAtomicUnlockLookupFunction = libSdl2.lookupFunction<
       Void Function(Pointer<Int32>? lock),
       void Function(Pointer<Int32>? lock)>('SDL_AtomicUnlock');
-  return _SDL_AtomicUnlock(lock);
+  return sdlAtomicUnlockLookupFunction(lock);
 }
 
 /// 
@@ -100,21 +100,21 @@ void SDL_AtomicUnlock(Pointer<Int32>? lock) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_MemoryBarrierReleaseFunction(void)
 /// ```
-void SDL_MemoryBarrierReleaseFunction() {
-  final _SDL_MemoryBarrierReleaseFunction = DLL_SDL2.lookupFunction<
+void sdlMemoryBarrierReleaseFunction() {
+  final sdlMemoryBarrierReleaseFunctionLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_MemoryBarrierReleaseFunction');
-  return _SDL_MemoryBarrierReleaseFunction();
+  return sdlMemoryBarrierReleaseFunctionLookupFunction();
 }
 
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_MemoryBarrierAcquireFunction(void)
 /// ```
-void SDL_MemoryBarrierAcquireFunction() {
-  final _SDL_MemoryBarrierAcquireFunction = DLL_SDL2.lookupFunction<
+void sdlMemoryBarrierAcquireFunction() {
+  final sdlMemoryBarrierAcquireFunctionLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_MemoryBarrierAcquireFunction');
-  return _SDL_MemoryBarrierAcquireFunction();
+  return sdlMemoryBarrierAcquireFunctionLookupFunction();
 }
 
 /// 
@@ -137,11 +137,11 @@ void SDL_MemoryBarrierAcquireFunction() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_AtomicCAS(SDL_atomic_t *a, int oldval, int newval)
 /// ```
-int SDL_AtomicCAS(Pointer<SDL_atomic_t>? a, int oldval, int newval) {
-  final _SDL_AtomicCAS = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_atomic_t>? a, Int32 oldval, Int32 newval),
-      int Function(Pointer<SDL_atomic_t>? a, int oldval, int newval)>('SDL_AtomicCAS');
-  return _SDL_AtomicCAS(a, oldval, newval);
+int sdlAtomicCas(Pointer<SdlAtomicT>? a, int oldval, int newval) {
+  final sdlAtomicCasLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlAtomicT>? a, Int32 oldval, Int32 newval),
+      int Function(Pointer<SdlAtomicT>? a, int oldval, int newval)>('SDL_AtomicCAS');
+  return sdlAtomicCasLookupFunction(a, oldval, newval);
 }
 
 /// 
@@ -163,11 +163,11 @@ int SDL_AtomicCAS(Pointer<SDL_atomic_t>? a, int oldval, int newval) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_AtomicSet(SDL_atomic_t *a, int v)
 /// ```
-int SDL_AtomicSet(Pointer<SDL_atomic_t>? a, int v) {
-  final _SDL_AtomicSet = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_atomic_t>? a, Int32 v),
-      int Function(Pointer<SDL_atomic_t>? a, int v)>('SDL_AtomicSet');
-  return _SDL_AtomicSet(a, v);
+int sdlAtomicSet(Pointer<SdlAtomicT>? a, int v) {
+  final sdlAtomicSetLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlAtomicT>? a, Int32 v),
+      int Function(Pointer<SdlAtomicT>? a, int v)>('SDL_AtomicSet');
+  return sdlAtomicSetLookupFunction(a, v);
 }
 
 /// 
@@ -186,11 +186,11 @@ int SDL_AtomicSet(Pointer<SDL_atomic_t>? a, int v) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_AtomicGet(SDL_atomic_t *a)
 /// ```
-int SDL_AtomicGet(Pointer<SDL_atomic_t>? a) {
-  final _SDL_AtomicGet = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_atomic_t>? a),
-      int Function(Pointer<SDL_atomic_t>? a)>('SDL_AtomicGet');
-  return _SDL_AtomicGet(a);
+int sdlAtomicGet(Pointer<SdlAtomicT>? a) {
+  final sdlAtomicGetLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlAtomicT>? a),
+      int Function(Pointer<SdlAtomicT>? a)>('SDL_AtomicGet');
+  return sdlAtomicGetLookupFunction(a);
 }
 
 /// 
@@ -213,11 +213,11 @@ int SDL_AtomicGet(Pointer<SDL_atomic_t>? a) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_AtomicAdd(SDL_atomic_t *a, int v)
 /// ```
-int SDL_AtomicAdd(Pointer<SDL_atomic_t>? a, int v) {
-  final _SDL_AtomicAdd = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_atomic_t>? a, Int32 v),
-      int Function(Pointer<SDL_atomic_t>? a, int v)>('SDL_AtomicAdd');
-  return _SDL_AtomicAdd(a, v);
+int sdlAtomicAdd(Pointer<SdlAtomicT>? a, int v) {
+  final sdlAtomicAddLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlAtomicT>? a, Int32 v),
+      int Function(Pointer<SdlAtomicT>? a, int v)>('SDL_AtomicAdd');
+  return sdlAtomicAddLookupFunction(a, v);
 }
 
 /// 
@@ -240,11 +240,11 @@ int SDL_AtomicAdd(Pointer<SDL_atomic_t>? a, int v) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_AtomicCASPtr(void **a, void *oldval, void *newval)
 /// ```
-int SDL_AtomicCASPtr(Pointer<Pointer<Void>>? a, Pointer<Void>? oldval, Pointer<Void>? newval) {
-  final _SDL_AtomicCASPtr = DLL_SDL2.lookupFunction<
+int sdlAtomicCasPtr(Pointer<Pointer<Void>>? a, Pointer<Void>? oldval, Pointer<Void>? newval) {
+  final sdlAtomicCasPtrLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Pointer<Void>>? a, Pointer<Void>? oldval, Pointer<Void>? newval),
       int Function(Pointer<Pointer<Void>>? a, Pointer<Void>? oldval, Pointer<Void>? newval)>('SDL_AtomicCASPtr');
-  return _SDL_AtomicCASPtr(a, oldval, newval);
+  return sdlAtomicCasPtrLookupFunction(a, oldval, newval);
 }
 
 /// 
@@ -265,11 +265,11 @@ int SDL_AtomicCASPtr(Pointer<Pointer<Void>>? a, Pointer<Void>? oldval, Pointer<V
 /// ```c
 /// extern DECLSPEC void* SDLCALL SDL_AtomicSetPtr(void **a, void* v)
 /// ```
-Pointer<Void>? SDL_AtomicSetPtr(Pointer<Pointer<Void>>? a, Pointer<Void>? v) {
-  final _SDL_AtomicSetPtr = DLL_SDL2.lookupFunction<
+Pointer<Void>? sdlAtomicSetPtr(Pointer<Pointer<Void>>? a, Pointer<Void>? v) {
+  final sdlAtomicSetPtrLookupFunction = libSdl2.lookupFunction<
       Pointer<Void>? Function(Pointer<Pointer<Void>>? a, Pointer<Void>? v),
       Pointer<Void>? Function(Pointer<Pointer<Void>>? a, Pointer<Void>? v)>('SDL_AtomicSetPtr');
-  return _SDL_AtomicSetPtr(a, v);
+  return sdlAtomicSetPtrLookupFunction(a, v);
 }
 
 /// 
@@ -289,10 +289,10 @@ Pointer<Void>? SDL_AtomicSetPtr(Pointer<Pointer<Void>>? a, Pointer<Void>? v) {
 /// ```c
 /// extern DECLSPEC void* SDLCALL SDL_AtomicGetPtr(void **a)
 /// ```
-Pointer<Void>? SDL_AtomicGetPtr(Pointer<Pointer<Void>>? a) {
-  final _SDL_AtomicGetPtr = DLL_SDL2.lookupFunction<
+Pointer<Void>? sdlAtomicGetPtr(Pointer<Pointer<Void>>? a) {
+  final sdlAtomicGetPtrLookupFunction = libSdl2.lookupFunction<
       Pointer<Void>? Function(Pointer<Pointer<Void>>? a),
       Pointer<Void>? Function(Pointer<Pointer<Void>>? a)>('SDL_AtomicGetPtr');
-  return _SDL_AtomicGetPtr(a);
+  return sdlAtomicGetPtrLookupFunction(a);
 }
 

@@ -26,11 +26,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_mutex *SDLCALL SDL_CreateMutex(void)
 /// ```
-Pointer<SDL_mutex>? SDL_CreateMutex() {
-  final _SDL_CreateMutex = DLL_SDL2.lookupFunction<
-      Pointer<SDL_mutex>? Function(),
-      Pointer<SDL_mutex>? Function()>('SDL_CreateMutex');
-  return _SDL_CreateMutex();
+Pointer<SdlMutex>? sdlCreateMutex() {
+  final sdlCreateMutexLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlMutex>? Function(),
+      Pointer<SdlMutex>? Function()>('SDL_CreateMutex');
+  return sdlCreateMutexLookupFunction();
 }
 
 /// 
@@ -52,11 +52,11 @@ Pointer<SDL_mutex>? SDL_CreateMutex() {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_LockMutex(SDL_mutex * mutex)
 /// ```
-int SDL_LockMutex(Pointer<SDL_mutex>? mutex) {
-  final _SDL_LockMutex = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_mutex>? mutex),
-      int Function(Pointer<SDL_mutex>? mutex)>('SDL_LockMutex');
-  return _SDL_LockMutex(mutex);
+int sdlLockMutex(Pointer<SdlMutex>? mutex) {
+  final sdlLockMutexLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlMutex>? mutex),
+      int Function(Pointer<SdlMutex>? mutex)>('SDL_LockMutex');
+  return sdlLockMutexLookupFunction(mutex);
 }
 
 /// 
@@ -82,11 +82,11 @@ int SDL_LockMutex(Pointer<SDL_mutex>? mutex) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_TryLockMutex(SDL_mutex * mutex)
 /// ```
-int SDL_TryLockMutex(Pointer<SDL_mutex>? mutex) {
-  final _SDL_TryLockMutex = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_mutex>? mutex),
-      int Function(Pointer<SDL_mutex>? mutex)>('SDL_TryLockMutex');
-  return _SDL_TryLockMutex(mutex);
+int sdlTryLockMutex(Pointer<SdlMutex>? mutex) {
+  final sdlTryLockMutexLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlMutex>? mutex),
+      int Function(Pointer<SdlMutex>? mutex)>('SDL_TryLockMutex');
+  return sdlTryLockMutexLookupFunction(mutex);
 }
 
 /// 
@@ -109,11 +109,11 @@ int SDL_TryLockMutex(Pointer<SDL_mutex>? mutex) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_UnlockMutex(SDL_mutex * mutex)
 /// ```
-int SDL_UnlockMutex(Pointer<SDL_mutex>? mutex) {
-  final _SDL_UnlockMutex = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_mutex>? mutex),
-      int Function(Pointer<SDL_mutex>? mutex)>('SDL_UnlockMutex');
-  return _SDL_UnlockMutex(mutex);
+int sdlUnlockMutex(Pointer<SdlMutex>? mutex) {
+  final sdlUnlockMutexLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlMutex>? mutex),
+      int Function(Pointer<SdlMutex>? mutex)>('SDL_UnlockMutex');
+  return sdlUnlockMutexLookupFunction(mutex);
 }
 
 /// 
@@ -137,11 +137,11 @@ int SDL_UnlockMutex(Pointer<SDL_mutex>? mutex) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_DestroyMutex(SDL_mutex * mutex)
 /// ```
-void SDL_DestroyMutex(Pointer<SDL_mutex>? mutex) {
-  final _SDL_DestroyMutex = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_mutex>? mutex),
-      void Function(Pointer<SDL_mutex>? mutex)>('SDL_DestroyMutex');
-  return _SDL_DestroyMutex(mutex);
+void sdlDestroyMutex(Pointer<SdlMutex>? mutex) {
+  final sdlDestroyMutexLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlMutex>? mutex),
+      void Function(Pointer<SdlMutex>? mutex)>('SDL_DestroyMutex');
+  return sdlDestroyMutexLookupFunction(mutex);
 }
 
 /// 
@@ -169,11 +169,11 @@ void SDL_DestroyMutex(Pointer<SDL_mutex>? mutex) {
 /// ```c
 /// extern DECLSPEC SDL_sem *SDLCALL SDL_CreateSemaphore(Uint32 initial_value)
 /// ```
-Pointer<SDL_sem>? SDL_CreateSemaphore(int initial_value) {
-  final _SDL_CreateSemaphore = DLL_SDL2.lookupFunction<
-      Pointer<SDL_sem>? Function(Uint32 initial_value),
-      Pointer<SDL_sem>? Function(int initial_value)>('SDL_CreateSemaphore');
-  return _SDL_CreateSemaphore(initial_value);
+Pointer<SdlSem>? sdlCreateSemaphore(int initialValue) {
+  final sdlCreateSemaphoreLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlSem>? Function(Uint32 initialValue),
+      Pointer<SdlSem>? Function(int initialValue)>('SDL_CreateSemaphore');
+  return sdlCreateSemaphoreLookupFunction(initialValue);
 }
 
 /// 
@@ -196,11 +196,11 @@ Pointer<SDL_sem>? SDL_CreateSemaphore(int initial_value) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_DestroySemaphore(SDL_sem * sem)
 /// ```
-void SDL_DestroySemaphore(Pointer<SDL_sem>? sem) {
-  final _SDL_DestroySemaphore = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_sem>? sem),
-      void Function(Pointer<SDL_sem>? sem)>('SDL_DestroySemaphore');
-  return _SDL_DestroySemaphore(sem);
+void sdlDestroySemaphore(Pointer<SdlSem>? sem) {
+  final sdlDestroySemaphoreLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlSem>? sem),
+      void Function(Pointer<SdlSem>? sem)>('SDL_DestroySemaphore');
+  return sdlDestroySemaphoreLookupFunction(sem);
 }
 
 /// 
@@ -231,11 +231,11 @@ void SDL_DestroySemaphore(Pointer<SDL_sem>? sem) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SemWait(SDL_sem * sem)
 /// ```
-int SDL_SemWait(Pointer<SDL_sem>? sem) {
-  final _SDL_SemWait = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_sem>? sem),
-      int Function(Pointer<SDL_sem>? sem)>('SDL_SemWait');
-  return _SDL_SemWait(sem);
+int sdlSemWait(Pointer<SdlSem>? sem) {
+  final sdlSemWaitLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlSem>? sem),
+      int Function(Pointer<SdlSem>? sem)>('SDL_SemWait');
+  return sdlSemWaitLookupFunction(sem);
 }
 
 /// 
@@ -263,11 +263,11 @@ int SDL_SemWait(Pointer<SDL_sem>? sem) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SemTryWait(SDL_sem * sem)
 /// ```
-int SDL_SemTryWait(Pointer<SDL_sem>? sem) {
-  final _SDL_SemTryWait = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_sem>? sem),
-      int Function(Pointer<SDL_sem>? sem)>('SDL_SemTryWait');
-  return _SDL_SemTryWait(sem);
+int sdlSemTryWait(Pointer<SdlSem>? sem) {
+  final sdlSemTryWaitLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlSem>? sem),
+      int Function(Pointer<SdlSem>? sem)>('SDL_SemTryWait');
+  return sdlSemTryWaitLookupFunction(sem);
 }
 
 /// 
@@ -296,11 +296,11 @@ int SDL_SemTryWait(Pointer<SDL_sem>? sem) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SemWaitTimeout(SDL_sem * sem, Uint32 ms)
 /// ```
-int SDL_SemWaitTimeout(Pointer<SDL_sem>? sem, int ms) {
-  final _SDL_SemWaitTimeout = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_sem>? sem, Uint32 ms),
-      int Function(Pointer<SDL_sem>? sem, int ms)>('SDL_SemWaitTimeout');
-  return _SDL_SemWaitTimeout(sem, ms);
+int sdlSemWaitTimeout(Pointer<SdlSem>? sem, int ms) {
+  final sdlSemWaitTimeoutLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlSem>? sem, Uint32 ms),
+      int Function(Pointer<SdlSem>? sem, int ms)>('SDL_SemWaitTimeout');
+  return sdlSemWaitTimeoutLookupFunction(sem, ms);
 }
 
 /// 
@@ -322,11 +322,11 @@ int SDL_SemWaitTimeout(Pointer<SDL_sem>? sem, int ms) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SemPost(SDL_sem * sem)
 /// ```
-int SDL_SemPost(Pointer<SDL_sem>? sem) {
-  final _SDL_SemPost = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_sem>? sem),
-      int Function(Pointer<SDL_sem>? sem)>('SDL_SemPost');
-  return _SDL_SemPost(sem);
+int sdlSemPost(Pointer<SdlSem>? sem) {
+  final sdlSemPostLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlSem>? sem),
+      int Function(Pointer<SdlSem>? sem)>('SDL_SemPost');
+  return sdlSemPostLookupFunction(sem);
 }
 
 /// 
@@ -342,11 +342,11 @@ int SDL_SemPost(Pointer<SDL_sem>? sem) {
 /// ```c
 /// extern DECLSPEC Uint32 SDLCALL SDL_SemValue(SDL_sem * sem)
 /// ```
-int SDL_SemValue(Pointer<SDL_sem>? sem) {
-  final _SDL_SemValue = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_sem>? sem),
-      int Function(Pointer<SDL_sem>? sem)>('SDL_SemValue');
-  return _SDL_SemValue(sem);
+int sdlSemValue(Pointer<SdlSem>? sem) {
+  final sdlSemValueLookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlSem>? sem),
+      int Function(Pointer<SdlSem>? sem)>('SDL_SemValue');
+  return sdlSemValueLookupFunction(sem);
 }
 
 /// 
@@ -366,11 +366,11 @@ int SDL_SemValue(Pointer<SDL_sem>? sem) {
 /// ```c
 /// extern DECLSPEC SDL_cond *SDLCALL SDL_CreateCond(void)
 /// ```
-Pointer<SDL_cond>? SDL_CreateCond() {
-  final _SDL_CreateCond = DLL_SDL2.lookupFunction<
-      Pointer<SDL_cond>? Function(),
-      Pointer<SDL_cond>? Function()>('SDL_CreateCond');
-  return _SDL_CreateCond();
+Pointer<SdlCond>? sdlCreateCond() {
+  final sdlCreateCondLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlCond>? Function(),
+      Pointer<SdlCond>? Function()>('SDL_CreateCond');
+  return sdlCreateCondLookupFunction();
 }
 
 /// 
@@ -389,11 +389,11 @@ Pointer<SDL_cond>? SDL_CreateCond() {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_DestroyCond(SDL_cond * cond)
 /// ```
-void SDL_DestroyCond(Pointer<SDL_cond>? cond) {
-  final _SDL_DestroyCond = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_cond>? cond),
-      void Function(Pointer<SDL_cond>? cond)>('SDL_DestroyCond');
-  return _SDL_DestroyCond(cond);
+void sdlDestroyCond(Pointer<SdlCond>? cond) {
+  final sdlDestroyCondLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlCond>? cond),
+      void Function(Pointer<SdlCond>? cond)>('SDL_DestroyCond');
+  return sdlDestroyCondLookupFunction(cond);
 }
 
 /// 
@@ -414,11 +414,11 @@ void SDL_DestroyCond(Pointer<SDL_cond>? cond) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_CondSignal(SDL_cond * cond)
 /// ```
-int SDL_CondSignal(Pointer<SDL_cond>? cond) {
-  final _SDL_CondSignal = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_cond>? cond),
-      int Function(Pointer<SDL_cond>? cond)>('SDL_CondSignal');
-  return _SDL_CondSignal(cond);
+int sdlCondSignal(Pointer<SdlCond>? cond) {
+  final sdlCondSignalLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlCond>? cond),
+      int Function(Pointer<SdlCond>? cond)>('SDL_CondSignal');
+  return sdlCondSignalLookupFunction(cond);
 }
 
 /// 
@@ -439,11 +439,11 @@ int SDL_CondSignal(Pointer<SDL_cond>? cond) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_CondBroadcast(SDL_cond * cond)
 /// ```
-int SDL_CondBroadcast(Pointer<SDL_cond>? cond) {
-  final _SDL_CondBroadcast = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_cond>? cond),
-      int Function(Pointer<SDL_cond>? cond)>('SDL_CondBroadcast');
-  return _SDL_CondBroadcast(cond);
+int sdlCondBroadcast(Pointer<SdlCond>? cond) {
+  final sdlCondBroadcastLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlCond>? cond),
+      int Function(Pointer<SdlCond>? cond)>('SDL_CondBroadcast');
+  return sdlCondBroadcastLookupFunction(cond);
 }
 
 /// 
@@ -475,11 +475,11 @@ int SDL_CondBroadcast(Pointer<SDL_cond>? cond) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_CondWait(SDL_cond * cond, SDL_mutex * mutex)
 /// ```
-int SDL_CondWait(Pointer<SDL_cond>? cond, Pointer<SDL_mutex>? mutex) {
-  final _SDL_CondWait = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_cond>? cond, Pointer<SDL_mutex>? mutex),
-      int Function(Pointer<SDL_cond>? cond, Pointer<SDL_mutex>? mutex)>('SDL_CondWait');
-  return _SDL_CondWait(cond, mutex);
+int sdlCondWait(Pointer<SdlCond>? cond, Pointer<SdlMutex>? mutex) {
+  final sdlCondWaitLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlCond>? cond, Pointer<SdlMutex>? mutex),
+      int Function(Pointer<SdlCond>? cond, Pointer<SdlMutex>? mutex)>('SDL_CondWait');
+  return sdlCondWaitLookupFunction(cond, mutex);
 }
 
 /// 
@@ -512,10 +512,10 @@ int SDL_CondWait(Pointer<SDL_cond>? cond, Pointer<SDL_mutex>? mutex) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_CondWaitTimeout(SDL_cond * cond, SDL_mutex * mutex, Uint32 ms)
 /// ```
-int SDL_CondWaitTimeout(Pointer<SDL_cond>? cond, Pointer<SDL_mutex>? mutex, int ms) {
-  final _SDL_CondWaitTimeout = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_cond>? cond, Pointer<SDL_mutex>? mutex, Uint32 ms),
-      int Function(Pointer<SDL_cond>? cond, Pointer<SDL_mutex>? mutex, int ms)>('SDL_CondWaitTimeout');
-  return _SDL_CondWaitTimeout(cond, mutex, ms);
+int sdlCondWaitTimeout(Pointer<SdlCond>? cond, Pointer<SdlMutex>? mutex, int ms) {
+  final sdlCondWaitTimeoutLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlCond>? cond, Pointer<SdlMutex>? mutex, Uint32 ms),
+      int Function(Pointer<SdlCond>? cond, Pointer<SdlMutex>? mutex, int ms)>('SDL_CondWaitTimeout');
+  return sdlCondWaitTimeoutLookupFunction(cond, mutex, ms);
 }
 

@@ -48,10 +48,10 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_Locale * SDLCALL SDL_GetPreferredLocales(void)
 /// ```
-Pointer<SDL_Locale>? SDL_GetPreferredLocales() {
-  final _SDL_GetPreferredLocales = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Locale>? Function(),
-      Pointer<SDL_Locale>? Function()>('SDL_GetPreferredLocales');
-  return _SDL_GetPreferredLocales();
+Pointer<SdlLocale>? sdlGetPreferredLocales() {
+  final sdlGetPreferredLocalesLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlLocale>? Function(),
+      Pointer<SdlLocale>? Function()>('SDL_GetPreferredLocales');
+  return sdlGetPreferredLocalesLookupFunction();
 }
 

@@ -19,11 +19,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasIntersection(const SDL_Rect * A, const SDL_Rect * B)
 /// ```
-int SDL_HasIntersection(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B) {
-  final _SDL_HasIntersection = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B),
-      int Function(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B)>('SDL_HasIntersection');
-  return _SDL_HasIntersection(A, B);
+int sdlHasIntersection(Pointer<SdlRect>? a, Pointer<SdlRect>? b) {
+  final sdlHasIntersectionLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRect>? a, Pointer<SdlRect>? b),
+      int Function(Pointer<SdlRect>? a, Pointer<SdlRect>? b)>('SDL_HasIntersection');
+  return sdlHasIntersectionLookupFunction(a, b);
 }
 
 /// 
@@ -44,11 +44,11 @@ int SDL_HasIntersection(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IntersectRect(const SDL_Rect * A, const SDL_Rect * B, SDL_Rect * result)
 /// ```
-int SDL_IntersectRect(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B, Pointer<SDL_Rect>? result) {
-  final _SDL_IntersectRect = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B, Pointer<SDL_Rect>? result),
-      int Function(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B, Pointer<SDL_Rect>? result)>('SDL_IntersectRect');
-  return _SDL_IntersectRect(A, B, result);
+int sdlIntersectRect(Pointer<SdlRect>? a, Pointer<SdlRect>? b, Pointer<SdlRect>? result) {
+  final sdlIntersectRectLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRect>? a, Pointer<SdlRect>? b, Pointer<SdlRect>? result),
+      int Function(Pointer<SdlRect>? a, Pointer<SdlRect>? b, Pointer<SdlRect>? result)>('SDL_IntersectRect');
+  return sdlIntersectRectLookupFunction(a, b, result);
 }
 
 /// 
@@ -64,11 +64,11 @@ int SDL_IntersectRect(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B, Pointer<SDL_Re
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_UnionRect(const SDL_Rect * A, const SDL_Rect * B, SDL_Rect * result)
 /// ```
-void SDL_UnionRect(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B, Pointer<SDL_Rect>? result) {
-  final _SDL_UnionRect = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B, Pointer<SDL_Rect>? result),
-      void Function(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B, Pointer<SDL_Rect>? result)>('SDL_UnionRect');
-  return _SDL_UnionRect(A, B, result);
+void sdlUnionRect(Pointer<SdlRect>? a, Pointer<SdlRect>? b, Pointer<SdlRect>? result) {
+  final sdlUnionRectLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlRect>? a, Pointer<SdlRect>? b, Pointer<SdlRect>? result),
+      void Function(Pointer<SdlRect>? a, Pointer<SdlRect>? b, Pointer<SdlRect>? result)>('SDL_UnionRect');
+  return sdlUnionRectLookupFunction(a, b, result);
 }
 
 /// 
@@ -91,11 +91,11 @@ void SDL_UnionRect(Pointer<SDL_Rect>? A, Pointer<SDL_Rect>? B, Pointer<SDL_Rect>
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_EnclosePoints(const SDL_Point * points, int count, const SDL_Rect * clip, SDL_Rect * result)
 /// ```
-int SDL_EnclosePoints(Pointer<SDL_Point>? points, int count, Pointer<SDL_Rect>? clip, Pointer<SDL_Rect>? result) {
-  final _SDL_EnclosePoints = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Point>? points, Int32 count, Pointer<SDL_Rect>? clip, Pointer<SDL_Rect>? result),
-      int Function(Pointer<SDL_Point>? points, int count, Pointer<SDL_Rect>? clip, Pointer<SDL_Rect>? result)>('SDL_EnclosePoints');
-  return _SDL_EnclosePoints(points, count, clip, result);
+int sdlEnclosePoints(Pointer<SdlPoint>? points, int count, Pointer<SdlRect>? clip, Pointer<SdlRect>? result) {
+  final sdlEnclosePointsLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlPoint>? points, Int32 count, Pointer<SdlRect>? clip, Pointer<SdlRect>? result),
+      int Function(Pointer<SdlPoint>? points, int count, Pointer<SdlRect>? clip, Pointer<SdlRect>? result)>('SDL_EnclosePoints');
+  return sdlEnclosePointsLookupFunction(points, count, clip, result);
 }
 
 /// 
@@ -119,11 +119,11 @@ int SDL_EnclosePoints(Pointer<SDL_Point>? points, int count, Pointer<SDL_Rect>? 
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IntersectRectAndLine(const SDL_Rect * rect, int *X1, int *Y1, int *X2, int *Y2)
 /// ```
-int SDL_IntersectRectAndLine(Pointer<SDL_Rect>? rect, Pointer<Int32>? X1, Pointer<Int32>? Y1, Pointer<Int32>? X2, Pointer<Int32>? Y2) {
-  final _SDL_IntersectRectAndLine = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Rect>? rect, Pointer<Int32>? X1, Pointer<Int32>? Y1, Pointer<Int32>? X2, Pointer<Int32>? Y2),
-      int Function(Pointer<SDL_Rect>? rect, Pointer<Int32>? X1, Pointer<Int32>? Y1, Pointer<Int32>? X2, Pointer<Int32>? Y2)>('SDL_IntersectRectAndLine');
-  return _SDL_IntersectRectAndLine(rect, X1, Y1, X2, Y2);
+int sdlIntersectRectAndLine(Pointer<SdlRect>? rect, Pointer<Int32>? x1, Pointer<Int32>? y1, Pointer<Int32>? x2, Pointer<Int32>? y2) {
+  final sdlIntersectRectAndLineLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRect>? rect, Pointer<Int32>? x1, Pointer<Int32>? y1, Pointer<Int32>? x2, Pointer<Int32>? y2),
+      int Function(Pointer<SdlRect>? rect, Pointer<Int32>? x1, Pointer<Int32>? y1, Pointer<Int32>? x2, Pointer<Int32>? y2)>('SDL_IntersectRectAndLine');
+  return sdlIntersectRectAndLineLookupFunction(rect, x1, y1, x2, y2);
 }
 
 /// 
@@ -142,11 +142,11 @@ int SDL_IntersectRectAndLine(Pointer<SDL_Rect>? rect, Pointer<Int32>? X1, Pointe
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasIntersectionF(const SDL_FRect * A, const SDL_FRect * B)
 /// ```
-int SDL_HasIntersectionF(Pointer<SDL_FRect>? A, Pointer<SDL_FRect>? B) {
-  final _SDL_HasIntersectionF = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_FRect>? A, Pointer<SDL_FRect>? B),
-      int Function(Pointer<SDL_FRect>? A, Pointer<SDL_FRect>? B)>('SDL_HasIntersectionF');
-  return _SDL_HasIntersectionF(A, B);
+int sdlHasIntersectionF(Pointer<SdlFRect>? a, Pointer<SdlFRect>? b) {
+  final sdlHasIntersectionFLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlFRect>? a, Pointer<SdlFRect>? b),
+      int Function(Pointer<SdlFRect>? a, Pointer<SdlFRect>? b)>('SDL_HasIntersectionF');
+  return sdlHasIntersectionFLookupFunction(a, b);
 }
 
 /// 
@@ -167,11 +167,11 @@ int SDL_HasIntersectionF(Pointer<SDL_FRect>? A, Pointer<SDL_FRect>? B) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IntersectFRect(const SDL_FRect * A, const SDL_FRect * B, SDL_FRect * result)
 /// ```
-int SDL_IntersectFRect(Pointer<SDL_FRect>? A, Pointer<SDL_FRect>? B, Pointer<SDL_FRect>? result) {
-  final _SDL_IntersectFRect = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_FRect>? A, Pointer<SDL_FRect>? B, Pointer<SDL_FRect>? result),
-      int Function(Pointer<SDL_FRect>? A, Pointer<SDL_FRect>? B, Pointer<SDL_FRect>? result)>('SDL_IntersectFRect');
-  return _SDL_IntersectFRect(A, B, result);
+int sdlIntersectFRect(Pointer<SdlFRect>? a, Pointer<SdlFRect>? b, Pointer<SdlFRect>? result) {
+  final sdlIntersectFRectLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlFRect>? a, Pointer<SdlFRect>? b, Pointer<SdlFRect>? result),
+      int Function(Pointer<SdlFRect>? a, Pointer<SdlFRect>? b, Pointer<SdlFRect>? result)>('SDL_IntersectFRect');
+  return sdlIntersectFRectLookupFunction(a, b, result);
 }
 
 /// 
@@ -187,11 +187,11 @@ int SDL_IntersectFRect(Pointer<SDL_FRect>? A, Pointer<SDL_FRect>? B, Pointer<SDL
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_UnionFRect(const SDL_FRect * A, const SDL_FRect * B, SDL_FRect * result)
 /// ```
-void SDL_UnionFRect(Pointer<SDL_FRect>? A, Pointer<SDL_FRect>? B, Pointer<SDL_FRect>? result) {
-  final _SDL_UnionFRect = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_FRect>? A, Pointer<SDL_FRect>? B, Pointer<SDL_FRect>? result),
-      void Function(Pointer<SDL_FRect>? A, Pointer<SDL_FRect>? B, Pointer<SDL_FRect>? result)>('SDL_UnionFRect');
-  return _SDL_UnionFRect(A, B, result);
+void sdlUnionFRect(Pointer<SdlFRect>? a, Pointer<SdlFRect>? b, Pointer<SdlFRect>? result) {
+  final sdlUnionFRectLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlFRect>? a, Pointer<SdlFRect>? b, Pointer<SdlFRect>? result),
+      void Function(Pointer<SdlFRect>? a, Pointer<SdlFRect>? b, Pointer<SdlFRect>? result)>('SDL_UnionFRect');
+  return sdlUnionFRectLookupFunction(a, b, result);
 }
 
 /// 
@@ -215,11 +215,11 @@ void SDL_UnionFRect(Pointer<SDL_FRect>? A, Pointer<SDL_FRect>? B, Pointer<SDL_FR
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_EncloseFPoints(const SDL_FPoint * points, int count, const SDL_FRect * clip, SDL_FRect * result)
 /// ```
-int SDL_EncloseFPoints(Pointer<SDL_FPoint>? points, int count, Pointer<SDL_FRect>? clip, Pointer<SDL_FRect>? result) {
-  final _SDL_EncloseFPoints = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_FPoint>? points, Int32 count, Pointer<SDL_FRect>? clip, Pointer<SDL_FRect>? result),
-      int Function(Pointer<SDL_FPoint>? points, int count, Pointer<SDL_FRect>? clip, Pointer<SDL_FRect>? result)>('SDL_EncloseFPoints');
-  return _SDL_EncloseFPoints(points, count, clip, result);
+int sdlEncloseFPoints(Pointer<SdlFPoint>? points, int count, Pointer<SdlFRect>? clip, Pointer<SdlFRect>? result) {
+  final sdlEncloseFPointsLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlFPoint>? points, Int32 count, Pointer<SdlFRect>? clip, Pointer<SdlFRect>? result),
+      int Function(Pointer<SdlFPoint>? points, int count, Pointer<SdlFRect>? clip, Pointer<SdlFRect>? result)>('SDL_EncloseFPoints');
+  return sdlEncloseFPointsLookupFunction(points, count, clip, result);
 }
 
 /// 
@@ -244,10 +244,10 @@ int SDL_EncloseFPoints(Pointer<SDL_FPoint>? points, int count, Pointer<SDL_FRect
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IntersectFRectAndLine(const SDL_FRect * rect, float *X1, float *Y1, float *X2, float *Y2)
 /// ```
-int SDL_IntersectFRectAndLine(Pointer<SDL_FRect>? rect, Pointer<Float>? X1, Pointer<Float>? Y1, Pointer<Float>? X2, Pointer<Float>? Y2) {
-  final _SDL_IntersectFRectAndLine = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_FRect>? rect, Pointer<Float>? X1, Pointer<Float>? Y1, Pointer<Float>? X2, Pointer<Float>? Y2),
-      int Function(Pointer<SDL_FRect>? rect, Pointer<Float>? X1, Pointer<Float>? Y1, Pointer<Float>? X2, Pointer<Float>? Y2)>('SDL_IntersectFRectAndLine');
-  return _SDL_IntersectFRectAndLine(rect, X1, Y1, X2, Y2);
+int sdlIntersectFRectAndLine(Pointer<SdlFRect>? rect, Pointer<Float>? x1, Pointer<Float>? y1, Pointer<Float>? x2, Pointer<Float>? y2) {
+  final sdlIntersectFRectAndLineLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlFRect>? rect, Pointer<Float>? x1, Pointer<Float>? y1, Pointer<Float>? x2, Pointer<Float>? y2),
+      int Function(Pointer<SdlFRect>? rect, Pointer<Float>? x1, Pointer<Float>? y1, Pointer<Float>? x2, Pointer<Float>? y2)>('SDL_IntersectFRectAndLine');
+  return sdlIntersectFRectAndLineLookupFunction(rect, x1, y1, x2, y2);
 }
 

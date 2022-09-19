@@ -40,11 +40,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_ShowMessageBox(const SDL_MessageBoxData *messageboxdata, int *buttonid)
 /// ```
-int SDL_ShowMessageBox(Pointer<SDL_MessageBoxData>? messageboxdata, Pointer<Int32>? buttonid) {
-  final _SDL_ShowMessageBox = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_MessageBoxData>? messageboxdata, Pointer<Int32>? buttonid),
-      int Function(Pointer<SDL_MessageBoxData>? messageboxdata, Pointer<Int32>? buttonid)>('SDL_ShowMessageBox');
-  return _SDL_ShowMessageBox(messageboxdata, buttonid);
+int sdlShowMessageBox(Pointer<SdlMessageBoxData>? messageboxdata, Pointer<Int32>? buttonid) {
+  final sdlShowMessageBoxLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlMessageBoxData>? messageboxdata, Pointer<Int32>? buttonid),
+      int Function(Pointer<SdlMessageBoxData>? messageboxdata, Pointer<Int32>? buttonid)>('SDL_ShowMessageBox');
+  return sdlShowMessageBoxLookupFunction(messageboxdata, buttonid);
 }
 
 /// 
@@ -90,15 +90,15 @@ int SDL_ShowMessageBox(Pointer<SDL_MessageBoxData>? messageboxdata, Pointer<Int3
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_ShowSimpleMessageBox(Uint32 flags, const char *title, const char *message, SDL_Window *window)
 /// ```
-int SDL_ShowSimpleMessageBox(int flags, String title, String message, Pointer<SDL_Window>? window) {
-  final _SDL_ShowSimpleMessageBox = DLL_SDL2.lookupFunction<
-      Int32 Function(Uint32 flags, Pointer<Utf8>? title, Pointer<Utf8>? message, Pointer<SDL_Window>? window),
-      int Function(int flags, Pointer<Utf8>? title, Pointer<Utf8>? message, Pointer<SDL_Window>? window)>('SDL_ShowSimpleMessageBox');
-  final _titlePointer = title.toNativeUtf8();
-  final _messagePointer = message.toNativeUtf8();
-  final _result = _SDL_ShowSimpleMessageBox(flags, _titlePointer, _messagePointer, window);
-  calloc.free(_titlePointer);
-  calloc.free(_messagePointer);
-  return _result;
+int sdlShowSimpleMessageBox(int flags, String title, String message, Pointer<SdlWindow>? window) {
+  final sdlShowSimpleMessageBoxLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Uint32 flags, Pointer<Utf8>? title, Pointer<Utf8>? message, Pointer<SdlWindow>? window),
+      int Function(int flags, Pointer<Utf8>? title, Pointer<Utf8>? message, Pointer<SdlWindow>? window)>('SDL_ShowSimpleMessageBox');
+  final titlePointer = title.toNativeUtf8();
+  final messagePointer = message.toNativeUtf8();
+  final result = sdlShowSimpleMessageBoxLookupFunction(flags, titlePointer, messagePointer, window);
+  calloc.free(titlePointer);
+  calloc.free(messagePointer);
+  return result;
 }
 

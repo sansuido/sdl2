@@ -19,21 +19,21 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_LockSensors(void)
 /// ```
-void SDL_LockSensors() {
-  final _SDL_LockSensors = DLL_SDL2.lookupFunction<
+void sdlLockSensors() {
+  final sdlLockSensorsLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_LockSensors');
-  return _SDL_LockSensors();
+  return sdlLockSensorsLookupFunction();
 }
 
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_UnlockSensors(void)
 /// ```
-void SDL_UnlockSensors() {
-  final _SDL_UnlockSensors = DLL_SDL2.lookupFunction<
+void sdlUnlockSensors() {
+  final sdlUnlockSensorsLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_UnlockSensors');
-  return _SDL_UnlockSensors();
+  return sdlUnlockSensorsLookupFunction();
 }
 
 /// 
@@ -46,11 +46,11 @@ void SDL_UnlockSensors() {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_NumSensors(void)
 /// ```
-int SDL_NumSensors() {
-  final _SDL_NumSensors = DLL_SDL2.lookupFunction<
+int sdlNumSensors() {
+  final sdlNumSensorsLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_NumSensors');
-  return _SDL_NumSensors();
+  return sdlNumSensorsLookupFunction();
 }
 
 /// 
@@ -64,11 +64,11 @@ int SDL_NumSensors() {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_SensorGetDeviceName(int device_index)
 /// ```
-String SDL_SensorGetDeviceName(int device_index) {
-  final _SDL_SensorGetDeviceName = DLL_SDL2.lookupFunction<
-      Pointer<Utf8>? Function(Int32 device_index),
-      Pointer<Utf8>? Function(int device_index)>('SDL_SensorGetDeviceName');
-  return _SDL_SensorGetDeviceName(device_index)!.toDartString();
+String sdlSensorGetDeviceName(int deviceIndex) {
+  final sdlSensorGetDeviceNameLookupFunction = libSdl2.lookupFunction<
+      Pointer<Utf8>? Function(Int32 deviceIndex),
+      Pointer<Utf8>? Function(int deviceIndex)>('SDL_SensorGetDeviceName');
+  return sdlSensorGetDeviceNameLookupFunction(deviceIndex)!.toDartString();
 }
 
 /// 
@@ -83,11 +83,11 @@ String SDL_SensorGetDeviceName(int device_index) {
 /// ```c
 /// extern DECLSPEC SDL_SensorType SDLCALL SDL_SensorGetDeviceType(int device_index)
 /// ```
-int SDL_SensorGetDeviceType(int device_index) {
-  final _SDL_SensorGetDeviceType = DLL_SDL2.lookupFunction<
-      Int32 Function(Int32 device_index),
-      int Function(int device_index)>('SDL_SensorGetDeviceType');
-  return _SDL_SensorGetDeviceType(device_index);
+int sdlSensorGetDeviceType(int deviceIndex) {
+  final sdlSensorGetDeviceTypeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Int32 deviceIndex),
+      int Function(int deviceIndex)>('SDL_SensorGetDeviceType');
+  return sdlSensorGetDeviceTypeLookupFunction(deviceIndex);
 }
 
 /// 
@@ -102,11 +102,11 @@ int SDL_SensorGetDeviceType(int device_index) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SensorGetDeviceNonPortableType(int device_index)
 /// ```
-int SDL_SensorGetDeviceNonPortableType(int device_index) {
-  final _SDL_SensorGetDeviceNonPortableType = DLL_SDL2.lookupFunction<
-      Int32 Function(Int32 device_index),
-      int Function(int device_index)>('SDL_SensorGetDeviceNonPortableType');
-  return _SDL_SensorGetDeviceNonPortableType(device_index);
+int sdlSensorGetDeviceNonPortableType(int deviceIndex) {
+  final sdlSensorGetDeviceNonPortableTypeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Int32 deviceIndex),
+      int Function(int deviceIndex)>('SDL_SensorGetDeviceNonPortableType');
+  return sdlSensorGetDeviceNonPortableTypeLookupFunction(deviceIndex);
 }
 
 /// 
@@ -120,11 +120,11 @@ int SDL_SensorGetDeviceNonPortableType(int device_index) {
 /// ```c
 /// extern DECLSPEC SDL_SensorID SDLCALL SDL_SensorGetDeviceInstanceID(int device_index)
 /// ```
-int SDL_SensorGetDeviceInstanceID(int device_index) {
-  final _SDL_SensorGetDeviceInstanceID = DLL_SDL2.lookupFunction<
-      Int32 Function(Int32 device_index),
-      int Function(int device_index)>('SDL_SensorGetDeviceInstanceID');
-  return _SDL_SensorGetDeviceInstanceID(device_index);
+int sdlSensorGetDeviceInstanceId(int deviceIndex) {
+  final sdlSensorGetDeviceInstanceIdLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Int32 deviceIndex),
+      int Function(int deviceIndex)>('SDL_SensorGetDeviceInstanceID');
+  return sdlSensorGetDeviceInstanceIdLookupFunction(deviceIndex);
 }
 
 /// 
@@ -138,11 +138,11 @@ int SDL_SensorGetDeviceInstanceID(int device_index) {
 /// ```c
 /// extern DECLSPEC SDL_Sensor *SDLCALL SDL_SensorOpen(int device_index)
 /// ```
-Pointer<SDL_Sensor>? SDL_SensorOpen(int device_index) {
-  final _SDL_SensorOpen = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Sensor>? Function(Int32 device_index),
-      Pointer<SDL_Sensor>? Function(int device_index)>('SDL_SensorOpen');
-  return _SDL_SensorOpen(device_index);
+Pointer<SdlSensor>? sdlSensorOpen(int deviceIndex) {
+  final sdlSensorOpenLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlSensor>? Function(Int32 deviceIndex),
+      Pointer<SdlSensor>? Function(int deviceIndex)>('SDL_SensorOpen');
+  return sdlSensorOpenLookupFunction(deviceIndex);
 }
 
 /// 
@@ -156,11 +156,11 @@ Pointer<SDL_Sensor>? SDL_SensorOpen(int device_index) {
 /// ```c
 /// extern DECLSPEC SDL_Sensor *SDLCALL SDL_SensorFromInstanceID(SDL_SensorID instance_id)
 /// ```
-Pointer<SDL_Sensor>? SDL_SensorFromInstanceID(int instance_id) {
-  final _SDL_SensorFromInstanceID = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Sensor>? Function(Int32 instance_id),
-      Pointer<SDL_Sensor>? Function(int instance_id)>('SDL_SensorFromInstanceID');
-  return _SDL_SensorFromInstanceID(instance_id);
+Pointer<SdlSensor>? sdlSensorFromInstanceId(int instanceId) {
+  final sdlSensorFromInstanceIdLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlSensor>? Function(Int32 instanceId),
+      Pointer<SdlSensor>? Function(int instanceId)>('SDL_SensorFromInstanceID');
+  return sdlSensorFromInstanceIdLookupFunction(instanceId);
 }
 
 /// 
@@ -174,11 +174,11 @@ Pointer<SDL_Sensor>? SDL_SensorFromInstanceID(int instance_id) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_SensorGetName(SDL_Sensor *sensor)
 /// ```
-String SDL_SensorGetName(Pointer<SDL_Sensor>? sensor) {
-  final _SDL_SensorGetName = DLL_SDL2.lookupFunction<
-      Pointer<Utf8>? Function(Pointer<SDL_Sensor>? sensor),
-      Pointer<Utf8>? Function(Pointer<SDL_Sensor>? sensor)>('SDL_SensorGetName');
-  return _SDL_SensorGetName(sensor)!.toDartString();
+String sdlSensorGetName(Pointer<SdlSensor>? sensor) {
+  final sdlSensorGetNameLookupFunction = libSdl2.lookupFunction<
+      Pointer<Utf8>? Function(Pointer<SdlSensor>? sensor),
+      Pointer<Utf8>? Function(Pointer<SdlSensor>? sensor)>('SDL_SensorGetName');
+  return sdlSensorGetNameLookupFunction(sensor)!.toDartString();
 }
 
 /// 
@@ -193,11 +193,11 @@ String SDL_SensorGetName(Pointer<SDL_Sensor>? sensor) {
 /// ```c
 /// extern DECLSPEC SDL_SensorType SDLCALL SDL_SensorGetType(SDL_Sensor *sensor)
 /// ```
-int SDL_SensorGetType(Pointer<SDL_Sensor>? sensor) {
-  final _SDL_SensorGetType = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Sensor>? sensor),
-      int Function(Pointer<SDL_Sensor>? sensor)>('SDL_SensorGetType');
-  return _SDL_SensorGetType(sensor);
+int sdlSensorGetType(Pointer<SdlSensor>? sensor) {
+  final sdlSensorGetTypeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlSensor>? sensor),
+      int Function(Pointer<SdlSensor>? sensor)>('SDL_SensorGetType');
+  return sdlSensorGetTypeLookupFunction(sensor);
 }
 
 /// 
@@ -211,11 +211,11 @@ int SDL_SensorGetType(Pointer<SDL_Sensor>? sensor) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SensorGetNonPortableType(SDL_Sensor *sensor)
 /// ```
-int SDL_SensorGetNonPortableType(Pointer<SDL_Sensor>? sensor) {
-  final _SDL_SensorGetNonPortableType = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Sensor>? sensor),
-      int Function(Pointer<SDL_Sensor>? sensor)>('SDL_SensorGetNonPortableType');
-  return _SDL_SensorGetNonPortableType(sensor);
+int sdlSensorGetNonPortableType(Pointer<SdlSensor>? sensor) {
+  final sdlSensorGetNonPortableTypeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlSensor>? sensor),
+      int Function(Pointer<SdlSensor>? sensor)>('SDL_SensorGetNonPortableType');
+  return sdlSensorGetNonPortableTypeLookupFunction(sensor);
 }
 
 /// 
@@ -229,11 +229,11 @@ int SDL_SensorGetNonPortableType(Pointer<SDL_Sensor>? sensor) {
 /// ```c
 /// extern DECLSPEC SDL_SensorID SDLCALL SDL_SensorGetInstanceID(SDL_Sensor *sensor)
 /// ```
-int SDL_SensorGetInstanceID(Pointer<SDL_Sensor>? sensor) {
-  final _SDL_SensorGetInstanceID = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Sensor>? sensor),
-      int Function(Pointer<SDL_Sensor>? sensor)>('SDL_SensorGetInstanceID');
-  return _SDL_SensorGetInstanceID(sensor);
+int sdlSensorGetInstanceId(Pointer<SdlSensor>? sensor) {
+  final sdlSensorGetInstanceIdLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlSensor>? sensor),
+      int Function(Pointer<SdlSensor>? sensor)>('SDL_SensorGetInstanceID');
+  return sdlSensorGetInstanceIdLookupFunction(sensor);
 }
 
 /// 
@@ -251,11 +251,11 @@ int SDL_SensorGetInstanceID(Pointer<SDL_Sensor>? sensor) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SensorGetData(SDL_Sensor * sensor, float *data, int num_values)
 /// ```
-int SDL_SensorGetData(Pointer<SDL_Sensor>? sensor, Pointer<Float>? data, int num_values) {
-  final _SDL_SensorGetData = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Sensor>? sensor, Pointer<Float>? data, Int32 num_values),
-      int Function(Pointer<SDL_Sensor>? sensor, Pointer<Float>? data, int num_values)>('SDL_SensorGetData');
-  return _SDL_SensorGetData(sensor, data, num_values);
+int sdlSensorGetData(Pointer<SdlSensor>? sensor, Pointer<Float>? data, int numValues) {
+  final sdlSensorGetDataLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlSensor>? sensor, Pointer<Float>? data, Int32 numValues),
+      int Function(Pointer<SdlSensor>? sensor, Pointer<Float>? data, int numValues)>('SDL_SensorGetData');
+  return sdlSensorGetDataLookupFunction(sensor, data, numValues);
 }
 
 /// 
@@ -268,11 +268,11 @@ int SDL_SensorGetData(Pointer<SDL_Sensor>? sensor, Pointer<Float>? data, int num
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_SensorClose(SDL_Sensor * sensor)
 /// ```
-void SDL_SensorClose(Pointer<SDL_Sensor>? sensor) {
-  final _SDL_SensorClose = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Sensor>? sensor),
-      void Function(Pointer<SDL_Sensor>? sensor)>('SDL_SensorClose');
-  return _SDL_SensorClose(sensor);
+void sdlSensorClose(Pointer<SdlSensor>? sensor) {
+  final sdlSensorCloseLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlSensor>? sensor),
+      void Function(Pointer<SdlSensor>? sensor)>('SDL_SensorClose');
+  return sdlSensorCloseLookupFunction(sensor);
 }
 
 /// 
@@ -289,10 +289,10 @@ void SDL_SensorClose(Pointer<SDL_Sensor>? sensor) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_SensorUpdate(void)
 /// ```
-void SDL_SensorUpdate() {
-  final _SDL_SensorUpdate = DLL_SDL2.lookupFunction<
+void sdlSensorUpdate() {
+  final sdlSensorUpdateLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_SensorUpdate');
-  return _SDL_SensorUpdate();
+  return sdlSensorUpdateLookupFunction();
 }
 

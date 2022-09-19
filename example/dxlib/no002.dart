@@ -6,39 +6,39 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:sdl2/sdl2.dart';
 
-const TITLE = 'DXLIB Tutorial 02';
-const FPS = 60;
-const DELAY_TIME = 1000.0 / FPS;
-const SCREEN_WIDTH = 640;
-const SCREEN_HEIGHT = 480;
-const PLAYER_WIDTH = 32;
-const PLAYER_HEIGHT = 32;
+const gTitle = 'DXLIB Tutorial 02';
+const gFps = 60;
+const gDelayTime = 1000.0 / gFps;
+const gScreenWidth = 640;
+const gScreenHeight = 480;
+const gPlayerWidth = 32;
+const gPlayerHeight = 32;
 
-var gWindow;
-var gRenderer;
-var gPlayerX = (SCREEN_WIDTH - PLAYER_HEIGHT) ~/ 2;
-var gPlayerY = (SCREEN_HEIGHT - PLAYER_HEIGHT) ~/ 2;
+Pointer<SdlWindow>? gWindow;
+Pointer<SdlRenderer>? gRenderer;
+var gPlayerX = (gScreenWidth - gPlayerHeight) ~/ 2;
+var gPlayerY = (gScreenHeight - gPlayerHeight) ~/ 2;
 var gJumpPower = 0;
 
 bool init() {
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-    print('${SDL_GetError()}');
+  if (sdlInit(SDL_INIT_VIDEO) < 0) {
+    print(sdlGetError());
     return false;
   }
-  gWindow = SDL_CreateWindow(
-      TITLE,
+  gWindow = sdlCreateWindow(
+      gTitle,
       SDL_WINDOWPOS_UNDEFINED,
       SDL_WINDOWPOS_UNDEFINED,
-      SCREEN_WIDTH,
-      SCREEN_HEIGHT,
+      gScreenWidth,
+      gScreenHeight,
       SDL_WINDOW_SHOWN);
   if (gWindow == nullptr) {
-    print('${SDL_GetError()}');
+    print(sdlGetError());
     return false;
   }
-  gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+  gRenderer = sdlCreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
   if (gRenderer == nullptr) {
-    print('${SDL_GetError()}');
+    print(sdlGetError());
     return false;
   }
   return true;
@@ -46,30 +46,30 @@ bool init() {
 
 void close() {
   if (gRenderer != nullptr) {
-    SDL_DestroyRenderer(gRenderer);
+    sdlDestroyRenderer(gRenderer);
     gRenderer = nullptr;
   }
   if (gWindow != nullptr) {
-    SDL_DestroyWindow(gWindow);
+    sdlDestroyWindow(gWindow);
     gWindow = nullptr;
   }
-  SDL_Quit();
+  sdlQuit();
 }
 
 void update() {
-  var keys = SDL_GetKeyboardState(nullptr);
+  var keys = sdlGetKeyboardState(nullptr);
   if (keys != null) {
     if (keys[SDL_SCANCODE_UP] != 0) {
-      gPlayerY -= PLAYER_HEIGHT ~/ 4;
+      gPlayerY -= gPlayerHeight ~/ 4;
     }
     if (keys[SDL_SCANCODE_DOWN] != 0) {
-      gPlayerY += PLAYER_HEIGHT ~/ 4;
+      gPlayerY += gPlayerHeight ~/ 4;
     }
     if (keys[SDL_SCANCODE_LEFT] != 0) {
-      gPlayerX -= PLAYER_WIDTH ~/ 4;
+      gPlayerX -= gPlayerWidth ~/ 4;
     }
     if (keys[SDL_SCANCODE_RIGHT] != 0) {
-      gPlayerX += PLAYER_WIDTH ~/ 4;
+      gPlayerX += gPlayerWidth ~/ 4;
     }
     if (keys[SDL_SCANCODE_SPACE] != 0) {
       if (gPlayerY == 300) {
@@ -87,8 +87,8 @@ void update() {
 
 bool handleEvents() {
   var quit = false;
-  var e = calloc<SDL_Event>();
-  while (SDL_PollEvent(e) != 0) {
+  var e = calloc<SdlEvent>();
+  while (sdlPollEvent(e) != 0) {
     switch (e.type) {
       case SDL_QUIT:
         quit = true;
@@ -103,20 +103,20 @@ bool handleEvents() {
 
 void render() {
   // init
-  SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xff);
-  SDL_RenderClear(gRenderer);
+  sdlSetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xff);
+  sdlRenderClear(gRenderer);
   // player
-  var playerRect = calloc<SDL_Rect>();
-  SDL_SetRenderDrawColor(gRenderer, 0x00, 0xff, 0x00, 0xff);
+  var playerRect = calloc<SdlRect>();
+  sdlSetRenderDrawColor(gRenderer, 0x00, 0xff, 0x00, 0xff);
   playerRect
     ..ref.x = gPlayerX
     ..ref.y = gPlayerY
-    ..ref.w = PLAYER_WIDTH
-    ..ref.h = PLAYER_HEIGHT;
-  SDL_RenderFillRect(gRenderer, playerRect);
+    ..ref.w = gPlayerWidth
+    ..ref.h = gPlayerHeight;
+  sdlRenderFillRect(gRenderer, playerRect);
   calloc.free(playerRect);
   // term
-  SDL_RenderPresent(gRenderer);
+  sdlRenderPresent(gRenderer);
 }
 
 int main() {
@@ -125,7 +125,7 @@ int main() {
     var quit = false;
     while (!quit) {
       // frameStart
-      var frameStart = SDL_GetTicks();
+      var frameStart = sdlGetTicks();
       // update
       update();
       // handleEvents
@@ -133,11 +133,11 @@ int main() {
       // render
       render();
       // frameEnd
-      var frameTime = SDL_GetTicks() - frameStart;
-      if (frameTime < DELAY_TIME) {
-        SDL_Delay((DELAY_TIME - frameTime).toInt());
+      var frameTime = sdlGetTicks() - frameStart;
+      if (frameTime < gDelayTime) {
+        sdlDelay((gDelayTime - frameTime).toInt());
       } else {
-        SDL_Delay(DELAY_TIME.toInt());
+        sdlDelay(gDelayTime.toInt());
       }
     }
   }

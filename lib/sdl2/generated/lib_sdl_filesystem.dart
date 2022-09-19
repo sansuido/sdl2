@@ -44,11 +44,11 @@ import 'lib_sdl.dart';
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_GetBasePath(void)
 /// ```
-Pointer<Int8>? SDL_GetBasePath() {
-  final _SDL_GetBasePath = DLL_SDL2.lookupFunction<
+Pointer<Int8>? sdlGetBasePath() {
+  final sdlGetBasePathLookupFunction = libSdl2.lookupFunction<
       Pointer<Int8>? Function(),
       Pointer<Int8>? Function()>('SDL_GetBasePath');
-  return _SDL_GetBasePath();
+  return sdlGetBasePathLookupFunction();
 }
 
 /// 
@@ -109,15 +109,15 @@ Pointer<Int8>? SDL_GetBasePath() {
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_GetPrefPath(const char *org, const char *app)
 /// ```
-Pointer<Int8>? SDL_GetPrefPath(String org, String app) {
-  final _SDL_GetPrefPath = DLL_SDL2.lookupFunction<
+Pointer<Int8>? sdlGetPrefPath(String org, String app) {
+  final sdlGetPrefPathLookupFunction = libSdl2.lookupFunction<
       Pointer<Int8>? Function(Pointer<Utf8>? org, Pointer<Utf8>? app),
       Pointer<Int8>? Function(Pointer<Utf8>? org, Pointer<Utf8>? app)>('SDL_GetPrefPath');
-  final _orgPointer = org.toNativeUtf8();
-  final _appPointer = app.toNativeUtf8();
-  final _result = _SDL_GetPrefPath(_orgPointer, _appPointer);
-  calloc.free(_orgPointer);
-  calloc.free(_appPointer);
-  return _result;
+  final orgPointer = org.toNativeUtf8();
+  final appPointer = app.toNativeUtf8();
+  final result = sdlGetPrefPathLookupFunction(orgPointer, appPointer);
+  calloc.free(orgPointer);
+  calloc.free(appPointer);
+  return result;
 }
 

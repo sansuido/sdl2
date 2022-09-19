@@ -23,11 +23,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetNumTouchDevices(void)
 /// ```
-int SDL_GetNumTouchDevices() {
-  final _SDL_GetNumTouchDevices = DLL_SDL2.lookupFunction<
+int sdlGetNumTouchDevices() {
+  final sdlGetNumTouchDevicesLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_GetNumTouchDevices');
-  return _SDL_GetNumTouchDevices();
+  return sdlGetNumTouchDevicesLookupFunction();
 }
 
 /// 
@@ -44,11 +44,11 @@ int SDL_GetNumTouchDevices() {
 /// ```c
 /// extern DECLSPEC SDL_TouchID SDLCALL SDL_GetTouchDevice(int index)
 /// ```
-int SDL_GetTouchDevice(int index) {
-  final _SDL_GetTouchDevice = DLL_SDL2.lookupFunction<
+int sdlGetTouchDevice(int index) {
+  final sdlGetTouchDeviceLookupFunction = libSdl2.lookupFunction<
       Int64 Function(Int32 index),
       int Function(int index)>('SDL_GetTouchDevice');
-  return _SDL_GetTouchDevice(index);
+  return sdlGetTouchDeviceLookupFunction(index);
 }
 
 /// 
@@ -60,11 +60,11 @@ int SDL_GetTouchDevice(int index) {
 /// ```c
 /// extern DECLSPEC const char* SDLCALL SDL_GetTouchName(int index)
 /// ```
-String SDL_GetTouchName(int index) {
-  final _SDL_GetTouchName = DLL_SDL2.lookupFunction<
+String sdlGetTouchName(int index) {
+  final sdlGetTouchNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8>? Function(Int32 index),
       Pointer<Utf8>? Function(int index)>('SDL_GetTouchName');
-  return _SDL_GetTouchName(index)!.toDartString();
+  return sdlGetTouchNameLookupFunction(index)!.toDartString();
 }
 
 /// 
@@ -75,11 +75,11 @@ String SDL_GetTouchName(int index) {
 /// ```c
 /// extern DECLSPEC SDL_TouchDeviceType SDLCALL SDL_GetTouchDeviceType(SDL_TouchID touchID)
 /// ```
-int SDL_GetTouchDeviceType(int touchID) {
-  final _SDL_GetTouchDeviceType = DLL_SDL2.lookupFunction<
-      Int32 Function(Int64 touchID),
-      int Function(int touchID)>('SDL_GetTouchDeviceType');
-  return _SDL_GetTouchDeviceType(touchID);
+int sdlGetTouchDeviceType(int touchId) {
+  final sdlGetTouchDeviceTypeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Int64 touchId),
+      int Function(int touchId)>('SDL_GetTouchDeviceType');
+  return sdlGetTouchDeviceTypeLookupFunction(touchId);
 }
 
 /// 
@@ -96,11 +96,11 @@ int SDL_GetTouchDeviceType(int touchID) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetNumTouchFingers(SDL_TouchID touchID)
 /// ```
-int SDL_GetNumTouchFingers(int touchID) {
-  final _SDL_GetNumTouchFingers = DLL_SDL2.lookupFunction<
-      Int32 Function(Int64 touchID),
-      int Function(int touchID)>('SDL_GetNumTouchFingers');
-  return _SDL_GetNumTouchFingers(touchID);
+int sdlGetNumTouchFingers(int touchId) {
+  final sdlGetNumTouchFingersLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Int64 touchId),
+      int Function(int touchId)>('SDL_GetNumTouchFingers');
+  return sdlGetNumTouchFingersLookupFunction(touchId);
 }
 
 /// 
@@ -120,10 +120,10 @@ int SDL_GetNumTouchFingers(int touchID) {
 /// ```c
 /// extern DECLSPEC SDL_Finger * SDLCALL SDL_GetTouchFinger(SDL_TouchID touchID, int index)
 /// ```
-Pointer<SDL_Finger>? SDL_GetTouchFinger(int touchID, int index) {
-  final _SDL_GetTouchFinger = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Finger>? Function(Int64 touchID, Int32 index),
-      Pointer<SDL_Finger>? Function(int touchID, int index)>('SDL_GetTouchFinger');
-  return _SDL_GetTouchFinger(touchID, index);
+Pointer<SdlFinger>? sdlGetTouchFinger(int touchId, int index) {
+  final sdlGetTouchFingerLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlFinger>? Function(Int64 touchId, Int32 index),
+      Pointer<SdlFinger>? Function(int touchId, int index)>('SDL_GetTouchFinger');
+  return sdlGetTouchFingerLookupFunction(touchId, index);
 }
 

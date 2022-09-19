@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'dart:typed_data';
 import './generated/struct_sdl.dart';
 
-// ignore: camel_case_extensions
-extension SDL_TextEditingEventExtension on Pointer<SDL_TextEditingEvent> {
+extension SdlTextEditingEventExtension on Pointer<SdlTextEditingEvent> {
   String get text {
     var buff = Int8List.fromList([
         ref.text_1,
@@ -51,8 +50,7 @@ extension SDL_TextEditingEventExtension on Pointer<SDL_TextEditingEvent> {
   }
 }
 
-// ignore: camel_case_extensions
-extension SDL_TextInputEventExtension on Pointer<SDL_TextInputEvent> {
+extension SdlTextInputEventExtension on Pointer<SdlTextInputEvent> {
   String get text {
     var buff = Int8List.fromList([
         ref.text_1,

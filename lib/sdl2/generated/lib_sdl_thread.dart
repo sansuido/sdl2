@@ -7,27 +7,27 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_Thread *SDLCALL SDL_CreateThread(SDL_ThreadFunction fn, const char *name, void *data, pfnSDL_CurrentBeginThread pfnBeginThread, pfnSDL_CurrentEndThread pfnEndThread)
 /// ```
-Pointer<SDL_Thread>? SDL_CreateThread(Pointer<Void>? fn, String name, Pointer<Void>? data, Pointer<Void>? pfnBeginThread, Pointer<Void>? pfnEndThread) {
-  final _SDL_CreateThread = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Thread>? Function(Pointer<Void>? fn, Pointer<Utf8>? name, Pointer<Void>? data, Pointer<Void>? pfnBeginThread, Pointer<Void>? pfnEndThread),
-      Pointer<SDL_Thread>? Function(Pointer<Void>? fn, Pointer<Utf8>? name, Pointer<Void>? data, Pointer<Void>? pfnBeginThread, Pointer<Void>? pfnEndThread)>('SDL_CreateThread');
-  final _namePointer = name.toNativeUtf8();
-  final _result = _SDL_CreateThread(fn, _namePointer, data, pfnBeginThread, pfnEndThread);
-  calloc.free(_namePointer);
-  return _result;
+Pointer<SdlThread>? sdlCreateThread(Pointer<Void>? fn, String name, Pointer<Void>? data, Pointer<Void>? pfnBeginThread, Pointer<Void>? pfnEndThread) {
+  final sdlCreateThreadLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlThread>? Function(Pointer<Void>? fn, Pointer<Utf8>? name, Pointer<Void>? data, Pointer<Void>? pfnBeginThread, Pointer<Void>? pfnEndThread),
+      Pointer<SdlThread>? Function(Pointer<Void>? fn, Pointer<Utf8>? name, Pointer<Void>? data, Pointer<Void>? pfnBeginThread, Pointer<Void>? pfnEndThread)>('SDL_CreateThread');
+  final namePointer = name.toNativeUtf8();
+  final result = sdlCreateThreadLookupFunction(fn, namePointer, data, pfnBeginThread, pfnEndThread);
+  calloc.free(namePointer);
+  return result;
 }
 
 /// ```c
 /// extern DECLSPEC SDL_Thread *SDLCALL SDL_CreateThreadWithStackSize(SDL_ThreadFunction fn, const char *name, const size_t stacksize, void *data, pfnSDL_CurrentBeginThread pfnBeginThread, pfnSDL_CurrentEndThread pfnEndThread)
 /// ```
-Pointer<SDL_Thread>? SDL_CreateThreadWithStackSize(Pointer<Void>? fn, String name, int stacksize, Pointer<Void>? data, Pointer<Void>? pfnBeginThread, Pointer<Void>? pfnEndThread) {
-  final _SDL_CreateThreadWithStackSize = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Thread>? Function(Pointer<Void>? fn, Pointer<Utf8>? name, Uint32 stacksize, Pointer<Void>? data, Pointer<Void>? pfnBeginThread, Pointer<Void>? pfnEndThread),
-      Pointer<SDL_Thread>? Function(Pointer<Void>? fn, Pointer<Utf8>? name, int stacksize, Pointer<Void>? data, Pointer<Void>? pfnBeginThread, Pointer<Void>? pfnEndThread)>('SDL_CreateThreadWithStackSize');
-  final _namePointer = name.toNativeUtf8();
-  final _result = _SDL_CreateThreadWithStackSize(fn, _namePointer, stacksize, data, pfnBeginThread, pfnEndThread);
-  calloc.free(_namePointer);
-  return _result;
+Pointer<SdlThread>? sdlCreateThreadWithStackSize(Pointer<Void>? fn, String name, int stacksize, Pointer<Void>? data, Pointer<Void>? pfnBeginThread, Pointer<Void>? pfnEndThread) {
+  final sdlCreateThreadWithStackSizeLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlThread>? Function(Pointer<Void>? fn, Pointer<Utf8>? name, Uint32 stacksize, Pointer<Void>? data, Pointer<Void>? pfnBeginThread, Pointer<Void>? pfnEndThread),
+      Pointer<SdlThread>? Function(Pointer<Void>? fn, Pointer<Utf8>? name, int stacksize, Pointer<Void>? data, Pointer<Void>? pfnBeginThread, Pointer<Void>? pfnEndThread)>('SDL_CreateThreadWithStackSize');
+  final namePointer = name.toNativeUtf8();
+  final result = sdlCreateThreadWithStackSizeLookupFunction(fn, namePointer, stacksize, data, pfnBeginThread, pfnEndThread);
+  calloc.free(namePointer);
+  return result;
 }
 
 /// 
@@ -47,11 +47,11 @@ Pointer<SDL_Thread>? SDL_CreateThreadWithStackSize(Pointer<Void>? fn, String nam
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetThreadName(SDL_Thread *thread)
 /// ```
-String SDL_GetThreadName(Pointer<SDL_Thread>? thread) {
-  final _SDL_GetThreadName = DLL_SDL2.lookupFunction<
-      Pointer<Utf8>? Function(Pointer<SDL_Thread>? thread),
-      Pointer<Utf8>? Function(Pointer<SDL_Thread>? thread)>('SDL_GetThreadName');
-  return _SDL_GetThreadName(thread)!.toDartString();
+String sdlGetThreadName(Pointer<SdlThread>? thread) {
+  final sdlGetThreadNameLookupFunction = libSdl2.lookupFunction<
+      Pointer<Utf8>? Function(Pointer<SdlThread>? thread),
+      Pointer<Utf8>? Function(Pointer<SdlThread>? thread)>('SDL_GetThreadName');
+  return sdlGetThreadNameLookupFunction(thread)!.toDartString();
 }
 
 /// 
@@ -73,11 +73,11 @@ String SDL_GetThreadName(Pointer<SDL_Thread>? thread) {
 /// ```c
 /// extern DECLSPEC SDL_threadID SDLCALL SDL_ThreadID(void)
 /// ```
-int SDL_ThreadID() {
-  final _SDL_ThreadID = DLL_SDL2.lookupFunction<
+int sdlThreadId() {
+  final sdlThreadIdLookupFunction = libSdl2.lookupFunction<
       Uint32 Function(),
       int Function()>('SDL_ThreadID');
-  return _SDL_ThreadID();
+  return sdlThreadIdLookupFunction();
 }
 
 /// 
@@ -98,11 +98,11 @@ int SDL_ThreadID() {
 /// ```c
 /// extern DECLSPEC SDL_threadID SDLCALL SDL_GetThreadID(SDL_Thread * thread)
 /// ```
-int SDL_GetThreadID(Pointer<SDL_Thread>? thread) {
-  final _SDL_GetThreadID = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_Thread>? thread),
-      int Function(Pointer<SDL_Thread>? thread)>('SDL_GetThreadID');
-  return _SDL_GetThreadID(thread);
+int sdlGetThreadId(Pointer<SdlThread>? thread) {
+  final sdlGetThreadIdLookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlThread>? thread),
+      int Function(Pointer<SdlThread>? thread)>('SDL_GetThreadID');
+  return sdlGetThreadIdLookupFunction(thread);
 }
 
 /// 
@@ -121,11 +121,11 @@ int SDL_GetThreadID(Pointer<SDL_Thread>? thread) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetThreadPriority(SDL_ThreadPriority priority)
 /// ```
-int SDL_SetThreadPriority(int priority) {
-  final _SDL_SetThreadPriority = DLL_SDL2.lookupFunction<
+int sdlSetThreadPriority(int priority) {
+  final sdlSetThreadPriorityLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 priority),
       int Function(int priority)>('SDL_SetThreadPriority');
-  return _SDL_SetThreadPriority(priority);
+  return sdlSetThreadPriorityLookupFunction(priority);
 }
 
 /// 
@@ -164,11 +164,11 @@ int SDL_SetThreadPriority(int priority) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_WaitThread(SDL_Thread * thread, int *status)
 /// ```
-void SDL_WaitThread(Pointer<SDL_Thread>? thread, Pointer<Int32>? status) {
-  final _SDL_WaitThread = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Thread>? thread, Pointer<Int32>? status),
-      void Function(Pointer<SDL_Thread>? thread, Pointer<Int32>? status)>('SDL_WaitThread');
-  return _SDL_WaitThread(thread, status);
+void sdlWaitThread(Pointer<SdlThread>? thread, Pointer<Int32>? status) {
+  final sdlWaitThreadLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlThread>? thread, Pointer<Int32>? status),
+      void Function(Pointer<SdlThread>? thread, Pointer<Int32>? status)>('SDL_WaitThread');
+  return sdlWaitThreadLookupFunction(thread, status);
 }
 
 /// 
@@ -208,11 +208,11 @@ void SDL_WaitThread(Pointer<SDL_Thread>? thread, Pointer<Int32>? status) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_DetachThread(SDL_Thread * thread)
 /// ```
-void SDL_DetachThread(Pointer<SDL_Thread>? thread) {
-  final _SDL_DetachThread = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Thread>? thread),
-      void Function(Pointer<SDL_Thread>? thread)>('SDL_DetachThread');
-  return _SDL_DetachThread(thread);
+void sdlDetachThread(Pointer<SdlThread>? thread) {
+  final sdlDetachThreadLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlThread>? thread),
+      void Function(Pointer<SdlThread>? thread)>('SDL_DetachThread');
+  return sdlDetachThreadLookupFunction(thread);
 }
 
 /// 
@@ -231,11 +231,11 @@ void SDL_DetachThread(Pointer<SDL_Thread>? thread) {
 /// ```c
 /// extern DECLSPEC SDL_TLSID SDLCALL SDL_TLSCreate(void)
 /// ```
-int SDL_TLSCreate() {
-  final _SDL_TLSCreate = DLL_SDL2.lookupFunction<
+int sdlTlsCreate() {
+  final sdlTlsCreateLookupFunction = libSdl2.lookupFunction<
       Uint32 Function(),
       int Function()>('SDL_TLSCreate');
-  return _SDL_TLSCreate();
+  return sdlTlsCreateLookupFunction();
 }
 
 /// 
@@ -253,11 +253,11 @@ int SDL_TLSCreate() {
 /// ```c
 /// extern DECLSPEC void * SDLCALL SDL_TLSGet(SDL_TLSID id)
 /// ```
-Pointer<Void>? SDL_TLSGet(int id) {
-  final _SDL_TLSGet = DLL_SDL2.lookupFunction<
+Pointer<Void>? sdlTlsGet(int id) {
+  final sdlTlsGetLookupFunction = libSdl2.lookupFunction<
       Pointer<Void>? Function(Uint32 id),
       Pointer<Void>? Function(int id)>('SDL_TLSGet');
-  return _SDL_TLSGet(id);
+  return sdlTlsGetLookupFunction(id);
 }
 
 /// 
@@ -286,11 +286,11 @@ Pointer<Void>? SDL_TLSGet(int id) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_TLSSet(SDL_TLSID id, const void *value, void (SDLCALL *destructor)(void*))
 /// ```
-int SDL_TLSSet(int id, Pointer<Void>? value, Pointer<Void>? deor) {
-  final _SDL_TLSSet = DLL_SDL2.lookupFunction<
+int sdlTlsSet(int id, Pointer<Void>? value, Pointer<Void>? deor) {
+  final sdlTlsSetLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Uint32 id, Pointer<Void>? value, Pointer<Void>? deor),
       int Function(int id, Pointer<Void>? value, Pointer<Void>? deor)>('SDL_TLSSet');
-  return _SDL_TLSSet(id, value, deor);
+  return sdlTlsSetLookupFunction(id, value, deor);
 }
 
 /// 
@@ -301,10 +301,10 @@ int SDL_TLSSet(int id, Pointer<Void>? value, Pointer<Void>? deor) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_TLSCleanup(void)
 /// ```
-void SDL_TLSCleanup() {
-  final _SDL_TLSCleanup = DLL_SDL2.lookupFunction<
+void sdlTlsCleanup() {
+  final sdlTlsCleanupLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_TLSCleanup');
-  return _SDL_TLSCleanup();
+  return sdlTlsCleanupLookupFunction();
 }
 

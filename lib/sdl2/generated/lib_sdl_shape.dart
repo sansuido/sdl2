@@ -30,14 +30,14 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_Window * SDLCALL SDL_CreateShapedWindow(const char *title,unsigned int x,unsigned int y,unsigned int w,unsigned int h,Uint32 flags)
 /// ```
-Pointer<SDL_Window>? SDL_CreateShapedWindow(String title, int x, int y, int w, int h, int flags) {
-  final _SDL_CreateShapedWindow = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Window>? Function(Pointer<Utf8>? title, Uint32 x, Uint32 y, Uint32 w, Uint32 h, Uint32 flags),
-      Pointer<SDL_Window>? Function(Pointer<Utf8>? title, int x, int y, int w, int h, int flags)>('SDL_CreateShapedWindow');
-  final _titlePointer = title.toNativeUtf8();
-  final _result = _SDL_CreateShapedWindow(_titlePointer, x, y, w, h, flags);
-  calloc.free(_titlePointer);
-  return _result;
+Pointer<SdlWindow>? sdlCreateShapedWindow(String title, int x, int y, int w, int h, int flags) {
+  final sdlCreateShapedWindowLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlWindow>? Function(Pointer<Utf8>? title, Uint32 x, Uint32 y, Uint32 w, Uint32 h, Uint32 flags),
+      Pointer<SdlWindow>? Function(Pointer<Utf8>? title, int x, int y, int w, int h, int flags)>('SDL_CreateShapedWindow');
+  final titlePointer = title.toNativeUtf8();
+  final result = sdlCreateShapedWindowLookupFunction(titlePointer, x, y, w, h, flags);
+  calloc.free(titlePointer);
+  return result;
 }
 
 /// 
@@ -54,11 +54,11 @@ Pointer<SDL_Window>? SDL_CreateShapedWindow(String title, int x, int y, int w, i
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsShapedWindow(const SDL_Window *window)
 /// ```
-int SDL_IsShapedWindow(Pointer<SDL_Window>? window) {
-  final _SDL_IsShapedWindow = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Window>? window),
-      int Function(Pointer<SDL_Window>? window)>('SDL_IsShapedWindow');
-  return _SDL_IsShapedWindow(window);
+int sdlIsShapedWindow(Pointer<SdlWindow>? window) {
+  final sdlIsShapedWindowLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlWindow>? window),
+      int Function(Pointer<SdlWindow>? window)>('SDL_IsShapedWindow');
+  return sdlIsShapedWindowLookupFunction(window);
 }
 
 /// 
@@ -79,11 +79,11 @@ int SDL_IsShapedWindow(Pointer<SDL_Window>? window) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetWindowShape(SDL_Window *window,SDL_Surface *shape,SDL_WindowShapeMode *shape_mode)
 /// ```
-int SDL_SetWindowShape(Pointer<SDL_Window>? window, Pointer<SDL_Surface>? shape, Pointer<SDL_WindowShapeMode>? shape_mode) {
-  final _SDL_SetWindowShape = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Window>? window, Pointer<SDL_Surface>? shape, Pointer<SDL_WindowShapeMode>? shape_mode),
-      int Function(Pointer<SDL_Window>? window, Pointer<SDL_Surface>? shape, Pointer<SDL_WindowShapeMode>? shape_mode)>('SDL_SetWindowShape');
-  return _SDL_SetWindowShape(window, shape, shape_mode);
+int sdlSetWindowShape(Pointer<SdlWindow>? window, Pointer<SdlSurface>? shape, Pointer<SdlWindowShapeMode>? shapeMode) {
+  final sdlSetWindowShapeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlWindow>? window, Pointer<SdlSurface>? shape, Pointer<SdlWindowShapeMode>? shapeMode),
+      int Function(Pointer<SdlWindow>? window, Pointer<SdlSurface>? shape, Pointer<SdlWindowShapeMode>? shapeMode)>('SDL_SetWindowShape');
+  return sdlSetWindowShapeLookupFunction(window, shape, shapeMode);
 }
 
 /// 
@@ -106,10 +106,10 @@ int SDL_SetWindowShape(Pointer<SDL_Window>? window, Pointer<SDL_Surface>? shape,
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetShapedWindowMode(SDL_Window *window,SDL_WindowShapeMode *shape_mode)
 /// ```
-int SDL_GetShapedWindowMode(Pointer<SDL_Window>? window, Pointer<SDL_WindowShapeMode>? shape_mode) {
-  final _SDL_GetShapedWindowMode = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Window>? window, Pointer<SDL_WindowShapeMode>? shape_mode),
-      int Function(Pointer<SDL_Window>? window, Pointer<SDL_WindowShapeMode>? shape_mode)>('SDL_GetShapedWindowMode');
-  return _SDL_GetShapedWindowMode(window, shape_mode);
+int sdlGetShapedWindowMode(Pointer<SdlWindow>? window, Pointer<SdlWindowShapeMode>? shapeMode) {
+  final sdlGetShapedWindowModeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlWindow>? window, Pointer<SdlWindowShapeMode>? shapeMode),
+      int Function(Pointer<SdlWindow>? window, Pointer<SdlWindowShapeMode>? shapeMode)>('SDL_GetShapedWindowMode');
+  return sdlGetShapedWindowModeLookupFunction(window, shapeMode);
 }
 

@@ -1,0 +1,13 @@
+include: package:lints/recommended.yaml
+analyzer:
+   errors:
+      avoid_init_to_null: true
+      constant_identifier_names: true
+      no_leading_underscores_for_local_identifiers: true
+      prefer_adjacent_string_concatenation: true
+      prefer_typing_uninitialized_variables: true
+      prefer_interpolation_to_compose_strings: true
+      unnecessary_brace_in_string_interps: true
+      unnecessary_string_interpolations: true
+      unnecessary_string_escapes: true
+      unnecessary_this: true

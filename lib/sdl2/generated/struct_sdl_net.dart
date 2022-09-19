@@ -1,6 +1,6 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
-class SDLNet_version extends Struct {
+class SdlNetVersion extends Struct {
   // [0]+(1)
   @Uint8()
   external int major;
@@ -10,6 +10,11 @@ class SDLNet_version extends Struct {
   // [2]+(1)
   @Uint8()
   external int patch;
+  // [] +(5)
+  @Uint32()
+  external int blank_1;
+  @Uint8()
+  external int blank_2;
 }
 
 class IPaddress extends Struct {
@@ -19,43 +24,52 @@ class IPaddress extends Struct {
   // [4]+(2)
   @Uint16()
   external int port;
+  // [] +(2)
+  @Uint16()
+  external int blank_1;
 }
 
-class TCPsocket extends Opaque {}
+class TcPsocket extends Opaque {}
 
-class UDPsocket extends Opaque {}
+class UdPsocket extends Opaque {}
 
-class UDPpacket extends Struct {
+class UdPpacket extends Struct {
   // [0]+(4)
   @Int32()
   external int channel;
-  // [4]+(8)
+  // [] +(4)
+  @Uint32()
+  external int blank_1;
+  // [8]+(8)
   external Pointer<Uint8>? data;
-  // [12]+(4)
-  @Int32()
-  external int len;
   // [16]+(4)
   @Int32()
-  external int maxlen;
+  external int len;
   // [20]+(4)
   @Int32()
+  external int maxlen;
+  // [24]+(4)
+  @Int32()
   external int status;
-  // [24]+(6)
+  // [] +(4)
   @Uint32()
+  external int blank_2;
+  // [32]+(8)
+  @Uint64()
   external int address_1;
-  @Uint16()
-  external int address_2;
 }
-// ignore: camel_case_extensions
-extension UDPpacketExtension on Pointer<UDPpacket> {
-  Pointer<IPaddress> get address => cast<Uint8>().elementAt(24).cast<IPaddress>();
+extension UdPpacketExtension on Pointer<UdPpacket> {
+  Pointer<IPaddress> get address => cast<Uint8>().elementAt(32).cast<IPaddress>();
 }
 
-class SDLNet_SocketSet extends Opaque {}
+class SdlNetSocketSet extends Opaque {}
 
-class SDLNet_GenericSocket extends Struct {
+class SdlNetGenericSocket extends Struct {
   // [0]+(4)
   @Int32()
   external int ready;
+  // [] +(4)
+  @Uint32()
+  external int blank_1;
 }
 

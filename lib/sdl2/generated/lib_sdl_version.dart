@@ -23,11 +23,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_GetVersion(SDL_version * ver)
 /// ```
-void SDL_GetVersion(Pointer<SDL_version>? ver) {
-  final _SDL_GetVersion = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_version>? ver),
-      void Function(Pointer<SDL_version>? ver)>('SDL_GetVersion');
-  return _SDL_GetVersion(ver);
+void sdlGetVersion(Pointer<SdlVersion>? ver) {
+  final sdlGetVersionLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlVersion>? ver),
+      void Function(Pointer<SdlVersion>? ver)>('SDL_GetVersion');
+  return sdlGetVersionLookupFunction(ver);
 }
 
 /// 
@@ -60,10 +60,10 @@ void SDL_GetVersion(Pointer<SDL_version>? ver) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetRevision(void)
 /// ```
-String SDL_GetRevision() {
-  final _SDL_GetRevision = DLL_SDL2.lookupFunction<
+String sdlGetRevision() {
+  final sdlGetRevisionLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8>? Function(),
       Pointer<Utf8>? Function()>('SDL_GetRevision');
-  return _SDL_GetRevision()!.toDartString();
+  return sdlGetRevisionLookupFunction()!.toDartString();
 }
 

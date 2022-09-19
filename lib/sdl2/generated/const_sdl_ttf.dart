@@ -1,4 +1,5 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+// ignore_for_file: constant_identifier_names
 //const SDL_TTF_H_ = ;
 const SDL_TTF_MAJOR_VERSION = 2;
 const SDL_TTF_MINOR_VERSION = 20;
@@ -32,6 +33,6 @@ const TTF_WRAPPED_ALIGN_RIGHT = 2;
 //const TTF_SetError = SDL_SetError;
 //const TTF_GetError = SDL_GetError;
 const TTF_DIRECTION_LTR = 0;
-const TTF_DIRECTION_RTL = 0;
-const TTF_DIRECTION_TTB = 0;
-const TTF_DIRECTION_BTT = 0;
+const TTF_DIRECTION_RTL = 0 + 1;
+const TTF_DIRECTION_TTB = 0 + 2;
+const TTF_DIRECTION_BTT = 0 + 3;

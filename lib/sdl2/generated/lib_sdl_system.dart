@@ -15,11 +15,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_SetWindowsMessageHook(SDL_WindowsMessageHook callback, void *userdata)
 /// ```
-void SDL_SetWindowsMessageHook(Pointer<Void>? callback, Pointer<Void>? userdata) {
-  final _SDL_SetWindowsMessageHook = DLL_SDL2.lookupFunction<
+void sdlSetWindowsMessageHook(Pointer<Void>? callback, Pointer<Void>? userdata) {
+  final sdlSetWindowsMessageHookLookupFunction = libSdl2.lookupFunction<
       Void Function(Pointer<Void>? callback, Pointer<Void>? userdata),
       void Function(Pointer<Void>? callback, Pointer<Void>? userdata)>('SDL_SetWindowsMessageHook');
-  return _SDL_SetWindowsMessageHook(callback, userdata);
+  return sdlSetWindowsMessageHookLookupFunction(callback, userdata);
 }
 
 /// 
@@ -38,11 +38,11 @@ void SDL_SetWindowsMessageHook(Pointer<Void>? callback, Pointer<Void>? userdata)
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_Direct3D9GetAdapterIndex( int displayIndex )
 /// ```
-int SDL_Direct3D9GetAdapterIndex(int displayIndex) {
-  final _SDL_Direct3D9GetAdapterIndex = DLL_SDL2.lookupFunction<
+int sdlDirect3D9GetAdapterIndex(int displayIndex) {
+  final sdlDirect3D9GetAdapterIndexLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 displayIndex),
       int Function(int displayIndex)>('SDL_Direct3D9GetAdapterIndex');
-  return _SDL_Direct3D9GetAdapterIndex(displayIndex);
+  return sdlDirect3D9GetAdapterIndexLookupFunction(displayIndex);
 }
 
 /// 
@@ -60,11 +60,11 @@ int SDL_Direct3D9GetAdapterIndex(int displayIndex) {
 /// ```c
 /// extern DECLSPEC IDirect3DDevice9* SDLCALL SDL_RenderGetD3D9Device(SDL_Renderer * renderer)
 /// ```
-Pointer<IDirect3DDevice9>? SDL_RenderGetD3D9Device(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_RenderGetD3D9Device = DLL_SDL2.lookupFunction<
-      Pointer<IDirect3DDevice9>? Function(Pointer<SDL_Renderer>? renderer),
-      Pointer<IDirect3DDevice9>? Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderGetD3D9Device');
-  return _SDL_RenderGetD3D9Device(renderer);
+Pointer<IDirect3DDevice9>? sdlRenderGetD3D9Device(Pointer<SdlRenderer>? renderer) {
+  final sdlRenderGetD3D9DeviceLookupFunction = libSdl2.lookupFunction<
+      Pointer<IDirect3DDevice9>? Function(Pointer<SdlRenderer>? renderer),
+      Pointer<IDirect3DDevice9>? Function(Pointer<SdlRenderer>? renderer)>('SDL_RenderGetD3D9Device');
+  return sdlRenderGetD3D9DeviceLookupFunction(renderer);
 }
 
 /// 
@@ -82,11 +82,11 @@ Pointer<IDirect3DDevice9>? SDL_RenderGetD3D9Device(Pointer<SDL_Renderer>? render
 /// ```c
 /// extern DECLSPEC ID3D11Device* SDLCALL SDL_RenderGetD3D11Device(SDL_Renderer * renderer)
 /// ```
-Pointer<ID3D11Device>? SDL_RenderGetD3D11Device(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_RenderGetD3D11Device = DLL_SDL2.lookupFunction<
-      Pointer<ID3D11Device>? Function(Pointer<SDL_Renderer>? renderer),
-      Pointer<ID3D11Device>? Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderGetD3D11Device');
-  return _SDL_RenderGetD3D11Device(renderer);
+Pointer<Id3D11Device>? sdlRenderGetD3D11Device(Pointer<SdlRenderer>? renderer) {
+  final sdlRenderGetD3D11DeviceLookupFunction = libSdl2.lookupFunction<
+      Pointer<Id3D11Device>? Function(Pointer<SdlRenderer>? renderer),
+      Pointer<Id3D11Device>? Function(Pointer<SdlRenderer>? renderer)>('SDL_RenderGetD3D11Device');
+  return sdlRenderGetD3D11DeviceLookupFunction(renderer);
 }
 
 /// 
@@ -104,11 +104,11 @@ Pointer<ID3D11Device>? SDL_RenderGetD3D11Device(Pointer<SDL_Renderer>? renderer)
 /// ```c
 /// extern DECLSPEC ID3D12Device* SDLCALL SDL_RenderGetD3D12Device(SDL_Renderer* renderer)
 /// ```
-Pointer<ID3D12Device>? SDL_RenderGetD3D12Device(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_RenderGetD3D12Device = DLL_SDL2.lookupFunction<
-      Pointer<ID3D12Device>? Function(Pointer<SDL_Renderer>? renderer),
-      Pointer<ID3D12Device>? Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderGetD3D12Device');
-  return _SDL_RenderGetD3D12Device(renderer);
+Pointer<Id3D12Device>? sdlRenderGetD3D12Device(Pointer<SdlRenderer>? renderer) {
+  final sdlRenderGetD3D12DeviceLookupFunction = libSdl2.lookupFunction<
+      Pointer<Id3D12Device>? Function(Pointer<SdlRenderer>? renderer),
+      Pointer<Id3D12Device>? Function(Pointer<SdlRenderer>? renderer)>('SDL_RenderGetD3D12Device');
+  return sdlRenderGetD3D12DeviceLookupFunction(renderer);
 }
 
 /// 
@@ -132,11 +132,11 @@ Pointer<ID3D12Device>? SDL_RenderGetD3D12Device(Pointer<SDL_Renderer>? renderer)
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_DXGIGetOutputInfo( int displayIndex, int *adapterIndex, int *outputIndex )
 /// ```
-int SDL_DXGIGetOutputInfo(int displayIndex, Pointer<Int32>? adapterIndex, Pointer<Int32>? outputIndex) {
-  final _SDL_DXGIGetOutputInfo = DLL_SDL2.lookupFunction<
+int sdlDxgiGetOutputInfo(int displayIndex, Pointer<Int32>? adapterIndex, Pointer<Int32>? outputIndex) {
+  final sdlDxgiGetOutputInfoLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 displayIndex, Pointer<Int32>? adapterIndex, Pointer<Int32>? outputIndex),
       int Function(int displayIndex, Pointer<Int32>? adapterIndex, Pointer<Int32>? outputIndex)>('SDL_DXGIGetOutputInfo');
-  return _SDL_DXGIGetOutputInfo(displayIndex, adapterIndex, outputIndex);
+  return sdlDxgiGetOutputInfoLookupFunction(displayIndex, adapterIndex, outputIndex);
 }
 
 /// 
@@ -153,11 +153,11 @@ int SDL_DXGIGetOutputInfo(int displayIndex, Pointer<Int32>? adapterIndex, Pointe
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_LinuxSetThreadPriority(Sint64 threadID, int priority)
 /// ```
-int SDL_LinuxSetThreadPriority(int threadID, int priority) {
-  final _SDL_LinuxSetThreadPriority = DLL_SDL2.lookupFunction<
-      Int32 Function(Int64 threadID, Int32 priority),
-      int Function(int threadID, int priority)>('SDL_LinuxSetThreadPriority');
-  return _SDL_LinuxSetThreadPriority(threadID, priority);
+int sdlLinuxSetThreadPriority(int threadId, int priority) {
+  final sdlLinuxSetThreadPriorityLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Int64 threadId, Int32 priority),
+      int Function(int threadId, int priority)>('SDL_LinuxSetThreadPriority');
+  return sdlLinuxSetThreadPriorityLookupFunction(threadId, priority);
 }
 
 /// 
@@ -176,11 +176,11 @@ int SDL_LinuxSetThreadPriority(int threadID, int priority) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_LinuxSetThreadPriorityAndPolicy(Sint64 threadID, int sdlPriority, int schedPolicy)
 /// ```
-int SDL_LinuxSetThreadPriorityAndPolicy(int threadID, int sdlPriority, int schedPolicy) {
-  final _SDL_LinuxSetThreadPriorityAndPolicy = DLL_SDL2.lookupFunction<
-      Int32 Function(Int64 threadID, Int32 sdlPriority, Int32 schedPolicy),
-      int Function(int threadID, int sdlPriority, int schedPolicy)>('SDL_LinuxSetThreadPriorityAndPolicy');
-  return _SDL_LinuxSetThreadPriorityAndPolicy(threadID, sdlPriority, schedPolicy);
+int sdlLinuxSetThreadPriorityAndPolicy(int threadId, int sdlPriority, int schedPolicy) {
+  final sdlLinuxSetThreadPriorityAndPolicyLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Int64 threadId, Int32 sdlPriority, Int32 schedPolicy),
+      int Function(int threadId, int sdlPriority, int schedPolicy)>('SDL_LinuxSetThreadPriorityAndPolicy');
+  return sdlLinuxSetThreadPriorityAndPolicyLookupFunction(threadId, sdlPriority, schedPolicy);
 }
 
 /// 
@@ -218,11 +218,11 @@ int SDL_LinuxSetThreadPriorityAndPolicy(int threadID, int sdlPriority, int sched
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_iPhoneSetAnimationCallback(SDL_Window * window, int interval, void (SDLCALL *callback)(void*), void *callbackParam)
 /// ```
-int SDL_iPhoneSetAnimationCallback(Pointer<SDL_Window>? window, int interval, Pointer<Void>? callback, Pointer<Void>? callbackParam) {
-  final _SDL_iPhoneSetAnimationCallback = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Window>? window, Int32 interval, Pointer<Void>? callback, Pointer<Void>? callbackParam),
-      int Function(Pointer<SDL_Window>? window, int interval, Pointer<Void>? callback, Pointer<Void>? callbackParam)>('SDL_iPhoneSetAnimationCallback');
-  return _SDL_iPhoneSetAnimationCallback(window, interval, callback, callbackParam);
+int sdlIPhoneSetAnimationCallback(Pointer<SdlWindow>? window, int interval, Pointer<Void>? callback, Pointer<Void>? callbackParam) {
+  final sdlIPhoneSetAnimationCallbackLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlWindow>? window, Int32 interval, Pointer<Void>? callback, Pointer<Void>? callbackParam),
+      int Function(Pointer<SdlWindow>? window, int interval, Pointer<Void>? callback, Pointer<Void>? callbackParam)>('SDL_iPhoneSetAnimationCallback');
+  return sdlIPhoneSetAnimationCallbackLookupFunction(window, interval, callback, callbackParam);
 }
 
 /// 
@@ -242,11 +242,11 @@ int SDL_iPhoneSetAnimationCallback(Pointer<SDL_Window>? window, int interval, Po
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_iPhoneSetEventPump(SDL_bool enabled)
 /// ```
-void SDL_iPhoneSetEventPump(int enabled) {
-  final _SDL_iPhoneSetEventPump = DLL_SDL2.lookupFunction<
+void sdlIPhoneSetEventPump(int enabled) {
+  final sdlIPhoneSetEventPumpLookupFunction = libSdl2.lookupFunction<
       Void Function(Int32 enabled),
       void Function(int enabled)>('SDL_iPhoneSetEventPump');
-  return _SDL_iPhoneSetEventPump(enabled);
+  return sdlIPhoneSetEventPumpLookupFunction(enabled);
 }
 
 /// 
@@ -269,11 +269,11 @@ void SDL_iPhoneSetEventPump(int enabled) {
 /// ```c
 /// extern DECLSPEC void * SDLCALL SDL_AndroidGetJNIEnv(void)
 /// ```
-Pointer<Void>? SDL_AndroidGetJNIEnv() {
-  final _SDL_AndroidGetJNIEnv = DLL_SDL2.lookupFunction<
+Pointer<Void>? sdlAndroidGetJniEnv() {
+  final sdlAndroidGetJniEnvLookupFunction = libSdl2.lookupFunction<
       Pointer<Void>? Function(),
       Pointer<Void>? Function()>('SDL_AndroidGetJNIEnv');
-  return _SDL_AndroidGetJNIEnv();
+  return sdlAndroidGetJniEnvLookupFunction();
 }
 
 /// 
@@ -299,11 +299,11 @@ Pointer<Void>? SDL_AndroidGetJNIEnv() {
 /// ```c
 /// extern DECLSPEC void * SDLCALL SDL_AndroidGetActivity(void)
 /// ```
-Pointer<Void>? SDL_AndroidGetActivity() {
-  final _SDL_AndroidGetActivity = DLL_SDL2.lookupFunction<
+Pointer<Void>? sdlAndroidGetActivity() {
+  final sdlAndroidGetActivityLookupFunction = libSdl2.lookupFunction<
       Pointer<Void>? Function(),
       Pointer<Void>? Function()>('SDL_AndroidGetActivity');
-  return _SDL_AndroidGetActivity();
+  return sdlAndroidGetActivityLookupFunction();
 }
 
 /// 
@@ -339,11 +339,11 @@ Pointer<Void>? SDL_AndroidGetActivity() {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetAndroidSDKVersion(void)
 /// ```
-int SDL_GetAndroidSDKVersion() {
-  final _SDL_GetAndroidSDKVersion = DLL_SDL2.lookupFunction<
+int sdlGetAndroidSdkVersion() {
+  final sdlGetAndroidSdkVersionLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_GetAndroidSDKVersion');
-  return _SDL_GetAndroidSDKVersion();
+  return sdlGetAndroidSdkVersionLookupFunction();
 }
 
 /// 
@@ -356,11 +356,11 @@ int SDL_GetAndroidSDKVersion() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsAndroidTV(void)
 /// ```
-int SDL_IsAndroidTV() {
-  final _SDL_IsAndroidTV = DLL_SDL2.lookupFunction<
+int sdlIsAndroidTv() {
+  final sdlIsAndroidTvLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_IsAndroidTV');
-  return _SDL_IsAndroidTV();
+  return sdlIsAndroidTvLookupFunction();
 }
 
 /// 
@@ -373,11 +373,11 @@ int SDL_IsAndroidTV() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsChromebook(void)
 /// ```
-int SDL_IsChromebook() {
-  final _SDL_IsChromebook = DLL_SDL2.lookupFunction<
+int sdlIsChromebook() {
+  final sdlIsChromebookLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_IsChromebook');
-  return _SDL_IsChromebook();
+  return sdlIsChromebookLookupFunction();
 }
 
 /// 
@@ -390,11 +390,11 @@ int SDL_IsChromebook() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsDeXMode(void)
 /// ```
-int SDL_IsDeXMode() {
-  final _SDL_IsDeXMode = DLL_SDL2.lookupFunction<
+int sdlIsDeXMode() {
+  final sdlIsDeXModeLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_IsDeXMode');
-  return _SDL_IsDeXMode();
+  return sdlIsDeXModeLookupFunction();
 }
 
 /// 
@@ -405,11 +405,11 @@ int SDL_IsDeXMode() {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_AndroidBackButton(void)
 /// ```
-void SDL_AndroidBackButton() {
-  final _SDL_AndroidBackButton = DLL_SDL2.lookupFunction<
+void sdlAndroidBackButton() {
+  final sdlAndroidBackButtonLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_AndroidBackButton');
-  return _SDL_AndroidBackButton();
+  return sdlAndroidBackButtonLookupFunction();
 }
 
 /// 
@@ -431,11 +431,11 @@ void SDL_AndroidBackButton() {
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDL_AndroidGetInternalStoragePath(void)
 /// ```
-String SDL_AndroidGetInternalStoragePath() {
-  final _SDL_AndroidGetInternalStoragePath = DLL_SDL2.lookupFunction<
+String sdlAndroidGetInternalStoragePath() {
+  final sdlAndroidGetInternalStoragePathLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8>? Function(),
       Pointer<Utf8>? Function()>('SDL_AndroidGetInternalStoragePath');
-  return _SDL_AndroidGetInternalStoragePath()!.toDartString();
+  return sdlAndroidGetInternalStoragePathLookupFunction()!.toDartString();
 }
 
 /// 
@@ -456,11 +456,11 @@ String SDL_AndroidGetInternalStoragePath() {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_AndroidGetExternalStorageState(void)
 /// ```
-int SDL_AndroidGetExternalStorageState() {
-  final _SDL_AndroidGetExternalStorageState = DLL_SDL2.lookupFunction<
+int sdlAndroidGetExternalStorageState() {
+  final sdlAndroidGetExternalStorageStateLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_AndroidGetExternalStorageState');
-  return _SDL_AndroidGetExternalStorageState();
+  return sdlAndroidGetExternalStorageStateLookupFunction();
 }
 
 /// 
@@ -482,11 +482,11 @@ int SDL_AndroidGetExternalStorageState() {
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDL_AndroidGetExternalStoragePath(void)
 /// ```
-String SDL_AndroidGetExternalStoragePath() {
-  final _SDL_AndroidGetExternalStoragePath = DLL_SDL2.lookupFunction<
+String sdlAndroidGetExternalStoragePath() {
+  final sdlAndroidGetExternalStoragePathLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8>? Function(),
       Pointer<Utf8>? Function()>('SDL_AndroidGetExternalStoragePath');
-  return _SDL_AndroidGetExternalStoragePath()!.toDartString();
+  return sdlAndroidGetExternalStoragePathLookupFunction()!.toDartString();
 }
 
 /// 
@@ -502,14 +502,14 @@ String SDL_AndroidGetExternalStoragePath() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_AndroidRequestPermission(const char *permission)
 /// ```
-int SDL_AndroidRequestPermission(String permission) {
-  final _SDL_AndroidRequestPermission = DLL_SDL2.lookupFunction<
+int sdlAndroidRequestPermission(String permission) {
+  final sdlAndroidRequestPermissionLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8>? permission),
       int Function(Pointer<Utf8>? permission)>('SDL_AndroidRequestPermission');
-  final _permissionPointer = permission.toNativeUtf8();
-  final _result = _SDL_AndroidRequestPermission(_permissionPointer);
-  calloc.free(_permissionPointer);
-  return _result;
+  final permissionPointer = permission.toNativeUtf8();
+  final result = sdlAndroidRequestPermissionLookupFunction(permissionPointer);
+  calloc.free(permissionPointer);
+  return result;
 }
 
 /// 
@@ -538,14 +538,14 @@ int SDL_AndroidRequestPermission(String permission) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_AndroidShowToast(const char* message, int duration, int gravity, int xoffset, int yoffset)
 /// ```
-int SDL_AndroidShowToast(String message, int duration, int gravity, int xoffset, int yoffset) {
-  final _SDL_AndroidShowToast = DLL_SDL2.lookupFunction<
+int sdlAndroidShowToast(String message, int duration, int gravity, int xoffset, int yoffset) {
+  final sdlAndroidShowToastLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8>? message, Int32 duration, Int32 gravity, Int32 xoffset, Int32 yoffset),
       int Function(Pointer<Utf8>? message, int duration, int gravity, int xoffset, int yoffset)>('SDL_AndroidShowToast');
-  final _messagePointer = message.toNativeUtf8();
-  final _result = _SDL_AndroidShowToast(_messagePointer, duration, gravity, xoffset, yoffset);
-  calloc.free(_messagePointer);
-  return _result;
+  final messagePointer = message.toNativeUtf8();
+  final result = sdlAndroidShowToastLookupFunction(messagePointer, duration, gravity, xoffset, yoffset);
+  calloc.free(messagePointer);
+  return result;
 }
 
 /// 
@@ -561,11 +561,11 @@ int SDL_AndroidShowToast(String message, int duration, int gravity, int xoffset,
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_AndroidSendMessage(Uint32 command, int param)
 /// ```
-int SDL_AndroidSendMessage(int command, int param) {
-  final _SDL_AndroidSendMessage = DLL_SDL2.lookupFunction<
+int sdlAndroidSendMessage(int command, int param) {
+  final sdlAndroidSendMessageLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Uint32 command, Int32 param),
       int Function(int command, int param)>('SDL_AndroidSendMessage');
-  return _SDL_AndroidSendMessage(command, param);
+  return sdlAndroidSendMessageLookupFunction(command, param);
 }
 
 /// 
@@ -592,11 +592,11 @@ int SDL_AndroidSendMessage(int command, int param) {
 /// ```c
 /// extern DECLSPEC const wchar_t * SDLCALL SDL_WinRTGetFSPathUNICODE(SDL_WinRT_Path pathType)
 /// ```
-Pointer<Int16>? SDL_WinRTGetFSPathUNICODE(int pathType) {
-  final _SDL_WinRTGetFSPathUNICODE = DLL_SDL2.lookupFunction<
+Pointer<Int16>? sdlWinRtGetFsPathUnicode(int pathType) {
+  final sdlWinRtGetFsPathUnicodeLookupFunction = libSdl2.lookupFunction<
       Pointer<Int16>? Function(Int32 pathType),
       Pointer<Int16>? Function(int pathType)>('SDL_WinRTGetFSPathUNICODE');
-  return _SDL_WinRTGetFSPathUNICODE(pathType);
+  return sdlWinRtGetFsPathUnicodeLookupFunction(pathType);
 }
 
 /// 
@@ -623,11 +623,11 @@ Pointer<Int16>? SDL_WinRTGetFSPathUNICODE(int pathType) {
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDL_WinRTGetFSPathUTF8(SDL_WinRT_Path pathType)
 /// ```
-String SDL_WinRTGetFSPathUTF8(int pathType) {
-  final _SDL_WinRTGetFSPathUTF8 = DLL_SDL2.lookupFunction<
+String sdlWinRtGetFsPathUtf8(int pathType) {
+  final sdlWinRtGetFsPathUtf8LookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8>? Function(Int32 pathType),
       Pointer<Utf8>? Function(int pathType)>('SDL_WinRTGetFSPathUTF8');
-  return _SDL_WinRTGetFSPathUTF8(pathType)!.toDartString();
+  return sdlWinRtGetFsPathUtf8LookupFunction(pathType)!.toDartString();
 }
 
 /// 
@@ -640,11 +640,11 @@ String SDL_WinRTGetFSPathUTF8(int pathType) {
 /// ```c
 /// extern DECLSPEC SDL_WinRT_DeviceFamily SDLCALL SDL_WinRTGetDeviceFamily()
 /// ```
-int SDL_WinRTGetDeviceFamily() {
-  final _SDL_WinRTGetDeviceFamily = DLL_SDL2.lookupFunction<
+int sdlWinRtGetDeviceFamily() {
+  final sdlWinRtGetDeviceFamilyLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_WinRTGetDeviceFamily');
-  return _SDL_WinRTGetDeviceFamily();
+  return sdlWinRtGetDeviceFamilyLookupFunction();
 }
 
 /// 
@@ -659,82 +659,82 @@ int SDL_WinRTGetDeviceFamily() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsTablet(void)
 /// ```
-int SDL_IsTablet() {
-  final _SDL_IsTablet = DLL_SDL2.lookupFunction<
+int sdlIsTablet() {
+  final sdlIsTabletLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_IsTablet');
-  return _SDL_IsTablet();
+  return sdlIsTabletLookupFunction();
 }
 
 /// Functions used by iOS application delegates to notify SDL about state changes
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_OnApplicationWillTerminate(void)
 /// ```
-void SDL_OnApplicationWillTerminate() {
-  final _SDL_OnApplicationWillTerminate = DLL_SDL2.lookupFunction<
+void sdlOnApplicationWillTerminate() {
+  final sdlOnApplicationWillTerminateLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_OnApplicationWillTerminate');
-  return _SDL_OnApplicationWillTerminate();
+  return sdlOnApplicationWillTerminateLookupFunction();
 }
 
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_OnApplicationDidReceiveMemoryWarning(void)
 /// ```
-void SDL_OnApplicationDidReceiveMemoryWarning() {
-  final _SDL_OnApplicationDidReceiveMemoryWarning = DLL_SDL2.lookupFunction<
+void sdlOnApplicationDidReceiveMemoryWarning() {
+  final sdlOnApplicationDidReceiveMemoryWarningLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_OnApplicationDidReceiveMemoryWarning');
-  return _SDL_OnApplicationDidReceiveMemoryWarning();
+  return sdlOnApplicationDidReceiveMemoryWarningLookupFunction();
 }
 
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_OnApplicationWillResignActive(void)
 /// ```
-void SDL_OnApplicationWillResignActive() {
-  final _SDL_OnApplicationWillResignActive = DLL_SDL2.lookupFunction<
+void sdlOnApplicationWillResignActive() {
+  final sdlOnApplicationWillResignActiveLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_OnApplicationWillResignActive');
-  return _SDL_OnApplicationWillResignActive();
+  return sdlOnApplicationWillResignActiveLookupFunction();
 }
 
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_OnApplicationDidEnterBackground(void)
 /// ```
-void SDL_OnApplicationDidEnterBackground() {
-  final _SDL_OnApplicationDidEnterBackground = DLL_SDL2.lookupFunction<
+void sdlOnApplicationDidEnterBackground() {
+  final sdlOnApplicationDidEnterBackgroundLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_OnApplicationDidEnterBackground');
-  return _SDL_OnApplicationDidEnterBackground();
+  return sdlOnApplicationDidEnterBackgroundLookupFunction();
 }
 
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_OnApplicationWillEnterForeground(void)
 /// ```
-void SDL_OnApplicationWillEnterForeground() {
-  final _SDL_OnApplicationWillEnterForeground = DLL_SDL2.lookupFunction<
+void sdlOnApplicationWillEnterForeground() {
+  final sdlOnApplicationWillEnterForegroundLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_OnApplicationWillEnterForeground');
-  return _SDL_OnApplicationWillEnterForeground();
+  return sdlOnApplicationWillEnterForegroundLookupFunction();
 }
 
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_OnApplicationDidBecomeActive(void)
 /// ```
-void SDL_OnApplicationDidBecomeActive() {
-  final _SDL_OnApplicationDidBecomeActive = DLL_SDL2.lookupFunction<
+void sdlOnApplicationDidBecomeActive() {
+  final sdlOnApplicationDidBecomeActiveLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_OnApplicationDidBecomeActive');
-  return _SDL_OnApplicationDidBecomeActive();
+  return sdlOnApplicationDidBecomeActiveLookupFunction();
 }
 
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_OnApplicationDidChangeStatusBarOrientation(void)
 /// ```
-void SDL_OnApplicationDidChangeStatusBarOrientation() {
-  final _SDL_OnApplicationDidChangeStatusBarOrientation = DLL_SDL2.lookupFunction<
+void sdlOnApplicationDidChangeStatusBarOrientation() {
+  final sdlOnApplicationDidChangeStatusBarOrientationLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_OnApplicationDidChangeStatusBarOrientation');
-  return _SDL_OnApplicationDidChangeStatusBarOrientation();
+  return sdlOnApplicationDidChangeStatusBarOrientationLookupFunction();
 }
 
 /// 
@@ -753,10 +753,10 @@ void SDL_OnApplicationDidChangeStatusBarOrientation() {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GDKGetTaskQueue(XTaskQueueHandle * outTaskQueue)
 /// ```
-int SDL_GDKGetTaskQueue(Pointer<XTaskQueueHandle>? outTaskQueue) {
-  final _SDL_GDKGetTaskQueue = DLL_SDL2.lookupFunction<
+int sdlGdkGetTaskQueue(Pointer<XTaskQueueHandle>? outTaskQueue) {
+  final sdlGdkGetTaskQueueLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<XTaskQueueHandle>? outTaskQueue),
       int Function(Pointer<XTaskQueueHandle>? outTaskQueue)>('SDL_GDKGetTaskQueue');
-  return _SDL_GDKGetTaskQueue(outTaskQueue);
+  return sdlGdkGetTaskQueueLookupFunction(outTaskQueue);
 }
 

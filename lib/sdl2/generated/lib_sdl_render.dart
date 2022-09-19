@@ -23,11 +23,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetNumRenderDrivers(void)
 /// ```
-int SDL_GetNumRenderDrivers() {
-  final _SDL_GetNumRenderDrivers = DLL_SDL2.lookupFunction<
+int sdlGetNumRenderDrivers() {
+  final sdlGetNumRenderDriversLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_GetNumRenderDrivers');
-  return _SDL_GetNumRenderDrivers();
+  return sdlGetNumRenderDriversLookupFunction();
 }
 
 /// 
@@ -47,11 +47,11 @@ int SDL_GetNumRenderDrivers() {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetRenderDriverInfo(int index, SDL_RendererInfo * info)
 /// ```
-int SDL_GetRenderDriverInfo(int index, Pointer<SDL_RendererInfo>? info) {
-  final _SDL_GetRenderDriverInfo = DLL_SDL2.lookupFunction<
-      Int32 Function(Int32 index, Pointer<SDL_RendererInfo>? info),
-      int Function(int index, Pointer<SDL_RendererInfo>? info)>('SDL_GetRenderDriverInfo');
-  return _SDL_GetRenderDriverInfo(index, info);
+int sdlGetRenderDriverInfo(int index, Pointer<SdlRendererInfo>? info) {
+  final sdlGetRenderDriverInfoLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Int32 index, Pointer<SdlRendererInfo>? info),
+      int Function(int index, Pointer<SdlRendererInfo>? info)>('SDL_GetRenderDriverInfo');
+  return sdlGetRenderDriverInfoLookupFunction(index, info);
 }
 
 /// 
@@ -74,11 +74,11 @@ int SDL_GetRenderDriverInfo(int index, Pointer<SDL_RendererInfo>? info) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_CreateWindowAndRenderer( int width, int height, Uint32 window_flags, SDL_Window **window, SDL_Renderer **renderer)
 /// ```
-int SDL_CreateWindowAndRenderer(int width, int height, int window_flags, Pointer<Pointer<SDL_Window>>? window, Pointer<Pointer<SDL_Renderer>>? renderer) {
-  final _SDL_CreateWindowAndRenderer = DLL_SDL2.lookupFunction<
-      Int32 Function(Int32 width, Int32 height, Uint32 window_flags, Pointer<Pointer<SDL_Window>>? window, Pointer<Pointer<SDL_Renderer>>? renderer),
-      int Function(int width, int height, int window_flags, Pointer<Pointer<SDL_Window>>? window, Pointer<Pointer<SDL_Renderer>>? renderer)>('SDL_CreateWindowAndRenderer');
-  return _SDL_CreateWindowAndRenderer(width, height, window_flags, window, renderer);
+int sdlCreateWindowAndRenderer(int width, int height, int windowFlags, Pointer<Pointer<SdlWindow>>? window, Pointer<Pointer<SdlRenderer>>? renderer) {
+  final sdlCreateWindowAndRendererLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Int32 width, Int32 height, Uint32 windowFlags, Pointer<Pointer<SdlWindow>>? window, Pointer<Pointer<SdlRenderer>>? renderer),
+      int Function(int width, int height, int windowFlags, Pointer<Pointer<SdlWindow>>? window, Pointer<Pointer<SdlRenderer>>? renderer)>('SDL_CreateWindowAndRenderer');
+  return sdlCreateWindowAndRendererLookupFunction(width, height, windowFlags, window, renderer);
 }
 
 /// 
@@ -101,11 +101,11 @@ int SDL_CreateWindowAndRenderer(int width, int height, int window_flags, Pointer
 /// ```c
 /// extern DECLSPEC SDL_Renderer * SDLCALL SDL_CreateRenderer(SDL_Window * window, int index, Uint32 flags)
 /// ```
-Pointer<SDL_Renderer>? SDL_CreateRenderer(Pointer<SDL_Window>? window, int index, int flags) {
-  final _SDL_CreateRenderer = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Renderer>? Function(Pointer<SDL_Window>? window, Int32 index, Uint32 flags),
-      Pointer<SDL_Renderer>? Function(Pointer<SDL_Window>? window, int index, int flags)>('SDL_CreateRenderer');
-  return _SDL_CreateRenderer(window, index, flags);
+Pointer<SdlRenderer>? sdlCreateRenderer(Pointer<SdlWindow>? window, int index, int flags) {
+  final sdlCreateRendererLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlRenderer>? Function(Pointer<SdlWindow>? window, Int32 index, Uint32 flags),
+      Pointer<SdlRenderer>? Function(Pointer<SdlWindow>? window, int index, int flags)>('SDL_CreateRenderer');
+  return sdlCreateRendererLookupFunction(window, index, flags);
 }
 
 /// 
@@ -130,11 +130,11 @@ Pointer<SDL_Renderer>? SDL_CreateRenderer(Pointer<SDL_Window>? window, int index
 /// ```c
 /// extern DECLSPEC SDL_Renderer * SDLCALL SDL_CreateSoftwareRenderer(SDL_Surface * surface)
 /// ```
-Pointer<SDL_Renderer>? SDL_CreateSoftwareRenderer(Pointer<SDL_Surface>? surface) {
-  final _SDL_CreateSoftwareRenderer = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Renderer>? Function(Pointer<SDL_Surface>? surface),
-      Pointer<SDL_Renderer>? Function(Pointer<SDL_Surface>? surface)>('SDL_CreateSoftwareRenderer');
-  return _SDL_CreateSoftwareRenderer(surface);
+Pointer<SdlRenderer>? sdlCreateSoftwareRenderer(Pointer<SdlSurface>? surface) {
+  final sdlCreateSoftwareRendererLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlRenderer>? Function(Pointer<SdlSurface>? surface),
+      Pointer<SdlRenderer>? Function(Pointer<SdlSurface>? surface)>('SDL_CreateSoftwareRenderer');
+  return sdlCreateSoftwareRendererLookupFunction(surface);
 }
 
 /// 
@@ -151,11 +151,11 @@ Pointer<SDL_Renderer>? SDL_CreateSoftwareRenderer(Pointer<SDL_Surface>? surface)
 /// ```c
 /// extern DECLSPEC SDL_Renderer * SDLCALL SDL_GetRenderer(SDL_Window * window)
 /// ```
-Pointer<SDL_Renderer>? SDL_GetRenderer(Pointer<SDL_Window>? window) {
-  final _SDL_GetRenderer = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Renderer>? Function(Pointer<SDL_Window>? window),
-      Pointer<SDL_Renderer>? Function(Pointer<SDL_Window>? window)>('SDL_GetRenderer');
-  return _SDL_GetRenderer(window);
+Pointer<SdlRenderer>? sdlGetRenderer(Pointer<SdlWindow>? window) {
+  final sdlGetRendererLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlRenderer>? Function(Pointer<SdlWindow>? window),
+      Pointer<SdlRenderer>? Function(Pointer<SdlWindow>? window)>('SDL_GetRenderer');
+  return sdlGetRendererLookupFunction(window);
 }
 
 /// 
@@ -170,11 +170,11 @@ Pointer<SDL_Renderer>? SDL_GetRenderer(Pointer<SDL_Window>? window) {
 /// ```c
 /// extern DECLSPEC SDL_Window * SDLCALL SDL_RenderGetWindow(SDL_Renderer *renderer)
 /// ```
-Pointer<SDL_Window>? SDL_RenderGetWindow(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_RenderGetWindow = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Window>? Function(Pointer<SDL_Renderer>? renderer),
-      Pointer<SDL_Window>? Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderGetWindow');
-  return _SDL_RenderGetWindow(renderer);
+Pointer<SdlWindow>? sdlRenderGetWindow(Pointer<SdlRenderer>? renderer) {
+  final sdlRenderGetWindowLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlWindow>? Function(Pointer<SdlRenderer>? renderer),
+      Pointer<SdlWindow>? Function(Pointer<SdlRenderer>? renderer)>('SDL_RenderGetWindow');
+  return sdlRenderGetWindowLookupFunction(renderer);
 }
 
 /// 
@@ -193,11 +193,11 @@ Pointer<SDL_Window>? SDL_RenderGetWindow(Pointer<SDL_Renderer>? renderer) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetRendererInfo(SDL_Renderer * renderer, SDL_RendererInfo * info)
 /// ```
-int SDL_GetRendererInfo(Pointer<SDL_Renderer>? renderer, Pointer<SDL_RendererInfo>? info) {
-  final _SDL_GetRendererInfo = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_RendererInfo>? info),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_RendererInfo>? info)>('SDL_GetRendererInfo');
-  return _SDL_GetRendererInfo(renderer, info);
+int sdlGetRendererInfo(Pointer<SdlRenderer>? renderer, Pointer<SdlRendererInfo>? info) {
+  final sdlGetRendererInfoLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRendererInfo>? info),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRendererInfo>? info)>('SDL_GetRendererInfo');
+  return sdlGetRendererInfoLookupFunction(renderer, info);
 }
 
 /// 
@@ -220,11 +220,11 @@ int SDL_GetRendererInfo(Pointer<SDL_Renderer>? renderer, Pointer<SDL_RendererInf
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetRendererOutputSize(SDL_Renderer * renderer, int *w, int *h)
 /// ```
-int SDL_GetRendererOutputSize(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h) {
-  final _SDL_GetRendererOutputSize = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_GetRendererOutputSize');
-  return _SDL_GetRendererOutputSize(renderer, w, h);
+int sdlGetRendererOutputSize(Pointer<SdlRenderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h) {
+  final sdlGetRendererOutputSizeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_GetRendererOutputSize');
+  return sdlGetRendererOutputSizeLookupFunction(renderer, w, h);
 }
 
 /// 
@@ -252,11 +252,11 @@ int SDL_GetRendererOutputSize(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? w
 /// ```c
 /// extern DECLSPEC SDL_Texture * SDLCALL SDL_CreateTexture(SDL_Renderer * renderer, Uint32 format, int access, int w, int h)
 /// ```
-Pointer<SDL_Texture>? SDL_CreateTexture(Pointer<SDL_Renderer>? renderer, int format, int access, int w, int h) {
-  final _SDL_CreateTexture = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer, Uint32 format, Int32 access, Int32 w, Int32 h),
-      Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer, int format, int access, int w, int h)>('SDL_CreateTexture');
-  return _SDL_CreateTexture(renderer, format, access, w, h);
+Pointer<SdlTexture>? sdlCreateTexture(Pointer<SdlRenderer>? renderer, int format, int access, int w, int h) {
+  final sdlCreateTextureLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlTexture>? Function(Pointer<SdlRenderer>? renderer, Uint32 format, Int32 access, Int32 w, Int32 h),
+      Pointer<SdlTexture>? Function(Pointer<SdlRenderer>? renderer, int format, int access, int w, int h)>('SDL_CreateTexture');
+  return sdlCreateTextureLookupFunction(renderer, format, access, w, h);
 }
 
 /// 
@@ -286,11 +286,11 @@ Pointer<SDL_Texture>? SDL_CreateTexture(Pointer<SDL_Renderer>? renderer, int for
 /// ```c
 /// extern DECLSPEC SDL_Texture * SDLCALL SDL_CreateTextureFromSurface(SDL_Renderer * renderer, SDL_Surface * surface)
 /// ```
-Pointer<SDL_Texture>? SDL_CreateTextureFromSurface(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Surface>? surface) {
-  final _SDL_CreateTextureFromSurface = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Surface>? surface),
-      Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Surface>? surface)>('SDL_CreateTextureFromSurface');
-  return _SDL_CreateTextureFromSurface(renderer, surface);
+Pointer<SdlTexture>? sdlCreateTextureFromSurface(Pointer<SdlRenderer>? renderer, Pointer<SdlSurface>? surface) {
+  final sdlCreateTextureFromSurfaceLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlTexture>? Function(Pointer<SdlRenderer>? renderer, Pointer<SdlSurface>? surface),
+      Pointer<SdlTexture>? Function(Pointer<SdlRenderer>? renderer, Pointer<SdlSurface>? surface)>('SDL_CreateTextureFromSurface');
+  return sdlCreateTextureFromSurfaceLookupFunction(renderer, surface);
 }
 
 /// 
@@ -318,11 +318,11 @@ Pointer<SDL_Texture>? SDL_CreateTextureFromSurface(Pointer<SDL_Renderer>? render
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_QueryTexture(SDL_Texture * texture, Uint32 * format, int *access, int *w, int *h)
 /// ```
-int SDL_QueryTexture(Pointer<SDL_Texture>? texture, Pointer<Uint32>? format, Pointer<Int32>? access, Pointer<Int32>? w, Pointer<Int32>? h) {
-  final _SDL_QueryTexture = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Pointer<Uint32>? format, Pointer<Int32>? access, Pointer<Int32>? w, Pointer<Int32>? h),
-      int Function(Pointer<SDL_Texture>? texture, Pointer<Uint32>? format, Pointer<Int32>? access, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_QueryTexture');
-  return _SDL_QueryTexture(texture, format, access, w, h);
+int sdlQueryTexture(Pointer<SdlTexture>? texture, Pointer<Uint32>? format, Pointer<Int32>? access, Pointer<Int32>? w, Pointer<Int32>? h) {
+  final sdlQueryTextureLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Pointer<Uint32>? format, Pointer<Int32>? access, Pointer<Int32>? w, Pointer<Int32>? h),
+      int Function(Pointer<SdlTexture>? texture, Pointer<Uint32>? format, Pointer<Int32>? access, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_QueryTexture');
+  return sdlQueryTextureLookupFunction(texture, format, access, w, h);
 }
 
 /// 
@@ -352,11 +352,11 @@ int SDL_QueryTexture(Pointer<SDL_Texture>? texture, Pointer<Uint32>? format, Poi
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetTextureColorMod(SDL_Texture * texture, Uint8 r, Uint8 g, Uint8 b)
 /// ```
-int SDL_SetTextureColorMod(Pointer<SDL_Texture>? texture, int r, int g, int b) {
-  final _SDL_SetTextureColorMod = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Uint8 r, Uint8 g, Uint8 b),
-      int Function(Pointer<SDL_Texture>? texture, int r, int g, int b)>('SDL_SetTextureColorMod');
-  return _SDL_SetTextureColorMod(texture, r, g, b);
+int sdlSetTextureColorMod(Pointer<SdlTexture>? texture, int r, int g, int b) {
+  final sdlSetTextureColorModLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Uint8 r, Uint8 g, Uint8 b),
+      int Function(Pointer<SdlTexture>? texture, int r, int g, int b)>('SDL_SetTextureColorMod');
+  return sdlSetTextureColorModLookupFunction(texture, r, g, b);
 }
 
 /// 
@@ -377,11 +377,11 @@ int SDL_SetTextureColorMod(Pointer<SDL_Texture>? texture, int r, int g, int b) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetTextureColorMod(SDL_Texture * texture, Uint8 * r, Uint8 * g, Uint8 * b)
 /// ```
-int SDL_GetTextureColorMod(Pointer<SDL_Texture>? texture, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b) {
-  final _SDL_GetTextureColorMod = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b),
-      int Function(Pointer<SDL_Texture>? texture, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b)>('SDL_GetTextureColorMod');
-  return _SDL_GetTextureColorMod(texture, r, g, b);
+int sdlGetTextureColorMod(Pointer<SdlTexture>? texture, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b) {
+  final sdlGetTextureColorModLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b),
+      int Function(Pointer<SdlTexture>? texture, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b)>('SDL_GetTextureColorMod');
+  return sdlGetTextureColorModLookupFunction(texture, r, g, b);
 }
 
 /// 
@@ -408,11 +408,11 @@ int SDL_GetTextureColorMod(Pointer<SDL_Texture>? texture, Pointer<Uint8>? r, Poi
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetTextureAlphaMod(SDL_Texture * texture, Uint8 alpha)
 /// ```
-int SDL_SetTextureAlphaMod(Pointer<SDL_Texture>? texture, int alpha) {
-  final _SDL_SetTextureAlphaMod = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Uint8 alpha),
-      int Function(Pointer<SDL_Texture>? texture, int alpha)>('SDL_SetTextureAlphaMod');
-  return _SDL_SetTextureAlphaMod(texture, alpha);
+int sdlSetTextureAlphaMod(Pointer<SdlTexture>? texture, int alpha) {
+  final sdlSetTextureAlphaModLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Uint8 alpha),
+      int Function(Pointer<SdlTexture>? texture, int alpha)>('SDL_SetTextureAlphaMod');
+  return sdlSetTextureAlphaModLookupFunction(texture, alpha);
 }
 
 /// 
@@ -431,11 +431,11 @@ int SDL_SetTextureAlphaMod(Pointer<SDL_Texture>? texture, int alpha) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetTextureAlphaMod(SDL_Texture * texture, Uint8 * alpha)
 /// ```
-int SDL_GetTextureAlphaMod(Pointer<SDL_Texture>? texture, Pointer<Uint8>? alpha) {
-  final _SDL_GetTextureAlphaMod = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Pointer<Uint8>? alpha),
-      int Function(Pointer<SDL_Texture>? texture, Pointer<Uint8>? alpha)>('SDL_GetTextureAlphaMod');
-  return _SDL_GetTextureAlphaMod(texture, alpha);
+int sdlGetTextureAlphaMod(Pointer<SdlTexture>? texture, Pointer<Uint8>? alpha) {
+  final sdlGetTextureAlphaModLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Pointer<Uint8>? alpha),
+      int Function(Pointer<SdlTexture>? texture, Pointer<Uint8>? alpha)>('SDL_GetTextureAlphaMod');
+  return sdlGetTextureAlphaModLookupFunction(texture, alpha);
 }
 
 /// 
@@ -457,11 +457,11 @@ int SDL_GetTextureAlphaMod(Pointer<SDL_Texture>? texture, Pointer<Uint8>? alpha)
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetTextureBlendMode(SDL_Texture * texture, SDL_BlendMode blendMode)
 /// ```
-int SDL_SetTextureBlendMode(Pointer<SDL_Texture>? texture, int blendMode) {
-  final _SDL_SetTextureBlendMode = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Int32 blendMode),
-      int Function(Pointer<SDL_Texture>? texture, int blendMode)>('SDL_SetTextureBlendMode');
-  return _SDL_SetTextureBlendMode(texture, blendMode);
+int sdlSetTextureBlendMode(Pointer<SdlTexture>? texture, int blendMode) {
+  final sdlSetTextureBlendModeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Int32 blendMode),
+      int Function(Pointer<SdlTexture>? texture, int blendMode)>('SDL_SetTextureBlendMode');
+  return sdlSetTextureBlendModeLookupFunction(texture, blendMode);
 }
 
 /// 
@@ -479,11 +479,11 @@ int SDL_SetTextureBlendMode(Pointer<SDL_Texture>? texture, int blendMode) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetTextureBlendMode(SDL_Texture * texture, SDL_BlendMode *blendMode)
 /// ```
-int SDL_GetTextureBlendMode(Pointer<SDL_Texture>? texture, Pointer<Int32>? blendMode) {
-  final _SDL_GetTextureBlendMode = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Pointer<Int32>? blendMode),
-      int Function(Pointer<SDL_Texture>? texture, Pointer<Int32>? blendMode)>('SDL_GetTextureBlendMode');
-  return _SDL_GetTextureBlendMode(texture, blendMode);
+int sdlGetTextureBlendMode(Pointer<SdlTexture>? texture, Pointer<Int32>? blendMode) {
+  final sdlGetTextureBlendModeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Pointer<Int32>? blendMode),
+      int Function(Pointer<SdlTexture>? texture, Pointer<Int32>? blendMode)>('SDL_GetTextureBlendMode');
+  return sdlGetTextureBlendModeLookupFunction(texture, blendMode);
 }
 
 /// 
@@ -502,11 +502,11 @@ int SDL_GetTextureBlendMode(Pointer<SDL_Texture>? texture, Pointer<Int32>? blend
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetTextureScaleMode(SDL_Texture * texture, SDL_ScaleMode scaleMode)
 /// ```
-int SDL_SetTextureScaleMode(Pointer<SDL_Texture>? texture, int scaleMode) {
-  final _SDL_SetTextureScaleMode = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Int32 scaleMode),
-      int Function(Pointer<SDL_Texture>? texture, int scaleMode)>('SDL_SetTextureScaleMode');
-  return _SDL_SetTextureScaleMode(texture, scaleMode);
+int sdlSetTextureScaleMode(Pointer<SdlTexture>? texture, int scaleMode) {
+  final sdlSetTextureScaleModeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Int32 scaleMode),
+      int Function(Pointer<SdlTexture>? texture, int scaleMode)>('SDL_SetTextureScaleMode');
+  return sdlSetTextureScaleModeLookupFunction(texture, scaleMode);
 }
 
 /// 
@@ -523,11 +523,11 @@ int SDL_SetTextureScaleMode(Pointer<SDL_Texture>? texture, int scaleMode) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetTextureScaleMode(SDL_Texture * texture, SDL_ScaleMode *scaleMode)
 /// ```
-int SDL_GetTextureScaleMode(Pointer<SDL_Texture>? texture, Pointer<Int32>? scaleMode) {
-  final _SDL_GetTextureScaleMode = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Pointer<Int32>? scaleMode),
-      int Function(Pointer<SDL_Texture>? texture, Pointer<Int32>? scaleMode)>('SDL_GetTextureScaleMode');
-  return _SDL_GetTextureScaleMode(texture, scaleMode);
+int sdlGetTextureScaleMode(Pointer<SdlTexture>? texture, Pointer<Int32>? scaleMode) {
+  final sdlGetTextureScaleModeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Pointer<Int32>? scaleMode),
+      int Function(Pointer<SdlTexture>? texture, Pointer<Int32>? scaleMode)>('SDL_GetTextureScaleMode');
+  return sdlGetTextureScaleModeLookupFunction(texture, scaleMode);
 }
 
 /// 
@@ -544,11 +544,11 @@ int SDL_GetTextureScaleMode(Pointer<SDL_Texture>? texture, Pointer<Int32>? scale
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetTextureUserData(SDL_Texture * texture, void *userdata)
 /// ```
-int SDL_SetTextureUserData(Pointer<SDL_Texture>? texture, Pointer<Void>? userdata) {
-  final _SDL_SetTextureUserData = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Pointer<Void>? userdata),
-      int Function(Pointer<SDL_Texture>? texture, Pointer<Void>? userdata)>('SDL_SetTextureUserData');
-  return _SDL_SetTextureUserData(texture, userdata);
+int sdlSetTextureUserData(Pointer<SdlTexture>? texture, Pointer<Void>? userdata) {
+  final sdlSetTextureUserDataLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Pointer<Void>? userdata),
+      int Function(Pointer<SdlTexture>? texture, Pointer<Void>? userdata)>('SDL_SetTextureUserData');
+  return sdlSetTextureUserDataLookupFunction(texture, userdata);
 }
 
 /// 
@@ -565,11 +565,11 @@ int SDL_SetTextureUserData(Pointer<SDL_Texture>? texture, Pointer<Void>? userdat
 /// ```c
 /// extern DECLSPEC void * SDLCALL SDL_GetTextureUserData(SDL_Texture * texture)
 /// ```
-Pointer<Void>? SDL_GetTextureUserData(Pointer<SDL_Texture>? texture) {
-  final _SDL_GetTextureUserData = DLL_SDL2.lookupFunction<
-      Pointer<Void>? Function(Pointer<SDL_Texture>? texture),
-      Pointer<Void>? Function(Pointer<SDL_Texture>? texture)>('SDL_GetTextureUserData');
-  return _SDL_GetTextureUserData(texture);
+Pointer<Void>? sdlGetTextureUserData(Pointer<SdlTexture>? texture) {
+  final sdlGetTextureUserDataLookupFunction = libSdl2.lookupFunction<
+      Pointer<Void>? Function(Pointer<SdlTexture>? texture),
+      Pointer<Void>? Function(Pointer<SdlTexture>? texture)>('SDL_GetTextureUserData');
+  return sdlGetTextureUserDataLookupFunction(texture);
 }
 
 /// 
@@ -604,11 +604,11 @@ Pointer<Void>? SDL_GetTextureUserData(Pointer<SDL_Texture>? texture) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_UpdateTexture(SDL_Texture * texture, const SDL_Rect * rect, const void *pixels, int pitch)
 /// ```
-int SDL_UpdateTexture(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Void>? pixels, int pitch) {
-  final _SDL_UpdateTexture = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Void>? pixels, Int32 pitch),
-      int Function(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Void>? pixels, int pitch)>('SDL_UpdateTexture');
-  return _SDL_UpdateTexture(texture, rect, pixels, pitch);
+int sdlUpdateTexture(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Void>? pixels, int pitch) {
+  final sdlUpdateTextureLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Void>? pixels, Int32 pitch),
+      int Function(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Void>? pixels, int pitch)>('SDL_UpdateTexture');
+  return sdlUpdateTextureLookupFunction(texture, rect, pixels, pitch);
 }
 
 /// 
@@ -641,11 +641,11 @@ int SDL_UpdateTexture(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Po
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_UpdateYUVTexture(SDL_Texture * texture, const SDL_Rect * rect, const Uint8 *Yplane, int Ypitch, const Uint8 *Uplane, int Upitch, const Uint8 *Vplane, int Vpitch)
 /// ```
-int SDL_UpdateYUVTexture(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Uint8>? Yplane, int Ypitch, Pointer<Uint8>? Uplane, int Upitch, Pointer<Uint8>? Vplane, int Vpitch) {
-  final _SDL_UpdateYUVTexture = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Uint8>? Yplane, Int32 Ypitch, Pointer<Uint8>? Uplane, Int32 Upitch, Pointer<Uint8>? Vplane, Int32 Vpitch),
-      int Function(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Uint8>? Yplane, int Ypitch, Pointer<Uint8>? Uplane, int Upitch, Pointer<Uint8>? Vplane, int Vpitch)>('SDL_UpdateYUVTexture');
-  return _SDL_UpdateYUVTexture(texture, rect, Yplane, Ypitch, Uplane, Upitch, Vplane, Vpitch);
+int sdlUpdateYuvTexture(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Uint8>? yplane, int ypitch, Pointer<Uint8>? uplane, int upitch, Pointer<Uint8>? vplane, int vpitch) {
+  final sdlUpdateYuvTextureLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Uint8>? yplane, Int32 ypitch, Pointer<Uint8>? uplane, Int32 upitch, Pointer<Uint8>? vplane, Int32 vpitch),
+      int Function(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Uint8>? yplane, int ypitch, Pointer<Uint8>? uplane, int upitch, Pointer<Uint8>? vplane, int vpitch)>('SDL_UpdateYUVTexture');
+  return sdlUpdateYuvTextureLookupFunction(texture, rect, yplane, ypitch, uplane, upitch, vplane, vpitch);
 }
 
 /// 
@@ -671,11 +671,11 @@ int SDL_UpdateYUVTexture(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect,
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_UpdateNVTexture(SDL_Texture * texture, const SDL_Rect * rect, const Uint8 *Yplane, int Ypitch, const Uint8 *UVplane, int UVpitch)
 /// ```
-int SDL_UpdateNVTexture(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Uint8>? Yplane, int Ypitch, Pointer<Uint8>? UVplane, int UVpitch) {
-  final _SDL_UpdateNVTexture = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Uint8>? Yplane, Int32 Ypitch, Pointer<Uint8>? UVplane, Int32 UVpitch),
-      int Function(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Uint8>? Yplane, int Ypitch, Pointer<Uint8>? UVplane, int UVpitch)>('SDL_UpdateNVTexture');
-  return _SDL_UpdateNVTexture(texture, rect, Yplane, Ypitch, UVplane, UVpitch);
+int sdlUpdateNvTexture(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Uint8>? yplane, int ypitch, Pointer<Uint8>? uVplane, int uVpitch) {
+  final sdlUpdateNvTextureLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Uint8>? yplane, Int32 ypitch, Pointer<Uint8>? uVplane, Int32 uVpitch),
+      int Function(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Uint8>? yplane, int ypitch, Pointer<Uint8>? uVplane, int uVpitch)>('SDL_UpdateNVTexture');
+  return sdlUpdateNvTextureLookupFunction(texture, rect, yplane, ypitch, uVplane, uVpitch);
 }
 
 /// 
@@ -708,11 +708,11 @@ int SDL_UpdateNVTexture(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, 
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_LockTexture(SDL_Texture * texture, const SDL_Rect * rect, void **pixels, int *pitch)
 /// ```
-int SDL_LockTexture(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Pointer<Void>>? pixels, Pointer<Int32>? pitch) {
-  final _SDL_LockTexture = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Pointer<Void>>? pixels, Pointer<Int32>? pitch),
-      int Function(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Pointer<Void>>? pixels, Pointer<Int32>? pitch)>('SDL_LockTexture');
-  return _SDL_LockTexture(texture, rect, pixels, pitch);
+int sdlLockTexture(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Pointer<Void>>? pixels, Pointer<Int32>? pitch) {
+  final sdlLockTextureLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Pointer<Void>>? pixels, Pointer<Int32>? pitch),
+      int Function(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Pointer<Void>>? pixels, Pointer<Int32>? pitch)>('SDL_LockTexture');
+  return sdlLockTextureLookupFunction(texture, rect, pixels, pitch);
 }
 
 /// 
@@ -750,11 +750,11 @@ int SDL_LockTexture(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Poin
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_LockTextureToSurface(SDL_Texture *texture, const SDL_Rect *rect, SDL_Surface **surface)
 /// ```
-int SDL_LockTextureToSurface(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Pointer<SDL_Surface>>? surface) {
-  final _SDL_LockTextureToSurface = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Pointer<SDL_Surface>>? surface),
-      int Function(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? rect, Pointer<Pointer<SDL_Surface>>? surface)>('SDL_LockTextureToSurface');
-  return _SDL_LockTextureToSurface(texture, rect, surface);
+int sdlLockTextureToSurface(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Pointer<SdlSurface>>? surface) {
+  final sdlLockTextureToSurfaceLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Pointer<SdlSurface>>? surface),
+      int Function(Pointer<SdlTexture>? texture, Pointer<SdlRect>? rect, Pointer<Pointer<SdlSurface>>? surface)>('SDL_LockTextureToSurface');
+  return sdlLockTextureToSurfaceLookupFunction(texture, rect, surface);
 }
 
 /// 
@@ -777,11 +777,11 @@ int SDL_LockTextureToSurface(Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? r
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_UnlockTexture(SDL_Texture * texture)
 /// ```
-void SDL_UnlockTexture(Pointer<SDL_Texture>? texture) {
-  final _SDL_UnlockTexture = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Texture>? texture),
-      void Function(Pointer<SDL_Texture>? texture)>('SDL_UnlockTexture');
-  return _SDL_UnlockTexture(texture);
+void sdlUnlockTexture(Pointer<SdlTexture>? texture) {
+  final sdlUnlockTextureLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlTexture>? texture),
+      void Function(Pointer<SdlTexture>? texture)>('SDL_UnlockTexture');
+  return sdlUnlockTextureLookupFunction(texture);
 }
 
 /// 
@@ -797,11 +797,11 @@ void SDL_UnlockTexture(Pointer<SDL_Texture>? texture) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_RenderTargetSupported(SDL_Renderer *renderer)
 /// ```
-int SDL_RenderTargetSupported(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_RenderTargetSupported = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer),
-      int Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderTargetSupported');
-  return _SDL_RenderTargetSupported(renderer);
+int sdlRenderTargetSupported(Pointer<SdlRenderer>? renderer) {
+  final sdlRenderTargetSupportedLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer),
+      int Function(Pointer<SdlRenderer>? renderer)>('SDL_RenderTargetSupported');
+  return sdlRenderTargetSupportedLookupFunction(renderer);
 }
 
 /// 
@@ -829,11 +829,11 @@ int SDL_RenderTargetSupported(Pointer<SDL_Renderer>? renderer) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetRenderTarget(SDL_Renderer *renderer, SDL_Texture *texture)
 /// ```
-int SDL_SetRenderTarget(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture) {
-  final _SDL_SetRenderTarget = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture)>('SDL_SetRenderTarget');
-  return _SDL_SetRenderTarget(renderer, texture);
+int sdlSetRenderTarget(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture) {
+  final sdlSetRenderTargetLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture)>('SDL_SetRenderTarget');
+  return sdlSetRenderTargetLookupFunction(renderer, texture);
 }
 
 /// 
@@ -852,11 +852,11 @@ int SDL_SetRenderTarget(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? t
 /// ```c
 /// extern DECLSPEC SDL_Texture * SDLCALL SDL_GetRenderTarget(SDL_Renderer *renderer)
 /// ```
-Pointer<SDL_Texture>? SDL_GetRenderTarget(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_GetRenderTarget = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer),
-      Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer)>('SDL_GetRenderTarget');
-  return _SDL_GetRenderTarget(renderer);
+Pointer<SdlTexture>? sdlGetRenderTarget(Pointer<SdlRenderer>? renderer) {
+  final sdlGetRenderTargetLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlTexture>? Function(Pointer<SdlRenderer>? renderer),
+      Pointer<SdlTexture>? Function(Pointer<SdlRenderer>? renderer)>('SDL_GetRenderTarget');
+  return sdlGetRenderTargetLookupFunction(renderer);
 }
 
 /// 
@@ -888,11 +888,11 @@ Pointer<SDL_Texture>? SDL_GetRenderTarget(Pointer<SDL_Renderer>? renderer) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderSetLogicalSize(SDL_Renderer * renderer, int w, int h)
 /// ```
-int SDL_RenderSetLogicalSize(Pointer<SDL_Renderer>? renderer, int w, int h) {
-  final _SDL_RenderSetLogicalSize = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Int32 w, Int32 h),
-      int Function(Pointer<SDL_Renderer>? renderer, int w, int h)>('SDL_RenderSetLogicalSize');
-  return _SDL_RenderSetLogicalSize(renderer, w, h);
+int sdlRenderSetLogicalSize(Pointer<SdlRenderer>? renderer, int w, int h) {
+  final sdlRenderSetLogicalSizeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Int32 w, Int32 h),
+      int Function(Pointer<SdlRenderer>? renderer, int w, int h)>('SDL_RenderSetLogicalSize');
+  return sdlRenderSetLogicalSizeLookupFunction(renderer, w, h);
 }
 
 /// 
@@ -917,11 +917,11 @@ int SDL_RenderSetLogicalSize(Pointer<SDL_Renderer>? renderer, int w, int h) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_RenderGetLogicalSize(SDL_Renderer * renderer, int *w, int *h)
 /// ```
-void SDL_RenderGetLogicalSize(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h) {
-  final _SDL_RenderGetLogicalSize = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h),
-      void Function(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_RenderGetLogicalSize');
-  return _SDL_RenderGetLogicalSize(renderer, w, h);
+void sdlRenderGetLogicalSize(Pointer<SdlRenderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h) {
+  final sdlRenderGetLogicalSizeLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlRenderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h),
+      void Function(Pointer<SdlRenderer>? renderer, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_RenderGetLogicalSize');
+  return sdlRenderGetLogicalSizeLookupFunction(renderer, w, h);
 }
 
 /// 
@@ -944,11 +944,11 @@ void SDL_RenderGetLogicalSize(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? w
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderSetIntegerScale(SDL_Renderer * renderer, SDL_bool enable)
 /// ```
-int SDL_RenderSetIntegerScale(Pointer<SDL_Renderer>? renderer, int enable) {
-  final _SDL_RenderSetIntegerScale = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Int32 enable),
-      int Function(Pointer<SDL_Renderer>? renderer, int enable)>('SDL_RenderSetIntegerScale');
-  return _SDL_RenderSetIntegerScale(renderer, enable);
+int sdlRenderSetIntegerScale(Pointer<SdlRenderer>? renderer, int enable) {
+  final sdlRenderSetIntegerScaleLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Int32 enable),
+      int Function(Pointer<SdlRenderer>? renderer, int enable)>('SDL_RenderSetIntegerScale');
+  return sdlRenderSetIntegerScaleLookupFunction(renderer, enable);
 }
 
 /// 
@@ -965,11 +965,11 @@ int SDL_RenderSetIntegerScale(Pointer<SDL_Renderer>? renderer, int enable) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_RenderGetIntegerScale(SDL_Renderer * renderer)
 /// ```
-int SDL_RenderGetIntegerScale(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_RenderGetIntegerScale = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer),
-      int Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderGetIntegerScale');
-  return _SDL_RenderGetIntegerScale(renderer);
+int sdlRenderGetIntegerScale(Pointer<SdlRenderer>? renderer) {
+  final sdlRenderGetIntegerScaleLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer),
+      int Function(Pointer<SdlRenderer>? renderer)>('SDL_RenderGetIntegerScale');
+  return sdlRenderGetIntegerScaleLookupFunction(renderer);
 }
 
 /// 
@@ -991,11 +991,11 @@ int SDL_RenderGetIntegerScale(Pointer<SDL_Renderer>? renderer) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderSetViewport(SDL_Renderer * renderer, const SDL_Rect * rect)
 /// ```
-int SDL_RenderSetViewport(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect) {
-  final _SDL_RenderSetViewport = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)>('SDL_RenderSetViewport');
-  return _SDL_RenderSetViewport(renderer, rect);
+int sdlRenderSetViewport(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect) {
+  final sdlRenderSetViewportLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect)>('SDL_RenderSetViewport');
+  return sdlRenderSetViewportLookupFunction(renderer, rect);
 }
 
 /// 
@@ -1011,11 +1011,11 @@ int SDL_RenderSetViewport(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? re
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_RenderGetViewport(SDL_Renderer * renderer, SDL_Rect * rect)
 /// ```
-void SDL_RenderGetViewport(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect) {
-  final _SDL_RenderGetViewport = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect),
-      void Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)>('SDL_RenderGetViewport');
-  return _SDL_RenderGetViewport(renderer, rect);
+void sdlRenderGetViewport(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect) {
+  final sdlRenderGetViewportLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect),
+      void Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect)>('SDL_RenderGetViewport');
+  return sdlRenderGetViewportLookupFunction(renderer, rect);
 }
 
 /// 
@@ -1036,11 +1036,11 @@ void SDL_RenderGetViewport(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? r
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderSetClipRect(SDL_Renderer * renderer, const SDL_Rect * rect)
 /// ```
-int SDL_RenderSetClipRect(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect) {
-  final _SDL_RenderSetClipRect = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)>('SDL_RenderSetClipRect');
-  return _SDL_RenderSetClipRect(renderer, rect);
+int sdlRenderSetClipRect(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect) {
+  final sdlRenderSetClipRectLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect)>('SDL_RenderSetClipRect');
+  return sdlRenderSetClipRectLookupFunction(renderer, rect);
 }
 
 /// 
@@ -1059,11 +1059,11 @@ int SDL_RenderSetClipRect(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? re
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_RenderGetClipRect(SDL_Renderer * renderer, SDL_Rect * rect)
 /// ```
-void SDL_RenderGetClipRect(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect) {
-  final _SDL_RenderGetClipRect = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect),
-      void Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)>('SDL_RenderGetClipRect');
-  return _SDL_RenderGetClipRect(renderer, rect);
+void sdlRenderGetClipRect(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect) {
+  final sdlRenderGetClipRectLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect),
+      void Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect)>('SDL_RenderGetClipRect');
+  return sdlRenderGetClipRectLookupFunction(renderer, rect);
 }
 
 /// 
@@ -1081,11 +1081,11 @@ void SDL_RenderGetClipRect(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? r
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_RenderIsClipEnabled(SDL_Renderer * renderer)
 /// ```
-int SDL_RenderIsClipEnabled(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_RenderIsClipEnabled = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer),
-      int Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderIsClipEnabled');
-  return _SDL_RenderIsClipEnabled(renderer);
+int sdlRenderIsClipEnabled(Pointer<SdlRenderer>? renderer) {
+  final sdlRenderIsClipEnabledLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer),
+      int Function(Pointer<SdlRenderer>? renderer)>('SDL_RenderIsClipEnabled');
+  return sdlRenderIsClipEnabledLookupFunction(renderer);
 }
 
 /// 
@@ -1113,11 +1113,11 @@ int SDL_RenderIsClipEnabled(Pointer<SDL_Renderer>? renderer) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderSetScale(SDL_Renderer * renderer, float scaleX, float scaleY)
 /// ```
-int SDL_RenderSetScale(Pointer<SDL_Renderer>? renderer, double scaleX, double scaleY) {
-  final _SDL_RenderSetScale = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Float scaleX, Float scaleY),
-      int Function(Pointer<SDL_Renderer>? renderer, double scaleX, double scaleY)>('SDL_RenderSetScale');
-  return _SDL_RenderSetScale(renderer, scaleX, scaleY);
+int sdlRenderSetScale(Pointer<SdlRenderer>? renderer, double scaleX, double scaleY) {
+  final sdlRenderSetScaleLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Float scaleX, Float scaleY),
+      int Function(Pointer<SdlRenderer>? renderer, double scaleX, double scaleY)>('SDL_RenderSetScale');
+  return sdlRenderSetScaleLookupFunction(renderer, scaleX, scaleY);
 }
 
 /// 
@@ -1134,11 +1134,11 @@ int SDL_RenderSetScale(Pointer<SDL_Renderer>? renderer, double scaleX, double sc
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_RenderGetScale(SDL_Renderer * renderer, float *scaleX, float *scaleY)
 /// ```
-void SDL_RenderGetScale(Pointer<SDL_Renderer>? renderer, Pointer<Float>? scaleX, Pointer<Float>? scaleY) {
-  final _SDL_RenderGetScale = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Renderer>? renderer, Pointer<Float>? scaleX, Pointer<Float>? scaleY),
-      void Function(Pointer<SDL_Renderer>? renderer, Pointer<Float>? scaleX, Pointer<Float>? scaleY)>('SDL_RenderGetScale');
-  return _SDL_RenderGetScale(renderer, scaleX, scaleY);
+void sdlRenderGetScale(Pointer<SdlRenderer>? renderer, Pointer<Float>? scaleX, Pointer<Float>? scaleY) {
+  final sdlRenderGetScaleLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlRenderer>? renderer, Pointer<Float>? scaleX, Pointer<Float>? scaleY),
+      void Function(Pointer<SdlRenderer>? renderer, Pointer<Float>? scaleX, Pointer<Float>? scaleY)>('SDL_RenderGetScale');
+  return sdlRenderGetScaleLookupFunction(renderer, scaleX, scaleY);
 }
 
 /// 
@@ -1165,11 +1165,11 @@ void SDL_RenderGetScale(Pointer<SDL_Renderer>? renderer, Pointer<Float>? scaleX,
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_RenderWindowToLogical(SDL_Renderer * renderer, int windowX, int windowY, float *logicalX, float *logicalY)
 /// ```
-void SDL_RenderWindowToLogical(Pointer<SDL_Renderer>? renderer, int windowX, int windowY, Pointer<Float>? logicalX, Pointer<Float>? logicalY) {
-  final _SDL_RenderWindowToLogical = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Renderer>? renderer, Int32 windowX, Int32 windowY, Pointer<Float>? logicalX, Pointer<Float>? logicalY),
-      void Function(Pointer<SDL_Renderer>? renderer, int windowX, int windowY, Pointer<Float>? logicalX, Pointer<Float>? logicalY)>('SDL_RenderWindowToLogical');
-  return _SDL_RenderWindowToLogical(renderer, windowX, windowY, logicalX, logicalY);
+void sdlRenderWindowToLogical(Pointer<SdlRenderer>? renderer, int windowX, int windowY, Pointer<Float>? logicalX, Pointer<Float>? logicalY) {
+  final sdlRenderWindowToLogicalLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlRenderer>? renderer, Int32 windowX, Int32 windowY, Pointer<Float>? logicalX, Pointer<Float>? logicalY),
+      void Function(Pointer<SdlRenderer>? renderer, int windowX, int windowY, Pointer<Float>? logicalX, Pointer<Float>? logicalY)>('SDL_RenderWindowToLogical');
+  return sdlRenderWindowToLogicalLookupFunction(renderer, windowX, windowY, logicalX, logicalY);
 }
 
 /// 
@@ -1196,11 +1196,11 @@ void SDL_RenderWindowToLogical(Pointer<SDL_Renderer>? renderer, int windowX, int
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_RenderLogicalToWindow(SDL_Renderer * renderer, float logicalX, float logicalY, int *windowX, int *windowY)
 /// ```
-void SDL_RenderLogicalToWindow(Pointer<SDL_Renderer>? renderer, double logicalX, double logicalY, Pointer<Int32>? windowX, Pointer<Int32>? windowY) {
-  final _SDL_RenderLogicalToWindow = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Renderer>? renderer, Float logicalX, Float logicalY, Pointer<Int32>? windowX, Pointer<Int32>? windowY),
-      void Function(Pointer<SDL_Renderer>? renderer, double logicalX, double logicalY, Pointer<Int32>? windowX, Pointer<Int32>? windowY)>('SDL_RenderLogicalToWindow');
-  return _SDL_RenderLogicalToWindow(renderer, logicalX, logicalY, windowX, windowY);
+void sdlRenderLogicalToWindow(Pointer<SdlRenderer>? renderer, double logicalX, double logicalY, Pointer<Int32>? windowX, Pointer<Int32>? windowY) {
+  final sdlRenderLogicalToWindowLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlRenderer>? renderer, Float logicalX, Float logicalY, Pointer<Int32>? windowX, Pointer<Int32>? windowY),
+      void Function(Pointer<SdlRenderer>? renderer, double logicalX, double logicalY, Pointer<Int32>? windowX, Pointer<Int32>? windowY)>('SDL_RenderLogicalToWindow');
+  return sdlRenderLogicalToWindowLookupFunction(renderer, logicalX, logicalY, windowX, windowY);
 }
 
 /// 
@@ -1235,11 +1235,11 @@ void SDL_RenderLogicalToWindow(Pointer<SDL_Renderer>? renderer, double logicalX,
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetRenderDrawColor(SDL_Renderer * renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 /// ```
-int SDL_SetRenderDrawColor(Pointer<SDL_Renderer>? renderer, int r, int g, int b, int a) {
-  final _SDL_SetRenderDrawColor = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a),
-      int Function(Pointer<SDL_Renderer>? renderer, int r, int g, int b, int a)>('SDL_SetRenderDrawColor');
-  return _SDL_SetRenderDrawColor(renderer, r, g, b, a);
+int sdlSetRenderDrawColor(Pointer<SdlRenderer>? renderer, int r, int g, int b, int a) {
+  final sdlSetRenderDrawColorLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Uint8 r, Uint8 g, Uint8 b, Uint8 a),
+      int Function(Pointer<SdlRenderer>? renderer, int r, int g, int b, int a)>('SDL_SetRenderDrawColor');
+  return sdlSetRenderDrawColorLookupFunction(renderer, r, g, b, a);
 }
 
 /// 
@@ -1264,11 +1264,11 @@ int SDL_SetRenderDrawColor(Pointer<SDL_Renderer>? renderer, int r, int g, int b,
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetRenderDrawColor(SDL_Renderer * renderer, Uint8 * r, Uint8 * g, Uint8 * b, Uint8 * a)
 /// ```
-int SDL_GetRenderDrawColor(Pointer<SDL_Renderer>? renderer, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b, Pointer<Uint8>? a) {
-  final _SDL_GetRenderDrawColor = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b, Pointer<Uint8>? a),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b, Pointer<Uint8>? a)>('SDL_GetRenderDrawColor');
-  return _SDL_GetRenderDrawColor(renderer, r, g, b, a);
+int sdlGetRenderDrawColor(Pointer<SdlRenderer>? renderer, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b, Pointer<Uint8>? a) {
+  final sdlGetRenderDrawColorLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b, Pointer<Uint8>? a),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<Uint8>? r, Pointer<Uint8>? g, Pointer<Uint8>? b, Pointer<Uint8>? a)>('SDL_GetRenderDrawColor');
+  return sdlGetRenderDrawColorLookupFunction(renderer, r, g, b, a);
 }
 
 /// 
@@ -1296,11 +1296,11 @@ int SDL_GetRenderDrawColor(Pointer<SDL_Renderer>? renderer, Pointer<Uint8>? r, P
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetRenderDrawBlendMode(SDL_Renderer * renderer, SDL_BlendMode blendMode)
 /// ```
-int SDL_SetRenderDrawBlendMode(Pointer<SDL_Renderer>? renderer, int blendMode) {
-  final _SDL_SetRenderDrawBlendMode = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Int32 blendMode),
-      int Function(Pointer<SDL_Renderer>? renderer, int blendMode)>('SDL_SetRenderDrawBlendMode');
-  return _SDL_SetRenderDrawBlendMode(renderer, blendMode);
+int sdlSetRenderDrawBlendMode(Pointer<SdlRenderer>? renderer, int blendMode) {
+  final sdlSetRenderDrawBlendModeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Int32 blendMode),
+      int Function(Pointer<SdlRenderer>? renderer, int blendMode)>('SDL_SetRenderDrawBlendMode');
+  return sdlSetRenderDrawBlendModeLookupFunction(renderer, blendMode);
 }
 
 /// 
@@ -1318,11 +1318,11 @@ int SDL_SetRenderDrawBlendMode(Pointer<SDL_Renderer>? renderer, int blendMode) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetRenderDrawBlendMode(SDL_Renderer * renderer, SDL_BlendMode *blendMode)
 /// ```
-int SDL_GetRenderDrawBlendMode(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? blendMode) {
-  final _SDL_GetRenderDrawBlendMode = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? blendMode),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? blendMode)>('SDL_GetRenderDrawBlendMode');
-  return _SDL_GetRenderDrawBlendMode(renderer, blendMode);
+int sdlGetRenderDrawBlendMode(Pointer<SdlRenderer>? renderer, Pointer<Int32>? blendMode) {
+  final sdlGetRenderDrawBlendModeLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<Int32>? blendMode),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<Int32>? blendMode)>('SDL_GetRenderDrawBlendMode');
+  return sdlGetRenderDrawBlendModeLookupFunction(renderer, blendMode);
 }
 
 /// 
@@ -1342,11 +1342,11 @@ int SDL_GetRenderDrawBlendMode(Pointer<SDL_Renderer>? renderer, Pointer<Int32>? 
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderClear(SDL_Renderer * renderer)
 /// ```
-int SDL_RenderClear(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_RenderClear = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer),
-      int Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderClear');
-  return _SDL_RenderClear(renderer);
+int sdlRenderClear(Pointer<SdlRenderer>? renderer) {
+  final sdlRenderClearLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer),
+      int Function(Pointer<SdlRenderer>? renderer)>('SDL_RenderClear');
+  return sdlRenderClearLookupFunction(renderer);
 }
 
 /// 
@@ -1377,11 +1377,11 @@ int SDL_RenderClear(Pointer<SDL_Renderer>? renderer) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderDrawPoint(SDL_Renderer * renderer, int x, int y)
 /// ```
-int SDL_RenderDrawPoint(Pointer<SDL_Renderer>? renderer, int x, int y) {
-  final _SDL_RenderDrawPoint = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Int32 x, Int32 y),
-      int Function(Pointer<SDL_Renderer>? renderer, int x, int y)>('SDL_RenderDrawPoint');
-  return _SDL_RenderDrawPoint(renderer, x, y);
+int sdlRenderDrawPoint(Pointer<SdlRenderer>? renderer, int x, int y) {
+  final sdlRenderDrawPointLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Int32 x, Int32 y),
+      int Function(Pointer<SdlRenderer>? renderer, int x, int y)>('SDL_RenderDrawPoint');
+  return sdlRenderDrawPointLookupFunction(renderer, x, y);
 }
 
 /// 
@@ -1410,11 +1410,11 @@ int SDL_RenderDrawPoint(Pointer<SDL_Renderer>? renderer, int x, int y) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderDrawPoints(SDL_Renderer * renderer, const SDL_Point * points, int count)
 /// ```
-int SDL_RenderDrawPoints(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Point>? points, int count) {
-  final _SDL_RenderDrawPoints = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Point>? points, Int32 count),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Point>? points, int count)>('SDL_RenderDrawPoints');
-  return _SDL_RenderDrawPoints(renderer, points, count);
+int sdlRenderDrawPoints(Pointer<SdlRenderer>? renderer, Pointer<SdlPoint>? points, int count) {
+  final sdlRenderDrawPointsLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlPoint>? points, Int32 count),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlPoint>? points, int count)>('SDL_RenderDrawPoints');
+  return sdlRenderDrawPointsLookupFunction(renderer, points, count);
 }
 
 /// 
@@ -1447,11 +1447,11 @@ int SDL_RenderDrawPoints(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Point>? po
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderDrawLine(SDL_Renderer * renderer, int x1, int y1, int x2, int y2)
 /// ```
-int SDL_RenderDrawLine(Pointer<SDL_Renderer>? renderer, int x1, int y1, int x2, int y2) {
-  final _SDL_RenderDrawLine = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Int32 x1, Int32 y1, Int32 x2, Int32 y2),
-      int Function(Pointer<SDL_Renderer>? renderer, int x1, int y1, int x2, int y2)>('SDL_RenderDrawLine');
-  return _SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
+int sdlRenderDrawLine(Pointer<SdlRenderer>? renderer, int x1, int y1, int x2, int y2) {
+  final sdlRenderDrawLineLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Int32 x1, Int32 y1, Int32 x2, Int32 y2),
+      int Function(Pointer<SdlRenderer>? renderer, int x1, int y1, int x2, int y2)>('SDL_RenderDrawLine');
+  return sdlRenderDrawLineLookupFunction(renderer, x1, y1, x2, y2);
 }
 
 /// 
@@ -1480,11 +1480,11 @@ int SDL_RenderDrawLine(Pointer<SDL_Renderer>? renderer, int x1, int y1, int x2, 
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderDrawLines(SDL_Renderer * renderer, const SDL_Point * points, int count)
 /// ```
-int SDL_RenderDrawLines(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Point>? points, int count) {
-  final _SDL_RenderDrawLines = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Point>? points, Int32 count),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Point>? points, int count)>('SDL_RenderDrawLines');
-  return _SDL_RenderDrawLines(renderer, points, count);
+int sdlRenderDrawLines(Pointer<SdlRenderer>? renderer, Pointer<SdlPoint>? points, int count) {
+  final sdlRenderDrawLinesLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlPoint>? points, Int32 count),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlPoint>? points, int count)>('SDL_RenderDrawLines');
+  return sdlRenderDrawLinesLookupFunction(renderer, points, count);
 }
 
 /// 
@@ -1512,11 +1512,11 @@ int SDL_RenderDrawLines(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Point>? poi
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderDrawRect(SDL_Renderer * renderer, const SDL_Rect * rect)
 /// ```
-int SDL_RenderDrawRect(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect) {
-  final _SDL_RenderDrawRect = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)>('SDL_RenderDrawRect');
-  return _SDL_RenderDrawRect(renderer, rect);
+int sdlRenderDrawRect(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect) {
+  final sdlRenderDrawRectLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect)>('SDL_RenderDrawRect');
+  return sdlRenderDrawRectLookupFunction(renderer, rect);
 }
 
 /// 
@@ -1545,11 +1545,11 @@ int SDL_RenderDrawRect(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderDrawRects(SDL_Renderer * renderer, const SDL_Rect * rects, int count)
 /// ```
-int SDL_RenderDrawRects(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rects, int count) {
-  final _SDL_RenderDrawRects = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rects, Int32 count),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rects, int count)>('SDL_RenderDrawRects');
-  return _SDL_RenderDrawRects(renderer, rects, count);
+int sdlRenderDrawRects(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rects, int count) {
+  final sdlRenderDrawRectsLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rects, Int32 count),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rects, int count)>('SDL_RenderDrawRects');
+  return sdlRenderDrawRectsLookupFunction(renderer, rects, count);
 }
 
 /// 
@@ -1581,11 +1581,11 @@ int SDL_RenderDrawRects(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderFillRect(SDL_Renderer * renderer, const SDL_Rect * rect)
 /// ```
-int SDL_RenderFillRect(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect) {
-  final _SDL_RenderFillRect = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)>('SDL_RenderFillRect');
-  return _SDL_RenderFillRect(renderer, rect);
+int sdlRenderFillRect(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect) {
+  final sdlRenderFillRectLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect)>('SDL_RenderFillRect');
+  return sdlRenderFillRectLookupFunction(renderer, rect);
 }
 
 /// 
@@ -1613,11 +1613,11 @@ int SDL_RenderFillRect(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect)
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderFillRects(SDL_Renderer * renderer, const SDL_Rect * rects, int count)
 /// ```
-int SDL_RenderFillRects(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rects, int count) {
-  final _SDL_RenderFillRects = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rects, Int32 count),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rects, int count)>('SDL_RenderFillRects');
-  return _SDL_RenderFillRects(renderer, rects, count);
+int sdlRenderFillRects(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rects, int count) {
+  final sdlRenderFillRectsLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rects, Int32 count),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rects, int count)>('SDL_RenderFillRects');
+  return sdlRenderFillRectsLookupFunction(renderer, rects, count);
 }
 
 /// 
@@ -1651,11 +1651,11 @@ int SDL_RenderFillRects(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture, const SDL_Rect * srcrect, const SDL_Rect * dstrect)
 /// ```
-int SDL_RenderCopy(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Rect>? dstrect) {
-  final _SDL_RenderCopy = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Rect>? dstrect),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Rect>? dstrect)>('SDL_RenderCopy');
-  return _SDL_RenderCopy(renderer, texture, srcrect, dstrect);
+int sdlRenderCopy(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlRect>? srcrect, Pointer<SdlRect>? dstrect) {
+  final sdlRenderCopyLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlRect>? srcrect, Pointer<SdlRect>? dstrect),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlRect>? srcrect, Pointer<SdlRect>? dstrect)>('SDL_RenderCopy');
+  return sdlRenderCopyLookupFunction(renderer, texture, srcrect, dstrect);
 }
 
 /// 
@@ -1700,11 +1700,11 @@ int SDL_RenderCopy(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? textur
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture, const SDL_Rect * srcrect, const SDL_Rect * dstrect, const double angle, const SDL_Point *center, const SDL_RendererFlip flip)
 /// ```
-int SDL_RenderCopyEx(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Rect>? dstrect, double angle, Pointer<SDL_Point>? center, int flip) {
-  final _SDL_RenderCopyEx = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Rect>? dstrect, Double angle, Pointer<SDL_Point>? center, Int32 flip),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Rect>? dstrect, double angle, Pointer<SDL_Point>? center, int flip)>('SDL_RenderCopyEx');
-  return _SDL_RenderCopyEx(renderer, texture, srcrect, dstrect, angle, center, flip);
+int sdlRenderCopyEx(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlRect>? srcrect, Pointer<SdlRect>? dstrect, double angle, Pointer<SdlPoint>? center, int flip) {
+  final sdlRenderCopyExLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlRect>? srcrect, Pointer<SdlRect>? dstrect, Double angle, Pointer<SdlPoint>? center, Int32 flip),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlRect>? srcrect, Pointer<SdlRect>? dstrect, double angle, Pointer<SdlPoint>? center, int flip)>('SDL_RenderCopyEx');
+  return sdlRenderCopyExLookupFunction(renderer, texture, srcrect, dstrect, angle, center, flip);
 }
 
 /// 
@@ -1720,11 +1720,11 @@ int SDL_RenderCopyEx(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? text
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderDrawPointF(SDL_Renderer * renderer, float x, float y)
 /// ```
-int SDL_RenderDrawPointF(Pointer<SDL_Renderer>? renderer, double x, double y) {
-  final _SDL_RenderDrawPointF = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Float x, Float y),
-      int Function(Pointer<SDL_Renderer>? renderer, double x, double y)>('SDL_RenderDrawPointF');
-  return _SDL_RenderDrawPointF(renderer, x, y);
+int sdlRenderDrawPointF(Pointer<SdlRenderer>? renderer, double x, double y) {
+  final sdlRenderDrawPointFLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Float x, Float y),
+      int Function(Pointer<SdlRenderer>? renderer, double x, double y)>('SDL_RenderDrawPointF');
+  return sdlRenderDrawPointFLookupFunction(renderer, x, y);
 }
 
 /// 
@@ -1740,11 +1740,11 @@ int SDL_RenderDrawPointF(Pointer<SDL_Renderer>? renderer, double x, double y) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderDrawPointsF(SDL_Renderer * renderer, const SDL_FPoint * points, int count)
 /// ```
-int SDL_RenderDrawPointsF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FPoint>? points, int count) {
-  final _SDL_RenderDrawPointsF = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FPoint>? points, Int32 count),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FPoint>? points, int count)>('SDL_RenderDrawPointsF');
-  return _SDL_RenderDrawPointsF(renderer, points, count);
+int sdlRenderDrawPointsF(Pointer<SdlRenderer>? renderer, Pointer<SdlFPoint>? points, int count) {
+  final sdlRenderDrawPointsFLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlFPoint>? points, Int32 count),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlFPoint>? points, int count)>('SDL_RenderDrawPointsF');
+  return sdlRenderDrawPointsFLookupFunction(renderer, points, count);
 }
 
 /// 
@@ -1762,11 +1762,11 @@ int SDL_RenderDrawPointsF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FPoint>? 
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderDrawLineF(SDL_Renderer * renderer, float x1, float y1, float x2, float y2)
 /// ```
-int SDL_RenderDrawLineF(Pointer<SDL_Renderer>? renderer, double x1, double y1, double x2, double y2) {
-  final _SDL_RenderDrawLineF = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Float x1, Float y1, Float x2, Float y2),
-      int Function(Pointer<SDL_Renderer>? renderer, double x1, double y1, double x2, double y2)>('SDL_RenderDrawLineF');
-  return _SDL_RenderDrawLineF(renderer, x1, y1, x2, y2);
+int sdlRenderDrawLineF(Pointer<SdlRenderer>? renderer, double x1, double y1, double x2, double y2) {
+  final sdlRenderDrawLineFLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Float x1, Float y1, Float x2, Float y2),
+      int Function(Pointer<SdlRenderer>? renderer, double x1, double y1, double x2, double y2)>('SDL_RenderDrawLineF');
+  return sdlRenderDrawLineFLookupFunction(renderer, x1, y1, x2, y2);
 }
 
 /// 
@@ -1783,11 +1783,11 @@ int SDL_RenderDrawLineF(Pointer<SDL_Renderer>? renderer, double x1, double y1, d
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderDrawLinesF(SDL_Renderer * renderer, const SDL_FPoint * points, int count)
 /// ```
-int SDL_RenderDrawLinesF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FPoint>? points, int count) {
-  final _SDL_RenderDrawLinesF = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FPoint>? points, Int32 count),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FPoint>? points, int count)>('SDL_RenderDrawLinesF');
-  return _SDL_RenderDrawLinesF(renderer, points, count);
+int sdlRenderDrawLinesF(Pointer<SdlRenderer>? renderer, Pointer<SdlFPoint>? points, int count) {
+  final sdlRenderDrawLinesFLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlFPoint>? points, Int32 count),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlFPoint>? points, int count)>('SDL_RenderDrawLinesF');
+  return sdlRenderDrawLinesFLookupFunction(renderer, points, count);
 }
 
 /// 
@@ -1803,11 +1803,11 @@ int SDL_RenderDrawLinesF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FPoint>? p
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderDrawRectF(SDL_Renderer * renderer, const SDL_FRect * rect)
 /// ```
-int SDL_RenderDrawRectF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rect) {
-  final _SDL_RenderDrawRectF = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rect),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rect)>('SDL_RenderDrawRectF');
-  return _SDL_RenderDrawRectF(renderer, rect);
+int sdlRenderDrawRectF(Pointer<SdlRenderer>? renderer, Pointer<SdlFRect>? rect) {
+  final sdlRenderDrawRectFLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlFRect>? rect),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlFRect>? rect)>('SDL_RenderDrawRectF');
+  return sdlRenderDrawRectFLookupFunction(renderer, rect);
 }
 
 /// 
@@ -1824,11 +1824,11 @@ int SDL_RenderDrawRectF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rec
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderDrawRectsF(SDL_Renderer * renderer, const SDL_FRect * rects, int count)
 /// ```
-int SDL_RenderDrawRectsF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rects, int count) {
-  final _SDL_RenderDrawRectsF = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rects, Int32 count),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rects, int count)>('SDL_RenderDrawRectsF');
-  return _SDL_RenderDrawRectsF(renderer, rects, count);
+int sdlRenderDrawRectsF(Pointer<SdlRenderer>? renderer, Pointer<SdlFRect>? rects, int count) {
+  final sdlRenderDrawRectsFLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlFRect>? rects, Int32 count),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlFRect>? rects, int count)>('SDL_RenderDrawRectsF');
+  return sdlRenderDrawRectsFLookupFunction(renderer, rects, count);
 }
 
 /// 
@@ -1845,11 +1845,11 @@ int SDL_RenderDrawRectsF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? re
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderFillRectF(SDL_Renderer * renderer, const SDL_FRect * rect)
 /// ```
-int SDL_RenderFillRectF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rect) {
-  final _SDL_RenderFillRectF = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rect),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rect)>('SDL_RenderFillRectF');
-  return _SDL_RenderFillRectF(renderer, rect);
+int sdlRenderFillRectF(Pointer<SdlRenderer>? renderer, Pointer<SdlFRect>? rect) {
+  final sdlRenderFillRectFLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlFRect>? rect),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlFRect>? rect)>('SDL_RenderFillRectF');
+  return sdlRenderFillRectFLookupFunction(renderer, rect);
 }
 
 /// 
@@ -1866,11 +1866,11 @@ int SDL_RenderFillRectF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rec
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderFillRectsF(SDL_Renderer * renderer, const SDL_FRect * rects, int count)
 /// ```
-int SDL_RenderFillRectsF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rects, int count) {
-  final _SDL_RenderFillRectsF = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rects, Int32 count),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? rects, int count)>('SDL_RenderFillRectsF');
-  return _SDL_RenderFillRectsF(renderer, rects, count);
+int sdlRenderFillRectsF(Pointer<SdlRenderer>? renderer, Pointer<SdlFRect>? rects, int count) {
+  final sdlRenderFillRectsFLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlFRect>? rects, Int32 count),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlFRect>? rects, int count)>('SDL_RenderFillRectsF');
+  return sdlRenderFillRectsFLookupFunction(renderer, rects, count);
 }
 
 /// 
@@ -1890,11 +1890,11 @@ int SDL_RenderFillRectsF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_FRect>? re
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderCopyF(SDL_Renderer * renderer, SDL_Texture * texture, const SDL_Rect * srcrect, const SDL_FRect * dstrect)
 /// ```
-int SDL_RenderCopyF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_FRect>? dstrect) {
-  final _SDL_RenderCopyF = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_FRect>? dstrect),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_FRect>? dstrect)>('SDL_RenderCopyF');
-  return _SDL_RenderCopyF(renderer, texture, srcrect, dstrect);
+int sdlRenderCopyF(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlRect>? srcrect, Pointer<SdlFRect>? dstrect) {
+  final sdlRenderCopyFLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlRect>? srcrect, Pointer<SdlFRect>? dstrect),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlRect>? srcrect, Pointer<SdlFRect>? dstrect)>('SDL_RenderCopyF');
+  return sdlRenderCopyFLookupFunction(renderer, texture, srcrect, dstrect);
 }
 
 /// 
@@ -1921,11 +1921,11 @@ int SDL_RenderCopyF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? textu
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderCopyExF(SDL_Renderer * renderer, SDL_Texture * texture, const SDL_Rect * srcrect, const SDL_FRect * dstrect, const double angle, const SDL_FPoint *center, const SDL_RendererFlip flip)
 /// ```
-int SDL_RenderCopyExF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_FRect>? dstrect, double angle, Pointer<SDL_FPoint>? center, int flip) {
-  final _SDL_RenderCopyExF = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_FRect>? dstrect, Double angle, Pointer<SDL_FPoint>? center, Int32 flip),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Rect>? srcrect, Pointer<SDL_FRect>? dstrect, double angle, Pointer<SDL_FPoint>? center, int flip)>('SDL_RenderCopyExF');
-  return _SDL_RenderCopyExF(renderer, texture, srcrect, dstrect, angle, center, flip);
+int sdlRenderCopyExF(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlRect>? srcrect, Pointer<SdlFRect>? dstrect, double angle, Pointer<SdlFPoint>? center, int flip) {
+  final sdlRenderCopyExFLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlRect>? srcrect, Pointer<SdlFRect>? dstrect, Double angle, Pointer<SdlFPoint>? center, Int32 flip),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlRect>? srcrect, Pointer<SdlFRect>? dstrect, double angle, Pointer<SdlFPoint>? center, int flip)>('SDL_RenderCopyExF');
+  return sdlRenderCopyExFLookupFunction(renderer, texture, srcrect, dstrect, angle, center, flip);
 }
 
 /// 
@@ -1951,11 +1951,11 @@ int SDL_RenderCopyExF(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? tex
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderGeometry(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Vertex *vertices, int num_vertices, const int *indices, int num_indices)
 /// ```
-int SDL_RenderGeometry(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Vertex>? vertices, int num_vertices, Pointer<Int32>? indices, int num_indices) {
-  final _SDL_RenderGeometry = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Vertex>? vertices, Int32 num_vertices, Pointer<Int32>? indices, Int32 num_indices),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<SDL_Vertex>? vertices, int num_vertices, Pointer<Int32>? indices, int num_indices)>('SDL_RenderGeometry');
-  return _SDL_RenderGeometry(renderer, texture, vertices, num_vertices, indices, num_indices);
+int sdlRenderGeometry(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlVertex>? vertices, int numVertices, Pointer<Int32>? indices, int numIndices) {
+  final sdlRenderGeometryLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlVertex>? vertices, Int32 numVertices, Pointer<Int32>? indices, Int32 numIndices),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<SdlVertex>? vertices, int numVertices, Pointer<Int32>? indices, int numIndices)>('SDL_RenderGeometry');
+  return sdlRenderGeometryLookupFunction(renderer, texture, vertices, numVertices, indices, numIndices);
 }
 
 /// 
@@ -1986,11 +1986,11 @@ int SDL_RenderGeometry(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? te
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderGeometryRaw(SDL_Renderer *renderer, SDL_Texture *texture, const float *xy, int xy_stride, const SDL_Color *color, int color_stride, const float *uv, int uv_stride, int num_vertices, const void *indices, int num_indices, int size_indices)
 /// ```
-int SDL_RenderGeometryRaw(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<Float>? xy, int xy_stride, Pointer<SDL_Color>? color, int color_stride, Pointer<Float>? uv, int uv_stride, int num_vertices, Pointer<Void>? indices, int num_indices, int size_indices) {
-  final _SDL_RenderGeometryRaw = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<Float>? xy, Int32 xy_stride, Pointer<SDL_Color>? color, Int32 color_stride, Pointer<Float>? uv, Int32 uv_stride, Int32 num_vertices, Pointer<Void>? indices, Int32 num_indices, Int32 size_indices),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>? texture, Pointer<Float>? xy, int xy_stride, Pointer<SDL_Color>? color, int color_stride, Pointer<Float>? uv, int uv_stride, int num_vertices, Pointer<Void>? indices, int num_indices, int size_indices)>('SDL_RenderGeometryRaw');
-  return _SDL_RenderGeometryRaw(renderer, texture, xy, xy_stride, color, color_stride, uv, uv_stride, num_vertices, indices, num_indices, size_indices);
+int sdlRenderGeometryRaw(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<Float>? xy, int xyStride, Pointer<SdlColor>? color, int colorStride, Pointer<Float>? uv, int uvStride, int numVertices, Pointer<Void>? indices, int numIndices, int sizeIndices) {
+  final sdlRenderGeometryRawLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<Float>? xy, Int32 xyStride, Pointer<SdlColor>? color, Int32 colorStride, Pointer<Float>? uv, Int32 uvStride, Int32 numVertices, Pointer<Void>? indices, Int32 numIndices, Int32 sizeIndices),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlTexture>? texture, Pointer<Float>? xy, int xyStride, Pointer<SdlColor>? color, int colorStride, Pointer<Float>? uv, int uvStride, int numVertices, Pointer<Void>? indices, int numIndices, int sizeIndices)>('SDL_RenderGeometryRaw');
+  return sdlRenderGeometryRawLookupFunction(renderer, texture, xy, xyStride, color, colorStride, uv, uvStride, numVertices, indices, numIndices, sizeIndices);
 }
 
 /// 
@@ -2022,11 +2022,11 @@ int SDL_RenderGeometryRaw(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Texture>?
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect, Uint32 format, void *pixels, int pitch)
 /// ```
-int SDL_RenderReadPixels(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect, int format, Pointer<Void>? pixels, int pitch) {
-  final _SDL_RenderReadPixels = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect, Uint32 format, Pointer<Void>? pixels, Int32 pitch),
-      int Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rect, int format, Pointer<Void>? pixels, int pitch)>('SDL_RenderReadPixels');
-  return _SDL_RenderReadPixels(renderer, rect, format, pixels, pitch);
+int sdlRenderReadPixels(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect, int format, Pointer<Void>? pixels, int pitch) {
+  final sdlRenderReadPixelsLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect, Uint32 format, Pointer<Void>? pixels, Int32 pitch),
+      int Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRect>? rect, int format, Pointer<Void>? pixels, int pitch)>('SDL_RenderReadPixels');
+  return sdlRenderReadPixelsLookupFunction(renderer, rect, format, pixels, pitch);
 }
 
 /// 
@@ -2067,11 +2067,11 @@ int SDL_RenderReadPixels(Pointer<SDL_Renderer>? renderer, Pointer<SDL_Rect>? rec
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_RenderPresent(SDL_Renderer * renderer)
 /// ```
-void SDL_RenderPresent(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_RenderPresent = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Renderer>? renderer),
-      void Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderPresent');
-  return _SDL_RenderPresent(renderer);
+void sdlRenderPresent(Pointer<SdlRenderer>? renderer) {
+  final sdlRenderPresentLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlRenderer>? renderer),
+      void Function(Pointer<SdlRenderer>? renderer)>('SDL_RenderPresent');
+  return sdlRenderPresentLookupFunction(renderer);
 }
 
 /// 
@@ -2090,11 +2090,11 @@ void SDL_RenderPresent(Pointer<SDL_Renderer>? renderer) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_DestroyTexture(SDL_Texture * texture)
 /// ```
-void SDL_DestroyTexture(Pointer<SDL_Texture>? texture) {
-  final _SDL_DestroyTexture = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Texture>? texture),
-      void Function(Pointer<SDL_Texture>? texture)>('SDL_DestroyTexture');
-  return _SDL_DestroyTexture(texture);
+void sdlDestroyTexture(Pointer<SdlTexture>? texture) {
+  final sdlDestroyTextureLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlTexture>? texture),
+      void Function(Pointer<SdlTexture>? texture)>('SDL_DestroyTexture');
+  return sdlDestroyTextureLookupFunction(texture);
 }
 
 /// 
@@ -2109,11 +2109,11 @@ void SDL_DestroyTexture(Pointer<SDL_Texture>? texture) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_DestroyRenderer(SDL_Renderer * renderer)
 /// ```
-void SDL_DestroyRenderer(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_DestroyRenderer = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Renderer>? renderer),
-      void Function(Pointer<SDL_Renderer>? renderer)>('SDL_DestroyRenderer');
-  return _SDL_DestroyRenderer(renderer);
+void sdlDestroyRenderer(Pointer<SdlRenderer>? renderer) {
+  final sdlDestroyRendererLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlRenderer>? renderer),
+      void Function(Pointer<SdlRenderer>? renderer)>('SDL_DestroyRenderer');
+  return sdlDestroyRendererLookupFunction(renderer);
 }
 
 /// 
@@ -2148,11 +2148,11 @@ void SDL_DestroyRenderer(Pointer<SDL_Renderer>? renderer) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderFlush(SDL_Renderer * renderer)
 /// ```
-int SDL_RenderFlush(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_RenderFlush = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer),
-      int Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderFlush');
-  return _SDL_RenderFlush(renderer);
+int sdlRenderFlush(Pointer<SdlRenderer>? renderer) {
+  final sdlRenderFlushLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer),
+      int Function(Pointer<SdlRenderer>? renderer)>('SDL_RenderFlush');
+  return sdlRenderFlushLookupFunction(renderer);
 }
 
 /// 
@@ -2193,11 +2193,11 @@ int SDL_RenderFlush(Pointer<SDL_Renderer>? renderer) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GL_BindTexture(SDL_Texture *texture, float *texw, float *texh)
 /// ```
-int SDL_GL_BindTexture(Pointer<SDL_Texture>? texture, Pointer<Float>? texw, Pointer<Float>? texh) {
-  final _SDL_GL_BindTexture = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture, Pointer<Float>? texw, Pointer<Float>? texh),
-      int Function(Pointer<SDL_Texture>? texture, Pointer<Float>? texw, Pointer<Float>? texh)>('SDL_GL_BindTexture');
-  return _SDL_GL_BindTexture(texture, texw, texh);
+int sdlGlBindTexture(Pointer<SdlTexture>? texture, Pointer<Float>? texw, Pointer<Float>? texh) {
+  final sdlGlBindTextureLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture, Pointer<Float>? texw, Pointer<Float>? texh),
+      int Function(Pointer<SdlTexture>? texture, Pointer<Float>? texw, Pointer<Float>? texh)>('SDL_GL_BindTexture');
+  return sdlGlBindTextureLookupFunction(texture, texw, texh);
 }
 
 /// 
@@ -2216,11 +2216,11 @@ int SDL_GL_BindTexture(Pointer<SDL_Texture>? texture, Pointer<Float>? texw, Poin
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GL_UnbindTexture(SDL_Texture *texture)
 /// ```
-int SDL_GL_UnbindTexture(Pointer<SDL_Texture>? texture) {
-  final _SDL_GL_UnbindTexture = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Texture>? texture),
-      int Function(Pointer<SDL_Texture>? texture)>('SDL_GL_UnbindTexture');
-  return _SDL_GL_UnbindTexture(texture);
+int sdlGlUnbindTexture(Pointer<SdlTexture>? texture) {
+  final sdlGlUnbindTextureLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlTexture>? texture),
+      int Function(Pointer<SdlTexture>? texture)>('SDL_GL_UnbindTexture');
+  return sdlGlUnbindTextureLookupFunction(texture);
 }
 
 /// 
@@ -2240,11 +2240,11 @@ int SDL_GL_UnbindTexture(Pointer<SDL_Texture>? texture) {
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_RenderGetMetalLayer(SDL_Renderer * renderer)
 /// ```
-Pointer<Void>? SDL_RenderGetMetalLayer(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_RenderGetMetalLayer = DLL_SDL2.lookupFunction<
-      Pointer<Void>? Function(Pointer<SDL_Renderer>? renderer),
-      Pointer<Void>? Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderGetMetalLayer');
-  return _SDL_RenderGetMetalLayer(renderer);
+Pointer<Void>? sdlRenderGetMetalLayer(Pointer<SdlRenderer>? renderer) {
+  final sdlRenderGetMetalLayerLookupFunction = libSdl2.lookupFunction<
+      Pointer<Void>? Function(Pointer<SdlRenderer>? renderer),
+      Pointer<Void>? Function(Pointer<SdlRenderer>? renderer)>('SDL_RenderGetMetalLayer');
+  return sdlRenderGetMetalLayerLookupFunction(renderer);
 }
 
 /// 
@@ -2269,11 +2269,11 @@ Pointer<Void>? SDL_RenderGetMetalLayer(Pointer<SDL_Renderer>? renderer) {
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_RenderGetMetalCommandEncoder(SDL_Renderer * renderer)
 /// ```
-Pointer<Void>? SDL_RenderGetMetalCommandEncoder(Pointer<SDL_Renderer>? renderer) {
-  final _SDL_RenderGetMetalCommandEncoder = DLL_SDL2.lookupFunction<
-      Pointer<Void>? Function(Pointer<SDL_Renderer>? renderer),
-      Pointer<Void>? Function(Pointer<SDL_Renderer>? renderer)>('SDL_RenderGetMetalCommandEncoder');
-  return _SDL_RenderGetMetalCommandEncoder(renderer);
+Pointer<Void>? sdlRenderGetMetalCommandEncoder(Pointer<SdlRenderer>? renderer) {
+  final sdlRenderGetMetalCommandEncoderLookupFunction = libSdl2.lookupFunction<
+      Pointer<Void>? Function(Pointer<SdlRenderer>? renderer),
+      Pointer<Void>? Function(Pointer<SdlRenderer>? renderer)>('SDL_RenderGetMetalCommandEncoder');
+  return sdlRenderGetMetalCommandEncoderLookupFunction(renderer);
 }
 
 /// 
@@ -2288,10 +2288,10 @@ Pointer<Void>? SDL_RenderGetMetalCommandEncoder(Pointer<SDL_Renderer>? renderer)
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderSetVSync(SDL_Renderer* renderer, int vsync)
 /// ```
-int SDL_RenderSetVSync(Pointer<SDL_Renderer>? renderer, int vsync) {
-  final _SDL_RenderSetVSync = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Renderer>? renderer, Int32 vsync),
-      int Function(Pointer<SDL_Renderer>? renderer, int vsync)>('SDL_RenderSetVSync');
-  return _SDL_RenderSetVSync(renderer, vsync);
+int sdlRenderSetVSync(Pointer<SdlRenderer>? renderer, int vsync) {
+  final sdlRenderSetVSyncLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRenderer>? renderer, Int32 vsync),
+      int Function(Pointer<SdlRenderer>? renderer, int vsync)>('SDL_RenderSetVSync');
+  return sdlRenderSetVSyncLookupFunction(renderer, vsync);
 }
 

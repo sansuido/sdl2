@@ -1,3 +1,4 @@
+// ignore_for_file: constant_identifier_names, non_constant_identifier_names
 import 'dart:ffi';
 import './generated/const_sdl.dart';
 import './generated/lib_sdl_surface.dart';
@@ -54,7 +55,7 @@ import './generated/struct_sdl.dart';
 // ```c
 // const SDL_SCANCODE_TO_KEYCODE = (X) (X | SDLK_SCANCODE_MASK);
 // ```
-int SDL_SCANCODE_TO_KEYCODE(int x) {
+int sdlScancodeToKeycode(int x) {
   return x | SDLK_SCANCODE_MASK;
 }
 
@@ -229,34 +230,34 @@ const SDLK_SLEEP = SDL_SCANCODE_SLEEP | SDLK_SCANCODE_MASK;
 /// ```c
 /// const SDL_BUTTON = (X) (1 << ((X)-1));
 /// ```
-int SDL_BUTTON(int x) {
+int sdlButton(int x) {
   return 1 << (x - 1);
 }
 
 /// ```c
 /// const SDL_BUTTON_LMASK = SDL_BUTTON(SDL_BUTTON_LEFT);
 /// ```
-final int SDL_BUTTON_LMASK = SDL_BUTTON(SDL_BUTTON_LEFT);
+final int SDL_BUTTON_LMASK = sdlButton(SDL_BUTTON_LEFT);
 
 /// ```c
 /// const SDL_BUTTON_MMASK = SDL_BUTTON(SDL_BUTTON_MIDDLE);
 /// ```
-final int SDL_BUTTON_MMASK = SDL_BUTTON(SDL_BUTTON_MIDDLE);
+final int SDL_BUTTON_MMASK = sdlButton(SDL_BUTTON_MIDDLE);
 
 /// ```c
 /// const SDL_BUTTON_RMASK = SDL_BUTTON(SDL_BUTTON_RIGHT);
 /// ```
-final int SDL_BUTTON_RMASK = SDL_BUTTON(SDL_BUTTON_RIGHT);
+final int SDL_BUTTON_RMASK = sdlButton(SDL_BUTTON_RIGHT);
 
 /// ```c
 /// const SDL_BUTTON_X1MASK = SDL_BUTTON(SDL_BUTTON_X1);
 /// ```
-final int SDL_BUTTON_X1MASK = SDL_BUTTON(SDL_BUTTON_X1);
+final int SDL_BUTTON_X1MASK = sdlButton(SDL_BUTTON_X1);
 
 /// ```c
 /// const SDL_BUTTON_X2MASK = SDL_BUTTON(SDL_BUTTON_X2);
 /// ```
-final int SDL_BUTTON_X2MASK = SDL_BUTTON(SDL_BUTTON_X2);
+final int SDL_BUTTON_X2MASK = sdlButton(SDL_BUTTON_X2);
 
 //const SDL_MUTEX_MAXWAIT = (~(Uint32)0);
 //const SDL_mutexP = (m) SDL_LockMutex(m);
@@ -305,22 +306,22 @@ final int SDL_BUTTON_X2MASK = SDL_BUTTON(SDL_BUTTON_X2);
 /// ```c
 /// const SDL_iconv_utf8_locale = (S) SDL_iconv_string('', 'UTF-8', S, SDL_strlen(S)+1);
 /// ```
-Pointer<Int8>? SDL_iocnv_utf8_locate(String s) {
-  return SDL_iconv_string('', 'UTF-8', s, SDL_strlen(s)+1)!;
+Pointer<Int8>? sdlIconvUtf8Locate(String s) {
+  return sdlIconvString('', 'UTF-8', s, sdlStrlen(s)+1)!;
 }
 
 /// ```c
 /// const SDL_iconv_utf8_ucs2 = (S) (Uint16 *)SDL_iconv_string('UCS-2-INTERNAL', 'UTF-8', S, SDL_strlen(S)+1);
 /// ```
-Pointer<Uint16>? SDL_ioconv_utf8_ucs2(String s) {
-  return SDL_iconv_string('UCS-2-INTERNAL', 'UTF-8', s, SDL_strlen(s)+1)!.cast<Uint16>();
+Pointer<Uint16>? sdlIconvUtf8Ucs2(String s) {
+  return sdlIconvString('UCS-2-INTERNAL', 'UTF-8', s, sdlStrlen(s)+1)!.cast<Uint16>();
 }
 
 /// ```c
 /// const SDL_iconv_utf8_ucs4 = (S) (Uint32 *)SDL_iconv_string('UCS-4-INTERNAL', 'UTF-8', S, SDL_strlen(S)+1);
 /// ```
-Pointer<Uint32>? SDL_ioconv_utf8_ucs4(String s) {
-  return SDL_iconv_string('UCS-4-INTERNAL', 'UTF-8', s, SDL_strlen(s)+1)!.cast<Uint32>();
+Pointer<Uint32>? sdlIconvUtf8Ucs4(String s) {
+  return sdlIconvString('UCS-4-INTERNAL', 'UTF-8', s, sdlStrlen(s)+1)!.cast<Uint32>();
 }
 
 //const SDL_MUSTLOCK = (S) (((S)->flags & SDL_RLEACCEL) != 0);
@@ -328,29 +329,29 @@ Pointer<Uint32>? SDL_ioconv_utf8_ucs4(String s) {
 /// ```c
 /// const SDL_LoadBMP = (file) SDL_LoadBMP_RW(SDL_RWFromFile(file, 'rb'), 1);
 /// ```
-Pointer<SDL_Surface> SDL_LoadBMP(String file) {
-  return SDL_LoadBMP_RW(SDL_RWFromFile(file, 'rb'), 1)!;
+Pointer<SdlSurface> sdlLoadBmp(String file) {
+  return sdlLoadBmpRw(sdlRwFromFile(file, 'rb'), 1)!;
 }
 
 /// ```c
 /// const SDL_SaveBMP = (surface, file) \ SDL_SaveBMP_RW(surface, SDL_RWFromFile(file, 'wb'), 1);
 /// ```
-int SDL_SaveBMP(Pointer<SDL_Surface>? surface, String file) {
-  return SDL_SaveBMP_RW(surface, SDL_RWFromFile(file, 'wb'), 1);
+int sdlSaveBmp(Pointer<SdlSurface>? surface, String file) {
+  return sdlSaveBmpRw(surface, sdlRwFromFile(file, 'wb'), 1);
 }
 
 /// ```c
 /// const SDL_BlitSurface = SDL_UpperBlit;
 /// ```
-int SDL_BlitSurface(Pointer<SDL_Surface>? src, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? dstrect) {
-  return SDL_UpperBlit(src, srcrect, dst, dstrect);
+int sdlBlitSurface(Pointer<SdlSurface>? src, Pointer<SdlRect>? srcrect, Pointer<SdlSurface>? dst, Pointer<SdlRect>? dstrect) {
+  return sdlUpperBlit(src, srcrect, dst, dstrect);
 }
 
 /// ```c
 /// const SDL_BlitScaled = SDL_UpperBlitScaled;
 /// ```
-int SDL_BlitScaled(Pointer<SDL_Surface> src, Pointer<SDL_Rect>? srcrect, Pointer<SDL_Surface>? dst, Pointer<SDL_Rect>? dstrect) {
-  return SDL_UpperBlitScaled(src, srcrect, dst, dstrect);
+int sdlBlitScaled(Pointer<SdlSurface> src, Pointer<SdlRect>? srcrect, Pointer<SdlSurface>? dst, Pointer<SdlRect>? dstrect) {
+  return sdlUpperBlitScaled(src, srcrect, dst, dstrect);
 }
 
 //const SDL_CreateThread = (fn, name, data) SDL_CreateThread(fn, name, data, (pfnSDL_CurrentBeginThread)_beginthreadex, (pfnSDL_CurrentEndThread)_endthreadex);
@@ -359,7 +360,7 @@ int SDL_BlitScaled(Pointer<SDL_Surface> src, Pointer<SDL_Rect>? srcrect, Pointer
 /// ```c
 /// const SDL_VERSION = (x) \{ \ (x)->major = SDL_MAJOR_VERSION; \ (x)->minor = SDL_MINOR_VERSION; \ (x)->patch = SDL_PATCHLEVEL; \};
 /// ```
-void SDL_VERSION(Pointer<SDL_version>? x) {
+void sdlVersion(Pointer<SdlVersion>? x) {
   if (x != null) {
     x.ref.major = SDL_MAJOR_VERSION;
     x.ref.minor = SDL_MINOR_VERSION;
@@ -370,56 +371,56 @@ void SDL_VERSION(Pointer<SDL_version>? x) {
 /// ```c
 /// const SDL_VERSIONNUM = (X, Y, Z) \ ((X)*1000 + (Y)*100 + (Z));
 /// ```
-int SDL_VERSIONNUM(int x, int y, int z) {
+int sdlVersionnum(int x, int y, int z) {
   return x * 1000 + y * 100 + z;
 }
 
 /// ```c
 /// const SDL_COMPILEDVERSION = \ SDL_VERSIONNUM(SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
 /// ```
-final SDL_COMPILEDVERSION = SDL_VERSIONNUM(SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
+final SDL_COMPILEDVERSION = sdlVersionnum(SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
 
 /// ```c
 /// const SDL_VERSION_ATLEAST = (X, Y, Z) \ (SDL_COMPILEDVERSION >= SDL_VERSIONNUM(X, Y, Z));
 /// ```
-bool SDL_VERSION_ATLEAST(int x, int y, int z) {
-  return SDL_COMPILEDVERSION >= SDL_VERSIONNUM(x, y, z);
+bool sdlVersionAtleast(int x, int y, int z) {
+  return SDL_COMPILEDVERSION >= sdlVersionnum(x, y, z);
 }
 
 /// ```c
 /// SDL_WINDOWPOS_UNDEFINED_DISPLAY = (X) (SDL_WINDOWPOS_UNDEFINED_MASK|(X));
 /// ```
-int SDL_WINDOWPOS_UNDEFINED_DISPLAY(int x) {
+int sdlWindowposUndefinedDisplay(int x) {
   return SDL_WINDOWPOS_UNDEFINED_MASK | x;
 }
 
 /// ```c
 /// const SDL_WINDOWPOS_UNDEFINED = SDL_WINDOWPOS_UNDEFINED_DISPLAY(0);
 /// ```
-final SDL_WINDOWPOS_UNDEFINED = SDL_WINDOWPOS_UNDEFINED_DISPLAY(0);
+final SDL_WINDOWPOS_UNDEFINED = sdlWindowposUndefinedDisplay(0);
 
 /// ```c
 /// const SDL_WINDOWPOS_ISUNDEFINED = (X) \ (((X)&0xFFFF0000) == SDL_WINDOWPOS_UNDEFINED_MASK);
 /// ```
-bool SDL_WINDOWPOS_ISUNDEFINED(int x) {
+bool sdlWindowposIsundefined(int x) {
   return x & 0xFFFF0000 == SDL_WINDOWPOS_UNDEFINED_MASK;
 }
 
 /// ```c
 /// const SDL_WINDOWPOS_CENTERED_DISPLAY = (X) (SDL_WINDOWPOS_CENTERED_MASK|(X));
 /// ```
-int SDL_WINDOWPOS_CENTERED_DISPLAY(int x) {
+int sdlWindowposCenteredDisplay(int x) {
   return SDL_WINDOWPOS_CENTERED_MASK | x;
 }
 
 /// ```c
 /// const SDL_WINDOWPOS_CENTERED = SDL_WINDOWPOS_CENTERED_DISPLAY(0);
 /// ```
-final SDL_WINDOWPOS_CENTERED = SDL_WINDOWPOS_CENTERED_DISPLAY(0);
+final SDL_WINDOWPOS_CENTERED = sdlWindowposCenteredDisplay(0);
 
 /// ```c
 /// const SDL_WINDOWPOS_ISCENTERED = (X) \ (((X)&0xFFFF0000) == SDL_WINDOWPOS_CENTERED_MASK);
 /// ```
-bool SDL_WINDOWPOS_ISCENTERED(int x) {
+bool sdlWindowposIscentered(int x) {
   return x & 0xFFFF0000 == SDL_WINDOWPOS_CENTERED_MASK;
 }

@@ -1,6 +1,7 @@
 import 'dart:ffi';
 import 'dart:io';
 
+/// @nodoc
 DynamicLibrary dylibOpen(String mark) {
   var header = '';
   var extension = '';

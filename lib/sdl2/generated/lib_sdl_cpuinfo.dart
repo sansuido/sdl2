@@ -14,11 +14,11 @@ import 'lib_sdl.dart';
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetCPUCount(void)
 /// ```
-int SDL_GetCPUCount() {
-  final _SDL_GetCPUCount = DLL_SDL2.lookupFunction<
+int sdlGetCpuCount() {
+  final sdlGetCpuCountLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_GetCPUCount');
-  return _SDL_GetCPUCount();
+  return sdlGetCpuCountLookupFunction();
 }
 
 /// 
@@ -34,11 +34,11 @@ int SDL_GetCPUCount() {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetCPUCacheLineSize(void)
 /// ```
-int SDL_GetCPUCacheLineSize() {
-  final _SDL_GetCPUCacheLineSize = DLL_SDL2.lookupFunction<
+int sdlGetCpuCacheLineSize() {
+  final sdlGetCpuCacheLineSizeLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_GetCPUCacheLineSize');
-  return _SDL_GetCPUCacheLineSize();
+  return sdlGetCpuCacheLineSizeLookupFunction();
 }
 
 /// 
@@ -64,11 +64,11 @@ int SDL_GetCPUCacheLineSize() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasRDTSC(void)
 /// ```
-int SDL_HasRDTSC() {
-  final _SDL_HasRDTSC = DLL_SDL2.lookupFunction<
+int sdlHasRdtsc() {
+  final sdlHasRdtscLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasRDTSC');
-  return _SDL_HasRDTSC();
+  return sdlHasRdtscLookupFunction();
 }
 
 /// 
@@ -95,11 +95,11 @@ int SDL_HasRDTSC() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasAltiVec(void)
 /// ```
-int SDL_HasAltiVec() {
-  final _SDL_HasAltiVec = DLL_SDL2.lookupFunction<
+int sdlHasAltiVec() {
+  final sdlHasAltiVecLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasAltiVec');
-  return _SDL_HasAltiVec();
+  return sdlHasAltiVecLookupFunction();
 }
 
 /// 
@@ -125,11 +125,11 @@ int SDL_HasAltiVec() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasMMX(void)
 /// ```
-int SDL_HasMMX() {
-  final _SDL_HasMMX = DLL_SDL2.lookupFunction<
+int sdlHasMmx() {
+  final sdlHasMmxLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasMMX');
-  return _SDL_HasMMX();
+  return sdlHasMmxLookupFunction();
 }
 
 /// 
@@ -155,11 +155,11 @@ int SDL_HasMMX() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_Has3DNow(void)
 /// ```
-int SDL_Has3DNow() {
-  final _SDL_Has3DNow = DLL_SDL2.lookupFunction<
+int sdlHas3DNow() {
+  final sdlHas3DNowLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_Has3DNow');
-  return _SDL_Has3DNow();
+  return sdlHas3DNowLookupFunction();
 }
 
 /// 
@@ -185,11 +185,11 @@ int SDL_Has3DNow() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE(void)
 /// ```
-int SDL_HasSSE() {
-  final _SDL_HasSSE = DLL_SDL2.lookupFunction<
+int sdlHasSse() {
+  final sdlHasSseLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasSSE');
-  return _SDL_HasSSE();
+  return sdlHasSseLookupFunction();
 }
 
 /// 
@@ -215,11 +215,11 @@ int SDL_HasSSE() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE2(void)
 /// ```
-int SDL_HasSSE2() {
-  final _SDL_HasSSE2 = DLL_SDL2.lookupFunction<
+int sdlHasSse2() {
+  final sdlHasSse2LookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasSSE2');
-  return _SDL_HasSSE2();
+  return sdlHasSse2LookupFunction();
 }
 
 /// 
@@ -245,11 +245,11 @@ int SDL_HasSSE2() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE3(void)
 /// ```
-int SDL_HasSSE3() {
-  final _SDL_HasSSE3 = DLL_SDL2.lookupFunction<
+int sdlHasSse3() {
+  final sdlHasSse3LookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasSSE3');
-  return _SDL_HasSSE3();
+  return sdlHasSse3LookupFunction();
 }
 
 /// 
@@ -275,11 +275,11 @@ int SDL_HasSSE3() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE41(void)
 /// ```
-int SDL_HasSSE41() {
-  final _SDL_HasSSE41 = DLL_SDL2.lookupFunction<
+int sdlHasSse41() {
+  final sdlHasSse41LookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasSSE41');
-  return _SDL_HasSSE41();
+  return sdlHasSse41LookupFunction();
 }
 
 /// 
@@ -305,11 +305,11 @@ int SDL_HasSSE41() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE42(void)
 /// ```
-int SDL_HasSSE42() {
-  final _SDL_HasSSE42 = DLL_SDL2.lookupFunction<
+int sdlHasSse42() {
+  final sdlHasSse42LookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasSSE42');
-  return _SDL_HasSSE42();
+  return sdlHasSse42LookupFunction();
 }
 
 /// 
@@ -335,11 +335,11 @@ int SDL_HasSSE42() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasAVX(void)
 /// ```
-int SDL_HasAVX() {
-  final _SDL_HasAVX = DLL_SDL2.lookupFunction<
+int sdlHasAvx() {
+  final sdlHasAvxLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasAVX');
-  return _SDL_HasAVX();
+  return sdlHasAvxLookupFunction();
 }
 
 /// 
@@ -365,11 +365,11 @@ int SDL_HasAVX() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasAVX2(void)
 /// ```
-int SDL_HasAVX2() {
-  final _SDL_HasAVX2 = DLL_SDL2.lookupFunction<
+int sdlHasAvx2() {
+  final sdlHasAvx2LookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasAVX2');
-  return _SDL_HasAVX2();
+  return sdlHasAvx2LookupFunction();
 }
 
 /// 
@@ -386,11 +386,11 @@ int SDL_HasAVX2() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasAVX512F(void)
 /// ```
-int SDL_HasAVX512F() {
-  final _SDL_HasAVX512F = DLL_SDL2.lookupFunction<
+int sdlHasAvx512F() {
+  final sdlHasAvx512FLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasAVX512F');
-  return _SDL_HasAVX512F();
+  return sdlHasAvx512FLookupFunction();
 }
 
 /// 
@@ -409,11 +409,11 @@ int SDL_HasAVX512F() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasARMSIMD(void)
 /// ```
-int SDL_HasARMSIMD() {
-  final _SDL_HasARMSIMD = DLL_SDL2.lookupFunction<
+int sdlHasArmsimd() {
+  final sdlHasArmsimdLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasARMSIMD');
-  return _SDL_HasARMSIMD();
+  return sdlHasArmsimdLookupFunction();
 }
 
 /// 
@@ -428,11 +428,11 @@ int SDL_HasARMSIMD() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasNEON(void)
 /// ```
-int SDL_HasNEON() {
-  final _SDL_HasNEON = DLL_SDL2.lookupFunction<
+int sdlHasNeon() {
+  final sdlHasNeonLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasNEON');
-  return _SDL_HasNEON();
+  return sdlHasNeonLookupFunction();
 }
 
 /// 
@@ -449,11 +449,11 @@ int SDL_HasNEON() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasLSX(void)
 /// ```
-int SDL_HasLSX() {
-  final _SDL_HasLSX = DLL_SDL2.lookupFunction<
+int sdlHasLsx() {
+  final sdlHasLsxLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasLSX');
-  return _SDL_HasLSX();
+  return sdlHasLsxLookupFunction();
 }
 
 /// 
@@ -470,11 +470,11 @@ int SDL_HasLSX() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasLASX(void)
 /// ```
-int SDL_HasLASX() {
-  final _SDL_HasLASX = DLL_SDL2.lookupFunction<
+int sdlHasLasx() {
+  final sdlHasLasxLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasLASX');
-  return _SDL_HasLASX();
+  return sdlHasLasxLookupFunction();
 }
 
 /// 
@@ -487,11 +487,11 @@ int SDL_HasLASX() {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GetSystemRAM(void)
 /// ```
-int SDL_GetSystemRAM() {
-  final _SDL_GetSystemRAM = DLL_SDL2.lookupFunction<
+int sdlGetSystemRam() {
+  final sdlGetSystemRamLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_GetSystemRAM');
-  return _SDL_GetSystemRAM();
+  return sdlGetSystemRamLookupFunction();
 }
 
 /// 
@@ -514,11 +514,11 @@ int SDL_GetSystemRAM() {
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_SIMDGetAlignment(void)
 /// ```
-int SDL_SIMDGetAlignment() {
-  final _SDL_SIMDGetAlignment = DLL_SDL2.lookupFunction<
+int sdlSimdGetAlignment() {
+  final sdlSimdGetAlignmentLookupFunction = libSdl2.lookupFunction<
       Uint32 Function(),
       int Function()>('SDL_SIMDGetAlignment');
-  return _SDL_SIMDGetAlignment();
+  return sdlSimdGetAlignmentLookupFunction();
 }
 
 /// 
@@ -561,11 +561,11 @@ int SDL_SIMDGetAlignment() {
 /// ```c
 /// extern DECLSPEC void * SDLCALL SDL_SIMDAlloc(const size_t len)
 /// ```
-Pointer<Void>? SDL_SIMDAlloc(int len) {
-  final _SDL_SIMDAlloc = DLL_SDL2.lookupFunction<
+Pointer<Void>? sdlSimdAlloc(int len) {
+  final sdlSimdAllocLookupFunction = libSdl2.lookupFunction<
       Pointer<Void>? Function(Uint32 len),
       Pointer<Void>? Function(int len)>('SDL_SIMDAlloc');
-  return _SDL_SIMDAlloc(len);
+  return sdlSimdAllocLookupFunction(len);
 }
 
 /// 
@@ -593,11 +593,11 @@ Pointer<Void>? SDL_SIMDAlloc(int len) {
 /// ```c
 /// extern DECLSPEC void * SDLCALL SDL_SIMDRealloc(void *mem, const size_t len)
 /// ```
-Pointer<Void>? SDL_SIMDRealloc(Pointer<Void>? mem, int len) {
-  final _SDL_SIMDRealloc = DLL_SDL2.lookupFunction<
+Pointer<Void>? sdlSimdRealloc(Pointer<Void>? mem, int len) {
+  final sdlSimdReallocLookupFunction = libSdl2.lookupFunction<
       Pointer<Void>? Function(Pointer<Void>? mem, Uint32 len),
       Pointer<Void>? Function(Pointer<Void>? mem, int len)>('SDL_SIMDRealloc');
-  return _SDL_SIMDRealloc(mem, len);
+  return sdlSimdReallocLookupFunction(mem, len);
 }
 
 /// 
@@ -625,10 +625,10 @@ Pointer<Void>? SDL_SIMDRealloc(Pointer<Void>? mem, int len) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_SIMDFree(void *ptr)
 /// ```
-void SDL_SIMDFree(Pointer<Void>? ptr) {
-  final _SDL_SIMDFree = DLL_SDL2.lookupFunction<
+void sdlSimdFree(Pointer<Void>? ptr) {
+  final sdlSimdFreeLookupFunction = libSdl2.lookupFunction<
       Void Function(Pointer<Void>? ptr),
       void Function(Pointer<Void>? ptr)>('SDL_SIMDFree');
-  return _SDL_SIMDFree(ptr);
+  return sdlSimdFreeLookupFunction(ptr);
 }
 

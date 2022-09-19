@@ -23,8 +23,8 @@ int getAlphaFromColor(int color) {
   return (color & 0xff000000) >> 8 * 3;
 }
 
-int setDrawColor(Pointer<SDL_Renderer>? renderer, int color) {
-  return SDL_SetRenderDrawColor(
+int setDrawColor(Pointer<SdlRenderer>? renderer, int color) {
+  return sdlSetRenderDrawColor(
       renderer,
       getRedFromColor(color),
       getGreenFromColor(color),
@@ -32,14 +32,14 @@ int setDrawColor(Pointer<SDL_Renderer>? renderer, int color) {
       getAlphaFromColor(color));
 }
 
-int drawLine(Pointer<SDL_Renderer>? renderer, int x1, int y1, int x2, int y2,
+int drawLine(Pointer<SdlRenderer>? renderer, int x1, int y1, int x2, int y2,
     int color) {
-  return SDL_RenderDrawLine(renderer, x1, y1, x2, y2);
+  return sdlRenderDrawLine(renderer, x1, y1, x2, y2);
 }
 
 // https://gist.github.com/Gumichan01/332c26f6197a432db91cc4327fcabb1c
 int drawCircle(
-    Pointer<SDL_Renderer>? renderer, int x, int y, int radius, int color,
+    Pointer<SdlRenderer>? renderer, int x, int y, int radius, int color,
     {bool fillFlag = true}) {
   setDrawColor(renderer, color);
   int offsetx, offsety, d;
@@ -50,23 +50,23 @@ int drawCircle(
   status = 0;
   while (offsety >= offsetx) {
     if (fillFlag) {
-      status += SDL_RenderDrawLine(
+      status += sdlRenderDrawLine(
           renderer, x - offsety, y + offsetx, x + offsety, y + offsetx);
-      status += SDL_RenderDrawLine(
+      status += sdlRenderDrawLine(
           renderer, x - offsetx, y + offsety, x + offsetx, y + offsety);
-      status += SDL_RenderDrawLine(
+      status += sdlRenderDrawLine(
           renderer, x - offsetx, y - offsety, x + offsetx, y - offsety);
-      status += SDL_RenderDrawLine(
+      status += sdlRenderDrawLine(
           renderer, x - offsety, y - offsetx, x + offsety, y - offsetx);
     } else {
-      status += SDL_RenderDrawPoint(renderer, x + offsetx, y + offsety);
-      status += SDL_RenderDrawPoint(renderer, x + offsety, y + offsetx);
-      status += SDL_RenderDrawPoint(renderer, x - offsetx, y + offsety);
-      status += SDL_RenderDrawPoint(renderer, x - offsety, y + offsetx);
-      status += SDL_RenderDrawPoint(renderer, x + offsetx, y - offsety);
-      status += SDL_RenderDrawPoint(renderer, x + offsety, y - offsetx);
-      status += SDL_RenderDrawPoint(renderer, x - offsetx, y - offsety);
-      status += SDL_RenderDrawPoint(renderer, x - offsety, y - offsetx);
+      status += sdlRenderDrawPoint(renderer, x + offsetx, y + offsety);
+      status += sdlRenderDrawPoint(renderer, x + offsety, y + offsetx);
+      status += sdlRenderDrawPoint(renderer, x - offsetx, y + offsety);
+      status += sdlRenderDrawPoint(renderer, x - offsety, y + offsetx);
+      status += sdlRenderDrawPoint(renderer, x + offsetx, y - offsety);
+      status += sdlRenderDrawPoint(renderer, x + offsety, y - offsetx);
+      status += sdlRenderDrawPoint(renderer, x - offsetx, y - offsety);
+      status += sdlRenderDrawPoint(renderer, x - offsety, y - offsetx);
     }
     if (status < 0) {
       status = -1;
@@ -88,20 +88,20 @@ int drawCircle(
 }
 
 int drawBox(
-    Pointer<SDL_Renderer>? renderer, int x1, int y1, int x2, int y2, int color,
+    Pointer<SdlRenderer>? renderer, int x1, int y1, int x2, int y2, int color,
     {bool fillFlag = true}) {
   setDrawColor(renderer, color);
-  var result;
-  var rect = calloc<SDL_Rect>();
+  int result;
+  var rect = calloc<SdlRect>();
   rect
     ..ref.x = x1
     ..ref.y = y1
     ..ref.w = x2 - x1 - 1
     ..ref.h = y2 - y1 - 1;
   if (fillFlag) {
-    result = SDL_RenderFillRect(renderer, rect);
+    result = sdlRenderFillRect(renderer, rect);
   } else {
-    result = SDL_RenderDrawRect(renderer, rect);
+    result = sdlRenderDrawRect(renderer, rect);
   }
   calloc.free(rect);
   return result;

@@ -1,3 +1,6 @@
+## 1.3.0
+- [update] Functions and structs follow lint rules.
+
 ## 1.2.0
 - [update] Support SDL version 2.24.0 (stable).
 - [update] Support SDL2_image version 2.6.2.

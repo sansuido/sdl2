@@ -2,7 +2,7 @@
 import 'dart:ffi';
 import '../dylib.dart' as dylib;
 
-final DLL_SDL2 = dylib.dylibOpen('SDL2');
+final libSdl2 = dylib.dylibOpen('SDL2');
 
 /// 
 /// Initialize the SDL library.
@@ -54,11 +54,11 @@ final DLL_SDL2 = dylib.dylibOpen('SDL2');
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_Init(Uint32 flags)
 /// ```
-int SDL_Init(int flags) {
-  final _SDL_Init = DLL_SDL2.lookupFunction<
+int sdlInit(int flags) {
+  final sdlInitLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Uint32 flags),
       int Function(int flags)>('SDL_Init');
-  return _SDL_Init(flags);
+  return sdlInitLookupFunction(flags);
 }
 
 /// 
@@ -79,11 +79,11 @@ int SDL_Init(int flags) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_InitSubSystem(Uint32 flags)
 /// ```
-int SDL_InitSubSystem(int flags) {
-  final _SDL_InitSubSystem = DLL_SDL2.lookupFunction<
+int sdlInitSubSystem(int flags) {
+  final sdlInitSubSystemLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Uint32 flags),
       int Function(int flags)>('SDL_InitSubSystem');
-  return _SDL_InitSubSystem(flags);
+  return sdlInitSubSystemLookupFunction(flags);
 }
 
 /// 
@@ -109,11 +109,11 @@ int SDL_InitSubSystem(int flags) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_QuitSubSystem(Uint32 flags)
 /// ```
-void SDL_QuitSubSystem(int flags) {
-  final _SDL_QuitSubSystem = DLL_SDL2.lookupFunction<
+void sdlQuitSubSystem(int flags) {
+  final sdlQuitSubSystemLookupFunction = libSdl2.lookupFunction<
       Void Function(Uint32 flags),
       void Function(int flags)>('SDL_QuitSubSystem');
-  return _SDL_QuitSubSystem(flags);
+  return sdlQuitSubSystemLookupFunction(flags);
 }
 
 /// 
@@ -133,11 +133,11 @@ void SDL_QuitSubSystem(int flags) {
 /// ```c
 /// extern DECLSPEC Uint32 SDLCALL SDL_WasInit(Uint32 flags)
 /// ```
-int SDL_WasInit(int flags) {
-  final _SDL_WasInit = DLL_SDL2.lookupFunction<
+int sdlWasInit(int flags) {
+  final sdlWasInitLookupFunction = libSdl2.lookupFunction<
       Uint32 Function(Uint32 flags),
       int Function(int flags)>('SDL_WasInit');
-  return _SDL_WasInit(flags);
+  return sdlWasInitLookupFunction(flags);
 }
 
 /// 
@@ -165,10 +165,10 @@ int SDL_WasInit(int flags) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_Quit(void)
 /// ```
-void SDL_Quit() {
-  final _SDL_Quit = DLL_SDL2.lookupFunction<
+void sdlQuit() {
+  final sdlQuitLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_Quit');
-  return _SDL_Quit();
+  return sdlQuitLookupFunction();
 }
 

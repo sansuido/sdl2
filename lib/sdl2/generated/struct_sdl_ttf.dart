@@ -1,4 +1,4 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
-class TTF_Font extends Opaque {}
+class TtfFont extends Opaque {}
 

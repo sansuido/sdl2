@@ -30,14 +30,14 @@ import 'lib_sdl.dart';
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetError(SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(1)
 /// ```
-int SDL_SetError(String fmt, Pointer<Void>? arg1) {
-  final _SDL_SetError = DLL_SDL2.lookupFunction<
+int sdlSetError(String fmt, Pointer<Void>? arg1) {
+  final sdlSetErrorLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8>? fmt, Pointer<Void>? arg1),
       int Function(Pointer<Utf8>? fmt, Pointer<Void>? arg1)>('SDL_SetError');
-  final _fmtPointer = fmt.toNativeUtf8();
-  final _result = _SDL_SetError(_fmtPointer, arg1);
-  calloc.free(_fmtPointer);
-  return _result;
+  final fmtPointer = fmt.toNativeUtf8();
+  final result = sdlSetErrorLookupFunction(fmtPointer, arg1);
+  calloc.free(fmtPointer);
+  return result;
 }
 
 /// 
@@ -78,11 +78,11 @@ int SDL_SetError(String fmt, Pointer<Void>? arg1) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetError(void)
 /// ```
-String SDL_GetError() {
-  final _SDL_GetError = DLL_SDL2.lookupFunction<
+String sdlGetError() {
+  final sdlGetErrorLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8>? Function(),
       Pointer<Utf8>? Function()>('SDL_GetError');
-  return _SDL_GetError()!.toDartString();
+  return sdlGetErrorLookupFunction()!.toDartString();
 }
 
 /// 
@@ -103,11 +103,11 @@ String SDL_GetError() {
 /// ```c
 /// extern DECLSPEC char * SDLCALL SDL_GetErrorMsg(char *errstr, int maxlen)
 /// ```
-Pointer<Int8>? SDL_GetErrorMsg(Pointer<Int8>? errstr, int maxlen) {
-  final _SDL_GetErrorMsg = DLL_SDL2.lookupFunction<
+Pointer<Int8>? sdlGetErrorMsg(Pointer<Int8>? errstr, int maxlen) {
+  final sdlGetErrorMsgLookupFunction = libSdl2.lookupFunction<
       Pointer<Int8>? Function(Pointer<Int8>? errstr, Int32 maxlen),
       Pointer<Int8>? Function(Pointer<Int8>? errstr, int maxlen)>('SDL_GetErrorMsg');
-  return _SDL_GetErrorMsg(errstr, maxlen);
+  return sdlGetErrorMsgLookupFunction(errstr, maxlen);
 }
 
 /// 
@@ -121,21 +121,21 @@ Pointer<Int8>? SDL_GetErrorMsg(Pointer<Int8>? errstr, int maxlen) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_ClearError(void)
 /// ```
-void SDL_ClearError() {
-  final _SDL_ClearError = DLL_SDL2.lookupFunction<
+void sdlClearError() {
+  final sdlClearErrorLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_ClearError');
-  return _SDL_ClearError();
+  return sdlClearErrorLookupFunction();
 }
 
 /// SDL_Error() unconditionally returns -1.
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_Error(SDL_errorcode code)
 /// ```
-int SDL_Error(int code) {
-  final _SDL_Error = DLL_SDL2.lookupFunction<
+int sdlError(int code) {
+  final sdlErrorLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 code),
       int Function(int code)>('SDL_Error');
-  return _SDL_Error(code);
+  return sdlErrorLookupFunction(code);
 }
 

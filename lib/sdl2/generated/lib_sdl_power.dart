@@ -31,10 +31,10 @@ import 'lib_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_PowerState SDLCALL SDL_GetPowerInfo(int *secs, int *pct)
 /// ```
-int SDL_GetPowerInfo(Pointer<Int32>? secs, Pointer<Int32>? pct) {
-  final _SDL_GetPowerInfo = DLL_SDL2.lookupFunction<
+int sdlGetPowerInfo(Pointer<Int32>? secs, Pointer<Int32>? pct) {
+  final sdlGetPowerInfoLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Int32>? secs, Pointer<Int32>? pct),
       int Function(Pointer<Int32>? secs, Pointer<Int32>? pct)>('SDL_GetPowerInfo');
-  return _SDL_GetPowerInfo(secs, pct);
+  return sdlGetPowerInfoLookupFunction(secs, pct);
 }
 

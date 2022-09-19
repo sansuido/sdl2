@@ -6,16 +6,16 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:sdl2/sdl2.dart';
 
-const TITLE = 'DXLIB Tutorial 04';
-const FPS = 60;
-const DELAY_TIME = 1000.0 / FPS;
-const SCREEN_WIDTH = 640;
-const SCREEN_HEIGHT = 480;
-const MAP_SIZE = 64;
-const MOVE_FRAME = 32 ~/ 4;
+const gTitle = 'DXLIB Tutorial 04';
+const gFps = 60;
+const gDelayTime = 1000.0 / gFps;
+const gScreenWidth = 640;
+const gScreenHeight = 480;
+const gMapSize = 64;
+const gMoveFrame = 32 ~/ 4;
 
-var gWindow;
-var gRenderer;
+Pointer<SdlWindow>? gWindow;
+Pointer<SdlRenderer>? gRenderer;
 var gPlayerX = 2;
 var gPlayerY = 2;
 var gMoveX = 0, gMoveY = 0;
@@ -43,25 +43,25 @@ var gMapData = [
 ];
 
 bool init() {
-  if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-    print('${SDL_GetError()}');
+  if (sdlInit(SDL_INIT_VIDEO) < 0) {
+    print(sdlGetError());
     return false;
   }
-  gWindow = SDL_CreateWindow(
-      TITLE,
+  gWindow = sdlCreateWindow(
+      gTitle,
       SDL_WINDOWPOS_UNDEFINED,
       SDL_WINDOWPOS_UNDEFINED,
-      SCREEN_WIDTH,
-      SCREEN_HEIGHT,
+      gScreenWidth,
+      gScreenHeight,
       SDL_WINDOW_SHOWN
   );
   if (gWindow == nullptr) {
-    print('${SDL_GetError()}');
+    print(sdlGetError());
     return false;
   }
-  gRenderer = SDL_CreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+  gRenderer = sdlCreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
   if (gRenderer == nullptr) {
-    print('${SDL_GetError()}');
+    print(sdlGetError());
     return false;
   }
   return true;
@@ -69,19 +69,19 @@ bool init() {
 
 void close() {
   if (gRenderer != nullptr) {
-    SDL_DestroyRenderer(gRenderer);
+    sdlDestroyRenderer(gRenderer);
     gRenderer = nullptr;
   }
   if (gWindow != nullptr) {
-    SDL_DestroyWindow(gWindow);
+    sdlDestroyWindow(gWindow);
     gWindow = nullptr;
   }
-  SDL_Quit();
+  sdlQuit();
 }
 
 void update() {
   if (gMove == 0) {
-    var keys = SDL_GetKeyboardState(nullptr);
+    var keys = sdlGetKeyboardState(nullptr);
     if (keys != null) {
       if (keys[SDL_SCANCODE_UP] != 0) {
         gMove = 1;
@@ -116,23 +116,23 @@ void update() {
   }
   if (gMove == 1) {
     gMoveCounter++;
-    if (gMoveCounter == MOVE_FRAME) {
+    if (gMoveCounter == gMoveFrame) {
       gMove = 0;
       gPlayerX += gMoveX;
       gPlayerY += gMoveY;
       gScrollX = 0;
       gScrollY = 0;
     } else {
-      gScrollX = -(gMoveX * MAP_SIZE * gMoveCounter ~/ MOVE_FRAME);
-      gScrollY = -(gMoveY * MAP_SIZE * gMoveCounter ~/ MOVE_FRAME);
+      gScrollX = -(gMoveX * gMapSize * gMoveCounter ~/ gMoveFrame);
+      gScrollY = -(gMoveY * gMapSize * gMoveCounter ~/ gMoveFrame);
     }
   }
 }
 
 bool handleEvents() {
   var quit = false;
-  var e = calloc<SDL_Event>();
-  while (SDL_PollEvent(e) != 0) {
+  var e = calloc<SdlEvent>();
+  while (sdlPollEvent(e) != 0) {
     switch (e.type) {
       case SDL_QUIT:
         quit = true;
@@ -146,21 +146,21 @@ bool handleEvents() {
 }
 
 void render() {
-  var mapDrawPointX;
-  var mapDrawPointY;
-  var drawMapChipNumX;
-  var drawMapChipNumY;
-  var rect = calloc<SDL_Rect>();
+  //var mapDrawPointX = null;
+  //var mapDrawPointY = null;
+  //var drawMapChipNumX = null;
+  //var drawMapChipNumY = null;
+  var rect = calloc<SdlRect>();
   // calc
-  drawMapChipNumX = SCREEN_WIDTH ~/ MAP_SIZE + 1;
-  drawMapChipNumY = SCREEN_HEIGHT ~/ MAP_SIZE + 1;
-  mapDrawPointX = gPlayerX - drawMapChipNumX ~/ 2;
-  mapDrawPointY = gPlayerY - drawMapChipNumY ~/ 2;
+  var drawMapChipNumX = gScreenWidth ~/ gMapSize + 1;
+  var drawMapChipNumY = gScreenHeight ~/ gMapSize + 1;
+  var mapDrawPointX = gPlayerX - drawMapChipNumX ~/ 2;
+  var mapDrawPointY = gPlayerY - drawMapChipNumY ~/ 2;
   // init
-  SDL_SetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xff);
-  SDL_RenderClear(gRenderer);
+  sdlSetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xff);
+  sdlRenderClear(gRenderer);
   // map
-  SDL_SetRenderDrawColor(gRenderer, 0xff, 0x00, 0x00, 0xff);
+  sdlSetRenderDrawColor(gRenderer, 0xff, 0x00, 0x00, 0xff);
   for (var y = 0; y < gMapData.length; y++) {
     var drawY = y + mapDrawPointY;
     if (drawY < 0 || drawY >= gMapData.length) {
@@ -171,27 +171,27 @@ void render() {
       if (drawX < 0 || drawX >= gMapData[y].length) {
         continue;
       }
-      if (gMapData[drawY as int][drawX as int] == 0) {
+      if (gMapData[drawY][drawX] == 0) {
         rect
-            ..ref.x = x * MAP_SIZE + gScrollX
-            ..ref.y = y * MAP_SIZE + gScrollY
-            ..ref.w = MAP_SIZE
-            ..ref.h = MAP_SIZE;
-        SDL_RenderFillRect(gRenderer, rect);
+            ..ref.x = x * gMapSize + gScrollX
+            ..ref.y = y * gMapSize + gScrollY
+            ..ref.w = gMapSize
+            ..ref.h = gMapSize;
+        sdlRenderFillRect(gRenderer, rect);
       }
     }
   }
   // player
-  SDL_SetRenderDrawColor(gRenderer, 0xff, 0xff, 0xff, 0xff);
+  sdlSetRenderDrawColor(gRenderer, 0xff, 0xff, 0xff, 0xff);
   rect
-      ..ref.x = ((gPlayerX - mapDrawPointX) * MAP_SIZE) as int
-      ..ref.y = ((gPlayerY - mapDrawPointY) * MAP_SIZE) as int
-      ..ref.w = MAP_SIZE
-      ..ref.h = MAP_SIZE;
-  SDL_RenderFillRect(gRenderer, rect);
+      ..ref.x = ((gPlayerX - mapDrawPointX) * gMapSize)
+      ..ref.y = ((gPlayerY - mapDrawPointY) * gMapSize)
+      ..ref.w = gMapSize
+      ..ref.h = gMapSize;
+  sdlRenderFillRect(gRenderer, rect);
   calloc.free(rect);
   // term
-  SDL_RenderPresent(gRenderer);
+  sdlRenderPresent(gRenderer);
 }
 
 int main() {
@@ -199,7 +199,7 @@ int main() {
     var quit = false;
     while (!quit) {
       // frameStart
-      var frameStart = SDL_GetTicks();
+      var frameStart = sdlGetTicks();
       // update
       update();
       // handleEvents
@@ -207,11 +207,11 @@ int main() {
       // render
       render();
       // frameEnd
-      var frameTime = SDL_GetTicks() - frameStart;
-      if (frameTime < DELAY_TIME) {
-        SDL_Delay((DELAY_TIME - frameTime).toInt());
+      var frameTime = sdlGetTicks() - frameStart;
+      if (frameTime < gDelayTime) {
+        sdlDelay((gDelayTime - frameTime).toInt());
       } else {
-        SDL_Delay(DELAY_TIME.toInt());
+        sdlDelay(gDelayTime.toInt());
       }
     }
   }

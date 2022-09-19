@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names
 import 'dart:ffi';
 import './generated/const_sdl_image.dart';
 import './generated/lib_sdl_error.dart';
@@ -7,7 +8,7 @@ import 'lib_sdl_ex.dart';
 /// ```c
 /// const SDL_IMAGE_VERSION = (X) \{ \ (X)->major = SDL_IMAGE_MAJOR_VERSION; \ (X)->minor = SDL_IMAGE_MINOR_VERSION; \ (X)->patch = SDL_IMAGE_PATCHLEVEL; \};
 /// ```
-void SDL_IMAGE_VERSION(Pointer<SDL_version>? x) {
+void sdlImageVersion(Pointer<SdlVersion>? x) {
   if (x != null) {
     x.ref.major = SDL_IMAGE_MAJOR_VERSION;
     x.ref.minor = SDL_IMAGE_MINOR_VERSION;
@@ -18,26 +19,26 @@ void SDL_IMAGE_VERSION(Pointer<SDL_version>? x) {
 /// ```c
 /// const SDL_IMAGE_COMPILEDVERSION = \ SDL_VERSIONNUM(SDL_IMAGE_MAJOR_VERSION, SDL_IMAGE_MINOR_VERSION, SDL_IMAGE_PATCHLEVEL);
 /// ```
-final SDL_IMAGE_COMPILEDVERSION = SDL_VERSIONNUM(SDL_IMAGE_MAJOR_VERSION, SDL_IMAGE_MINOR_VERSION, SDL_IMAGE_PATCHLEVEL);
+final SDL_IMAGE_COMPILEDVERSION = sdlVersionnum(SDL_IMAGE_MAJOR_VERSION, SDL_IMAGE_MINOR_VERSION, SDL_IMAGE_PATCHLEVEL);
 
 /// ```c
 /// const SDL_IMAGE_VERSION_ATLEAST = (X, Y, Z) \ (SDL_IMAGE_COMPILEDVERSION >= SDL_VERSIONNUM(X, Y, Z));
 /// ```
-bool SDL_IMAGE_VERSION_ATLEAST(int x, int y, int z) {
-  return SDL_IMAGE_COMPILEDVERSION >= SDL_VERSIONNUM(x, y, z);
+bool sdlImageVersionAtleast(int x, int y, int z) {
+  return SDL_IMAGE_COMPILEDVERSION >= sdlVersionnum(x, y, z);
 }
 
 /// ```c
 /// const IMG_SetError = SDL_SetError;
 /// ```
-int IMG_SetError(String fmt, Pointer<Void>? arg1) {
-  return SDL_SetError(fmt, arg1);
+int imgSetError(String fmt, Pointer<Void>? arg1) {
+  return sdlSetError(fmt, arg1);
 }
 
 /// ```c
 /// const IMG_GetError = SDL_GetError;
 /// ```
-String IMG_GetError() {
-  return SDL_GetError();
+String imgGetError() {
+  return sdlGetError();
 }
 

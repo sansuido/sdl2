@@ -97,10 +97,10 @@ import 'lib_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_BlendMode SDLCALL SDL_ComposeCustomBlendMode(SDL_BlendFactor srcColorFactor, SDL_BlendFactor dstColorFactor, SDL_BlendOperation colorOperation, SDL_BlendFactor srcAlphaFactor, SDL_BlendFactor dstAlphaFactor, SDL_BlendOperation alphaOperation)
 /// ```
-int SDL_ComposeCustomBlendMode(int srcColorFactor, int dstColorFactor, int colorOperation, int srcAlphaFactor, int dstAlphaFactor, int alphaOperation) {
-  final _SDL_ComposeCustomBlendMode = DLL_SDL2.lookupFunction<
+int sdlComposeCustomBlendMode(int srcColorFactor, int dstColorFactor, int colorOperation, int srcAlphaFactor, int dstAlphaFactor, int alphaOperation) {
+  final sdlComposeCustomBlendModeLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 srcColorFactor, Int32 dstColorFactor, Int32 colorOperation, Int32 srcAlphaFactor, Int32 dstAlphaFactor, Int32 alphaOperation),
       int Function(int srcColorFactor, int dstColorFactor, int colorOperation, int srcAlphaFactor, int dstAlphaFactor, int alphaOperation)>('SDL_ComposeCustomBlendMode');
-  return _SDL_ComposeCustomBlendMode(srcColorFactor, dstColorFactor, colorOperation, srcAlphaFactor, dstAlphaFactor, alphaOperation);
+  return sdlComposeCustomBlendModeLookupFunction(srcColorFactor, dstColorFactor, colorOperation, srcAlphaFactor, dstAlphaFactor, alphaOperation);
 }
 

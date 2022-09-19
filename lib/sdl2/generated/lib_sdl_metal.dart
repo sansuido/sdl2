@@ -21,11 +21,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_MetalView SDLCALL SDL_Metal_CreateView(SDL_Window * window)
 /// ```
-Pointer<Void>? SDL_Metal_CreateView(Pointer<SDL_Window>? window) {
-  final _SDL_Metal_CreateView = DLL_SDL2.lookupFunction<
-      Pointer<Void>? Function(Pointer<SDL_Window>? window),
-      Pointer<Void>? Function(Pointer<SDL_Window>? window)>('SDL_Metal_CreateView');
-  return _SDL_Metal_CreateView(window);
+Pointer<Void>? sdlMetalCreateView(Pointer<SdlWindow>? window) {
+  final sdlMetalCreateViewLookupFunction = libSdl2.lookupFunction<
+      Pointer<Void>? Function(Pointer<SdlWindow>? window),
+      Pointer<Void>? Function(Pointer<SdlWindow>? window)>('SDL_Metal_CreateView');
+  return sdlMetalCreateViewLookupFunction(window);
 }
 
 /// 
@@ -41,11 +41,11 @@ Pointer<Void>? SDL_Metal_CreateView(Pointer<SDL_Window>? window) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_Metal_DestroyView(SDL_MetalView view)
 /// ```
-void SDL_Metal_DestroyView(Pointer<Void>? view) {
-  final _SDL_Metal_DestroyView = DLL_SDL2.lookupFunction<
+void sdlMetalDestroyView(Pointer<Void>? view) {
+  final sdlMetalDestroyViewLookupFunction = libSdl2.lookupFunction<
       Void Function(Pointer<Void>? view),
       void Function(Pointer<Void>? view)>('SDL_Metal_DestroyView');
-  return _SDL_Metal_DestroyView(view);
+  return sdlMetalDestroyViewLookupFunction(view);
 }
 
 /// 
@@ -58,11 +58,11 @@ void SDL_Metal_DestroyView(Pointer<Void>? view) {
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_Metal_GetLayer(SDL_MetalView view)
 /// ```
-Pointer<Void>? SDL_Metal_GetLayer(Pointer<Void>? view) {
-  final _SDL_Metal_GetLayer = DLL_SDL2.lookupFunction<
+Pointer<Void>? sdlMetalGetLayer(Pointer<Void>? view) {
+  final sdlMetalGetLayerLookupFunction = libSdl2.lookupFunction<
       Pointer<Void>? Function(Pointer<Void>? view),
       Pointer<Void>? Function(Pointer<Void>? view)>('SDL_Metal_GetLayer');
-  return _SDL_Metal_GetLayer(view);
+  return sdlMetalGetLayerLookupFunction(view);
 }
 
 /// 
@@ -81,10 +81,10 @@ Pointer<Void>? SDL_Metal_GetLayer(Pointer<Void>? view) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_Metal_GetDrawableSize(SDL_Window* window, int *w, int *h)
 /// ```
-void SDL_Metal_GetDrawableSize(Pointer<SDL_Window>? window, Pointer<Int32>? w, Pointer<Int32>? h) {
-  final _SDL_Metal_GetDrawableSize = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Window>? window, Pointer<Int32>? w, Pointer<Int32>? h),
-      void Function(Pointer<SDL_Window>? window, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_Metal_GetDrawableSize');
-  return _SDL_Metal_GetDrawableSize(window, w, h);
+void sdlMetalGetDrawableSize(Pointer<SdlWindow>? window, Pointer<Int32>? w, Pointer<Int32>? h) {
+  final sdlMetalGetDrawableSizeLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlWindow>? window, Pointer<Int32>? w, Pointer<Int32>? h),
+      void Function(Pointer<SdlWindow>? window, Pointer<Int32>? w, Pointer<Int32>? h)>('SDL_Metal_GetDrawableSize');
+  return sdlMetalGetDrawableSizeLookupFunction(window, w, h);
 }
 

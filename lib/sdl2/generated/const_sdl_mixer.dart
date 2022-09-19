@@ -1,4 +1,5 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+// ignore_for_file: constant_identifier_names
 //const SDL_MIXER_H_ = ;
 const SDL_MIXER_MAJOR_VERSION = 2;
 const SDL_MIXER_MINOR_VERSION = 6;

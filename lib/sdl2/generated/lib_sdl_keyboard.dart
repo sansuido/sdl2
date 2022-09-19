@@ -14,11 +14,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_Window * SDLCALL SDL_GetKeyboardFocus(void)
 /// ```
-Pointer<SDL_Window>? SDL_GetKeyboardFocus() {
-  final _SDL_GetKeyboardFocus = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Window>? Function(),
-      Pointer<SDL_Window>? Function()>('SDL_GetKeyboardFocus');
-  return _SDL_GetKeyboardFocus();
+Pointer<SdlWindow>? sdlGetKeyboardFocus() {
+  final sdlGetKeyboardFocusLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlWindow>? Function(),
+      Pointer<SdlWindow>? Function()>('SDL_GetKeyboardFocus');
+  return sdlGetKeyboardFocusLookupFunction();
 }
 
 /// 
@@ -53,11 +53,11 @@ Pointer<SDL_Window>? SDL_GetKeyboardFocus() {
 /// ```c
 /// extern DECLSPEC const Uint8 *SDLCALL SDL_GetKeyboardState(int *numkeys)
 /// ```
-Pointer<Uint8>? SDL_GetKeyboardState(Pointer<Int32>? numkeys) {
-  final _SDL_GetKeyboardState = DLL_SDL2.lookupFunction<
+Pointer<Uint8>? sdlGetKeyboardState(Pointer<Int32>? numkeys) {
+  final sdlGetKeyboardStateLookupFunction = libSdl2.lookupFunction<
       Pointer<Uint8>? Function(Pointer<Int32>? numkeys),
       Pointer<Uint8>? Function(Pointer<Int32>? numkeys)>('SDL_GetKeyboardState');
-  return _SDL_GetKeyboardState(numkeys);
+  return sdlGetKeyboardStateLookupFunction(numkeys);
 }
 
 /// 
@@ -72,11 +72,11 @@ Pointer<Uint8>? SDL_GetKeyboardState(Pointer<Int32>? numkeys) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_ResetKeyboard(void)
 /// ```
-void SDL_ResetKeyboard() {
-  final _SDL_ResetKeyboard = DLL_SDL2.lookupFunction<
+void sdlResetKeyboard() {
+  final sdlResetKeyboardLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_ResetKeyboard');
-  return _SDL_ResetKeyboard();
+  return sdlResetKeyboardLookupFunction();
 }
 
 /// 
@@ -93,11 +93,11 @@ void SDL_ResetKeyboard() {
 /// ```c
 /// extern DECLSPEC SDL_Keymod SDLCALL SDL_GetModState(void)
 /// ```
-int SDL_GetModState() {
-  final _SDL_GetModState = DLL_SDL2.lookupFunction<
+int sdlGetModState() {
+  final sdlGetModStateLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_GetModState');
-  return _SDL_GetModState();
+  return sdlGetModStateLookupFunction();
 }
 
 /// 
@@ -120,11 +120,11 @@ int SDL_GetModState() {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_SetModState(SDL_Keymod modstate)
 /// ```
-void SDL_SetModState(int modstate) {
-  final _SDL_SetModState = DLL_SDL2.lookupFunction<
+void sdlSetModState(int modstate) {
+  final sdlSetModStateLookupFunction = libSdl2.lookupFunction<
       Void Function(Int32 modstate),
       void Function(int modstate)>('SDL_SetModState');
-  return _SDL_SetModState(modstate);
+  return sdlSetModStateLookupFunction(modstate);
 }
 
 /// 
@@ -144,11 +144,11 @@ void SDL_SetModState(int modstate) {
 /// ```c
 /// extern DECLSPEC SDL_Keycode SDLCALL SDL_GetKeyFromScancode(SDL_Scancode scancode)
 /// ```
-int SDL_GetKeyFromScancode(int scancode) {
-  final _SDL_GetKeyFromScancode = DLL_SDL2.lookupFunction<
+int sdlGetKeyFromScancode(int scancode) {
+  final sdlGetKeyFromScancodeLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 scancode),
       int Function(int scancode)>('SDL_GetKeyFromScancode');
-  return _SDL_GetKeyFromScancode(scancode);
+  return sdlGetKeyFromScancodeLookupFunction(scancode);
 }
 
 /// 
@@ -168,11 +168,11 @@ int SDL_GetKeyFromScancode(int scancode) {
 /// ```c
 /// extern DECLSPEC SDL_Scancode SDLCALL SDL_GetScancodeFromKey(SDL_Keycode key)
 /// ```
-int SDL_GetScancodeFromKey(int key) {
-  final _SDL_GetScancodeFromKey = DLL_SDL2.lookupFunction<
+int sdlGetScancodeFromKey(int key) {
+  final sdlGetScancodeFromKeyLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 key),
       int Function(int key)>('SDL_GetScancodeFromKey');
-  return _SDL_GetScancodeFromKey(key);
+  return sdlGetScancodeFromKeyLookupFunction(key);
 }
 
 /// 
@@ -201,11 +201,11 @@ int SDL_GetScancodeFromKey(int key) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetScancodeName(SDL_Scancode scancode)
 /// ```
-String SDL_GetScancodeName(int scancode) {
-  final _SDL_GetScancodeName = DLL_SDL2.lookupFunction<
+String sdlGetScancodeName(int scancode) {
+  final sdlGetScancodeNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8>? Function(Int32 scancode),
       Pointer<Utf8>? Function(int scancode)>('SDL_GetScancodeName');
-  return _SDL_GetScancodeName(scancode)!.toDartString();
+  return sdlGetScancodeNameLookupFunction(scancode)!.toDartString();
 }
 
 /// 
@@ -224,14 +224,14 @@ String SDL_GetScancodeName(int scancode) {
 /// ```c
 /// extern DECLSPEC SDL_Scancode SDLCALL SDL_GetScancodeFromName(const char *name)
 /// ```
-int SDL_GetScancodeFromName(String name) {
-  final _SDL_GetScancodeFromName = DLL_SDL2.lookupFunction<
+int sdlGetScancodeFromName(String name) {
+  final sdlGetScancodeFromNameLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8>? name),
       int Function(Pointer<Utf8>? name)>('SDL_GetScancodeFromName');
-  final _namePointer = name.toNativeUtf8();
-  final _result = _SDL_GetScancodeFromName(_namePointer);
-  calloc.free(_namePointer);
-  return _result;
+  final namePointer = name.toNativeUtf8();
+  final result = sdlGetScancodeFromNameLookupFunction(namePointer);
+  calloc.free(namePointer);
+  return result;
 }
 
 /// 
@@ -254,11 +254,11 @@ int SDL_GetScancodeFromName(String name) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetKeyName(SDL_Keycode key)
 /// ```
-String SDL_GetKeyName(int key) {
-  final _SDL_GetKeyName = DLL_SDL2.lookupFunction<
+String sdlGetKeyName(int key) {
+  final sdlGetKeyNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8>? Function(Int32 key),
       Pointer<Utf8>? Function(int key)>('SDL_GetKeyName');
-  return _SDL_GetKeyName(key)!.toDartString();
+  return sdlGetKeyNameLookupFunction(key)!.toDartString();
 }
 
 /// 
@@ -277,14 +277,14 @@ String SDL_GetKeyName(int key) {
 /// ```c
 /// extern DECLSPEC SDL_Keycode SDLCALL SDL_GetKeyFromName(const char *name)
 /// ```
-int SDL_GetKeyFromName(String name) {
-  final _SDL_GetKeyFromName = DLL_SDL2.lookupFunction<
+int sdlGetKeyFromName(String name) {
+  final sdlGetKeyFromNameLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8>? name),
       int Function(Pointer<Utf8>? name)>('SDL_GetKeyFromName');
-  final _namePointer = name.toNativeUtf8();
-  final _result = _SDL_GetKeyFromName(_namePointer);
-  calloc.free(_namePointer);
-  return _result;
+  final namePointer = name.toNativeUtf8();
+  final result = sdlGetKeyFromNameLookupFunction(namePointer);
+  calloc.free(namePointer);
+  return result;
 }
 
 /// 
@@ -305,11 +305,11 @@ int SDL_GetKeyFromName(String name) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_StartTextInput(void)
 /// ```
-void SDL_StartTextInput() {
-  final _SDL_StartTextInput = DLL_SDL2.lookupFunction<
+void sdlStartTextInput() {
+  final sdlStartTextInputLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_StartTextInput');
-  return _SDL_StartTextInput();
+  return sdlStartTextInputLookupFunction();
 }
 
 /// 
@@ -324,11 +324,11 @@ void SDL_StartTextInput() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsTextInputActive(void)
 /// ```
-int SDL_IsTextInputActive() {
-  final _SDL_IsTextInputActive = DLL_SDL2.lookupFunction<
+int sdlIsTextInputActive() {
+  final sdlIsTextInputActiveLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_IsTextInputActive');
-  return _SDL_IsTextInputActive();
+  return sdlIsTextInputActiveLookupFunction();
 }
 
 /// 
@@ -341,11 +341,11 @@ int SDL_IsTextInputActive() {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_StopTextInput(void)
 /// ```
-void SDL_StopTextInput() {
-  final _SDL_StopTextInput = DLL_SDL2.lookupFunction<
+void sdlStopTextInput() {
+  final sdlStopTextInputLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_StopTextInput');
-  return _SDL_StopTextInput();
+  return sdlStopTextInputLookupFunction();
 }
 
 /// 
@@ -359,11 +359,11 @@ void SDL_StopTextInput() {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_ClearComposition(void)
 /// ```
-void SDL_ClearComposition() {
-  final _SDL_ClearComposition = DLL_SDL2.lookupFunction<
+void sdlClearComposition() {
+  final sdlClearCompositionLookupFunction = libSdl2.lookupFunction<
       Void Function(),
       void Function()>('SDL_ClearComposition');
-  return _SDL_ClearComposition();
+  return sdlClearCompositionLookupFunction();
 }
 
 /// 
@@ -374,11 +374,11 @@ void SDL_ClearComposition() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsTextInputShown(void)
 /// ```
-int SDL_IsTextInputShown() {
-  final _SDL_IsTextInputShown = DLL_SDL2.lookupFunction<
+int sdlIsTextInputShown() {
+  final sdlIsTextInputShownLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_IsTextInputShown');
-  return _SDL_IsTextInputShown();
+  return sdlIsTextInputShownLookupFunction();
 }
 
 /// 
@@ -402,11 +402,11 @@ int SDL_IsTextInputShown() {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_SetTextInputRect(const SDL_Rect *rect)
 /// ```
-void SDL_SetTextInputRect(Pointer<SDL_Rect>? rect) {
-  final _SDL_SetTextInputRect = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Rect>? rect),
-      void Function(Pointer<SDL_Rect>? rect)>('SDL_SetTextInputRect');
-  return _SDL_SetTextInputRect(rect);
+void sdlSetTextInputRect(Pointer<SdlRect>? rect) {
+  final sdlSetTextInputRectLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlRect>? rect),
+      void Function(Pointer<SdlRect>? rect)>('SDL_SetTextInputRect');
+  return sdlSetTextInputRectLookupFunction(rect);
 }
 
 /// 
@@ -423,11 +423,11 @@ void SDL_SetTextInputRect(Pointer<SDL_Rect>? rect) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasScreenKeyboardSupport(void)
 /// ```
-int SDL_HasScreenKeyboardSupport() {
-  final _SDL_HasScreenKeyboardSupport = DLL_SDL2.lookupFunction<
+int sdlHasScreenKeyboardSupport() {
+  final sdlHasScreenKeyboardSupportLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_HasScreenKeyboardSupport');
-  return _SDL_HasScreenKeyboardSupport();
+  return sdlHasScreenKeyboardSupportLookupFunction();
 }
 
 /// 
@@ -443,10 +443,10 @@ int SDL_HasScreenKeyboardSupport() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsScreenKeyboardShown(SDL_Window *window)
 /// ```
-int SDL_IsScreenKeyboardShown(Pointer<SDL_Window>? window) {
-  final _SDL_IsScreenKeyboardShown = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_Window>? window),
-      int Function(Pointer<SDL_Window>? window)>('SDL_IsScreenKeyboardShown');
-  return _SDL_IsScreenKeyboardShown(window);
+int sdlIsScreenKeyboardShown(Pointer<SdlWindow>? window) {
+  final sdlIsScreenKeyboardShownLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlWindow>? window),
+      int Function(Pointer<SdlWindow>? window)>('SDL_IsScreenKeyboardShown');
+  return sdlIsScreenKeyboardShownLookupFunction(window);
 }
 

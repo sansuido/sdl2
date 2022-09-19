@@ -5,7 +5,7 @@ import '../dylib.dart' as dylib;
 import 'struct_sdl.dart';
 import 'struct_sdl_image.dart';
 
-final DLL_SDL2_image = dylib.dylibOpen('SDL2_image');
+final libSdl2Image = dylib.dylibOpen('SDL2_image');
 
 /// 
 /// This function gets the version of the dynamically linked SDL_image library.
@@ -18,11 +18,11 @@ final DLL_SDL2_image = dylib.dylibOpen('SDL2_image');
 /// ```c
 /// extern DECLSPEC const SDL_version * SDLCALL IMG_Linked_Version(void)
 /// ```
-Pointer<SDL_version>? IMG_Linked_Version() {
-  final _IMG_Linked_Version = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_version>? Function(),
-      Pointer<SDL_version>? Function()>('IMG_Linked_Version');
-  return _IMG_Linked_Version();
+Pointer<SdlVersion>? imgLinkedVersion() {
+  final imgLinkedVersionLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlVersion>? Function(),
+      Pointer<SdlVersion>? Function()>('IMG_Linked_Version');
+  return imgLinkedVersionLookupFunction();
 }
 
 /// 
@@ -90,11 +90,11 @@ Pointer<SDL_version>? IMG_Linked_Version() {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_Init(int flags)
 /// ```
-int IMG_Init(int flags) {
-  final _IMG_Init = DLL_SDL2_image.lookupFunction<
+int imgInit(int flags) {
+  final imgInitLookupFunction = libSdl2Image.lookupFunction<
       Int32 Function(Int32 flags),
       int Function(int flags)>('IMG_Init');
-  return _IMG_Init(flags);
+  return imgInitLookupFunction(flags);
 }
 
 /// 
@@ -123,11 +123,11 @@ int IMG_Init(int flags) {
 /// ```c
 /// extern DECLSPEC void SDLCALL IMG_Quit(void)
 /// ```
-void IMG_Quit() {
-  final _IMG_Quit = DLL_SDL2_image.lookupFunction<
+void imgQuit() {
+  final imgQuitLookupFunction = libSdl2Image.lookupFunction<
       Void Function(),
       void Function()>('IMG_Quit');
-  return _IMG_Quit();
+  return imgQuitLookupFunction();
 }
 
 /// 
@@ -192,14 +192,14 @@ void IMG_Quit() {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadTyped_RW(SDL_RWops *src, int freesrc, const char *type)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadTyped_RW(Pointer<SDL_RWops>? src, int freesrc, String type) {
-  final _IMG_LoadTyped_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src, Int32 freesrc, Pointer<Utf8>? type),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src, int freesrc, Pointer<Utf8>? type)>('IMG_LoadTyped_RW');
-  final _typePointer = type.toNativeUtf8();
-  final _result = _IMG_LoadTyped_RW(src, freesrc, _typePointer);
-  calloc.free(_typePointer);
-  return _result;
+Pointer<SdlSurface>? imgLoadTypedRw(Pointer<SdlRWops>? src, int freesrc, String type) {
+  final imgLoadTypedRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src, Int32 freesrc, Pointer<Utf8>? type),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src, int freesrc, Pointer<Utf8>? type)>('IMG_LoadTyped_RW');
+  final typePointer = type.toNativeUtf8();
+  final result = imgLoadTypedRwLookupFunction(src, freesrc, typePointer);
+  calloc.free(typePointer);
+  return result;
 }
 
 /// 
@@ -245,14 +245,14 @@ Pointer<SDL_Surface>? IMG_LoadTyped_RW(Pointer<SDL_RWops>? src, int freesrc, Str
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_Load(const char *file)
 /// ```
-Pointer<SDL_Surface>? IMG_Load(String file) {
-  final _IMG_Load = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<Utf8>? file),
-      Pointer<SDL_Surface>? Function(Pointer<Utf8>? file)>('IMG_Load');
-  final _filePointer = file.toNativeUtf8();
-  final _result = _IMG_Load(_filePointer);
-  calloc.free(_filePointer);
-  return _result;
+Pointer<SdlSurface>? imgLoad(String file) {
+  final imgLoadLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<Utf8>? file),
+      Pointer<SdlSurface>? Function(Pointer<Utf8>? file)>('IMG_Load');
+  final filePointer = file.toNativeUtf8();
+  final result = imgLoadLookupFunction(filePointer);
+  calloc.free(filePointer);
+  return result;
 }
 
 /// 
@@ -309,11 +309,11 @@ Pointer<SDL_Surface>? IMG_Load(String file) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_Load_RW(SDL_RWops *src, int freesrc)
 /// ```
-Pointer<SDL_Surface>? IMG_Load_RW(Pointer<SDL_RWops>? src, int freesrc) {
-  final _IMG_Load_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src, Int32 freesrc),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src, int freesrc)>('IMG_Load_RW');
-  return _IMG_Load_RW(src, freesrc);
+Pointer<SdlSurface>? imgLoadRw(Pointer<SdlRWops>? src, int freesrc) {
+  final imgLoadRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src, Int32 freesrc),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src, int freesrc)>('IMG_Load_RW');
+  return imgLoadRwLookupFunction(src, freesrc);
 }
 
 /// 
@@ -353,14 +353,14 @@ Pointer<SDL_Surface>? IMG_Load_RW(Pointer<SDL_RWops>? src, int freesrc) {
 /// ```c
 /// extern DECLSPEC SDL_Texture * SDLCALL IMG_LoadTexture(SDL_Renderer *renderer, const char *file)
 /// ```
-Pointer<SDL_Texture>? IMG_LoadTexture(Pointer<SDL_Renderer>? renderer, String file) {
-  final _IMG_LoadTexture = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer, Pointer<Utf8>? file),
-      Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer, Pointer<Utf8>? file)>('IMG_LoadTexture');
-  final _filePointer = file.toNativeUtf8();
-  final _result = _IMG_LoadTexture(renderer, _filePointer);
-  calloc.free(_filePointer);
-  return _result;
+Pointer<SdlTexture>? imgLoadTexture(Pointer<SdlRenderer>? renderer, String file) {
+  final imgLoadTextureLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlTexture>? Function(Pointer<SdlRenderer>? renderer, Pointer<Utf8>? file),
+      Pointer<SdlTexture>? Function(Pointer<SdlRenderer>? renderer, Pointer<Utf8>? file)>('IMG_LoadTexture');
+  final filePointer = file.toNativeUtf8();
+  final result = imgLoadTextureLookupFunction(renderer, filePointer);
+  calloc.free(filePointer);
+  return result;
 }
 
 /// 
@@ -411,11 +411,11 @@ Pointer<SDL_Texture>? IMG_LoadTexture(Pointer<SDL_Renderer>? renderer, String fi
 /// ```c
 /// extern DECLSPEC SDL_Texture * SDLCALL IMG_LoadTexture_RW(SDL_Renderer *renderer, SDL_RWops *src, int freesrc)
 /// ```
-Pointer<SDL_Texture>? IMG_LoadTexture_RW(Pointer<SDL_Renderer>? renderer, Pointer<SDL_RWops>? src, int freesrc) {
-  final _IMG_LoadTexture_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_RWops>? src, Int32 freesrc),
-      Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_RWops>? src, int freesrc)>('IMG_LoadTexture_RW');
-  return _IMG_LoadTexture_RW(renderer, src, freesrc);
+Pointer<SdlTexture>? imgLoadTextureRw(Pointer<SdlRenderer>? renderer, Pointer<SdlRWops>? src, int freesrc) {
+  final imgLoadTextureRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlTexture>? Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRWops>? src, Int32 freesrc),
+      Pointer<SdlTexture>? Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRWops>? src, int freesrc)>('IMG_LoadTexture_RW');
+  return imgLoadTextureRwLookupFunction(renderer, src, freesrc);
 }
 
 /// 
@@ -474,14 +474,14 @@ Pointer<SDL_Texture>? IMG_LoadTexture_RW(Pointer<SDL_Renderer>? renderer, Pointe
 /// ```c
 /// extern DECLSPEC SDL_Texture * SDLCALL IMG_LoadTextureTyped_RW(SDL_Renderer *renderer, SDL_RWops *src, int freesrc, const char *type)
 /// ```
-Pointer<SDL_Texture>? IMG_LoadTextureTyped_RW(Pointer<SDL_Renderer>? renderer, Pointer<SDL_RWops>? src, int freesrc, String type) {
-  final _IMG_LoadTextureTyped_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_RWops>? src, Int32 freesrc, Pointer<Utf8>? type),
-      Pointer<SDL_Texture>? Function(Pointer<SDL_Renderer>? renderer, Pointer<SDL_RWops>? src, int freesrc, Pointer<Utf8>? type)>('IMG_LoadTextureTyped_RW');
-  final _typePointer = type.toNativeUtf8();
-  final _result = _IMG_LoadTextureTyped_RW(renderer, src, freesrc, _typePointer);
-  calloc.free(_typePointer);
-  return _result;
+Pointer<SdlTexture>? imgLoadTextureTypedRw(Pointer<SdlRenderer>? renderer, Pointer<SdlRWops>? src, int freesrc, String type) {
+  final imgLoadTextureTypedRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlTexture>? Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRWops>? src, Int32 freesrc, Pointer<Utf8>? type),
+      Pointer<SdlTexture>? Function(Pointer<SdlRenderer>? renderer, Pointer<SdlRWops>? src, int freesrc, Pointer<Utf8>? type)>('IMG_LoadTextureTyped_RW');
+  final typePointer = type.toNativeUtf8();
+  final result = imgLoadTextureTypedRwLookupFunction(renderer, src, freesrc, typePointer);
+  calloc.free(typePointer);
+  return result;
 }
 
 /// 
@@ -529,11 +529,11 @@ Pointer<SDL_Texture>? IMG_LoadTextureTyped_RW(Pointer<SDL_Renderer>? renderer, P
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isAVIF(SDL_RWops *src)
 /// ```
-int IMG_isAVIF(Pointer<SDL_RWops>? src) {
-  final _IMG_isAVIF = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isAVIF');
-  return _IMG_isAVIF(src);
+int imgIsAvif(Pointer<SdlRWops>? src) {
+  final imgIsAvifLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isAVIF');
+  return imgIsAvifLookupFunction(src);
 }
 
 /// 
@@ -580,11 +580,11 @@ int IMG_isAVIF(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isICO(SDL_RWops *src)
 /// ```
-int IMG_isICO(Pointer<SDL_RWops>? src) {
-  final _IMG_isICO = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isICO');
-  return _IMG_isICO(src);
+int imgIsIco(Pointer<SdlRWops>? src) {
+  final imgIsIcoLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isICO');
+  return imgIsIcoLookupFunction(src);
 }
 
 /// 
@@ -631,11 +631,11 @@ int IMG_isICO(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isCUR(SDL_RWops *src)
 /// ```
-int IMG_isCUR(Pointer<SDL_RWops>? src) {
-  final _IMG_isCUR = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isCUR');
-  return _IMG_isCUR(src);
+int imgIsCur(Pointer<SdlRWops>? src) {
+  final imgIsCurLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isCUR');
+  return imgIsCurLookupFunction(src);
 }
 
 /// 
@@ -682,11 +682,11 @@ int IMG_isCUR(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isBMP(SDL_RWops *src)
 /// ```
-int IMG_isBMP(Pointer<SDL_RWops>? src) {
-  final _IMG_isBMP = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isBMP');
-  return _IMG_isBMP(src);
+int imgIsBmp(Pointer<SdlRWops>? src) {
+  final imgIsBmpLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isBMP');
+  return imgIsBmpLookupFunction(src);
 }
 
 /// 
@@ -733,11 +733,11 @@ int IMG_isBMP(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isGIF(SDL_RWops *src)
 /// ```
-int IMG_isGIF(Pointer<SDL_RWops>? src) {
-  final _IMG_isGIF = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isGIF');
-  return _IMG_isGIF(src);
+int imgIsGif(Pointer<SdlRWops>? src) {
+  final imgIsGifLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isGIF');
+  return imgIsGifLookupFunction(src);
 }
 
 /// 
@@ -784,11 +784,11 @@ int IMG_isGIF(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isJPG(SDL_RWops *src)
 /// ```
-int IMG_isJPG(Pointer<SDL_RWops>? src) {
-  final _IMG_isJPG = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isJPG');
-  return _IMG_isJPG(src);
+int imgIsJpg(Pointer<SdlRWops>? src) {
+  final imgIsJpgLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isJPG');
+  return imgIsJpgLookupFunction(src);
 }
 
 /// 
@@ -835,11 +835,11 @@ int IMG_isJPG(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isJXL(SDL_RWops *src)
 /// ```
-int IMG_isJXL(Pointer<SDL_RWops>? src) {
-  final _IMG_isJXL = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isJXL');
-  return _IMG_isJXL(src);
+int imgIsJxl(Pointer<SdlRWops>? src) {
+  final imgIsJxlLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isJXL');
+  return imgIsJxlLookupFunction(src);
 }
 
 /// 
@@ -886,11 +886,11 @@ int IMG_isJXL(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isLBM(SDL_RWops *src)
 /// ```
-int IMG_isLBM(Pointer<SDL_RWops>? src) {
-  final _IMG_isLBM = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isLBM');
-  return _IMG_isLBM(src);
+int imgIsLbm(Pointer<SdlRWops>? src) {
+  final imgIsLbmLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isLBM');
+  return imgIsLbmLookupFunction(src);
 }
 
 /// 
@@ -937,11 +937,11 @@ int IMG_isLBM(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isPCX(SDL_RWops *src)
 /// ```
-int IMG_isPCX(Pointer<SDL_RWops>? src) {
-  final _IMG_isPCX = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isPCX');
-  return _IMG_isPCX(src);
+int imgIsPcx(Pointer<SdlRWops>? src) {
+  final imgIsPcxLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isPCX');
+  return imgIsPcxLookupFunction(src);
 }
 
 /// 
@@ -988,11 +988,11 @@ int IMG_isPCX(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isPNG(SDL_RWops *src)
 /// ```
-int IMG_isPNG(Pointer<SDL_RWops>? src) {
-  final _IMG_isPNG = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isPNG');
-  return _IMG_isPNG(src);
+int imgIsPng(Pointer<SdlRWops>? src) {
+  final imgIsPngLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isPNG');
+  return imgIsPngLookupFunction(src);
 }
 
 /// 
@@ -1039,11 +1039,11 @@ int IMG_isPNG(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isPNM(SDL_RWops *src)
 /// ```
-int IMG_isPNM(Pointer<SDL_RWops>? src) {
-  final _IMG_isPNM = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isPNM');
-  return _IMG_isPNM(src);
+int imgIsPnm(Pointer<SdlRWops>? src) {
+  final imgIsPnmLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isPNM');
+  return imgIsPnmLookupFunction(src);
 }
 
 /// 
@@ -1090,11 +1090,11 @@ int IMG_isPNM(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isSVG(SDL_RWops *src)
 /// ```
-int IMG_isSVG(Pointer<SDL_RWops>? src) {
-  final _IMG_isSVG = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isSVG');
-  return _IMG_isSVG(src);
+int imgIsSvg(Pointer<SdlRWops>? src) {
+  final imgIsSvgLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isSVG');
+  return imgIsSvgLookupFunction(src);
 }
 
 /// 
@@ -1141,11 +1141,11 @@ int IMG_isSVG(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isQOI(SDL_RWops *src)
 /// ```
-int IMG_isQOI(Pointer<SDL_RWops>? src) {
-  final _IMG_isQOI = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isQOI');
-  return _IMG_isQOI(src);
+int imgIsQoi(Pointer<SdlRWops>? src) {
+  final imgIsQoiLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isQOI');
+  return imgIsQoiLookupFunction(src);
 }
 
 /// 
@@ -1192,11 +1192,11 @@ int IMG_isQOI(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isTIF(SDL_RWops *src)
 /// ```
-int IMG_isTIF(Pointer<SDL_RWops>? src) {
-  final _IMG_isTIF = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isTIF');
-  return _IMG_isTIF(src);
+int imgIsTif(Pointer<SdlRWops>? src) {
+  final imgIsTifLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isTIF');
+  return imgIsTifLookupFunction(src);
 }
 
 /// 
@@ -1243,11 +1243,11 @@ int IMG_isTIF(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isXCF(SDL_RWops *src)
 /// ```
-int IMG_isXCF(Pointer<SDL_RWops>? src) {
-  final _IMG_isXCF = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isXCF');
-  return _IMG_isXCF(src);
+int imgIsXcf(Pointer<SdlRWops>? src) {
+  final imgIsXcfLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isXCF');
+  return imgIsXcfLookupFunction(src);
 }
 
 /// 
@@ -1294,11 +1294,11 @@ int IMG_isXCF(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isXPM(SDL_RWops *src)
 /// ```
-int IMG_isXPM(Pointer<SDL_RWops>? src) {
-  final _IMG_isXPM = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isXPM');
-  return _IMG_isXPM(src);
+int imgIsXpm(Pointer<SdlRWops>? src) {
+  final imgIsXpmLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isXPM');
+  return imgIsXpmLookupFunction(src);
 }
 
 /// 
@@ -1345,11 +1345,11 @@ int IMG_isXPM(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isXV(SDL_RWops *src)
 /// ```
-int IMG_isXV(Pointer<SDL_RWops>? src) {
-  final _IMG_isXV = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isXV');
-  return _IMG_isXV(src);
+int imgIsXv(Pointer<SdlRWops>? src) {
+  final imgIsXvLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isXV');
+  return imgIsXvLookupFunction(src);
 }
 
 /// 
@@ -1396,11 +1396,11 @@ int IMG_isXV(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_isWEBP(SDL_RWops *src)
 /// ```
-int IMG_isWEBP(Pointer<SDL_RWops>? src) {
-  final _IMG_isWEBP = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('IMG_isWEBP');
-  return _IMG_isWEBP(src);
+int imgIsWebp(Pointer<SdlRWops>? src) {
+  final imgIsWebpLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('IMG_isWEBP');
+  return imgIsWebpLookupFunction(src);
 }
 
 /// 
@@ -1438,11 +1438,11 @@ int IMG_isWEBP(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadAVIF_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadAVIF_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadAVIF_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadAVIF_RW');
-  return _IMG_LoadAVIF_RW(src);
+Pointer<SdlSurface>? imgLoadAvifRw(Pointer<SdlRWops>? src) {
+  final imgLoadAvifRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadAVIF_RW');
+  return imgLoadAvifRwLookupFunction(src);
 }
 
 /// 
@@ -1480,11 +1480,11 @@ Pointer<SDL_Surface>? IMG_LoadAVIF_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadICO_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadICO_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadICO_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadICO_RW');
-  return _IMG_LoadICO_RW(src);
+Pointer<SdlSurface>? imgLoadIcoRw(Pointer<SdlRWops>? src) {
+  final imgLoadIcoRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadICO_RW');
+  return imgLoadIcoRwLookupFunction(src);
 }
 
 /// 
@@ -1522,11 +1522,11 @@ Pointer<SDL_Surface>? IMG_LoadICO_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadCUR_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadCUR_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadCUR_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadCUR_RW');
-  return _IMG_LoadCUR_RW(src);
+Pointer<SdlSurface>? imgLoadCurRw(Pointer<SdlRWops>? src) {
+  final imgLoadCurRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadCUR_RW');
+  return imgLoadCurRwLookupFunction(src);
 }
 
 /// 
@@ -1564,11 +1564,11 @@ Pointer<SDL_Surface>? IMG_LoadCUR_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadBMP_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadBMP_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadBMP_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadBMP_RW');
-  return _IMG_LoadBMP_RW(src);
+Pointer<SdlSurface>? imgLoadBmpRw(Pointer<SdlRWops>? src) {
+  final imgLoadBmpRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadBMP_RW');
+  return imgLoadBmpRwLookupFunction(src);
 }
 
 /// 
@@ -1606,11 +1606,11 @@ Pointer<SDL_Surface>? IMG_LoadBMP_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadGIF_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadGIF_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadGIF_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadGIF_RW');
-  return _IMG_LoadGIF_RW(src);
+Pointer<SdlSurface>? imgLoadGifRw(Pointer<SdlRWops>? src) {
+  final imgLoadGifRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadGIF_RW');
+  return imgLoadGifRwLookupFunction(src);
 }
 
 /// 
@@ -1648,11 +1648,11 @@ Pointer<SDL_Surface>? IMG_LoadGIF_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadJPG_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadJPG_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadJPG_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadJPG_RW');
-  return _IMG_LoadJPG_RW(src);
+Pointer<SdlSurface>? imgLoadJpgRw(Pointer<SdlRWops>? src) {
+  final imgLoadJpgRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadJPG_RW');
+  return imgLoadJpgRwLookupFunction(src);
 }
 
 /// 
@@ -1690,11 +1690,11 @@ Pointer<SDL_Surface>? IMG_LoadJPG_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadJXL_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadJXL_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadJXL_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadJXL_RW');
-  return _IMG_LoadJXL_RW(src);
+Pointer<SdlSurface>? imgLoadJxlRw(Pointer<SdlRWops>? src) {
+  final imgLoadJxlRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadJXL_RW');
+  return imgLoadJxlRwLookupFunction(src);
 }
 
 /// 
@@ -1732,11 +1732,11 @@ Pointer<SDL_Surface>? IMG_LoadJXL_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadLBM_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadLBM_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadLBM_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadLBM_RW');
-  return _IMG_LoadLBM_RW(src);
+Pointer<SdlSurface>? imgLoadLbmRw(Pointer<SdlRWops>? src) {
+  final imgLoadLbmRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadLBM_RW');
+  return imgLoadLbmRwLookupFunction(src);
 }
 
 /// 
@@ -1774,11 +1774,11 @@ Pointer<SDL_Surface>? IMG_LoadLBM_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadPCX_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadPCX_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadPCX_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadPCX_RW');
-  return _IMG_LoadPCX_RW(src);
+Pointer<SdlSurface>? imgLoadPcxRw(Pointer<SdlRWops>? src) {
+  final imgLoadPcxRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadPCX_RW');
+  return imgLoadPcxRwLookupFunction(src);
 }
 
 /// 
@@ -1816,11 +1816,11 @@ Pointer<SDL_Surface>? IMG_LoadPCX_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadPNG_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadPNG_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadPNG_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadPNG_RW');
-  return _IMG_LoadPNG_RW(src);
+Pointer<SdlSurface>? imgLoadPngRw(Pointer<SdlRWops>? src) {
+  final imgLoadPngRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadPNG_RW');
+  return imgLoadPngRwLookupFunction(src);
 }
 
 /// 
@@ -1858,11 +1858,11 @@ Pointer<SDL_Surface>? IMG_LoadPNG_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadPNM_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadPNM_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadPNM_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadPNM_RW');
-  return _IMG_LoadPNM_RW(src);
+Pointer<SdlSurface>? imgLoadPnmRw(Pointer<SdlRWops>? src) {
+  final imgLoadPnmRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadPNM_RW');
+  return imgLoadPnmRwLookupFunction(src);
 }
 
 /// 
@@ -1900,11 +1900,11 @@ Pointer<SDL_Surface>? IMG_LoadPNM_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadSVG_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadSVG_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadSVG_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadSVG_RW');
-  return _IMG_LoadSVG_RW(src);
+Pointer<SdlSurface>? imgLoadSvgRw(Pointer<SdlRWops>? src) {
+  final imgLoadSvgRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadSVG_RW');
+  return imgLoadSvgRwLookupFunction(src);
 }
 
 /// 
@@ -1942,11 +1942,11 @@ Pointer<SDL_Surface>? IMG_LoadSVG_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadQOI_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadQOI_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadQOI_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadQOI_RW');
-  return _IMG_LoadQOI_RW(src);
+Pointer<SdlSurface>? imgLoadQoiRw(Pointer<SdlRWops>? src) {
+  final imgLoadQoiRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadQOI_RW');
+  return imgLoadQoiRwLookupFunction(src);
 }
 
 /// 
@@ -1984,11 +1984,11 @@ Pointer<SDL_Surface>? IMG_LoadQOI_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadTGA_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadTGA_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadTGA_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadTGA_RW');
-  return _IMG_LoadTGA_RW(src);
+Pointer<SdlSurface>? imgLoadTgaRw(Pointer<SdlRWops>? src) {
+  final imgLoadTgaRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadTGA_RW');
+  return imgLoadTgaRwLookupFunction(src);
 }
 
 /// 
@@ -2026,11 +2026,11 @@ Pointer<SDL_Surface>? IMG_LoadTGA_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadTIF_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadTIF_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadTIF_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadTIF_RW');
-  return _IMG_LoadTIF_RW(src);
+Pointer<SdlSurface>? imgLoadTifRw(Pointer<SdlRWops>? src) {
+  final imgLoadTifRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadTIF_RW');
+  return imgLoadTifRwLookupFunction(src);
 }
 
 /// 
@@ -2068,11 +2068,11 @@ Pointer<SDL_Surface>? IMG_LoadTIF_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadXCF_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadXCF_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadXCF_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadXCF_RW');
-  return _IMG_LoadXCF_RW(src);
+Pointer<SdlSurface>? imgLoadXcfRw(Pointer<SdlRWops>? src) {
+  final imgLoadXcfRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadXCF_RW');
+  return imgLoadXcfRwLookupFunction(src);
 }
 
 /// 
@@ -2110,11 +2110,11 @@ Pointer<SDL_Surface>? IMG_LoadXCF_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadXPM_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadXPM_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadXPM_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadXPM_RW');
-  return _IMG_LoadXPM_RW(src);
+Pointer<SdlSurface>? imgLoadXpmRw(Pointer<SdlRWops>? src) {
+  final imgLoadXpmRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadXPM_RW');
+  return imgLoadXpmRwLookupFunction(src);
 }
 
 /// 
@@ -2152,11 +2152,11 @@ Pointer<SDL_Surface>? IMG_LoadXPM_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadXV_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadXV_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadXV_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadXV_RW');
-  return _IMG_LoadXV_RW(src);
+Pointer<SdlSurface>? imgLoadXvRw(Pointer<SdlRWops>? src) {
+  final imgLoadXvRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadXV_RW');
+  return imgLoadXvRwLookupFunction(src);
 }
 
 /// 
@@ -2194,11 +2194,11 @@ Pointer<SDL_Surface>? IMG_LoadXV_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadWEBP_RW(SDL_RWops *src)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadWEBP_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadWEBP_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadWEBP_RW');
-  return _IMG_LoadWEBP_RW(src);
+Pointer<SdlSurface>? imgLoadWebpRw(Pointer<SdlRWops>? src) {
+  final imgLoadWebpRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src)>('IMG_LoadWEBP_RW');
+  return imgLoadWebpRwLookupFunction(src);
 }
 
 /// 
@@ -2223,11 +2223,11 @@ Pointer<SDL_Surface>? IMG_LoadWEBP_RW(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadSizedSVG_RW(SDL_RWops *src, int width, int height)
 /// ```
-Pointer<SDL_Surface>? IMG_LoadSizedSVG_RW(Pointer<SDL_RWops>? src, int width, int height) {
-  final _IMG_LoadSizedSVG_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src, Int32 width, Int32 height),
-      Pointer<SDL_Surface>? Function(Pointer<SDL_RWops>? src, int width, int height)>('IMG_LoadSizedSVG_RW');
-  return _IMG_LoadSizedSVG_RW(src, width, height);
+Pointer<SdlSurface>? imgLoadSizedSvgRw(Pointer<SdlRWops>? src, int width, int height) {
+  final imgLoadSizedSvgRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src, Int32 width, Int32 height),
+      Pointer<SdlSurface>? Function(Pointer<SdlRWops>? src, int width, int height)>('IMG_LoadSizedSVG_RW');
+  return imgLoadSizedSvgRwLookupFunction(src, width, height);
 }
 
 /// 
@@ -2250,11 +2250,11 @@ Pointer<SDL_Surface>? IMG_LoadSizedSVG_RW(Pointer<SDL_RWops>? src, int width, in
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_ReadXPMFromArray(char **xpm)
 /// ```
-Pointer<SDL_Surface>? IMG_ReadXPMFromArray(Pointer<Pointer<Int8>>? xpm) {
-  final _IMG_ReadXPMFromArray = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<Pointer<Int8>>? xpm),
-      Pointer<SDL_Surface>? Function(Pointer<Pointer<Int8>>? xpm)>('IMG_ReadXPMFromArray');
-  return _IMG_ReadXPMFromArray(xpm);
+Pointer<SdlSurface>? imgReadXpmFromArray(Pointer<Pointer<Int8>>? xpm) {
+  final imgReadXpmFromArrayLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<Pointer<Int8>>? xpm),
+      Pointer<SdlSurface>? Function(Pointer<Pointer<Int8>>? xpm)>('IMG_ReadXPMFromArray');
+  return imgReadXpmFromArrayLookupFunction(xpm);
 }
 
 /// 
@@ -2277,11 +2277,11 @@ Pointer<SDL_Surface>? IMG_ReadXPMFromArray(Pointer<Pointer<Int8>>? xpm) {
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_ReadXPMFromArrayToRGB888(char **xpm)
 /// ```
-Pointer<SDL_Surface>? IMG_ReadXPMFromArrayToRGB888(Pointer<Pointer<Int8>>? xpm) {
-  final _IMG_ReadXPMFromArrayToRGB888 = DLL_SDL2_image.lookupFunction<
-      Pointer<SDL_Surface>? Function(Pointer<Pointer<Int8>>? xpm),
-      Pointer<SDL_Surface>? Function(Pointer<Pointer<Int8>>? xpm)>('IMG_ReadXPMFromArrayToRGB888');
-  return _IMG_ReadXPMFromArrayToRGB888(xpm);
+Pointer<SdlSurface>? imgReadXpmFromArrayToRgb888(Pointer<Pointer<Int8>>? xpm) {
+  final imgReadXpmFromArrayToRgb888LookupFunction = libSdl2Image.lookupFunction<
+      Pointer<SdlSurface>? Function(Pointer<Pointer<Int8>>? xpm),
+      Pointer<SdlSurface>? Function(Pointer<Pointer<Int8>>? xpm)>('IMG_ReadXPMFromArrayToRGB888');
+  return imgReadXpmFromArrayToRgb888LookupFunction(xpm);
 }
 
 /// 
@@ -2302,14 +2302,14 @@ Pointer<SDL_Surface>? IMG_ReadXPMFromArrayToRGB888(Pointer<Pointer<Int8>>? xpm) 
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_SavePNG(SDL_Surface *surface, const char *file)
 /// ```
-int IMG_SavePNG(Pointer<SDL_Surface>? surface, String file) {
-  final _IMG_SavePNG = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_Surface>? surface, Pointer<Utf8>? file),
-      int Function(Pointer<SDL_Surface>? surface, Pointer<Utf8>? file)>('IMG_SavePNG');
-  final _filePointer = file.toNativeUtf8();
-  final _result = _IMG_SavePNG(surface, _filePointer);
-  calloc.free(_filePointer);
-  return _result;
+int imgSavePng(Pointer<SdlSurface>? surface, String file) {
+  final imgSavePngLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlSurface>? surface, Pointer<Utf8>? file),
+      int Function(Pointer<SdlSurface>? surface, Pointer<Utf8>? file)>('IMG_SavePNG');
+  final filePointer = file.toNativeUtf8();
+  final result = imgSavePngLookupFunction(surface, filePointer);
+  calloc.free(filePointer);
+  return result;
 }
 
 /// 
@@ -2330,11 +2330,11 @@ int IMG_SavePNG(Pointer<SDL_Surface>? surface, String file) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_SavePNG_RW(SDL_Surface *surface, SDL_RWops *dst, int freedst)
 /// ```
-int IMG_SavePNG_RW(Pointer<SDL_Surface>? surface, Pointer<SDL_RWops>? dst, int freedst) {
-  final _IMG_SavePNG_RW = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_Surface>? surface, Pointer<SDL_RWops>? dst, Int32 freedst),
-      int Function(Pointer<SDL_Surface>? surface, Pointer<SDL_RWops>? dst, int freedst)>('IMG_SavePNG_RW');
-  return _IMG_SavePNG_RW(surface, dst, freedst);
+int imgSavePngRw(Pointer<SdlSurface>? surface, Pointer<SdlRWops>? dst, int freedst) {
+  final imgSavePngRwLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlSurface>? surface, Pointer<SdlRWops>? dst, Int32 freedst),
+      int Function(Pointer<SdlSurface>? surface, Pointer<SdlRWops>? dst, int freedst)>('IMG_SavePNG_RW');
+  return imgSavePngRwLookupFunction(surface, dst, freedst);
 }
 
 /// 
@@ -2357,14 +2357,14 @@ int IMG_SavePNG_RW(Pointer<SDL_Surface>? surface, Pointer<SDL_RWops>? dst, int f
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_SaveJPG(SDL_Surface *surface, const char *file, int quality)
 /// ```
-int IMG_SaveJPG(Pointer<SDL_Surface>? surface, String file, int quality) {
-  final _IMG_SaveJPG = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_Surface>? surface, Pointer<Utf8>? file, Int32 quality),
-      int Function(Pointer<SDL_Surface>? surface, Pointer<Utf8>? file, int quality)>('IMG_SaveJPG');
-  final _filePointer = file.toNativeUtf8();
-  final _result = _IMG_SaveJPG(surface, _filePointer, quality);
-  calloc.free(_filePointer);
-  return _result;
+int imgSaveJpg(Pointer<SdlSurface>? surface, String file, int quality) {
+  final imgSaveJpgLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlSurface>? surface, Pointer<Utf8>? file, Int32 quality),
+      int Function(Pointer<SdlSurface>? surface, Pointer<Utf8>? file, int quality)>('IMG_SaveJPG');
+  final filePointer = file.toNativeUtf8();
+  final result = imgSaveJpgLookupFunction(surface, filePointer, quality);
+  calloc.free(filePointer);
+  return result;
 }
 
 /// 
@@ -2385,11 +2385,11 @@ int IMG_SaveJPG(Pointer<SDL_Surface>? surface, String file, int quality) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_SaveJPG_RW(SDL_Surface *surface, SDL_RWops *dst, int freedst, int quality)
 /// ```
-int IMG_SaveJPG_RW(Pointer<SDL_Surface>? surface, Pointer<SDL_RWops>? dst, int freedst, int quality) {
-  final _IMG_SaveJPG_RW = DLL_SDL2_image.lookupFunction<
-      Int32 Function(Pointer<SDL_Surface>? surface, Pointer<SDL_RWops>? dst, Int32 freedst, Int32 quality),
-      int Function(Pointer<SDL_Surface>? surface, Pointer<SDL_RWops>? dst, int freedst, int quality)>('IMG_SaveJPG_RW');
-  return _IMG_SaveJPG_RW(surface, dst, freedst, quality);
+int imgSaveJpgRw(Pointer<SdlSurface>? surface, Pointer<SdlRWops>? dst, int freedst, int quality) {
+  final imgSaveJpgRwLookupFunction = libSdl2Image.lookupFunction<
+      Int32 Function(Pointer<SdlSurface>? surface, Pointer<SdlRWops>? dst, Int32 freedst, Int32 quality),
+      int Function(Pointer<SdlSurface>? surface, Pointer<SdlRWops>? dst, int freedst, int quality)>('IMG_SaveJPG_RW');
+  return imgSaveJpgRwLookupFunction(surface, dst, freedst, quality);
 }
 
 /// 
@@ -2408,14 +2408,14 @@ int IMG_SaveJPG_RW(Pointer<SDL_Surface>? surface, Pointer<SDL_RWops>? dst, int f
 /// ```c
 /// extern DECLSPEC IMG_Animation * SDLCALL IMG_LoadAnimation(const char *file)
 /// ```
-Pointer<IMG_Animation>? IMG_LoadAnimation(String file) {
-  final _IMG_LoadAnimation = DLL_SDL2_image.lookupFunction<
-      Pointer<IMG_Animation>? Function(Pointer<Utf8>? file),
-      Pointer<IMG_Animation>? Function(Pointer<Utf8>? file)>('IMG_LoadAnimation');
-  final _filePointer = file.toNativeUtf8();
-  final _result = _IMG_LoadAnimation(_filePointer);
-  calloc.free(_filePointer);
-  return _result;
+Pointer<ImgAnimation>? imgLoadAnimation(String file) {
+  final imgLoadAnimationLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<ImgAnimation>? Function(Pointer<Utf8>? file),
+      Pointer<ImgAnimation>? Function(Pointer<Utf8>? file)>('IMG_LoadAnimation');
+  final filePointer = file.toNativeUtf8();
+  final result = imgLoadAnimationLookupFunction(filePointer);
+  calloc.free(filePointer);
+  return result;
 }
 
 /// 
@@ -2440,11 +2440,11 @@ Pointer<IMG_Animation>? IMG_LoadAnimation(String file) {
 /// ```c
 /// extern DECLSPEC IMG_Animation * SDLCALL IMG_LoadAnimation_RW(SDL_RWops *src, int freesrc)
 /// ```
-Pointer<IMG_Animation>? IMG_LoadAnimation_RW(Pointer<SDL_RWops>? src, int freesrc) {
-  final _IMG_LoadAnimation_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<IMG_Animation>? Function(Pointer<SDL_RWops>? src, Int32 freesrc),
-      Pointer<IMG_Animation>? Function(Pointer<SDL_RWops>? src, int freesrc)>('IMG_LoadAnimation_RW');
-  return _IMG_LoadAnimation_RW(src, freesrc);
+Pointer<ImgAnimation>? imgLoadAnimationRw(Pointer<SdlRWops>? src, int freesrc) {
+  final imgLoadAnimationRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<ImgAnimation>? Function(Pointer<SdlRWops>? src, Int32 freesrc),
+      Pointer<ImgAnimation>? Function(Pointer<SdlRWops>? src, int freesrc)>('IMG_LoadAnimation_RW');
+  return imgLoadAnimationRwLookupFunction(src, freesrc);
 }
 
 /// 
@@ -2478,14 +2478,14 @@ Pointer<IMG_Animation>? IMG_LoadAnimation_RW(Pointer<SDL_RWops>? src, int freesr
 /// ```c
 /// extern DECLSPEC IMG_Animation * SDLCALL IMG_LoadAnimationTyped_RW(SDL_RWops *src, int freesrc, const char *type)
 /// ```
-Pointer<IMG_Animation>? IMG_LoadAnimationTyped_RW(Pointer<SDL_RWops>? src, int freesrc, String type) {
-  final _IMG_LoadAnimationTyped_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<IMG_Animation>? Function(Pointer<SDL_RWops>? src, Int32 freesrc, Pointer<Utf8>? type),
-      Pointer<IMG_Animation>? Function(Pointer<SDL_RWops>? src, int freesrc, Pointer<Utf8>? type)>('IMG_LoadAnimationTyped_RW');
-  final _typePointer = type.toNativeUtf8();
-  final _result = _IMG_LoadAnimationTyped_RW(src, freesrc, _typePointer);
-  calloc.free(_typePointer);
-  return _result;
+Pointer<ImgAnimation>? imgLoadAnimationTypedRw(Pointer<SdlRWops>? src, int freesrc, String type) {
+  final imgLoadAnimationTypedRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<ImgAnimation>? Function(Pointer<SdlRWops>? src, Int32 freesrc, Pointer<Utf8>? type),
+      Pointer<ImgAnimation>? Function(Pointer<SdlRWops>? src, int freesrc, Pointer<Utf8>? type)>('IMG_LoadAnimationTyped_RW');
+  final typePointer = type.toNativeUtf8();
+  final result = imgLoadAnimationTypedRwLookupFunction(src, freesrc, typePointer);
+  calloc.free(typePointer);
+  return result;
 }
 
 /// 
@@ -2504,11 +2504,11 @@ Pointer<IMG_Animation>? IMG_LoadAnimationTyped_RW(Pointer<SDL_RWops>? src, int f
 /// ```c
 /// extern DECLSPEC void SDLCALL IMG_FreeAnimation(IMG_Animation *anim)
 /// ```
-void IMG_FreeAnimation(Pointer<IMG_Animation>? anim) {
-  final _IMG_FreeAnimation = DLL_SDL2_image.lookupFunction<
-      Void Function(Pointer<IMG_Animation>? anim),
-      void Function(Pointer<IMG_Animation>? anim)>('IMG_FreeAnimation');
-  return _IMG_FreeAnimation(anim);
+void imgFreeAnimation(Pointer<ImgAnimation>? anim) {
+  final imgFreeAnimationLookupFunction = libSdl2Image.lookupFunction<
+      Void Function(Pointer<ImgAnimation>? anim),
+      void Function(Pointer<ImgAnimation>? anim)>('IMG_FreeAnimation');
+  return imgFreeAnimationLookupFunction(anim);
 }
 
 /// 
@@ -2532,10 +2532,10 @@ void IMG_FreeAnimation(Pointer<IMG_Animation>? anim) {
 /// ```c
 /// extern DECLSPEC IMG_Animation * SDLCALL IMG_LoadGIFAnimation_RW(SDL_RWops *src)
 /// ```
-Pointer<IMG_Animation>? IMG_LoadGIFAnimation_RW(Pointer<SDL_RWops>? src) {
-  final _IMG_LoadGIFAnimation_RW = DLL_SDL2_image.lookupFunction<
-      Pointer<IMG_Animation>? Function(Pointer<SDL_RWops>? src),
-      Pointer<IMG_Animation>? Function(Pointer<SDL_RWops>? src)>('IMG_LoadGIFAnimation_RW');
-  return _IMG_LoadGIFAnimation_RW(src);
+Pointer<ImgAnimation>? imgLoadGifAnimationRw(Pointer<SdlRWops>? src) {
+  final imgLoadGifAnimationRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<ImgAnimation>? Function(Pointer<SdlRWops>? src),
+      Pointer<ImgAnimation>? Function(Pointer<SdlRWops>? src)>('IMG_LoadGIFAnimation_RW');
+  return imgLoadGifAnimationRwLookupFunction(src);
 }
 

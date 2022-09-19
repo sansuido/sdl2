@@ -13,11 +13,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_Window * SDLCALL SDL_GetMouseFocus(void)
 /// ```
-Pointer<SDL_Window>? SDL_GetMouseFocus() {
-  final _SDL_GetMouseFocus = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Window>? Function(),
-      Pointer<SDL_Window>? Function()>('SDL_GetMouseFocus');
-  return _SDL_GetMouseFocus();
+Pointer<SdlWindow>? sdlGetMouseFocus() {
+  final sdlGetMouseFocusLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlWindow>? Function(),
+      Pointer<SdlWindow>? Function()>('SDL_GetMouseFocus');
+  return sdlGetMouseFocusLookupFunction();
 }
 
 /// 
@@ -44,11 +44,11 @@ Pointer<SDL_Window>? SDL_GetMouseFocus() {
 /// ```c
 /// extern DECLSPEC Uint32 SDLCALL SDL_GetMouseState(int *x, int *y)
 /// ```
-int SDL_GetMouseState(Pointer<Int32>? x, Pointer<Int32>? y) {
-  final _SDL_GetMouseState = DLL_SDL2.lookupFunction<
+int sdlGetMouseState(Pointer<Int32>? x, Pointer<Int32>? y) {
+  final sdlGetMouseStateLookupFunction = libSdl2.lookupFunction<
       Uint32 Function(Pointer<Int32>? x, Pointer<Int32>? y),
       int Function(Pointer<Int32>? x, Pointer<Int32>? y)>('SDL_GetMouseState');
-  return _SDL_GetMouseState(x, y);
+  return sdlGetMouseStateLookupFunction(x, y);
 }
 
 /// 
@@ -81,11 +81,11 @@ int SDL_GetMouseState(Pointer<Int32>? x, Pointer<Int32>? y) {
 /// ```c
 /// extern DECLSPEC Uint32 SDLCALL SDL_GetGlobalMouseState(int *x, int *y)
 /// ```
-int SDL_GetGlobalMouseState(Pointer<Int32>? x, Pointer<Int32>? y) {
-  final _SDL_GetGlobalMouseState = DLL_SDL2.lookupFunction<
+int sdlGetGlobalMouseState(Pointer<Int32>? x, Pointer<Int32>? y) {
+  final sdlGetGlobalMouseStateLookupFunction = libSdl2.lookupFunction<
       Uint32 Function(Pointer<Int32>? x, Pointer<Int32>? y),
       int Function(Pointer<Int32>? x, Pointer<Int32>? y)>('SDL_GetGlobalMouseState');
-  return _SDL_GetGlobalMouseState(x, y);
+  return sdlGetGlobalMouseStateLookupFunction(x, y);
 }
 
 /// 
@@ -108,11 +108,11 @@ int SDL_GetGlobalMouseState(Pointer<Int32>? x, Pointer<Int32>? y) {
 /// ```c
 /// extern DECLSPEC Uint32 SDLCALL SDL_GetRelativeMouseState(int *x, int *y)
 /// ```
-int SDL_GetRelativeMouseState(Pointer<Int32>? x, Pointer<Int32>? y) {
-  final _SDL_GetRelativeMouseState = DLL_SDL2.lookupFunction<
+int sdlGetRelativeMouseState(Pointer<Int32>? x, Pointer<Int32>? y) {
+  final sdlGetRelativeMouseStateLookupFunction = libSdl2.lookupFunction<
       Uint32 Function(Pointer<Int32>? x, Pointer<Int32>? y),
       int Function(Pointer<Int32>? x, Pointer<Int32>? y)>('SDL_GetRelativeMouseState');
-  return _SDL_GetRelativeMouseState(x, y);
+  return sdlGetRelativeMouseStateLookupFunction(x, y);
 }
 
 /// 
@@ -137,11 +137,11 @@ int SDL_GetRelativeMouseState(Pointer<Int32>? x, Pointer<Int32>? y) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_WarpMouseInWindow(SDL_Window * window, int x, int y)
 /// ```
-void SDL_WarpMouseInWindow(Pointer<SDL_Window>? window, int x, int y) {
-  final _SDL_WarpMouseInWindow = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Window>? window, Int32 x, Int32 y),
-      void Function(Pointer<SDL_Window>? window, int x, int y)>('SDL_WarpMouseInWindow');
-  return _SDL_WarpMouseInWindow(window, x, y);
+void sdlWarpMouseInWindow(Pointer<SdlWindow>? window, int x, int y) {
+  final sdlWarpMouseInWindowLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlWindow>? window, Int32 x, Int32 y),
+      void Function(Pointer<SdlWindow>? window, int x, int y)>('SDL_WarpMouseInWindow');
+  return sdlWarpMouseInWindowLookupFunction(window, x, y);
 }
 
 /// 
@@ -167,11 +167,11 @@ void SDL_WarpMouseInWindow(Pointer<SDL_Window>? window, int x, int y) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_WarpMouseGlobal(int x, int y)
 /// ```
-int SDL_WarpMouseGlobal(int x, int y) {
-  final _SDL_WarpMouseGlobal = DLL_SDL2.lookupFunction<
+int sdlWarpMouseGlobal(int x, int y) {
+  final sdlWarpMouseGlobalLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 x, Int32 y),
       int Function(int x, int y)>('SDL_WarpMouseGlobal');
-  return _SDL_WarpMouseGlobal(x, y);
+  return sdlWarpMouseGlobalLookupFunction(x, y);
 }
 
 /// 
@@ -200,11 +200,11 @@ int SDL_WarpMouseGlobal(int x, int y) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetRelativeMouseMode(SDL_bool enabled)
 /// ```
-int SDL_SetRelativeMouseMode(int enabled) {
-  final _SDL_SetRelativeMouseMode = DLL_SDL2.lookupFunction<
+int sdlSetRelativeMouseMode(int enabled) {
+  final sdlSetRelativeMouseModeLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 enabled),
       int Function(int enabled)>('SDL_SetRelativeMouseMode');
-  return _SDL_SetRelativeMouseMode(enabled);
+  return sdlSetRelativeMouseModeLookupFunction(enabled);
 }
 
 /// 
@@ -254,11 +254,11 @@ int SDL_SetRelativeMouseMode(int enabled) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_CaptureMouse(SDL_bool enabled)
 /// ```
-int SDL_CaptureMouse(int enabled) {
-  final _SDL_CaptureMouse = DLL_SDL2.lookupFunction<
+int sdlCaptureMouse(int enabled) {
+  final sdlCaptureMouseLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 enabled),
       int Function(int enabled)>('SDL_CaptureMouse');
-  return _SDL_CaptureMouse(enabled);
+  return sdlCaptureMouseLookupFunction(enabled);
 }
 
 /// 
@@ -273,11 +273,11 @@ int SDL_CaptureMouse(int enabled) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GetRelativeMouseMode(void)
 /// ```
-int SDL_GetRelativeMouseMode() {
-  final _SDL_GetRelativeMouseMode = DLL_SDL2.lookupFunction<
+int sdlGetRelativeMouseMode() {
+  final sdlGetRelativeMouseModeLookupFunction = libSdl2.lookupFunction<
       Int32 Function(),
       int Function()>('SDL_GetRelativeMouseMode');
-  return _SDL_GetRelativeMouseMode();
+  return sdlGetRelativeMouseModeLookupFunction();
 }
 
 /// 
@@ -324,11 +324,11 @@ int SDL_GetRelativeMouseMode() {
 /// ```c
 /// extern DECLSPEC SDL_Cursor *SDLCALL SDL_CreateCursor(const Uint8 * data, const Uint8 * mask, int w, int h, int hot_x, int hot_y)
 /// ```
-Pointer<SDL_Cursor>? SDL_CreateCursor(Pointer<Uint8>? data, Pointer<Uint8>? mask, int w, int h, int hot_x, int hot_y) {
-  final _SDL_CreateCursor = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Cursor>? Function(Pointer<Uint8>? data, Pointer<Uint8>? mask, Int32 w, Int32 h, Int32 hot_x, Int32 hot_y),
-      Pointer<SDL_Cursor>? Function(Pointer<Uint8>? data, Pointer<Uint8>? mask, int w, int h, int hot_x, int hot_y)>('SDL_CreateCursor');
-  return _SDL_CreateCursor(data, mask, w, h, hot_x, hot_y);
+Pointer<SdlCursor>? sdlCreateCursor(Pointer<Uint8>? data, Pointer<Uint8>? mask, int w, int h, int hotX, int hotY) {
+  final sdlCreateCursorLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlCursor>? Function(Pointer<Uint8>? data, Pointer<Uint8>? mask, Int32 w, Int32 h, Int32 hotX, Int32 hotY),
+      Pointer<SdlCursor>? Function(Pointer<Uint8>? data, Pointer<Uint8>? mask, int w, int h, int hotX, int hotY)>('SDL_CreateCursor');
+  return sdlCreateCursorLookupFunction(data, mask, w, h, hotX, hotY);
 }
 
 /// 
@@ -348,11 +348,11 @@ Pointer<SDL_Cursor>? SDL_CreateCursor(Pointer<Uint8>? data, Pointer<Uint8>? mask
 /// ```c
 /// extern DECLSPEC SDL_Cursor *SDLCALL SDL_CreateColorCursor(SDL_Surface *surface, int hot_x, int hot_y)
 /// ```
-Pointer<SDL_Cursor>? SDL_CreateColorCursor(Pointer<SDL_Surface>? surface, int hot_x, int hot_y) {
-  final _SDL_CreateColorCursor = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Cursor>? Function(Pointer<SDL_Surface>? surface, Int32 hot_x, Int32 hot_y),
-      Pointer<SDL_Cursor>? Function(Pointer<SDL_Surface>? surface, int hot_x, int hot_y)>('SDL_CreateColorCursor');
-  return _SDL_CreateColorCursor(surface, hot_x, hot_y);
+Pointer<SdlCursor>? sdlCreateColorCursor(Pointer<SdlSurface>? surface, int hotX, int hotY) {
+  final sdlCreateColorCursorLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlCursor>? Function(Pointer<SdlSurface>? surface, Int32 hotX, Int32 hotY),
+      Pointer<SdlCursor>? Function(Pointer<SdlSurface>? surface, int hotX, int hotY)>('SDL_CreateColorCursor');
+  return sdlCreateColorCursorLookupFunction(surface, hotX, hotY);
 }
 
 /// 
@@ -369,11 +369,11 @@ Pointer<SDL_Cursor>? SDL_CreateColorCursor(Pointer<SDL_Surface>? surface, int ho
 /// ```c
 /// extern DECLSPEC SDL_Cursor *SDLCALL SDL_CreateSystemCursor(SDL_SystemCursor id)
 /// ```
-Pointer<SDL_Cursor>? SDL_CreateSystemCursor(int id) {
-  final _SDL_CreateSystemCursor = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Cursor>? Function(Int32 id),
-      Pointer<SDL_Cursor>? Function(int id)>('SDL_CreateSystemCursor');
-  return _SDL_CreateSystemCursor(id);
+Pointer<SdlCursor>? sdlCreateSystemCursor(int id) {
+  final sdlCreateSystemCursorLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlCursor>? Function(Int32 id),
+      Pointer<SdlCursor>? Function(int id)>('SDL_CreateSystemCursor');
+  return sdlCreateSystemCursorLookupFunction(id);
 }
 
 /// 
@@ -395,11 +395,11 @@ Pointer<SDL_Cursor>? SDL_CreateSystemCursor(int id) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_SetCursor(SDL_Cursor * cursor)
 /// ```
-void SDL_SetCursor(Pointer<SDL_Cursor>? cursor) {
-  final _SDL_SetCursor = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Cursor>? cursor),
-      void Function(Pointer<SDL_Cursor>? cursor)>('SDL_SetCursor');
-  return _SDL_SetCursor(cursor);
+void sdlSetCursor(Pointer<SdlCursor>? cursor) {
+  final sdlSetCursorLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlCursor>? cursor),
+      void Function(Pointer<SdlCursor>? cursor)>('SDL_SetCursor');
+  return sdlSetCursorLookupFunction(cursor);
 }
 
 /// 
@@ -417,11 +417,11 @@ void SDL_SetCursor(Pointer<SDL_Cursor>? cursor) {
 /// ```c
 /// extern DECLSPEC SDL_Cursor *SDLCALL SDL_GetCursor(void)
 /// ```
-Pointer<SDL_Cursor>? SDL_GetCursor() {
-  final _SDL_GetCursor = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Cursor>? Function(),
-      Pointer<SDL_Cursor>? Function()>('SDL_GetCursor');
-  return _SDL_GetCursor();
+Pointer<SdlCursor>? sdlGetCursor() {
+  final sdlGetCursorLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlCursor>? Function(),
+      Pointer<SdlCursor>? Function()>('SDL_GetCursor');
+  return sdlGetCursorLookupFunction();
 }
 
 /// 
@@ -436,11 +436,11 @@ Pointer<SDL_Cursor>? SDL_GetCursor() {
 /// ```c
 /// extern DECLSPEC SDL_Cursor *SDLCALL SDL_GetDefaultCursor(void)
 /// ```
-Pointer<SDL_Cursor>? SDL_GetDefaultCursor() {
-  final _SDL_GetDefaultCursor = DLL_SDL2.lookupFunction<
-      Pointer<SDL_Cursor>? Function(),
-      Pointer<SDL_Cursor>? Function()>('SDL_GetDefaultCursor');
-  return _SDL_GetDefaultCursor();
+Pointer<SdlCursor>? sdlGetDefaultCursor() {
+  final sdlGetDefaultCursorLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlCursor>? Function(),
+      Pointer<SdlCursor>? Function()>('SDL_GetDefaultCursor');
+  return sdlGetDefaultCursorLookupFunction();
 }
 
 /// 
@@ -460,11 +460,11 @@ Pointer<SDL_Cursor>? SDL_GetDefaultCursor() {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_FreeCursor(SDL_Cursor * cursor)
 /// ```
-void SDL_FreeCursor(Pointer<SDL_Cursor>? cursor) {
-  final _SDL_FreeCursor = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_Cursor>? cursor),
-      void Function(Pointer<SDL_Cursor>? cursor)>('SDL_FreeCursor');
-  return _SDL_FreeCursor(cursor);
+void sdlFreeCursor(Pointer<SdlCursor>? cursor) {
+  final sdlFreeCursorLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlCursor>? cursor),
+      void Function(Pointer<SdlCursor>? cursor)>('SDL_FreeCursor');
+  return sdlFreeCursorLookupFunction(cursor);
 }
 
 /// 
@@ -490,10 +490,10 @@ void SDL_FreeCursor(Pointer<SDL_Cursor>? cursor) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_ShowCursor(int toggle)
 /// ```
-int SDL_ShowCursor(int toggle) {
-  final _SDL_ShowCursor = DLL_SDL2.lookupFunction<
+int sdlShowCursor(int toggle) {
+  final sdlShowCursorLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 toggle),
       int Function(int toggle)>('SDL_ShowCursor');
-  return _SDL_ShowCursor(toggle);
+  return sdlShowCursorLookupFunction(toggle);
 }
 

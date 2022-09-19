@@ -68,26 +68,26 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_RWFromFile(const char *file, const char *mode)
 /// ```
-Pointer<SDL_RWops>? SDL_RWFromFile(String file, String mode) {
-  final _SDL_RWFromFile = DLL_SDL2.lookupFunction<
-      Pointer<SDL_RWops>? Function(Pointer<Utf8>? file, Pointer<Utf8>? mode),
-      Pointer<SDL_RWops>? Function(Pointer<Utf8>? file, Pointer<Utf8>? mode)>('SDL_RWFromFile');
-  final _filePointer = file.toNativeUtf8();
-  final _modePointer = mode.toNativeUtf8();
-  final _result = _SDL_RWFromFile(_filePointer, _modePointer);
-  calloc.free(_filePointer);
-  calloc.free(_modePointer);
-  return _result;
+Pointer<SdlRWops>? sdlRwFromFile(String file, String mode) {
+  final sdlRwFromFileLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlRWops>? Function(Pointer<Utf8>? file, Pointer<Utf8>? mode),
+      Pointer<SdlRWops>? Function(Pointer<Utf8>? file, Pointer<Utf8>? mode)>('SDL_RWFromFile');
+  final filePointer = file.toNativeUtf8();
+  final modePointer = mode.toNativeUtf8();
+  final result = sdlRwFromFileLookupFunction(filePointer, modePointer);
+  calloc.free(filePointer);
+  calloc.free(modePointer);
+  return result;
 }
 
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_RWFromFP(FILE * fp, SDL_bool autoclose)
 /// ```
-Pointer<SDL_RWops>? SDL_RWFromFP(Pointer<IntPtr>? fp, int autoclose) {
-  final _SDL_RWFromFP = DLL_SDL2.lookupFunction<
-      Pointer<SDL_RWops>? Function(Pointer<IntPtr>? fp, Int32 autoclose),
-      Pointer<SDL_RWops>? Function(Pointer<IntPtr>? fp, int autoclose)>('SDL_RWFromFP');
-  return _SDL_RWFromFP(fp, autoclose);
+Pointer<SdlRWops>? sdlRwFromFp(Pointer<IntPtr>? fp, int autoclose) {
+  final sdlRwFromFpLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlRWops>? Function(Pointer<IntPtr>? fp, Int32 autoclose),
+      Pointer<SdlRWops>? Function(Pointer<IntPtr>? fp, int autoclose)>('SDL_RWFromFP');
+  return sdlRwFromFpLookupFunction(fp, autoclose);
 }
 
 /// 
@@ -124,11 +124,11 @@ Pointer<SDL_RWops>? SDL_RWFromFP(Pointer<IntPtr>? fp, int autoclose) {
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_RWFromMem(void *mem, int size)
 /// ```
-Pointer<SDL_RWops>? SDL_RWFromMem(Pointer<Void>? mem, int size) {
-  final _SDL_RWFromMem = DLL_SDL2.lookupFunction<
-      Pointer<SDL_RWops>? Function(Pointer<Void>? mem, Int32 size),
-      Pointer<SDL_RWops>? Function(Pointer<Void>? mem, int size)>('SDL_RWFromMem');
-  return _SDL_RWFromMem(mem, size);
+Pointer<SdlRWops>? sdlRwFromMem(Pointer<Void>? mem, int size) {
+  final sdlRwFromMemLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlRWops>? Function(Pointer<Void>? mem, Int32 size),
+      Pointer<SdlRWops>? Function(Pointer<Void>? mem, int size)>('SDL_RWFromMem');
+  return sdlRwFromMemLookupFunction(mem, size);
 }
 
 /// 
@@ -166,11 +166,11 @@ Pointer<SDL_RWops>? SDL_RWFromMem(Pointer<Void>? mem, int size) {
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_RWFromConstMem(const void *mem, int size)
 /// ```
-Pointer<SDL_RWops>? SDL_RWFromConstMem(Pointer<Void>? mem, int size) {
-  final _SDL_RWFromConstMem = DLL_SDL2.lookupFunction<
-      Pointer<SDL_RWops>? Function(Pointer<Void>? mem, Int32 size),
-      Pointer<SDL_RWops>? Function(Pointer<Void>? mem, int size)>('SDL_RWFromConstMem');
-  return _SDL_RWFromConstMem(mem, size);
+Pointer<SdlRWops>? sdlRwFromConstMem(Pointer<Void>? mem, int size) {
+  final sdlRwFromConstMemLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlRWops>? Function(Pointer<Void>? mem, Int32 size),
+      Pointer<SdlRWops>? Function(Pointer<Void>? mem, int size)>('SDL_RWFromConstMem');
+  return sdlRwFromConstMemLookupFunction(mem, size);
 }
 
 /// 
@@ -199,11 +199,11 @@ Pointer<SDL_RWops>? SDL_RWFromConstMem(Pointer<Void>? mem, int size) {
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_AllocRW(void)
 /// ```
-Pointer<SDL_RWops>? SDL_AllocRW() {
-  final _SDL_AllocRW = DLL_SDL2.lookupFunction<
-      Pointer<SDL_RWops>? Function(),
-      Pointer<SDL_RWops>? Function()>('SDL_AllocRW');
-  return _SDL_AllocRW();
+Pointer<SdlRWops>? sdlAllocRw() {
+  final sdlAllocRwLookupFunction = libSdl2.lookupFunction<
+      Pointer<SdlRWops>? Function(),
+      Pointer<SdlRWops>? Function()>('SDL_AllocRW');
+  return sdlAllocRwLookupFunction();
 }
 
 /// 
@@ -231,11 +231,11 @@ Pointer<SDL_RWops>? SDL_AllocRW() {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_FreeRW(SDL_RWops * area)
 /// ```
-void SDL_FreeRW(Pointer<SDL_RWops>? area) {
-  final _SDL_FreeRW = DLL_SDL2.lookupFunction<
-      Void Function(Pointer<SDL_RWops>? area),
-      void Function(Pointer<SDL_RWops>? area)>('SDL_FreeRW');
-  return _SDL_FreeRW(area);
+void sdlFreeRw(Pointer<SdlRWops>? area) {
+  final sdlFreeRwLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<SdlRWops>? area),
+      void Function(Pointer<SdlRWops>? area)>('SDL_FreeRW');
+  return sdlFreeRwLookupFunction(area);
 }
 
 /// 
@@ -253,11 +253,11 @@ void SDL_FreeRW(Pointer<SDL_RWops>? area) {
 /// ```c
 /// extern DECLSPEC Sint64 SDLCALL SDL_RWsize(SDL_RWops *context)
 /// ```
-int SDL_RWsize(Pointer<SDL_RWops>? context) {
-  final _SDL_RWsize = DLL_SDL2.lookupFunction<
-      Int64 Function(Pointer<SDL_RWops>? context),
-      int Function(Pointer<SDL_RWops>? context)>('SDL_RWsize');
-  return _SDL_RWsize(context);
+int sdlRWsize(Pointer<SdlRWops>? context) {
+  final sdlRWsizeLookupFunction = libSdl2.lookupFunction<
+      Int64 Function(Pointer<SdlRWops>? context),
+      int Function(Pointer<SdlRWops>? context)>('SDL_RWsize');
+  return sdlRWsizeLookupFunction(context);
 }
 
 /// 
@@ -298,11 +298,11 @@ int SDL_RWsize(Pointer<SDL_RWops>? context) {
 /// ```c
 /// extern DECLSPEC Sint64 SDLCALL SDL_RWseek(SDL_RWops *context, Sint64 offset, int whence)
 /// ```
-int SDL_RWseek(Pointer<SDL_RWops>? context, int offset, int whence) {
-  final _SDL_RWseek = DLL_SDL2.lookupFunction<
-      Int64 Function(Pointer<SDL_RWops>? context, Int64 offset, Int32 whence),
-      int Function(Pointer<SDL_RWops>? context, int offset, int whence)>('SDL_RWseek');
-  return _SDL_RWseek(context, offset, whence);
+int sdlRWseek(Pointer<SdlRWops>? context, int offset, int whence) {
+  final sdlRWseekLookupFunction = libSdl2.lookupFunction<
+      Int64 Function(Pointer<SdlRWops>? context, Int64 offset, Int32 whence),
+      int Function(Pointer<SdlRWops>? context, int offset, int whence)>('SDL_RWseek');
+  return sdlRWseekLookupFunction(context, offset, whence);
 }
 
 /// 
@@ -333,11 +333,11 @@ int SDL_RWseek(Pointer<SDL_RWops>? context, int offset, int whence) {
 /// ```c
 /// extern DECLSPEC Sint64 SDLCALL SDL_RWtell(SDL_RWops *context)
 /// ```
-int SDL_RWtell(Pointer<SDL_RWops>? context) {
-  final _SDL_RWtell = DLL_SDL2.lookupFunction<
-      Int64 Function(Pointer<SDL_RWops>? context),
-      int Function(Pointer<SDL_RWops>? context)>('SDL_RWtell');
-  return _SDL_RWtell(context);
+int sdlRWtell(Pointer<SdlRWops>? context) {
+  final sdlRWtellLookupFunction = libSdl2.lookupFunction<
+      Int64 Function(Pointer<SdlRWops>? context),
+      int Function(Pointer<SdlRWops>? context)>('SDL_RWtell');
+  return sdlRWtellLookupFunction(context);
 }
 
 /// 
@@ -373,11 +373,11 @@ int SDL_RWtell(Pointer<SDL_RWops>? context) {
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_RWread(SDL_RWops *context, void *ptr, size_t size, size_t maxnum)
 /// ```
-int SDL_RWread(Pointer<SDL_RWops>? context, Pointer<Void>? ptr, int size, int maxnum) {
-  final _SDL_RWread = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_RWops>? context, Pointer<Void>? ptr, Uint32 size, Uint32 maxnum),
-      int Function(Pointer<SDL_RWops>? context, Pointer<Void>? ptr, int size, int maxnum)>('SDL_RWread');
-  return _SDL_RWread(context, ptr, size, maxnum);
+int sdlRWread(Pointer<SdlRWops>? context, Pointer<Void>? ptr, int size, int maxnum) {
+  final sdlRWreadLookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlRWops>? context, Pointer<Void>? ptr, Uint32 size, Uint32 maxnum),
+      int Function(Pointer<SdlRWops>? context, Pointer<Void>? ptr, int size, int maxnum)>('SDL_RWread');
+  return sdlRWreadLookupFunction(context, ptr, size, maxnum);
 }
 
 /// 
@@ -413,11 +413,11 @@ int SDL_RWread(Pointer<SDL_RWops>? context, Pointer<Void>? ptr, int size, int ma
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_RWwrite(SDL_RWops *context, const void *ptr, size_t size, size_t num)
 /// ```
-int SDL_RWwrite(Pointer<SDL_RWops>? context, Pointer<Void>? ptr, int size, int num) {
-  final _SDL_RWwrite = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_RWops>? context, Pointer<Void>? ptr, Uint32 size, Uint32 num),
-      int Function(Pointer<SDL_RWops>? context, Pointer<Void>? ptr, int size, int num)>('SDL_RWwrite');
-  return _SDL_RWwrite(context, ptr, size, num);
+int sdlRWwrite(Pointer<SdlRWops>? context, Pointer<Void>? ptr, int size, int num) {
+  final sdlRWwriteLookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlRWops>? context, Pointer<Void>? ptr, Uint32 size, Uint32 num),
+      int Function(Pointer<SdlRWops>? context, Pointer<Void>? ptr, int size, int num)>('SDL_RWwrite');
+  return sdlRWwriteLookupFunction(context, ptr, size, num);
 }
 
 /// 
@@ -450,11 +450,11 @@ int SDL_RWwrite(Pointer<SDL_RWops>? context, Pointer<Void>? ptr, int size, int n
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RWclose(SDL_RWops *context)
 /// ```
-int SDL_RWclose(Pointer<SDL_RWops>? context) {
-  final _SDL_RWclose = DLL_SDL2.lookupFunction<
-      Int32 Function(Pointer<SDL_RWops>? context),
-      int Function(Pointer<SDL_RWops>? context)>('SDL_RWclose');
-  return _SDL_RWclose(context);
+int sdlRWclose(Pointer<SdlRWops>? context) {
+  final sdlRWcloseLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlRWops>? context),
+      int Function(Pointer<SdlRWops>? context)>('SDL_RWclose');
+  return sdlRWcloseLookupFunction(context);
 }
 
 /// 
@@ -476,11 +476,11 @@ int SDL_RWclose(Pointer<SDL_RWops>? context) {
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_LoadFile_RW(SDL_RWops *src, size_t *datasize, int freesrc)
 /// ```
-Pointer<Void>? SDL_LoadFile_RW(Pointer<SDL_RWops>? src, Pointer<Uint32>? datasize, int freesrc) {
-  final _SDL_LoadFile_RW = DLL_SDL2.lookupFunction<
-      Pointer<Void>? Function(Pointer<SDL_RWops>? src, Pointer<Uint32>? datasize, Int32 freesrc),
-      Pointer<Void>? Function(Pointer<SDL_RWops>? src, Pointer<Uint32>? datasize, int freesrc)>('SDL_LoadFile_RW');
-  return _SDL_LoadFile_RW(src, datasize, freesrc);
+Pointer<Void>? sdlLoadFileRw(Pointer<SdlRWops>? src, Pointer<Uint32>? datasize, int freesrc) {
+  final sdlLoadFileRwLookupFunction = libSdl2.lookupFunction<
+      Pointer<Void>? Function(Pointer<SdlRWops>? src, Pointer<Uint32>? datasize, Int32 freesrc),
+      Pointer<Void>? Function(Pointer<SdlRWops>? src, Pointer<Uint32>? datasize, int freesrc)>('SDL_LoadFile_RW');
+  return sdlLoadFileRwLookupFunction(src, datasize, freesrc);
 }
 
 /// 
@@ -504,14 +504,14 @@ Pointer<Void>? SDL_LoadFile_RW(Pointer<SDL_RWops>? src, Pointer<Uint32>? datasiz
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_LoadFile(const char *file, size_t *datasize)
 /// ```
-Pointer<Void>? SDL_LoadFile(String file, Pointer<Uint32>? datasize) {
-  final _SDL_LoadFile = DLL_SDL2.lookupFunction<
+Pointer<Void>? sdlLoadFile(String file, Pointer<Uint32>? datasize) {
+  final sdlLoadFileLookupFunction = libSdl2.lookupFunction<
       Pointer<Void>? Function(Pointer<Utf8>? file, Pointer<Uint32>? datasize),
       Pointer<Void>? Function(Pointer<Utf8>? file, Pointer<Uint32>? datasize)>('SDL_LoadFile');
-  final _filePointer = file.toNativeUtf8();
-  final _result = _SDL_LoadFile(_filePointer, datasize);
-  calloc.free(_filePointer);
-  return _result;
+  final filePointer = file.toNativeUtf8();
+  final result = sdlLoadFileLookupFunction(filePointer, datasize);
+  calloc.free(filePointer);
+  return result;
 }
 
 /// 
@@ -528,11 +528,11 @@ Pointer<Void>? SDL_LoadFile(String file, Pointer<Uint32>? datasize) {
 /// ```c
 /// extern DECLSPEC Uint8 SDLCALL SDL_ReadU8(SDL_RWops * src)
 /// ```
-int SDL_ReadU8(Pointer<SDL_RWops>? src) {
-  final _SDL_ReadU8 = DLL_SDL2.lookupFunction<
-      Uint8 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('SDL_ReadU8');
-  return _SDL_ReadU8(src);
+int sdlReadU8(Pointer<SdlRWops>? src) {
+  final sdlReadU8LookupFunction = libSdl2.lookupFunction<
+      Uint8 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('SDL_ReadU8');
+  return sdlReadU8LookupFunction(src);
 }
 
 /// 
@@ -552,11 +552,11 @@ int SDL_ReadU8(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC Uint16 SDLCALL SDL_ReadLE16(SDL_RWops * src)
 /// ```
-int SDL_ReadLE16(Pointer<SDL_RWops>? src) {
-  final _SDL_ReadLE16 = DLL_SDL2.lookupFunction<
-      Uint16 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('SDL_ReadLE16');
-  return _SDL_ReadLE16(src);
+int sdlReadLe16(Pointer<SdlRWops>? src) {
+  final sdlReadLe16LookupFunction = libSdl2.lookupFunction<
+      Uint16 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('SDL_ReadLE16');
+  return sdlReadLe16LookupFunction(src);
 }
 
 /// 
@@ -576,11 +576,11 @@ int SDL_ReadLE16(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC Uint16 SDLCALL SDL_ReadBE16(SDL_RWops * src)
 /// ```
-int SDL_ReadBE16(Pointer<SDL_RWops>? src) {
-  final _SDL_ReadBE16 = DLL_SDL2.lookupFunction<
-      Uint16 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('SDL_ReadBE16');
-  return _SDL_ReadBE16(src);
+int sdlReadBe16(Pointer<SdlRWops>? src) {
+  final sdlReadBe16LookupFunction = libSdl2.lookupFunction<
+      Uint16 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('SDL_ReadBE16');
+  return sdlReadBe16LookupFunction(src);
 }
 
 /// 
@@ -600,11 +600,11 @@ int SDL_ReadBE16(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC Uint32 SDLCALL SDL_ReadLE32(SDL_RWops * src)
 /// ```
-int SDL_ReadLE32(Pointer<SDL_RWops>? src) {
-  final _SDL_ReadLE32 = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('SDL_ReadLE32');
-  return _SDL_ReadLE32(src);
+int sdlReadLe32(Pointer<SdlRWops>? src) {
+  final sdlReadLe32LookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('SDL_ReadLE32');
+  return sdlReadLe32LookupFunction(src);
 }
 
 /// 
@@ -624,11 +624,11 @@ int SDL_ReadLE32(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC Uint32 SDLCALL SDL_ReadBE32(SDL_RWops * src)
 /// ```
-int SDL_ReadBE32(Pointer<SDL_RWops>? src) {
-  final _SDL_ReadBE32 = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('SDL_ReadBE32');
-  return _SDL_ReadBE32(src);
+int sdlReadBe32(Pointer<SdlRWops>? src) {
+  final sdlReadBe32LookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('SDL_ReadBE32');
+  return sdlReadBe32LookupFunction(src);
 }
 
 /// 
@@ -648,11 +648,11 @@ int SDL_ReadBE32(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC Uint64 SDLCALL SDL_ReadLE64(SDL_RWops * src)
 /// ```
-int SDL_ReadLE64(Pointer<SDL_RWops>? src) {
-  final _SDL_ReadLE64 = DLL_SDL2.lookupFunction<
-      Uint64 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('SDL_ReadLE64');
-  return _SDL_ReadLE64(src);
+int sdlReadLe64(Pointer<SdlRWops>? src) {
+  final sdlReadLe64LookupFunction = libSdl2.lookupFunction<
+      Uint64 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('SDL_ReadLE64');
+  return sdlReadLe64LookupFunction(src);
 }
 
 /// 
@@ -672,11 +672,11 @@ int SDL_ReadLE64(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC Uint64 SDLCALL SDL_ReadBE64(SDL_RWops * src)
 /// ```
-int SDL_ReadBE64(Pointer<SDL_RWops>? src) {
-  final _SDL_ReadBE64 = DLL_SDL2.lookupFunction<
-      Uint64 Function(Pointer<SDL_RWops>? src),
-      int Function(Pointer<SDL_RWops>? src)>('SDL_ReadBE64');
-  return _SDL_ReadBE64(src);
+int sdlReadBe64(Pointer<SdlRWops>? src) {
+  final sdlReadBe64LookupFunction = libSdl2.lookupFunction<
+      Uint64 Function(Pointer<SdlRWops>? src),
+      int Function(Pointer<SdlRWops>? src)>('SDL_ReadBE64');
+  return sdlReadBe64LookupFunction(src);
 }
 
 /// 
@@ -694,11 +694,11 @@ int SDL_ReadBE64(Pointer<SDL_RWops>? src) {
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteU8(SDL_RWops * dst, Uint8 value)
 /// ```
-int SDL_WriteU8(Pointer<SDL_RWops>? dst, int value) {
-  final _SDL_WriteU8 = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_RWops>? dst, Uint8 value),
-      int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteU8');
-  return _SDL_WriteU8(dst, value);
+int sdlWriteU8(Pointer<SdlRWops>? dst, int value) {
+  final sdlWriteU8LookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlRWops>? dst, Uint8 value),
+      int Function(Pointer<SdlRWops>? dst, int value)>('SDL_WriteU8');
+  return sdlWriteU8LookupFunction(dst, value);
 }
 
 /// 
@@ -720,11 +720,11 @@ int SDL_WriteU8(Pointer<SDL_RWops>? dst, int value) {
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteLE16(SDL_RWops * dst, Uint16 value)
 /// ```
-int SDL_WriteLE16(Pointer<SDL_RWops>? dst, int value) {
-  final _SDL_WriteLE16 = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_RWops>? dst, Uint16 value),
-      int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteLE16');
-  return _SDL_WriteLE16(dst, value);
+int sdlWriteLe16(Pointer<SdlRWops>? dst, int value) {
+  final sdlWriteLe16LookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlRWops>? dst, Uint16 value),
+      int Function(Pointer<SdlRWops>? dst, int value)>('SDL_WriteLE16');
+  return sdlWriteLe16LookupFunction(dst, value);
 }
 
 /// 
@@ -745,11 +745,11 @@ int SDL_WriteLE16(Pointer<SDL_RWops>? dst, int value) {
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteBE16(SDL_RWops * dst, Uint16 value)
 /// ```
-int SDL_WriteBE16(Pointer<SDL_RWops>? dst, int value) {
-  final _SDL_WriteBE16 = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_RWops>? dst, Uint16 value),
-      int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteBE16');
-  return _SDL_WriteBE16(dst, value);
+int sdlWriteBe16(Pointer<SdlRWops>? dst, int value) {
+  final sdlWriteBe16LookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlRWops>? dst, Uint16 value),
+      int Function(Pointer<SdlRWops>? dst, int value)>('SDL_WriteBE16');
+  return sdlWriteBe16LookupFunction(dst, value);
 }
 
 /// 
@@ -771,11 +771,11 @@ int SDL_WriteBE16(Pointer<SDL_RWops>? dst, int value) {
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteLE32(SDL_RWops * dst, Uint32 value)
 /// ```
-int SDL_WriteLE32(Pointer<SDL_RWops>? dst, int value) {
-  final _SDL_WriteLE32 = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_RWops>? dst, Uint32 value),
-      int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteLE32');
-  return _SDL_WriteLE32(dst, value);
+int sdlWriteLe32(Pointer<SdlRWops>? dst, int value) {
+  final sdlWriteLe32LookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlRWops>? dst, Uint32 value),
+      int Function(Pointer<SdlRWops>? dst, int value)>('SDL_WriteLE32');
+  return sdlWriteLe32LookupFunction(dst, value);
 }
 
 /// 
@@ -796,11 +796,11 @@ int SDL_WriteLE32(Pointer<SDL_RWops>? dst, int value) {
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteBE32(SDL_RWops * dst, Uint32 value)
 /// ```
-int SDL_WriteBE32(Pointer<SDL_RWops>? dst, int value) {
-  final _SDL_WriteBE32 = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_RWops>? dst, Uint32 value),
-      int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteBE32');
-  return _SDL_WriteBE32(dst, value);
+int sdlWriteBe32(Pointer<SdlRWops>? dst, int value) {
+  final sdlWriteBe32LookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlRWops>? dst, Uint32 value),
+      int Function(Pointer<SdlRWops>? dst, int value)>('SDL_WriteBE32');
+  return sdlWriteBe32LookupFunction(dst, value);
 }
 
 /// 
@@ -822,11 +822,11 @@ int SDL_WriteBE32(Pointer<SDL_RWops>? dst, int value) {
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteLE64(SDL_RWops * dst, Uint64 value)
 /// ```
-int SDL_WriteLE64(Pointer<SDL_RWops>? dst, int value) {
-  final _SDL_WriteLE64 = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_RWops>? dst, Uint64 value),
-      int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteLE64');
-  return _SDL_WriteLE64(dst, value);
+int sdlWriteLe64(Pointer<SdlRWops>? dst, int value) {
+  final sdlWriteLe64LookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlRWops>? dst, Uint64 value),
+      int Function(Pointer<SdlRWops>? dst, int value)>('SDL_WriteLE64');
+  return sdlWriteLe64LookupFunction(dst, value);
 }
 
 /// 
@@ -847,10 +847,10 @@ int SDL_WriteLE64(Pointer<SDL_RWops>? dst, int value) {
 /// ```c
 /// extern DECLSPEC size_t SDLCALL SDL_WriteBE64(SDL_RWops * dst, Uint64 value)
 /// ```
-int SDL_WriteBE64(Pointer<SDL_RWops>? dst, int value) {
-  final _SDL_WriteBE64 = DLL_SDL2.lookupFunction<
-      Uint32 Function(Pointer<SDL_RWops>? dst, Uint64 value),
-      int Function(Pointer<SDL_RWops>? dst, int value)>('SDL_WriteBE64');
-  return _SDL_WriteBE64(dst, value);
+int sdlWriteBe64(Pointer<SdlRWops>? dst, int value) {
+  final sdlWriteBe64LookupFunction = libSdl2.lookupFunction<
+      Uint32 Function(Pointer<SdlRWops>? dst, Uint64 value),
+      int Function(Pointer<SdlRWops>? dst, int value)>('SDL_WriteBE64');
+  return sdlWriteBe64LookupFunction(dst, value);
 }
 
