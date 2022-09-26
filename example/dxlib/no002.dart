@@ -36,7 +36,7 @@ bool init() {
     print(sdlGetError());
     return false;
   }
-  gRenderer = sdlCreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+  gRenderer = sdlCreateRenderer(gWindow!, -1, SDL_RENDERER_ACCELERATED);
   if (gRenderer == nullptr) {
     print(sdlGetError());
     return false;
@@ -46,11 +46,11 @@ bool init() {
 
 void close() {
   if (gRenderer != nullptr) {
-    sdlDestroyRenderer(gRenderer);
+    sdlDestroyRenderer(gRenderer!);
     gRenderer = nullptr;
   }
   if (gWindow != nullptr) {
-    sdlDestroyWindow(gWindow);
+    sdlDestroyWindow(gWindow!);
     gWindow = nullptr;
   }
   sdlQuit();
@@ -58,23 +58,21 @@ void close() {
 
 void update() {
   var keys = sdlGetKeyboardState(nullptr);
-  if (keys != null) {
-    if (keys[SDL_SCANCODE_UP] != 0) {
-      gPlayerY -= gPlayerHeight ~/ 4;
-    }
-    if (keys[SDL_SCANCODE_DOWN] != 0) {
-      gPlayerY += gPlayerHeight ~/ 4;
-    }
-    if (keys[SDL_SCANCODE_LEFT] != 0) {
-      gPlayerX -= gPlayerWidth ~/ 4;
-    }
-    if (keys[SDL_SCANCODE_RIGHT] != 0) {
-      gPlayerX += gPlayerWidth ~/ 4;
-    }
-    if (keys[SDL_SCANCODE_SPACE] != 0) {
-      if (gPlayerY == 300) {
-        gJumpPower = 20;
-      }
+  if (keys[SDL_SCANCODE_UP] != 0) {
+    gPlayerY -= gPlayerHeight ~/ 4;
+  }
+  if (keys[SDL_SCANCODE_DOWN] != 0) {
+    gPlayerY += gPlayerHeight ~/ 4;
+  }
+  if (keys[SDL_SCANCODE_LEFT] != 0) {
+    gPlayerX -= gPlayerWidth ~/ 4;
+  }
+  if (keys[SDL_SCANCODE_RIGHT] != 0) {
+    gPlayerX += gPlayerWidth ~/ 4;
+  }
+  if (keys[SDL_SCANCODE_SPACE] != 0) {
+    if (gPlayerY == 300) {
+      gJumpPower = 20;
     }
   }
   gPlayerY -= gJumpPower;
@@ -103,20 +101,20 @@ bool handleEvents() {
 
 void render() {
   // init
-  sdlSetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xff);
-  sdlRenderClear(gRenderer);
+  sdlSetRenderDrawColor(gRenderer!, 0x00, 0x00, 0x00, 0xff);
+  sdlRenderClear(gRenderer!);
   // player
   var playerRect = calloc<SdlRect>();
-  sdlSetRenderDrawColor(gRenderer, 0x00, 0xff, 0x00, 0xff);
+  sdlSetRenderDrawColor(gRenderer!, 0x00, 0xff, 0x00, 0xff);
   playerRect
     ..ref.x = gPlayerX
     ..ref.y = gPlayerY
     ..ref.w = gPlayerWidth
     ..ref.h = gPlayerHeight;
-  sdlRenderFillRect(gRenderer, playerRect);
+  sdlRenderFillRect(gRenderer!, playerRect);
   calloc.free(playerRect);
   // term
-  sdlRenderPresent(gRenderer);
+  sdlRenderPresent(gRenderer!);
 }
 
 int main() {

@@ -108,11 +108,9 @@ int main() {
           return 0;
         }
         // Get text dimensions
-        if (textSurface != null) {
-          textRect.ref.w = textSurface.ref.w;
-          textRect.ref.h = textSurface.ref.h;
-          sdlFreeSurface(textSurface);
-        }
+        textRect.ref.w = textSurface.ref.w;
+        textRect.ref.h = textSurface.ref.h;
+        sdlFreeSurface(textSurface);
       }
       textRect.ref.x = (gScreenWidth - textRect.ref.w) ~/ 2;
       textRect.ref.y = squareRect.ref.y - textRect.ref.h - 10;
@@ -136,7 +134,7 @@ int main() {
         // Draw filled square
         sdlRenderFillRect(renderer, squareRect);
         // Draw text
-        sdlRenderCopy(renderer, text, nullptr, textRect);
+        sdlRenderCopy(renderer, text!, nullptr, textRect);
         // Update screen
         sdlRenderPresent(renderer);
         calloc.free(e);

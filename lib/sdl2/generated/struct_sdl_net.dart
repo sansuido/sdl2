@@ -1,5 +1,6 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
+
 class SdlNetVersion extends Struct {
   // [0]+(1)
   @Uint8()
@@ -41,7 +42,7 @@ class UdPpacket extends Struct {
   @Uint32()
   external int blank_1;
   // [8]+(8)
-  external Pointer<Uint8>? data;
+  external Pointer<Uint8> data;
   // [16]+(4)
   @Int32()
   external int len;
@@ -58,8 +59,10 @@ class UdPpacket extends Struct {
   @Uint64()
   external int address_1;
 }
+
 extension UdPpacketExtension on Pointer<UdPpacket> {
-  Pointer<IPaddress> get address => cast<Uint8>().elementAt(32).cast<IPaddress>();
+  Pointer<IPaddress> get address =>
+      cast<Uint8>().elementAt(32).cast<IPaddress>();
 }
 
 class SdlNetSocketSet extends Opaque {}
@@ -72,4 +75,3 @@ class SdlNetGenericSocket extends Struct {
   @Uint32()
   external int blank_1;
 }
-

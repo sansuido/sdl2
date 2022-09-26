@@ -42,7 +42,7 @@ bool init() {
     print(sdlGetError());
     return false;
   }
-  gRenderer = sdlCreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+  gRenderer = sdlCreateRenderer(gWindow!, -1, SDL_RENDERER_ACCELERATED);
   if (gRenderer == nullptr) {
     print(sdlGetError());
     return false;
@@ -52,11 +52,11 @@ bool init() {
 
 void close() {
   if (gRenderer != nullptr) {
-    sdlDestroyRenderer(gRenderer);
+    sdlDestroyRenderer(gRenderer!);
     gRenderer = nullptr;
   }
   if (gWindow != nullptr) {
-    sdlDestroyWindow(gWindow);
+    sdlDestroyWindow(gWindow!);
     gWindow = nullptr;
   }
   sdlQuit();
@@ -81,9 +81,9 @@ bool handleEvents() {
 void render() {
   var rect = calloc<SdlRect>();
   // init
-  sdlSetRenderDrawColor(gRenderer, 0xff, 0xff, 0xff, 0xff);
-  sdlRenderClear(gRenderer);
-  sdlSetRenderDrawColor(gRenderer, 0xff, 0x00, 0x00, 0xff);
+  sdlSetRenderDrawColor(gRenderer!, 0xff, 0xff, 0xff, 0xff);
+  sdlRenderClear(gRenderer!);
+  sdlSetRenderDrawColor(gRenderer!, 0xff, 0x00, 0x00, 0xff);
   for (var y = 0; y < gMapData.length; y++) {
     for (var x = 0; x < gMapData[y].length; x++) {
       if (gMapData[y][x] != 0) {
@@ -92,14 +92,14 @@ void render() {
             ..ref.y = y * 64
             ..ref.w = 64
             ..ref.h = 64;
-        sdlRenderFillRect(gRenderer, rect);
+        sdlRenderFillRect(gRenderer!, rect);
       }
       
     }
   }
   calloc.free(rect);
   // term
-  sdlRenderPresent(gRenderer);
+  sdlRenderPresent(gRenderer!);
 }
 
 int main() {

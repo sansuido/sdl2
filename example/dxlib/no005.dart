@@ -42,7 +42,7 @@ bool init() {
     print(sdlGetError());
     return false;
   }
-  gRenderer = sdlCreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+  gRenderer = sdlCreateRenderer(gWindow!, -1, SDL_RENDERER_ACCELERATED);
   if (gRenderer == nullptr) {
     print(sdlGetError());
     return false;
@@ -54,11 +54,11 @@ bool init() {
 
 void close() {
   if (gRenderer != nullptr) {
-    sdlDestroyRenderer(gRenderer);
+    sdlDestroyRenderer(gRenderer!);
     gRenderer = nullptr;
   }
   if (gWindow != nullptr) {
-    sdlDestroyWindow(gWindow);
+    sdlDestroyWindow(gWindow!);
     gWindow = nullptr;
   }
   sdlQuit();
@@ -66,13 +66,11 @@ void close() {
 
 void update() {
   var keys = sdlGetKeyboardState(nullptr);
-  if (keys != null) {
-    if (keys[SDL_SCANCODE_LEFT] != 0) {
-      gPlayer.x -= 3;
-    }
-    if (keys[SDL_SCANCODE_RIGHT] != 0) {
-      gPlayer.x += 3;
-    }
+  if (keys[SDL_SCANCODE_LEFT] != 0) {
+    gPlayer.x -= 3;
+  }
+  if (keys[SDL_SCANCODE_RIGHT] != 0) {
+    gPlayer.x += 3;
   }
   var index = 0;
   while (index < gShotList.length) {
@@ -83,10 +81,8 @@ void update() {
       index++;
     }
   }
-  if (keys != null) {
-    if (keys[SDL_SCANCODE_Z] != 0 && gShotList.length < gMaxShot) {
-      gShotList.add(Position()..x = gPlayer.x ..y = gPlayer.y);
-    }
+  if (keys[SDL_SCANCODE_Z] != 0 && gShotList.length < gMaxShot) {
+    gShotList.add(Position()..x = gPlayer.x ..y = gPlayer.y);
   }
 }
 
@@ -108,15 +104,15 @@ bool handleEvents() {
 }
 
 void renderer() {
-  sdlSetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xff);
-  sdlRenderClear(gRenderer);
+  sdlSetRenderDrawColor(gRenderer!, 0x00, 0x00, 0x00, 0xff);
+  sdlRenderClear(gRenderer!);
   // draw player
-  dxlib.drawBox(gRenderer, gPlayer.x, gPlayer.y, gPlayer.x + 48, gPlayer.y + 48, dxlib.getColor(red: 255, green: 0, blue: 0), fillFlag: true);
+  dxlib.drawBox(gRenderer!, gPlayer.x, gPlayer.y, gPlayer.x + 48, gPlayer.y + 48, dxlib.getColor(red: 255, green: 0, blue: 0), fillFlag: true);
   for (var i = 0; i < gShotList.length; i++) {
     var shot = gShotList[i];
-    dxlib.drawBox(gRenderer, shot.x, shot.y, shot.x + 16, shot.y + 16, dxlib.getColor(red: 255, green: 255, blue: 255));
+    dxlib.drawBox(gRenderer!, shot.x, shot.y, shot.x + 16, shot.y + 16, dxlib.getColor(red: 255, green: 255, blue: 255));
   }
-  sdlRenderPresent(gRenderer);
+  sdlRenderPresent(gRenderer!);
 }
 
 int main() {

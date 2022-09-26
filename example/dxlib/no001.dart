@@ -34,7 +34,7 @@ bool init() {
       print(sdlGetError());
       success = false;
     } else {
-      renderer = sdlCreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+      renderer = sdlCreateRenderer(window!, -1, SDL_RENDERER_ACCELERATED);
       if (renderer == nullptr) {
         success = false;
       }
@@ -45,11 +45,11 @@ bool init() {
 
 void close() {
   if (renderer != nullptr) {
-    sdlDestroyRenderer(renderer);
+    sdlDestroyRenderer(renderer!);
     renderer = nullptr;
   }
   if (window != nullptr) {
-    sdlDestroyWindow(window);
+    sdlDestroyWindow(window!);
     window = nullptr;
   }
   sdlQuit();
@@ -68,19 +68,17 @@ int main() {
             break;
           case SDL_KEYDOWN:
             var keys = sdlGetKeyboardState(nullptr);
-            if (keys != null) {
-              if (keys[SDL_SCANCODE_UP] != 0) {
-                playerY -= gPlayerHeight ~/ 2;
-              }
-              if (keys[SDL_SCANCODE_DOWN] != 0) {
-                playerY += gPlayerHeight ~/ 2;
-              }
-              if (keys[SDL_SCANCODE_LEFT] != 0) {
-                playerX -= gPlayerWidth ~/ 2;
-              }
-              if (keys[SDL_SCANCODE_RIGHT] != 0) {
-                playerX += gPlayerWidth ~/ 2;
-              }
+            if (keys[SDL_SCANCODE_UP] != 0) {
+              playerY -= gPlayerHeight ~/ 2;
+            }
+            if (keys[SDL_SCANCODE_DOWN] != 0) {
+              playerY += gPlayerHeight ~/ 2;
+            }
+            if (keys[SDL_SCANCODE_LEFT] != 0) {
+              playerX -= gPlayerWidth ~/ 2;
+            }
+            if (keys[SDL_SCANCODE_RIGHT] != 0) {
+              playerX += gPlayerWidth ~/ 2;
             }
             break;
           default:
@@ -88,17 +86,17 @@ int main() {
         }
       }
       // draw
-      sdlSetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xff);
-      sdlRenderClear(renderer);
-      sdlSetRenderDrawColor(renderer, 0x00, 0xff, 0x00, 0xff);
+      sdlSetRenderDrawColor(renderer!, 0x00, 0x00, 0x00, 0xff);
+      sdlRenderClear(renderer!);
+      sdlSetRenderDrawColor(renderer!, 0x00, 0xff, 0x00, 0xff);
       var playerRect = calloc<SdlRect>();
       playerRect
         ..ref.x = playerX
         ..ref.y = playerY
         ..ref.w = gPlayerWidth
         ..ref.h = gPlayerHeight;
-      sdlRenderFillRect(renderer, playerRect);
-      sdlRenderPresent(renderer);
+      sdlRenderFillRect(renderer!, playerRect);
+      sdlRenderPresent(renderer!);
       calloc.free(playerRect);
     }
     calloc.free(e);

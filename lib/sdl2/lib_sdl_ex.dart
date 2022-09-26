@@ -146,8 +146,10 @@ const SDLK_CRSEL = SDL_SCANCODE_CRSEL | SDLK_SCANCODE_MASK;
 const SDLK_EXSEL = SDL_SCANCODE_EXSEL | SDLK_SCANCODE_MASK;
 const SDLK_KP_00 = SDL_SCANCODE_KP_00 | SDLK_SCANCODE_MASK;
 const SDLK_KP_000 = SDL_SCANCODE_KP_000 | SDLK_SCANCODE_MASK;
-const SDLK_THOUSANDSSEPARATOR = SDL_SCANCODE_THOUSANDSSEPARATOR | SDLK_SCANCODE_MASK;
-const SDLK_DECIMALSEPARATOR = SDL_SCANCODE_DECIMALSEPARATOR | SDLK_SCANCODE_MASK;
+const SDLK_THOUSANDSSEPARATOR =
+    SDL_SCANCODE_THOUSANDSSEPARATOR | SDLK_SCANCODE_MASK;
+const SDLK_DECIMALSEPARATOR =
+    SDL_SCANCODE_DECIMALSEPARATOR | SDLK_SCANCODE_MASK;
 const SDLK_CURRENCYUNIT = SDL_SCANCODE_CURRENCYUNIT | SDLK_SCANCODE_MASK;
 const SDLK_CURRENCYSUBUNIT = SDL_SCANCODE_CURRENCYSUBUNIT | SDLK_SCANCODE_MASK;
 const SDLK_KP_LEFTPAREN = SDL_SCANCODE_KP_LEFTPAREN | SDLK_SCANCODE_MASK;
@@ -170,7 +172,8 @@ const SDLK_KP_GREATER = SDL_SCANCODE_KP_GREATER | SDLK_SCANCODE_MASK;
 const SDLK_KP_AMPERSAND = SDL_SCANCODE_KP_AMPERSAND | SDLK_SCANCODE_MASK;
 const SDLK_KP_DBLAMPERSAND = SDL_SCANCODE_KP_DBLAMPERSAND | SDLK_SCANCODE_MASK;
 const SDLK_KP_VERTICALBAR = SDL_SCANCODE_KP_VERTICALBAR | SDLK_SCANCODE_MASK;
-const SDLK_KP_DBLVERTICALBAR = SDL_SCANCODE_KP_DBLVERTICALBAR | SDLK_SCANCODE_MASK;
+const SDLK_KP_DBLVERTICALBAR =
+    SDL_SCANCODE_KP_DBLVERTICALBAR | SDLK_SCANCODE_MASK;
 const SDLK_KP_COLON = SDL_SCANCODE_KP_COLON | SDLK_SCANCODE_MASK;
 const SDLK_KP_HASH = SDL_SCANCODE_KP_HASH | SDLK_SCANCODE_MASK;
 const SDLK_KP_SPACE = SDL_SCANCODE_KP_SPACE | SDLK_SCANCODE_MASK;
@@ -306,22 +309,24 @@ final int SDL_BUTTON_X2MASK = sdlButton(SDL_BUTTON_X2);
 /// ```c
 /// const SDL_iconv_utf8_locale = (S) SDL_iconv_string('', 'UTF-8', S, SDL_strlen(S)+1);
 /// ```
-Pointer<Int8>? sdlIconvUtf8Locate(String s) {
-  return sdlIconvString('', 'UTF-8', s, sdlStrlen(s)+1)!;
+Pointer<Int8> sdlIconvUtf8Locate(String s) {
+  return sdlIconvString('', 'UTF-8', s, sdlStrlen(s) + 1);
 }
 
 /// ```c
 /// const SDL_iconv_utf8_ucs2 = (S) (Uint16 *)SDL_iconv_string('UCS-2-INTERNAL', 'UTF-8', S, SDL_strlen(S)+1);
 /// ```
-Pointer<Uint16>? sdlIconvUtf8Ucs2(String s) {
-  return sdlIconvString('UCS-2-INTERNAL', 'UTF-8', s, sdlStrlen(s)+1)!.cast<Uint16>();
+Pointer<Uint16> sdlIconvUtf8Ucs2(String s) {
+  return sdlIconvString('UCS-2-INTERNAL', 'UTF-8', s, sdlStrlen(s) + 1)
+      .cast<Uint16>();
 }
 
 /// ```c
 /// const SDL_iconv_utf8_ucs4 = (S) (Uint32 *)SDL_iconv_string('UCS-4-INTERNAL', 'UTF-8', S, SDL_strlen(S)+1);
 /// ```
-Pointer<Uint32>? sdlIconvUtf8Ucs4(String s) {
-  return sdlIconvString('UCS-4-INTERNAL', 'UTF-8', s, sdlStrlen(s)+1)!.cast<Uint32>();
+Pointer<Uint32> sdlIconvUtf8Ucs4(String s) {
+  return sdlIconvString('UCS-4-INTERNAL', 'UTF-8', s, sdlStrlen(s) + 1)
+      .cast<Uint32>();
 }
 
 //const SDL_MUSTLOCK = (S) (((S)->flags & SDL_RLEACCEL) != 0);
@@ -330,27 +335,29 @@ Pointer<Uint32>? sdlIconvUtf8Ucs4(String s) {
 /// const SDL_LoadBMP = (file) SDL_LoadBMP_RW(SDL_RWFromFile(file, 'rb'), 1);
 /// ```
 Pointer<SdlSurface> sdlLoadBmp(String file) {
-  return sdlLoadBmpRw(sdlRwFromFile(file, 'rb'), 1)!;
+  return sdlLoadBmpRw(sdlRwFromFile(file, 'rb'), 1);
 }
 
 /// ```c
 /// const SDL_SaveBMP = (surface, file) \ SDL_SaveBMP_RW(surface, SDL_RWFromFile(file, 'wb'), 1);
 /// ```
-int sdlSaveBmp(Pointer<SdlSurface>? surface, String file) {
+int sdlSaveBmp(Pointer<SdlSurface> surface, String file) {
   return sdlSaveBmpRw(surface, sdlRwFromFile(file, 'wb'), 1);
 }
 
 /// ```c
 /// const SDL_BlitSurface = SDL_UpperBlit;
 /// ```
-int sdlBlitSurface(Pointer<SdlSurface>? src, Pointer<SdlRect>? srcrect, Pointer<SdlSurface>? dst, Pointer<SdlRect>? dstrect) {
+int sdlBlitSurface(Pointer<SdlSurface> src, Pointer<SdlRect> srcrect,
+    Pointer<SdlSurface> dst, Pointer<SdlRect> dstrect) {
   return sdlUpperBlit(src, srcrect, dst, dstrect);
 }
 
 /// ```c
 /// const SDL_BlitScaled = SDL_UpperBlitScaled;
 /// ```
-int sdlBlitScaled(Pointer<SdlSurface> src, Pointer<SdlRect>? srcrect, Pointer<SdlSurface>? dst, Pointer<SdlRect>? dstrect) {
+int sdlBlitScaled(Pointer<SdlSurface> src, Pointer<SdlRect> srcrect,
+    Pointer<SdlSurface> dst, Pointer<SdlRect> dstrect) {
   return sdlUpperBlitScaled(src, srcrect, dst, dstrect);
 }
 
@@ -360,12 +367,10 @@ int sdlBlitScaled(Pointer<SdlSurface> src, Pointer<SdlRect>? srcrect, Pointer<Sd
 /// ```c
 /// const SDL_VERSION = (x) \{ \ (x)->major = SDL_MAJOR_VERSION; \ (x)->minor = SDL_MINOR_VERSION; \ (x)->patch = SDL_PATCHLEVEL; \};
 /// ```
-void sdlVersion(Pointer<SdlVersion>? x) {
-  if (x != null) {
-    x.ref.major = SDL_MAJOR_VERSION;
-    x.ref.minor = SDL_MINOR_VERSION;
-    x.ref.patch = SDL_PATCHLEVEL;
-  }
+void sdlVersion(Pointer<SdlVersion> x) {
+  x.ref.major = SDL_MAJOR_VERSION;
+  x.ref.minor = SDL_MINOR_VERSION;
+  x.ref.patch = SDL_PATCHLEVEL;
 }
 
 /// ```c
@@ -378,7 +383,8 @@ int sdlVersionnum(int x, int y, int z) {
 /// ```c
 /// const SDL_COMPILEDVERSION = \ SDL_VERSIONNUM(SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
 /// ```
-final SDL_COMPILEDVERSION = sdlVersionnum(SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
+final SDL_COMPILEDVERSION =
+    sdlVersionnum(SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_PATCHLEVEL);
 
 /// ```c
 /// const SDL_VERSION_ATLEAST = (X, Y, Z) \ (SDL_COMPILEDVERSION >= SDL_VERSIONNUM(X, Y, Z));

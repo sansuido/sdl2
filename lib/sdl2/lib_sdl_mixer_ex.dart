@@ -9,25 +9,24 @@ import 'lib_sdl_ex.dart';
 /// ```c
 /// const SDL_MIXER_VERSION = (X) \{ \ (X)->major = SDL_MIXER_MAJOR_VERSION; \ (X)->minor = SDL_MIXER_MINOR_VERSION; \ (X)->patch = SDL_MIXER_PATCHLEVEL; \};
 /// ```
-void sdlMixerVersion(Pointer<SdlVersion>? x) {
-  if (x != null) {
-    x.ref.major = SDL_MIXER_MAJOR_VERSION;
-    x.ref.minor = SDL_MIXER_MINOR_VERSION;
-    x.ref.patch = SDL_MIXER_PATCHLEVEL;
-  }
+void sdlMixerVersion(Pointer<SdlVersion> x) {
+  x.ref.major = SDL_MIXER_MAJOR_VERSION;
+  x.ref.minor = SDL_MIXER_MINOR_VERSION;
+  x.ref.patch = SDL_MIXER_PATCHLEVEL;
 }
 
 /// ```c
 /// const MIX_VERSION = (X) SDL_MIXER_VERSION(X);
 /// ```
-void mixVersion(Pointer<SdlVersion>? x) {
+void mixVersion(Pointer<SdlVersion> x) {
   return sdlMixerVersion(x);
 }
 
 /// ```c
 /// const SDL_MIXER_COMPILEDVERSION = \ SDL_VERSIONNUM(SDL_MIXER_MAJOR_VERSION, SDL_MIXER_MINOR_VERSION, SDL_MIXER_PATCHLEVEL);
 /// ```
-final SDL_MIXER_COMPILEDVERSION = sdlVersionnum(SDL_MIXER_MAJOR_VERSION, SDL_MIXER_MINOR_VERSION, SDL_MIXER_PATCHLEVEL);
+final SDL_MIXER_COMPILEDVERSION = sdlVersionnum(
+    SDL_MIXER_MAJOR_VERSION, SDL_MIXER_MINOR_VERSION, SDL_MIXER_PATCHLEVEL);
 
 /// ```c
 /// const SDL_MIXER_VERSION_ATLEAST = (X, Y, Z) \ (SDL_MIXER_COMPILEDVERSION >= SDL_VERSIONNUM(X, Y, Z));
@@ -49,7 +48,7 @@ const MIX_MAX_VOLUME = SDL_MIX_MAXVOLUME;
 /// ```c
 /// const Mix_SetError = SDL_SetError;
 /// ```
-int mixSetError(String fmt, Pointer<Void>? arg1) {
+int mixSetError(String fmt, Pointer<Void> arg1) {
   return sdlSetError(fmt, arg1);
 }
 

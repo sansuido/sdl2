@@ -1,3 +1,7 @@
+## 1.3.2
+- [update]  Rewrite a pointer to be non-nullable.
+- [fix]  Fixed union position bug.
+
 ## 1.3.1
 - [fix] Fix version.
 

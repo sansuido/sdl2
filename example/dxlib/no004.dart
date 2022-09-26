@@ -59,7 +59,7 @@ bool init() {
     print(sdlGetError());
     return false;
   }
-  gRenderer = sdlCreateRenderer(gWindow, -1, SDL_RENDERER_ACCELERATED);
+  gRenderer = sdlCreateRenderer(gWindow!, -1, SDL_RENDERER_ACCELERATED);
   if (gRenderer == nullptr) {
     print(sdlGetError());
     return false;
@@ -69,11 +69,11 @@ bool init() {
 
 void close() {
   if (gRenderer != nullptr) {
-    sdlDestroyRenderer(gRenderer);
+    sdlDestroyRenderer(gRenderer!);
     gRenderer = nullptr;
   }
   if (gWindow != nullptr) {
-    sdlDestroyWindow(gWindow);
+    sdlDestroyWindow(gWindow!);
     gWindow = nullptr;
   }
   sdlQuit();
@@ -82,27 +82,25 @@ void close() {
 void update() {
   if (gMove == 0) {
     var keys = sdlGetKeyboardState(nullptr);
-    if (keys != null) {
-      if (keys[SDL_SCANCODE_UP] != 0) {
-        gMove = 1;
-        gMoveX = 0;
-        gMoveY = -1;
-      }
-      if (keys[SDL_SCANCODE_DOWN] != 0) {
-        gMove = 1;
-        gMoveX = 0;
-        gMoveY = 1;
-      }
-      if (keys[SDL_SCANCODE_LEFT] != 0) {
-        gMove = 1;
-        gMoveX = -1;
-        gMoveY = 0;
-      }
-      if (keys[SDL_SCANCODE_RIGHT] != 0) {
-        gMove = 1;
-        gMoveX = 1;
-        gMoveY = 0;
-      }
+    if (keys[SDL_SCANCODE_UP] != 0) {
+      gMove = 1;
+      gMoveX = 0;
+      gMoveY = -1;
+    }
+    if (keys[SDL_SCANCODE_DOWN] != 0) {
+      gMove = 1;
+      gMoveX = 0;
+      gMoveY = 1;
+    }
+    if (keys[SDL_SCANCODE_LEFT] != 0) {
+      gMove = 1;
+      gMoveX = -1;
+      gMoveY = 0;
+    }
+    if (keys[SDL_SCANCODE_RIGHT] != 0) {
+      gMove = 1;
+      gMoveX = 1;
+      gMoveY = 0;
     }
     if (gMove == 1) {
       if (gMapData[gPlayerY + gMoveY][gPlayerX + gMoveX] == 0) {
@@ -157,10 +155,10 @@ void render() {
   var mapDrawPointX = gPlayerX - drawMapChipNumX ~/ 2;
   var mapDrawPointY = gPlayerY - drawMapChipNumY ~/ 2;
   // init
-  sdlSetRenderDrawColor(gRenderer, 0x00, 0x00, 0x00, 0xff);
-  sdlRenderClear(gRenderer);
+  sdlSetRenderDrawColor(gRenderer!, 0x00, 0x00, 0x00, 0xff);
+  sdlRenderClear(gRenderer!);
   // map
-  sdlSetRenderDrawColor(gRenderer, 0xff, 0x00, 0x00, 0xff);
+  sdlSetRenderDrawColor(gRenderer!, 0xff, 0x00, 0x00, 0xff);
   for (var y = 0; y < gMapData.length; y++) {
     var drawY = y + mapDrawPointY;
     if (drawY < 0 || drawY >= gMapData.length) {
@@ -177,21 +175,21 @@ void render() {
             ..ref.y = y * gMapSize + gScrollY
             ..ref.w = gMapSize
             ..ref.h = gMapSize;
-        sdlRenderFillRect(gRenderer, rect);
+        sdlRenderFillRect(gRenderer!, rect);
       }
     }
   }
   // player
-  sdlSetRenderDrawColor(gRenderer, 0xff, 0xff, 0xff, 0xff);
+  sdlSetRenderDrawColor(gRenderer!, 0xff, 0xff, 0xff, 0xff);
   rect
       ..ref.x = ((gPlayerX - mapDrawPointX) * gMapSize)
       ..ref.y = ((gPlayerY - mapDrawPointY) * gMapSize)
       ..ref.w = gMapSize
       ..ref.h = gMapSize;
-  sdlRenderFillRect(gRenderer, rect);
+  sdlRenderFillRect(gRenderer!, rect);
   calloc.free(rect);
   // term
-  sdlRenderPresent(gRenderer);
+  sdlRenderPresent(gRenderer!);
 }
 
 int main() {

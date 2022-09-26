@@ -1,6 +1,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
 import 'struct_sdl.dart';
+
 class ImgAnimation extends Struct {
   // [0]+(4)
   @Int32()
@@ -15,8 +16,7 @@ class ImgAnimation extends Struct {
   @Uint32()
   external int blank_1;
   // [16]+(8)
-  external Pointer<Pointer<SdlSurface>>? frames;
+  external Pointer<Pointer<SdlSurface>> frames;
   // [24]+(8)
-  external Pointer<Int32>? delays;
+  external Pointer<Int32> delays;
 }
-

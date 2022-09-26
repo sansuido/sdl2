@@ -5,12 +5,10 @@ import './generated/struct_sdl.dart';
 /// ```c
 /// const SDL_NET_VERSION = (X) \{ \ (X)->major = SDL_NET_MAJOR_VERSION; \ (X)->minor = SDL_NET_MINOR_VERSION; \ (X)->patch = SDL_NET_PATCHLEVEL; \};
 /// ```
-void sdlNetVersion(Pointer<SdlVersion>? x) {
-  if (x != null) {
-    x.ref.major = SDL_NET_MAJOR_VERSION;
-    x.ref.minor = SDL_NET_MINOR_VERSION;
-    x.ref.patch = SDL_NET_PATCHLEVEL;
-  }
+void sdlNetVersion(Pointer<SdlVersion> x) {
+  x.ref.major = SDL_NET_MAJOR_VERSION;
+  x.ref.minor = SDL_NET_MINOR_VERSION;
+  x.ref.patch = SDL_NET_PATCHLEVEL;
 }
 
 //const SDLNet_SocketReady = (sock) _SDLNet_SocketReady((SDLNet_GenericSocket)(sock));

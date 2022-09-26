@@ -23,7 +23,7 @@ int getAlphaFromColor(int color) {
   return (color & 0xff000000) >> 8 * 3;
 }
 
-int setDrawColor(Pointer<SdlRenderer>? renderer, int color) {
+int setDrawColor(Pointer<SdlRenderer> renderer, int color) {
   return sdlSetRenderDrawColor(
       renderer,
       getRedFromColor(color),
@@ -32,14 +32,14 @@ int setDrawColor(Pointer<SdlRenderer>? renderer, int color) {
       getAlphaFromColor(color));
 }
 
-int drawLine(Pointer<SdlRenderer>? renderer, int x1, int y1, int x2, int y2,
+int drawLine(Pointer<SdlRenderer> renderer, int x1, int y1, int x2, int y2,
     int color) {
   return sdlRenderDrawLine(renderer, x1, y1, x2, y2);
 }
 
 // https://gist.github.com/Gumichan01/332c26f6197a432db91cc4327fcabb1c
 int drawCircle(
-    Pointer<SdlRenderer>? renderer, int x, int y, int radius, int color,
+    Pointer<SdlRenderer> renderer, int x, int y, int radius, int color,
     {bool fillFlag = true}) {
   setDrawColor(renderer, color);
   int offsetx, offsety, d;
@@ -88,7 +88,7 @@ int drawCircle(
 }
 
 int drawBox(
-    Pointer<SdlRenderer>? renderer, int x1, int y1, int x2, int y2, int color,
+    Pointer<SdlRenderer> renderer, int x1, int y1, int x2, int y2, int color,
     {bool fillFlag = true}) {
   setDrawColor(renderer, color);
   int result;
