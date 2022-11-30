@@ -199,7 +199,7 @@ int sdlGetScancodeFromKey(int key) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetScancodeName(SDL_Scancode scancode)
 /// ```
-String sdlGetScancodeName(int scancode) {
+String? sdlGetScancodeName(int scancode) {
   final sdlGetScancodeNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 scancode),
       Pointer<Utf8> Function(int scancode)>('SDL_GetScancodeName');
@@ -222,11 +222,11 @@ String sdlGetScancodeName(int scancode) {
 /// ```c
 /// extern DECLSPEC SDL_Scancode SDLCALL SDL_GetScancodeFromName(const char *name)
 /// ```
-int sdlGetScancodeFromName(String name) {
+int sdlGetScancodeFromName(String? name) {
   final sdlGetScancodeFromNameLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8> name),
       int Function(Pointer<Utf8> name)>('SDL_GetScancodeFromName');
-  final namePointer = name.toNativeUtf8();
+  final namePointer = name != null ? name.toNativeUtf8() : nullptr;
   final result = sdlGetScancodeFromNameLookupFunction(namePointer);
   calloc.free(namePointer);
   return result;
@@ -252,7 +252,7 @@ int sdlGetScancodeFromName(String name) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetKeyName(SDL_Keycode key)
 /// ```
-String sdlGetKeyName(int key) {
+String? sdlGetKeyName(int key) {
   final sdlGetKeyNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 key),
       Pointer<Utf8> Function(int key)>('SDL_GetKeyName');
@@ -275,11 +275,11 @@ String sdlGetKeyName(int key) {
 /// ```c
 /// extern DECLSPEC SDL_Keycode SDLCALL SDL_GetKeyFromName(const char *name)
 /// ```
-int sdlGetKeyFromName(String name) {
+int sdlGetKeyFromName(String? name) {
   final sdlGetKeyFromNameLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8> name),
       int Function(Pointer<Utf8> name)>('SDL_GetKeyFromName');
-  final namePointer = name.toNativeUtf8();
+  final namePointer = name != null ? name.toNativeUtf8() : nullptr;
   final result = sdlGetKeyFromNameLookupFunction(namePointer);
   calloc.free(namePointer);
   return result;

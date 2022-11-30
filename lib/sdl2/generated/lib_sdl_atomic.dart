@@ -241,13 +241,13 @@ int sdlAtomicAdd(Pointer<SdlAtomicT> a, int v) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_AtomicCASPtr(void **a, void *oldval, void *newval)
 /// ```
-int sdlAtomicCasPtr(
-    Pointer<Pointer<Void>> a, Pointer<Void> oldval, Pointer<Void> newval) {
+int sdlAtomicCasPtr(Pointer<Pointer<NativeType>> a, Pointer<NativeType> oldval,
+    Pointer<NativeType> newval) {
   final sdlAtomicCasPtrLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(
-          Pointer<Pointer<Void>> a, Pointer<Void> oldval, Pointer<Void> newval),
-      int Function(Pointer<Pointer<Void>> a, Pointer<Void> oldval,
-          Pointer<Void> newval)>('SDL_AtomicCASPtr');
+      Int32 Function(Pointer<Pointer<NativeType>> a, Pointer<NativeType> oldval,
+          Pointer<NativeType> newval),
+      int Function(Pointer<Pointer<NativeType>> a, Pointer<NativeType> oldval,
+          Pointer<NativeType> newval)>('SDL_AtomicCASPtr');
   return sdlAtomicCasPtrLookupFunction(a, oldval, newval);
 }
 
@@ -269,11 +269,13 @@ int sdlAtomicCasPtr(
 /// ```c
 /// extern DECLSPEC void* SDLCALL SDL_AtomicSetPtr(void **a, void* v)
 /// ```
-Pointer<Void> sdlAtomicSetPtr(Pointer<Pointer<Void>> a, Pointer<Void> v) {
+Pointer<NativeType> sdlAtomicSetPtr(
+    Pointer<Pointer<NativeType>> a, Pointer<NativeType> v) {
   final sdlAtomicSetPtrLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<Pointer<Void>> a, Pointer<Void> v),
-      Pointer<Void> Function(
-          Pointer<Pointer<Void>> a, Pointer<Void> v)>('SDL_AtomicSetPtr');
+      Pointer<NativeType> Function(
+          Pointer<Pointer<NativeType>> a, Pointer<NativeType> v),
+      Pointer<NativeType> Function(Pointer<Pointer<NativeType>> a,
+          Pointer<NativeType> v)>('SDL_AtomicSetPtr');
   return sdlAtomicSetPtrLookupFunction(a, v);
 }
 
@@ -294,9 +296,10 @@ Pointer<Void> sdlAtomicSetPtr(Pointer<Pointer<Void>> a, Pointer<Void> v) {
 /// ```c
 /// extern DECLSPEC void* SDLCALL SDL_AtomicGetPtr(void **a)
 /// ```
-Pointer<Void> sdlAtomicGetPtr(Pointer<Pointer<Void>> a) {
+Pointer<NativeType> sdlAtomicGetPtr(Pointer<Pointer<NativeType>> a) {
   final sdlAtomicGetPtrLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<Pointer<Void>> a),
-      Pointer<Void> Function(Pointer<Pointer<Void>> a)>('SDL_AtomicGetPtr');
+      Pointer<NativeType> Function(Pointer<Pointer<NativeType>> a),
+      Pointer<NativeType> Function(
+          Pointer<Pointer<NativeType>> a)>('SDL_AtomicGetPtr');
   return sdlAtomicGetPtrLookupFunction(a);
 }

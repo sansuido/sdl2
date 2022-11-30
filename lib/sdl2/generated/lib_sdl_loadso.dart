@@ -18,11 +18,11 @@ import 'lib_sdl.dart';
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_LoadObject(const char *sofile)
 /// ```
-Pointer<Void> sdlLoadObject(String sofile) {
+Pointer<NativeType> sdlLoadObject(String? sofile) {
   final sdlLoadObjectLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<Utf8> sofile),
-      Pointer<Void> Function(Pointer<Utf8> sofile)>('SDL_LoadObject');
-  final sofilePointer = sofile.toNativeUtf8();
+      Pointer<NativeType> Function(Pointer<Utf8> sofile),
+      Pointer<NativeType> Function(Pointer<Utf8> sofile)>('SDL_LoadObject');
+  final sofilePointer = sofile != null ? sofile.toNativeUtf8() : nullptr;
   final result = sdlLoadObjectLookupFunction(sofilePointer);
   calloc.free(sofilePointer);
   return result;
@@ -56,12 +56,13 @@ Pointer<Void> sdlLoadObject(String sofile) {
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_LoadFunction(void *handle, const char *name)
 /// ```
-Pointer<Void> sdlLoadFunction(Pointer<Void> handle, String name) {
+Pointer<NativeType> sdlLoadFunction(Pointer<NativeType> handle, String? name) {
   final sdlLoadFunctionLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<Void> handle, Pointer<Utf8> name),
-      Pointer<Void> Function(
-          Pointer<Void> handle, Pointer<Utf8> name)>('SDL_LoadFunction');
-  final namePointer = name.toNativeUtf8();
+      Pointer<NativeType> Function(
+          Pointer<NativeType> handle, Pointer<Utf8> name),
+      Pointer<NativeType> Function(
+          Pointer<NativeType> handle, Pointer<Utf8> name)>('SDL_LoadFunction');
+  final namePointer = name != null ? name.toNativeUtf8() : nullptr;
   final result = sdlLoadFunctionLookupFunction(handle, namePointer);
   calloc.free(namePointer);
   return result;
@@ -80,9 +81,9 @@ Pointer<Void> sdlLoadFunction(Pointer<Void> handle, String name) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_UnloadObject(void *handle)
 /// ```
-void sdlUnloadObject(Pointer<Void> handle) {
+void sdlUnloadObject(Pointer<NativeType> handle) {
   final sdlUnloadObjectLookupFunction = libSdl2.lookupFunction<
-      Void Function(Pointer<Void> handle),
-      void Function(Pointer<Void> handle)>('SDL_UnloadObject');
+      Void Function(Pointer<NativeType> handle),
+      void Function(Pointer<NativeType> handle)>('SDL_UnloadObject');
   return sdlUnloadObjectLookupFunction(handle);
 }

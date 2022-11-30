@@ -29,6 +29,7 @@
  *
  */
 import 'dart:ffi';
+import 'dart:math';
 import 'package:ffi/ffi.dart';
 import 'package:sdl2/sdl2.dart';
 
@@ -41,7 +42,7 @@ const gFontPath = 'res/SourceHanCodeJP.ttc';
 
 int main() {
   // Initialize SDL2
-  if (sdlInit(SDL_INIT_VIDEO) < 0) {
+  if (sdlInit(SDL_INIT_VIDEO) != 0) {
     print('SDL2 could not be initialized!\n'
         'SDL2 s: ${sdlGetError()}\n');
     return 0;
@@ -49,102 +50,94 @@ int main() {
   // Initialize SDL2_ttf
   ttfInit();
   // Create window
-  var window = sdlCreateWindow(
-      'SDL2_ttf sample',
-      SDL_WINDOWPOS_UNDEFINED,
-      SDL_WINDOWPOS_UNDEFINED,
-      gScreenWidth,
-      gScreenHeight,
-      SDL_WINDOW_SHOWN);
+  Pointer<SdlWindow> window = SdlWindowEx.create(
+      title: 'SDL2_ttf sample',
+      w: gScreenWidth,
+      h: gScreenHeight,
+      flags: SDL_WINDOW_SHOWN);
   if (window == nullptr) {
     print('Window could not be created!\n'
         'SDL_Error: ${sdlGetError()}\n');
   } else {
     // Create renderer
-    var renderer = sdlCreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    var renderer = window.createRenderer(
+        -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_ACCELERATED);
     if (renderer == nullptr) {
       print('Renderer could not be created!\n'
           'SDL_Error: ${sdlGetError()}\n');
     } else {
       // Declare rect of square
-      var squareRect = calloc<SdlRect>();
       // Square dimensions: Half of the min(gScreenWidth, gScreenHeight)
-      squareRect.ref.w = gScreenHeight ~/ 2;
-      squareRect.ref.h = gScreenHeight ~/ 2;
       // Square position: In the middle of the screen
-      squareRect.ref.x = gScreenWidth ~/ 2 - squareRect.ref.w ~/ 2;
-      squareRect.ref.y = gScreenHeight ~/ 2 - squareRect.ref.h ~/ 2;
-      var font = ttfOpenFont(gFontPath, 40);
+      var squareRect = Rectangle(
+          gScreenWidth ~/ 2 - gScreenHeight ~/ 2 ~/ 2,
+          gScreenHeight ~/ 2 - gScreenHeight ~/ 2 ~/ 2,
+          gScreenHeight ~/ 2,
+          gScreenHeight ~/ 2);
+      Pointer<TtfFont> font = nullptr;
+      font = TtfFontEx.open(gFontPath, 40);
+      //var font = ttfOpenFont(gFontPath, 40);
       if (font == nullptr) {
         print('Unable to load font: \'$gFontPath\'!\n'
             'SDL2_ttf Error: ${ttfGetError()}\n');
         return 0;
       }
-      var textColor = calloc<SdlColor>()
-        ..ref.r = 0x00
-        ..ref.g = 0x00
-        ..ref.b = 0x00
-        ..ref.a = 0xFF;
-      var textBackgroundColor = calloc<SdlColor>()
-        ..ref.r = 0xFF
-        ..ref.g = 0xFF
-        ..ref.b = 0xFF
-        ..ref.a = 0xFF;
-      Pointer<SdlTexture>? text;
-      var textRect = calloc<SdlRect>();
-      var textSurface = ttfRenderUtf8Shaded(
-          font, '赤い四角/Red square', textColor.ref, textBackgroundColor.ref);
-      calloc.free(textColor);
-      calloc.free(textBackgroundColor);
+      Pointer<SdlTexture> text = nullptr;
+      late Rectangle textRect;
+      var textSurface = font.renderUtf8Shaded(
+          '赤い四角/Red square',
+          SdlColorEx.rgbaToU32(0, 0, 0, SDL_ALPHA_OPAQUE),
+          SdlColorEx.rgbaToU32(255, 255, 255, SDL_ALPHA_OPAQUE));
+      font.close();
       if (textSurface == nullptr) {
         print('Unable to render text surface!\n'
             'SDL2_ttf Error: ${ttfGetError()}\n');
       } else {
         // Create texture from surface pixels
-        text = sdlCreateTextureFromSurface(renderer, textSurface);
+        text = renderer.createTextureFromSurface(textSurface);
         if (text == nullptr) {
           print('Unable to create texture from rendered text!\n'
               'SDL2 Error: ${sdlGetError()}\n');
           return 0;
         }
         // Get text dimensions
-        textRect.ref.w = textSurface.ref.w;
-        textRect.ref.h = textSurface.ref.h;
-        sdlFreeSurface(textSurface);
+        textRect = Rectangle(
+            (gScreenWidth - textSurface.ref.w) ~/ 2,
+            squareRect.top - textSurface.ref.h - 10,
+            textSurface.ref.w,
+            textSurface.ref.h);
+        textSurface.free();
       }
-      textRect.ref.x = (gScreenWidth - textRect.ref.w) ~/ 2;
-      textRect.ref.y = squareRect.ref.y - textRect.ref.h - 10;
       // Event loop exit flag
       var quit = false;
       // Event loop
       while (!quit) {
-        var e = calloc<SdlEvent>();
+        var event = calloc<SdlEvent>();
         // Wait indefinitely for the next available event
-        sdlWaitEvent(e);
+        event.wait();
         // User requests quit
-        if (e.type == SDL_QUIT) {
+        if (event.type == SDL_QUIT) {
           quit = true;
         }
         // Initialize renderer color white for the background
-        sdlSetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+        renderer.setDrawColor(0xff, 0xff, 0xff, SDL_ALPHA_OPAQUE);
         // Clear screen
-        sdlRenderClear(renderer);
+        renderer.clear();
         // Set renderer color red to draw the square
-        sdlSetRenderDrawColor(renderer, 0xFF, 0x00, 0x00, 0xFF);
+        renderer.setDrawColor(0xff, 0x00, 0x00, SDL_ALPHA_OPAQUE);
         // Draw filled square
-        sdlRenderFillRect(renderer, squareRect);
+        renderer.fillRect(squareRect);
         // Draw text
-        sdlRenderCopy(renderer, text!, nullptr, textRect);
+        renderer.copy(text, dstrect: textRect);
         // Update screen
-        sdlRenderPresent(renderer);
-        calloc.free(e);
+        renderer.present();
+        event.callocFree();
       }
-      calloc.free(textRect);
       // Destroy renderer
-      sdlDestroyRenderer(renderer);
+      renderer.destroy();
     }
     // Destroy window
-    sdlDestroyWindow(window);
+    window.destroy();
   }
   // Quit SDL2_ttf
   ttfQuit();

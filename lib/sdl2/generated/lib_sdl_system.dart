@@ -15,11 +15,13 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_SetWindowsMessageHook(SDL_WindowsMessageHook callback, void *userdata)
 /// ```
-void sdlSetWindowsMessageHook(Pointer<Void> callback, Pointer<Void> userdata) {
+void sdlSetWindowsMessageHook(
+    SdlWindowsMessageHook callback, Pointer<NativeType> userdata) {
   final sdlSetWindowsMessageHookLookupFunction = libSdl2.lookupFunction<
-      Void Function(Pointer<Void> callback, Pointer<Void> userdata),
-      void Function(Pointer<Void> callback,
-          Pointer<Void> userdata)>('SDL_SetWindowsMessageHook');
+      Void Function(
+          SdlWindowsMessageHook callback, Pointer<NativeType> userdata),
+      void Function(SdlWindowsMessageHook callback,
+          Pointer<NativeType> userdata)>('SDL_SetWindowsMessageHook');
   return sdlSetWindowsMessageHookLookupFunction(callback, userdata);
 }
 
@@ -85,10 +87,10 @@ Pointer<IDirect3DDevice9> sdlRenderGetD3D9Device(
 /// ```c
 /// extern DECLSPEC ID3D11Device* SDLCALL SDL_RenderGetD3D11Device(SDL_Renderer * renderer)
 /// ```
-Pointer<Id3D11Device> sdlRenderGetD3D11Device(Pointer<SdlRenderer> renderer) {
+Pointer<ID3D11Device> sdlRenderGetD3D11Device(Pointer<SdlRenderer> renderer) {
   final sdlRenderGetD3D11DeviceLookupFunction = libSdl2.lookupFunction<
-      Pointer<Id3D11Device> Function(Pointer<SdlRenderer> renderer),
-      Pointer<Id3D11Device> Function(
+      Pointer<ID3D11Device> Function(Pointer<SdlRenderer> renderer),
+      Pointer<ID3D11Device> Function(
           Pointer<SdlRenderer> renderer)>('SDL_RenderGetD3D11Device');
   return sdlRenderGetD3D11DeviceLookupFunction(renderer);
 }
@@ -108,10 +110,10 @@ Pointer<Id3D11Device> sdlRenderGetD3D11Device(Pointer<SdlRenderer> renderer) {
 /// ```c
 /// extern DECLSPEC ID3D12Device* SDLCALL SDL_RenderGetD3D12Device(SDL_Renderer* renderer)
 /// ```
-Pointer<Id3D12Device> sdlRenderGetD3D12Device(Pointer<SdlRenderer> renderer) {
+Pointer<ID3D12Device> sdlRenderGetD3D12Device(Pointer<SdlRenderer> renderer) {
   final sdlRenderGetD3D12DeviceLookupFunction = libSdl2.lookupFunction<
-      Pointer<Id3D12Device> Function(Pointer<SdlRenderer> renderer),
-      Pointer<Id3D12Device> Function(
+      Pointer<ID3D12Device> Function(Pointer<SdlRenderer> renderer),
+      Pointer<ID3D12Device> Function(
           Pointer<SdlRenderer> renderer)>('SDL_RenderGetD3D12Device');
   return sdlRenderGetD3D12DeviceLookupFunction(renderer);
 }
@@ -232,15 +234,15 @@ int sdlLinuxSetThreadPriorityAndPolicy(
 /// extern DECLSPEC int SDLCALL SDL_iPhoneSetAnimationCallback(SDL_Window * window, int interval, void (SDLCALL *callback)(void*), void *callbackParam)
 /// ```
 int sdlIPhoneSetAnimationCallback(Pointer<SdlWindow> window, int interval,
-    Pointer<Void> callback, Pointer<Void> callbackParam) {
+    Pointer<NativeType> callback, Pointer<NativeType> callbackParam) {
   final sdlIPhoneSetAnimationCallbackLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlWindow> window, Int32 interval,
-          Pointer<Void> callback, Pointer<Void> callbackParam),
+          Pointer<NativeType> callback, Pointer<NativeType> callbackParam),
       int Function(
           Pointer<SdlWindow> window,
           int interval,
-          Pointer<Void> callback,
-          Pointer<Void> callbackParam)>('SDL_iPhoneSetAnimationCallback');
+          Pointer<NativeType> callback,
+          Pointer<NativeType> callbackParam)>('SDL_iPhoneSetAnimationCallback');
   return sdlIPhoneSetAnimationCallbackLookupFunction(
       window, interval, callback, callbackParam);
 }
@@ -289,10 +291,10 @@ void sdlIPhoneSetEventPump(int enabled) {
 /// ```c
 /// extern DECLSPEC void * SDLCALL SDL_AndroidGetJNIEnv(void)
 /// ```
-Pointer<Void> sdlAndroidGetJniEnv() {
+Pointer<NativeType> sdlAndroidGetJniEnv() {
   final sdlAndroidGetJniEnvLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(),
-      Pointer<Void> Function()>('SDL_AndroidGetJNIEnv');
+      Pointer<NativeType> Function(),
+      Pointer<NativeType> Function()>('SDL_AndroidGetJNIEnv');
   return sdlAndroidGetJniEnvLookupFunction();
 }
 
@@ -319,10 +321,10 @@ Pointer<Void> sdlAndroidGetJniEnv() {
 /// ```c
 /// extern DECLSPEC void * SDLCALL SDL_AndroidGetActivity(void)
 /// ```
-Pointer<Void> sdlAndroidGetActivity() {
+Pointer<NativeType> sdlAndroidGetActivity() {
   final sdlAndroidGetActivityLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(),
-      Pointer<Void> Function()>('SDL_AndroidGetActivity');
+      Pointer<NativeType> Function(),
+      Pointer<NativeType> Function()>('SDL_AndroidGetActivity');
   return sdlAndroidGetActivityLookupFunction();
 }
 
@@ -448,7 +450,7 @@ void sdlAndroidBackButton() {
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDL_AndroidGetInternalStoragePath(void)
 /// ```
-String sdlAndroidGetInternalStoragePath() {
+String? sdlAndroidGetInternalStoragePath() {
   final sdlAndroidGetInternalStoragePathLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(),
       Pointer<Utf8> Function()>('SDL_AndroidGetInternalStoragePath');
@@ -499,7 +501,7 @@ int sdlAndroidGetExternalStorageState() {
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDL_AndroidGetExternalStoragePath(void)
 /// ```
-String sdlAndroidGetExternalStoragePath() {
+String? sdlAndroidGetExternalStoragePath() {
   final sdlAndroidGetExternalStoragePathLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(),
       Pointer<Utf8> Function()>('SDL_AndroidGetExternalStoragePath');
@@ -519,11 +521,12 @@ String sdlAndroidGetExternalStoragePath() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_AndroidRequestPermission(const char *permission)
 /// ```
-int sdlAndroidRequestPermission(String permission) {
+int sdlAndroidRequestPermission(String? permission) {
   final sdlAndroidRequestPermissionLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8> permission),
       int Function(Pointer<Utf8> permission)>('SDL_AndroidRequestPermission');
-  final permissionPointer = permission.toNativeUtf8();
+  final permissionPointer =
+      permission != null ? permission.toNativeUtf8() : nullptr;
   final result = sdlAndroidRequestPermissionLookupFunction(permissionPointer);
   calloc.free(permissionPointer);
   return result;
@@ -556,13 +559,13 @@ int sdlAndroidRequestPermission(String permission) {
 /// extern DECLSPEC int SDLCALL SDL_AndroidShowToast(const char* message, int duration, int gravity, int xoffset, int yoffset)
 /// ```
 int sdlAndroidShowToast(
-    String message, int duration, int gravity, int xoffset, int yoffset) {
+    String? message, int duration, int gravity, int xoffset, int yoffset) {
   final sdlAndroidShowToastLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8> message, Int32 duration, Int32 gravity,
           Int32 xoffset, Int32 yoffset),
       int Function(Pointer<Utf8> message, int duration, int gravity,
           int xoffset, int yoffset)>('SDL_AndroidShowToast');
-  final messagePointer = message.toNativeUtf8();
+  final messagePointer = message != null ? message.toNativeUtf8() : nullptr;
   final result = sdlAndroidShowToastLookupFunction(
       messagePointer, duration, gravity, xoffset, yoffset);
   calloc.free(messagePointer);
@@ -644,7 +647,7 @@ Pointer<Int16> sdlWinRtGetFsPathUnicode(int pathType) {
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDL_WinRTGetFSPathUTF8(SDL_WinRT_Path pathType)
 /// ```
-String sdlWinRtGetFsPathUtf8(int pathType) {
+String? sdlWinRtGetFsPathUtf8(int pathType) {
   final sdlWinRtGetFsPathUtf8LookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 pathType),
       Pointer<Utf8> Function(int pathType)>('SDL_WinRTGetFSPathUTF8');

@@ -1,42 +1,39 @@
 // https://dxlib.xsrv.jp/dxprogram.html#N2
 // 2.ジャンプ処理
 // 2.Jump processing
-
 import 'dart:ffi';
+import 'dart:math';
 import 'package:ffi/ffi.dart';
 import 'package:sdl2/sdl2.dart';
 
 const gTitle = 'DXLIB Tutorial 02';
-const gFps = 60;
-const gDelayTime = 1000.0 / gFps;
 const gScreenWidth = 640;
 const gScreenHeight = 480;
 const gPlayerWidth = 32;
 const gPlayerHeight = 32;
 
-Pointer<SdlWindow>? gWindow;
-Pointer<SdlRenderer>? gRenderer;
+Pointer<SdlWindow> gWindow = nullptr;
+Pointer<SdlRenderer> gRenderer = nullptr;
 var gPlayerX = (gScreenWidth - gPlayerHeight) ~/ 2;
 var gPlayerY = (gScreenHeight - gPlayerHeight) ~/ 2;
 var gJumpPower = 0;
 
 bool init() {
-  if (sdlInit(SDL_INIT_VIDEO) < 0) {
+  if (sdlInit(SDL_INIT_VIDEO) != 0) {
     print(sdlGetError());
     return false;
   }
-  gWindow = sdlCreateWindow(
-      gTitle,
-      SDL_WINDOWPOS_UNDEFINED,
-      SDL_WINDOWPOS_UNDEFINED,
-      gScreenWidth,
-      gScreenHeight,
-      SDL_WINDOW_SHOWN);
+  gWindow = SdlWindowEx.create(
+      title: gTitle,
+      w: gScreenWidth,
+      h: gScreenHeight,
+      flags: SDL_WINDOW_SHOWN);
   if (gWindow == nullptr) {
     print(sdlGetError());
     return false;
   }
-  gRenderer = sdlCreateRenderer(gWindow!, -1, SDL_RENDERER_ACCELERATED);
+  gRenderer = gWindow.createRenderer(
+      -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
   if (gRenderer == nullptr) {
     print(sdlGetError());
     return false;
@@ -45,14 +42,8 @@ bool init() {
 }
 
 void close() {
-  if (gRenderer != nullptr) {
-    sdlDestroyRenderer(gRenderer!);
-    gRenderer = nullptr;
-  }
-  if (gWindow != nullptr) {
-    sdlDestroyWindow(gWindow!);
-    gWindow = nullptr;
-  }
+  gRenderer.destroy();
+  gWindow.destroy();
   sdlQuit();
 }
 
@@ -85,9 +76,9 @@ void update() {
 
 bool handleEvents() {
   var quit = false;
-  var e = calloc<SdlEvent>();
-  while (sdlPollEvent(e) != 0) {
-    switch (e.type) {
+  var event = calloc<SdlEvent>();
+  while (event.poll() != 0) {
+    switch (event.type) {
       case SDL_QUIT:
         quit = true;
         break;
@@ -95,26 +86,20 @@ bool handleEvents() {
         break;
     }
   }
-  calloc.free(e);
+  event.callocFree();
   return quit;
 }
 
 void render() {
   // init
-  sdlSetRenderDrawColor(gRenderer!, 0x00, 0x00, 0x00, 0xff);
-  sdlRenderClear(gRenderer!);
-  // player
-  var playerRect = calloc<SdlRect>();
-  sdlSetRenderDrawColor(gRenderer!, 0x00, 0xff, 0x00, 0xff);
-  playerRect
-    ..ref.x = gPlayerX
-    ..ref.y = gPlayerY
-    ..ref.w = gPlayerWidth
-    ..ref.h = gPlayerHeight;
-  sdlRenderFillRect(gRenderer!, playerRect);
-  calloc.free(playerRect);
-  // term
-  sdlRenderPresent(gRenderer!);
+  gRenderer
+    ..setDrawColor(0x00, 0x00, 0x00, SDL_ALPHA_OPAQUE)
+    ..clear()
+    // player
+    ..setDrawColor(0x00, 0xff, 0x00, SDL_ALPHA_OPAQUE)
+    ..fillRect(Rectangle(gPlayerX, gPlayerY, gPlayerWidth, gPlayerHeight))
+    // term
+    ..present();
 }
 
 int main() {
@@ -122,21 +107,12 @@ int main() {
   if (init()) {
     var quit = false;
     while (!quit) {
-      // frameStart
-      var frameStart = sdlGetTicks();
       // update
       update();
       // handleEvents
       quit = handleEvents();
       // render
       render();
-      // frameEnd
-      var frameTime = sdlGetTicks() - frameStart;
-      if (frameTime < gDelayTime) {
-        sdlDelay((gDelayTime - frameTime).toInt());
-      } else {
-        sdlDelay(gDelayTime.toInt());
-      }
     }
   }
   // close

@@ -191,13 +191,13 @@ void imgQuit() {
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_LoadTyped_RW(SDL_RWops *src, int freesrc, const char *type)
 /// ```
 Pointer<SdlSurface> imgLoadTypedRw(
-    Pointer<SdlRWops> src, int freesrc, String type) {
+    Pointer<SdlRWops> src, int freesrc, String? type) {
   final imgLoadTypedRwLookupFunction = libSdl2Image.lookupFunction<
       Pointer<SdlSurface> Function(
           Pointer<SdlRWops> src, Int32 freesrc, Pointer<Utf8> type),
       Pointer<SdlSurface> Function(Pointer<SdlRWops> src, int freesrc,
           Pointer<Utf8> type)>('IMG_LoadTyped_RW');
-  final typePointer = type.toNativeUtf8();
+  final typePointer = type != null ? type.toNativeUtf8() : nullptr;
   final result = imgLoadTypedRwLookupFunction(src, freesrc, typePointer);
   calloc.free(typePointer);
   return result;
@@ -246,11 +246,11 @@ Pointer<SdlSurface> imgLoadTypedRw(
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL IMG_Load(const char *file)
 /// ```
-Pointer<SdlSurface> imgLoad(String file) {
+Pointer<SdlSurface> imgLoad(String? file) {
   final imgLoadLookupFunction = libSdl2Image.lookupFunction<
       Pointer<SdlSurface> Function(Pointer<Utf8> file),
       Pointer<SdlSurface> Function(Pointer<Utf8> file)>('IMG_Load');
-  final filePointer = file.toNativeUtf8();
+  final filePointer = file != null ? file.toNativeUtf8() : nullptr;
   final result = imgLoadLookupFunction(filePointer);
   calloc.free(filePointer);
   return result;
@@ -355,13 +355,14 @@ Pointer<SdlSurface> imgLoadRw(Pointer<SdlRWops> src, int freesrc) {
 /// ```c
 /// extern DECLSPEC SDL_Texture * SDLCALL IMG_LoadTexture(SDL_Renderer *renderer, const char *file)
 /// ```
-Pointer<SdlTexture> imgLoadTexture(Pointer<SdlRenderer> renderer, String file) {
+Pointer<SdlTexture> imgLoadTexture(
+    Pointer<SdlRenderer> renderer, String? file) {
   final imgLoadTextureLookupFunction = libSdl2Image.lookupFunction<
       Pointer<SdlTexture> Function(
           Pointer<SdlRenderer> renderer, Pointer<Utf8> file),
       Pointer<SdlTexture> Function(Pointer<SdlRenderer> renderer,
           Pointer<Utf8> file)>('IMG_LoadTexture');
-  final filePointer = file.toNativeUtf8();
+  final filePointer = file != null ? file.toNativeUtf8() : nullptr;
   final result = imgLoadTextureLookupFunction(renderer, filePointer);
   calloc.free(filePointer);
   return result;
@@ -482,7 +483,7 @@ Pointer<SdlTexture> imgLoadTextureRw(
 /// extern DECLSPEC SDL_Texture * SDLCALL IMG_LoadTextureTyped_RW(SDL_Renderer *renderer, SDL_RWops *src, int freesrc, const char *type)
 /// ```
 Pointer<SdlTexture> imgLoadTextureTypedRw(Pointer<SdlRenderer> renderer,
-    Pointer<SdlRWops> src, int freesrc, String type) {
+    Pointer<SdlRWops> src, int freesrc, String? type) {
   final imgLoadTextureTypedRwLookupFunction = libSdl2Image.lookupFunction<
       Pointer<SdlTexture> Function(Pointer<SdlRenderer> renderer,
           Pointer<SdlRWops> src, Int32 freesrc, Pointer<Utf8> type),
@@ -491,7 +492,7 @@ Pointer<SdlTexture> imgLoadTextureTypedRw(Pointer<SdlRenderer> renderer,
           Pointer<SdlRWops> src,
           int freesrc,
           Pointer<Utf8> type)>('IMG_LoadTextureTyped_RW');
-  final typePointer = type.toNativeUtf8();
+  final typePointer = type != null ? type.toNativeUtf8() : nullptr;
   final result =
       imgLoadTextureTypedRwLookupFunction(renderer, src, freesrc, typePointer);
   calloc.free(typePointer);
@@ -2321,12 +2322,12 @@ Pointer<SdlSurface> imgReadXpmFromArrayToRgb888(Pointer<Pointer<Int8>> xpm) {
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_SavePNG(SDL_Surface *surface, const char *file)
 /// ```
-int imgSavePng(Pointer<SdlSurface> surface, String file) {
+int imgSavePng(Pointer<SdlSurface> surface, String? file) {
   final imgSavePngLookupFunction = libSdl2Image.lookupFunction<
       Int32 Function(Pointer<SdlSurface> surface, Pointer<Utf8> file),
       int Function(
           Pointer<SdlSurface> surface, Pointer<Utf8> file)>('IMG_SavePNG');
-  final filePointer = file.toNativeUtf8();
+  final filePointer = file != null ? file.toNativeUtf8() : nullptr;
   final result = imgSavePngLookupFunction(surface, filePointer);
   calloc.free(filePointer);
   return result;
@@ -2380,13 +2381,13 @@ int imgSavePngRw(
 /// ```c
 /// extern DECLSPEC int SDLCALL IMG_SaveJPG(SDL_Surface *surface, const char *file, int quality)
 /// ```
-int imgSaveJpg(Pointer<SdlSurface> surface, String file, int quality) {
+int imgSaveJpg(Pointer<SdlSurface> surface, String? file, int quality) {
   final imgSaveJpgLookupFunction = libSdl2Image.lookupFunction<
       Int32 Function(
           Pointer<SdlSurface> surface, Pointer<Utf8> file, Int32 quality),
       int Function(Pointer<SdlSurface> surface, Pointer<Utf8> file,
           int quality)>('IMG_SaveJPG');
-  final filePointer = file.toNativeUtf8();
+  final filePointer = file != null ? file.toNativeUtf8() : nullptr;
   final result = imgSaveJpgLookupFunction(surface, filePointer, quality);
   calloc.free(filePointer);
   return result;
@@ -2436,11 +2437,11 @@ int imgSaveJpgRw(Pointer<SdlSurface> surface, Pointer<SdlRWops> dst,
 /// ```c
 /// extern DECLSPEC IMG_Animation * SDLCALL IMG_LoadAnimation(const char *file)
 /// ```
-Pointer<ImgAnimation> imgLoadAnimation(String file) {
+Pointer<ImgAnimation> imgLoadAnimation(String? file) {
   final imgLoadAnimationLookupFunction = libSdl2Image.lookupFunction<
       Pointer<ImgAnimation> Function(Pointer<Utf8> file),
       Pointer<ImgAnimation> Function(Pointer<Utf8> file)>('IMG_LoadAnimation');
-  final filePointer = file.toNativeUtf8();
+  final filePointer = file != null ? file.toNativeUtf8() : nullptr;
   final result = imgLoadAnimationLookupFunction(filePointer);
   calloc.free(filePointer);
   return result;
@@ -2508,13 +2509,13 @@ Pointer<ImgAnimation> imgLoadAnimationRw(Pointer<SdlRWops> src, int freesrc) {
 /// extern DECLSPEC IMG_Animation * SDLCALL IMG_LoadAnimationTyped_RW(SDL_RWops *src, int freesrc, const char *type)
 /// ```
 Pointer<ImgAnimation> imgLoadAnimationTypedRw(
-    Pointer<SdlRWops> src, int freesrc, String type) {
+    Pointer<SdlRWops> src, int freesrc, String? type) {
   final imgLoadAnimationTypedRwLookupFunction = libSdl2Image.lookupFunction<
       Pointer<ImgAnimation> Function(
           Pointer<SdlRWops> src, Int32 freesrc, Pointer<Utf8> type),
       Pointer<ImgAnimation> Function(Pointer<SdlRWops> src, int freesrc,
           Pointer<Utf8> type)>('IMG_LoadAnimationTyped_RW');
-  final typePointer = type.toNativeUtf8();
+  final typePointer = type != null ? type.toNativeUtf8() : nullptr;
   final result =
       imgLoadAnimationTypedRwLookupFunction(src, freesrc, typePointer);
   calloc.free(typePointer);

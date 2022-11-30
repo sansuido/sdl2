@@ -1,6 +1,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
 
+// Mix_Chunk
 class MixChunk extends Struct {
   // [0]+(4)
   @Int32()
@@ -23,4 +24,5 @@ class MixChunk extends Struct {
   external int blank_3;
 }
 
+// Mix_Music
 class MixMusic extends Opaque {}

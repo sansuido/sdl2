@@ -61,7 +61,7 @@ int sdlNumSensors() {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_SensorGetDeviceName(int device_index)
 /// ```
-String sdlSensorGetDeviceName(int deviceIndex) {
+String? sdlSensorGetDeviceName(int deviceIndex) {
   final sdlSensorGetDeviceNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 deviceIndex),
       Pointer<Utf8> Function(int deviceIndex)>('SDL_SensorGetDeviceName');
@@ -171,7 +171,7 @@ Pointer<SdlSensor> sdlSensorFromInstanceId(int instanceId) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_SensorGetName(SDL_Sensor *sensor)
 /// ```
-String sdlSensorGetName(Pointer<SdlSensor> sensor) {
+String? sdlSensorGetName(Pointer<SdlSensor> sensor) {
   final sdlSensorGetNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Pointer<SdlSensor> sensor),
       Pointer<Utf8> Function(Pointer<SdlSensor> sensor)>('SDL_SensorGetName');
@@ -246,7 +246,7 @@ int sdlSensorGetInstanceId(Pointer<SdlSensor> sensor) {
 /// \since This function is available since SDL 2.0.9.
 ///
 /// ```c
-/// extern DECLSPEC int SDLCALL SDL_SensorGetData(SDL_Sensor * sensor, float *data, int num_values)
+/// extern DECLSPEC int SDLCALL SDL_SensorGetData(SDL_Sensor *sensor, float *data, int num_values)
 /// ```
 int sdlSensorGetData(
     Pointer<SdlSensor> sensor, Pointer<Float> data, int numValues) {
@@ -259,6 +259,38 @@ int sdlSensorGetData(
 }
 
 ///
+/// Get the current state of an opened sensor with the timestamp of the last
+/// update.
+///
+/// The number of values and interpretation of the data is sensor dependent.
+///
+/// \param sensor The SDL_Sensor object to query
+/// \param timestamp A pointer filled with the timestamp in microseconds of the
+/// current sensor reading if available, or 0 if not
+/// \param data A pointer filled with the current sensor state
+/// \param num_values The number of values to write to data
+/// \returns 0 or -1 if an error occurred.
+///
+/// \since This function is available since SDL 2.26.0.
+///
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_SensorGetDataWithTimestamp(SDL_Sensor *sensor, Uint64 *timestamp, float *data, int num_values)
+/// ```
+int sdlSensorGetDataWithTimestamp(Pointer<SdlSensor> sensor,
+    Pointer<Uint64> timestamp, Pointer<Float> data, int numValues) {
+  final sdlSensorGetDataWithTimestampLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlSensor> sensor, Pointer<Uint64> timestamp,
+          Pointer<Float> data, Int32 numValues),
+      int Function(
+          Pointer<SdlSensor> sensor,
+          Pointer<Uint64> timestamp,
+          Pointer<Float> data,
+          int numValues)>('SDL_SensorGetDataWithTimestamp');
+  return sdlSensorGetDataWithTimestampLookupFunction(
+      sensor, timestamp, data, numValues);
+}
+
+///
 /// Close a sensor previously opened with SDL_SensorOpen().
 ///
 /// \param sensor The SDL_Sensor object to close
@@ -266,7 +298,7 @@ int sdlSensorGetData(
 /// \since This function is available since SDL 2.0.9.
 ///
 /// ```c
-/// extern DECLSPEC void SDLCALL SDL_SensorClose(SDL_Sensor * sensor)
+/// extern DECLSPEC void SDLCALL SDL_SensorClose(SDL_Sensor *sensor)
 /// ```
 void sdlSensorClose(Pointer<SdlSensor> sensor) {
   final sdlSensorCloseLookupFunction = libSdl2.lookupFunction<

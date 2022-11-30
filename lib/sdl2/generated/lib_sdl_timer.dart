@@ -160,12 +160,13 @@ void sdlDelay(int ms) {
 /// ```c
 /// extern DECLSPEC SDL_TimerID SDLCALL SDL_AddTimer(Uint32 interval, SDL_TimerCallback callback, void *param)
 /// ```
-int sdlAddTimer(int interval, Pointer<Void> callback, Pointer<Void> param) {
+int sdlAddTimer(
+    int interval, SdlTimerCallback callback, Pointer<NativeType> param) {
   final sdlAddTimerLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(
-          Uint32 interval, Pointer<Void> callback, Pointer<Void> param),
-      int Function(int interval, Pointer<Void> callback,
-          Pointer<Void> param)>('SDL_AddTimer');
+      Int32 Function(Uint32 interval, SdlTimerCallback callback,
+          Pointer<NativeType> param),
+      int Function(int interval, SdlTimerCallback callback,
+          Pointer<NativeType> param)>('SDL_AddTimer');
   return sdlAddTimerLookupFunction(interval, callback, param);
 }
 

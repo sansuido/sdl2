@@ -31,13 +31,13 @@ import 'struct_sdl.dart';
 /// extern DECLSPEC SDL_Window * SDLCALL SDL_CreateShapedWindow(const char *title,unsigned int x,unsigned int y,unsigned int w,unsigned int h,Uint32 flags)
 /// ```
 Pointer<SdlWindow> sdlCreateShapedWindow(
-    String title, int x, int y, int w, int h, int flags) {
+    String? title, int x, int y, int w, int h, int flags) {
   final sdlCreateShapedWindowLookupFunction = libSdl2.lookupFunction<
       Pointer<SdlWindow> Function(Pointer<Utf8> title, Uint32 x, Uint32 y,
           Uint32 w, Uint32 h, Uint32 flags),
       Pointer<SdlWindow> Function(Pointer<Utf8> title, int x, int y, int w,
           int h, int flags)>('SDL_CreateShapedWindow');
-  final titlePointer = title.toNativeUtf8();
+  final titlePointer = title != null ? title.toNativeUtf8() : nullptr;
   final result =
       sdlCreateShapedWindowLookupFunction(titlePointer, x, y, w, h, flags);
   calloc.free(titlePointer);

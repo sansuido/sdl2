@@ -22,7 +22,7 @@ import 'lib_sdl.dart';
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDL_GetPlatform (void)
 /// ```
-String sdlGetPlatform() {
+String? sdlGetPlatform() {
   final sdlGetPlatformLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(), Pointer<Utf8> Function()>('SDL_GetPlatform');
   return sdlGetPlatformLookupFunction().toDartString();

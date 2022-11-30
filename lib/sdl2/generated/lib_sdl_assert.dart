@@ -10,15 +10,15 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_AssertState SDLCALL SDL_ReportAssertion(SDL_AssertData *, const char *, const char *, int) __attribute__((analyzer_noreturn))
 /// ```
-int sdlReportAssertion(
-    Pointer<SdlAssertData> arg0, String arg1, String arg2, Pointer<Void> arg3) {
+int sdlReportAssertion(Pointer<SdlAssertData> arg0, String? arg1, String? arg2,
+    Pointer<NativeType> arg3) {
   final sdlReportAssertionLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlAssertData> arg0, Pointer<Utf8> arg1,
-          Pointer<Utf8> arg2, Pointer<Void> arg3),
+          Pointer<Utf8> arg2, Pointer<NativeType> arg3),
       int Function(Pointer<SdlAssertData> arg0, Pointer<Utf8> arg1,
-          Pointer<Utf8> arg2, Pointer<Void> arg3)>('SDL_ReportAssertion');
-  final arg1Pointer = arg1.toNativeUtf8();
-  final arg2Pointer = arg2.toNativeUtf8();
+          Pointer<Utf8> arg2, Pointer<NativeType> arg3)>('SDL_ReportAssertion');
+  final arg1Pointer = arg1 != null ? arg1.toNativeUtf8() : nullptr;
+  final arg2Pointer = arg2 != null ? arg2.toNativeUtf8() : nullptr;
   final result =
       sdlReportAssertionLookupFunction(arg0, arg1Pointer, arg2Pointer, arg3);
   calloc.free(arg1Pointer);
@@ -50,11 +50,12 @@ int sdlReportAssertion(
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_SetAssertionHandler( SDL_AssertionHandler handler, void *userdata)
 /// ```
-void sdlSetAssertionHandler(Pointer<Void> handler, Pointer<Void> userdata) {
+void sdlSetAssertionHandler(
+    SdlAssertionHandler handler, Pointer<NativeType> userdata) {
   final sdlSetAssertionHandlerLookupFunction = libSdl2.lookupFunction<
-      Void Function(Pointer<Void> handler, Pointer<Void> userdata),
-      void Function(Pointer<Void> handler,
-          Pointer<Void> userdata)>('SDL_SetAssertionHandler');
+      Void Function(SdlAssertionHandler handler, Pointer<NativeType> userdata),
+      void Function(SdlAssertionHandler handler,
+          Pointer<NativeType> userdata)>('SDL_SetAssertionHandler');
   return sdlSetAssertionHandlerLookupFunction(handler, userdata);
 }
 
@@ -76,10 +77,10 @@ void sdlSetAssertionHandler(Pointer<Void> handler, Pointer<Void> userdata) {
 /// ```c
 /// extern DECLSPEC SDL_AssertionHandler SDLCALL SDL_GetDefaultAssertionHandler(void)
 /// ```
-Pointer<Void> sdlGetDefaultAssertionHandler() {
+SdlAssertionHandler sdlGetDefaultAssertionHandler() {
   final sdlGetDefaultAssertionHandlerLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(),
-      Pointer<Void> Function()>('SDL_GetDefaultAssertionHandler');
+      SdlAssertionHandler Function(),
+      SdlAssertionHandler Function()>('SDL_GetDefaultAssertionHandler');
   return sdlGetDefaultAssertionHandlerLookupFunction();
 }
 
@@ -107,11 +108,12 @@ Pointer<Void> sdlGetDefaultAssertionHandler() {
 /// ```c
 /// extern DECLSPEC SDL_AssertionHandler SDLCALL SDL_GetAssertionHandler(void **puserdata)
 /// ```
-Pointer<Void> sdlGetAssertionHandler(Pointer<Pointer<Void>> puserdata) {
+SdlAssertionHandler sdlGetAssertionHandler(
+    Pointer<Pointer<NativeType>> puserdata) {
   final sdlGetAssertionHandlerLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<Pointer<Void>> puserdata),
-      Pointer<Void> Function(
-          Pointer<Pointer<Void>> puserdata)>('SDL_GetAssertionHandler');
+      SdlAssertionHandler Function(Pointer<Pointer<NativeType>> puserdata),
+      SdlAssertionHandler Function(
+          Pointer<Pointer<NativeType>> puserdata)>('SDL_GetAssertionHandler');
   return sdlGetAssertionHandlerLookupFunction(puserdata);
 }
 

@@ -96,13 +96,13 @@ void sdlNetQuit() {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_ResolveHost(IPaddress *address, const char *host, Uint16 port)
 /// ```
-int sdlNetResolveHost(Pointer<IPaddress> address, String host, int port) {
+int sdlNetResolveHost(Pointer<IPaddress> address, String? host, int port) {
   final sdlNetResolveHostLookupFunction = libSdl2Net.lookupFunction<
       Int32 Function(
           Pointer<IPaddress> address, Pointer<Utf8> host, Uint16 port),
       int Function(Pointer<IPaddress> address, Pointer<Utf8> host,
           int port)>('SDLNet_ResolveHost');
-  final hostPointer = host.toNativeUtf8();
+  final hostPointer = host != null ? host.toNativeUtf8() : nullptr;
   final result = sdlNetResolveHostLookupFunction(address, hostPointer, port);
   calloc.free(hostPointer);
   return result;
@@ -123,7 +123,7 @@ int sdlNetResolveHost(Pointer<IPaddress> address, String host, int port) {
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDLNet_ResolveIP(const IPaddress *ip)
 /// ```
-String sdlNetResolveIp(Pointer<IPaddress> ip) {
+String? sdlNetResolveIp(Pointer<IPaddress> ip) {
   final sdlNetResolveIpLookupFunction = libSdl2Net.lookupFunction<
       Pointer<Utf8> Function(Pointer<IPaddress> ip),
       Pointer<Utf8> Function(Pointer<IPaddress> ip)>('SDLNet_ResolveIP');
@@ -169,10 +169,10 @@ int sdlNetGetLocalAddresses(Pointer<IPaddress> addresses, int maxcount) {
 /// ```c
 /// extern DECLSPEC TCPsocket SDLCALL SDLNet_TCP_Open(IPaddress *ip)
 /// ```
-Pointer<Void> sdlNetTcpOpen(Pointer<IPaddress> ip) {
+Pointer<TCPsocket> sdlNetTcpOpen(Pointer<IPaddress> ip) {
   final sdlNetTcpOpenLookupFunction = libSdl2Net.lookupFunction<
-      Pointer<Void> Function(Pointer<IPaddress> ip),
-      Pointer<Void> Function(Pointer<IPaddress> ip)>('SDLNet_TCP_Open');
+      Pointer<TCPsocket> Function(Pointer<IPaddress> ip),
+      Pointer<TCPsocket> Function(Pointer<IPaddress> ip)>('SDLNet_TCP_Open');
   return sdlNetTcpOpenLookupFunction(ip);
 }
 
@@ -191,10 +191,11 @@ Pointer<Void> sdlNetTcpOpen(Pointer<IPaddress> ip) {
 /// ```c
 /// extern DECLSPEC TCPsocket SDLCALL SDLNet_TCP_Accept(TCPsocket server)
 /// ```
-Pointer<Void> sdlNetTcpAccept(Pointer<Void> server) {
+Pointer<TCPsocket> sdlNetTcpAccept(Pointer<TCPsocket> server) {
   final sdlNetTcpAcceptLookupFunction = libSdl2Net.lookupFunction<
-      Pointer<Void> Function(Pointer<Void> server),
-      Pointer<Void> Function(Pointer<Void> server)>('SDLNet_TCP_Accept');
+      Pointer<TCPsocket> Function(Pointer<TCPsocket> server),
+      Pointer<TCPsocket> Function(
+          Pointer<TCPsocket> server)>('SDLNet_TCP_Accept');
   return sdlNetTcpAcceptLookupFunction(server);
 }
 
@@ -215,11 +216,11 @@ Pointer<Void> sdlNetTcpAccept(Pointer<Void> server) {
 /// ```c
 /// extern DECLSPEC IPaddress * SDLCALL SDLNet_TCP_GetPeerAddress(TCPsocket sock)
 /// ```
-Pointer<IPaddress> sdlNetTcpGetPeerAddress(Pointer<Void> sock) {
+Pointer<IPaddress> sdlNetTcpGetPeerAddress(Pointer<TCPsocket> sock) {
   final sdlNetTcpGetPeerAddressLookupFunction = libSdl2Net.lookupFunction<
-      Pointer<IPaddress> Function(Pointer<Void> sock),
+      Pointer<IPaddress> Function(Pointer<TCPsocket> sock),
       Pointer<IPaddress> Function(
-          Pointer<Void> sock)>('SDLNet_TCP_GetPeerAddress');
+          Pointer<TCPsocket> sock)>('SDLNet_TCP_GetPeerAddress');
   return sdlNetTcpGetPeerAddressLookupFunction(sock);
 }
 
@@ -252,11 +253,12 @@ Pointer<IPaddress> sdlNetTcpGetPeerAddress(Pointer<Void> sock) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_TCP_Send(TCPsocket sock, const void *data, int len)
 /// ```
-int sdlNetTcpSend(Pointer<Void> sock, Pointer<Void> data, int len) {
+int sdlNetTcpSend(Pointer<TCPsocket> sock, Pointer<NativeType> data, int len) {
   final sdlNetTcpSendLookupFunction = libSdl2Net.lookupFunction<
-      Int32 Function(Pointer<Void> sock, Pointer<Void> data, Int32 len),
-      int Function(
-          Pointer<Void> sock, Pointer<Void> data, int len)>('SDLNet_TCP_Send');
+      Int32 Function(
+          Pointer<TCPsocket> sock, Pointer<NativeType> data, Int32 len),
+      int Function(Pointer<TCPsocket> sock, Pointer<NativeType> data,
+          int len)>('SDLNet_TCP_Send');
   return sdlNetTcpSendLookupFunction(sock, data, len);
 }
 
@@ -293,10 +295,12 @@ int sdlNetTcpSend(Pointer<Void> sock, Pointer<Void> data, int len) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_TCP_Recv(TCPsocket sock, void *data, int maxlen)
 /// ```
-int sdlNetTcpRecv(Pointer<Void> sock, Pointer<Void> data, int maxlen) {
+int sdlNetTcpRecv(
+    Pointer<TCPsocket> sock, Pointer<NativeType> data, int maxlen) {
   final sdlNetTcpRecvLookupFunction = libSdl2Net.lookupFunction<
-      Int32 Function(Pointer<Void> sock, Pointer<Void> data, Int32 maxlen),
-      int Function(Pointer<Void> sock, Pointer<Void> data,
+      Int32 Function(
+          Pointer<TCPsocket> sock, Pointer<NativeType> data, Int32 maxlen),
+      int Function(Pointer<TCPsocket> sock, Pointer<NativeType> data,
           int maxlen)>('SDLNet_TCP_Recv');
   return sdlNetTcpRecvLookupFunction(sock, data, maxlen);
 }
@@ -317,10 +321,10 @@ int sdlNetTcpRecv(Pointer<Void> sock, Pointer<Void> data, int maxlen) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_TCP_Close(TCPsocket sock)
 /// ```
-void sdlNetTcpClose(Pointer<Void> sock) {
+void sdlNetTcpClose(Pointer<TCPsocket> sock) {
   final sdlNetTcpCloseLookupFunction = libSdl2Net.lookupFunction<
-      Void Function(Pointer<Void> sock),
-      void Function(Pointer<Void> sock)>('SDLNet_TCP_Close');
+      Void Function(Pointer<TCPsocket> sock),
+      void Function(Pointer<TCPsocket> sock)>('SDLNet_TCP_Close');
   return sdlNetTcpCloseLookupFunction(sock);
 }
 
@@ -348,10 +352,10 @@ void sdlNetTcpClose(Pointer<Void> sock) {
 /// ```c
 /// extern DECLSPEC UDPpacket * SDLCALL SDLNet_AllocPacket(int size)
 /// ```
-Pointer<UdPpacket> sdlNetAllocPacket(int size) {
+Pointer<UDPpacket> sdlNetAllocPacket(int size) {
   final sdlNetAllocPacketLookupFunction = libSdl2Net.lookupFunction<
-      Pointer<UdPpacket> Function(Int32 size),
-      Pointer<UdPpacket> Function(int size)>('SDLNet_AllocPacket');
+      Pointer<UDPpacket> Function(Int32 size),
+      Pointer<UDPpacket> Function(int size)>('SDLNet_AllocPacket');
   return sdlNetAllocPacketLookupFunction(size);
 }
 
@@ -386,11 +390,11 @@ Pointer<UdPpacket> sdlNetAllocPacket(int size) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_ResizePacket(UDPpacket *packet, int newsize)
 /// ```
-int sdlNetResizePacket(Pointer<UdPpacket> packet, int newsize) {
+int sdlNetResizePacket(Pointer<UDPpacket> packet, int newsize) {
   final sdlNetResizePacketLookupFunction = libSdl2Net.lookupFunction<
-      Int32 Function(Pointer<UdPpacket> packet, Int32 newsize),
+      Int32 Function(Pointer<UDPpacket> packet, Int32 newsize),
       int Function(
-          Pointer<UdPpacket> packet, int newsize)>('SDLNet_ResizePacket');
+          Pointer<UDPpacket> packet, int newsize)>('SDLNet_ResizePacket');
   return sdlNetResizePacketLookupFunction(packet, newsize);
 }
 
@@ -410,10 +414,10 @@ int sdlNetResizePacket(Pointer<UdPpacket> packet, int newsize) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_FreePacket(UDPpacket *packet)
 /// ```
-void sdlNetFreePacket(Pointer<UdPpacket> packet) {
+void sdlNetFreePacket(Pointer<UDPpacket> packet) {
   final sdlNetFreePacketLookupFunction = libSdl2Net.lookupFunction<
-      Void Function(Pointer<UdPpacket> packet),
-      void Function(Pointer<UdPpacket> packet)>('SDLNet_FreePacket');
+      Void Function(Pointer<UDPpacket> packet),
+      void Function(Pointer<UDPpacket> packet)>('SDLNet_FreePacket');
   return sdlNetFreePacketLookupFunction(packet);
 }
 
@@ -437,10 +441,10 @@ void sdlNetFreePacket(Pointer<UdPpacket> packet) {
 /// ```c
 /// extern DECLSPEC UDPpacket ** SDLCALL SDLNet_AllocPacketV(int howmany, int size)
 /// ```
-Pointer<Pointer<UdPpacket>> sdlNetAllocPacketV(int howmany, int size) {
+Pointer<Pointer<UDPpacket>> sdlNetAllocPacketV(int howmany, int size) {
   final sdlNetAllocPacketVLookupFunction = libSdl2Net.lookupFunction<
-      Pointer<Pointer<UdPpacket>> Function(Int32 howmany, Int32 size),
-      Pointer<Pointer<UdPpacket>> Function(
+      Pointer<Pointer<UDPpacket>> Function(Int32 howmany, Int32 size),
+      Pointer<Pointer<UDPpacket>> Function(
           int howmany, int size)>('SDLNet_AllocPacketV');
   return sdlNetAllocPacketVLookupFunction(howmany, size);
 }
@@ -465,10 +469,10 @@ Pointer<Pointer<UdPpacket>> sdlNetAllocPacketV(int howmany, int size) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_FreePacketV(UDPpacket **packetV)
 /// ```
-void sdlNetFreePacketV(Pointer<Pointer<UdPpacket>> packetV) {
+void sdlNetFreePacketV(Pointer<Pointer<UDPpacket>> packetV) {
   final sdlNetFreePacketVLookupFunction = libSdl2Net.lookupFunction<
-      Void Function(Pointer<Pointer<UdPpacket>> packetV),
-      void Function(Pointer<Pointer<UdPpacket>> packetV)>('SDLNet_FreePacketV');
+      Void Function(Pointer<Pointer<UDPpacket>> packetV),
+      void Function(Pointer<Pointer<UDPpacket>> packetV)>('SDLNet_FreePacketV');
   return sdlNetFreePacketVLookupFunction(packetV);
 }
 
@@ -499,10 +503,10 @@ void sdlNetFreePacketV(Pointer<Pointer<UdPpacket>> packetV) {
 /// ```c
 /// extern DECLSPEC UDPsocket SDLCALL SDLNet_UDP_Open(Uint16 port)
 /// ```
-Pointer<Void> sdlNetUdpOpen(int port) {
+Pointer<UDPsocket> sdlNetUdpOpen(int port) {
   final sdlNetUdpOpenLookupFunction = libSdl2Net.lookupFunction<
-      Pointer<Void> Function(Uint16 port),
-      Pointer<Void> Function(int port)>('SDLNet_UDP_Open');
+      Pointer<UDPsocket> Function(Uint16 port),
+      Pointer<UDPsocket> Function(int port)>('SDLNet_UDP_Open');
   return sdlNetUdpOpenLookupFunction(port);
 }
 
@@ -526,11 +530,11 @@ Pointer<Void> sdlNetUdpOpen(int port) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_UDP_SetPacketLoss(UDPsocket sock, int percent)
 /// ```
-void sdlNetUdpSetPacketLoss(Pointer<Void> sock, int percent) {
+void sdlNetUdpSetPacketLoss(Pointer<UDPsocket> sock, int percent) {
   final sdlNetUdpSetPacketLossLookupFunction = libSdl2Net.lookupFunction<
-      Void Function(Pointer<Void> sock, Int32 percent),
+      Void Function(Pointer<UDPsocket> sock, Int32 percent),
       void Function(
-          Pointer<Void> sock, int percent)>('SDLNet_UDP_SetPacketLoss');
+          Pointer<UDPsocket> sock, int percent)>('SDLNet_UDP_SetPacketLoss');
   return sdlNetUdpSetPacketLossLookupFunction(sock, percent);
 }
 
@@ -563,11 +567,12 @@ void sdlNetUdpSetPacketLoss(Pointer<Void> sock, int percent) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_UDP_Bind(UDPsocket sock, int channel, const IPaddress *address)
 /// ```
-int sdlNetUdpBind(Pointer<Void> sock, int channel, Pointer<IPaddress> address) {
+int sdlNetUdpBind(
+    Pointer<UDPsocket> sock, int channel, Pointer<IPaddress> address) {
   final sdlNetUdpBindLookupFunction = libSdl2Net.lookupFunction<
       Int32 Function(
-          Pointer<Void> sock, Int32 channel, Pointer<IPaddress> address),
-      int Function(Pointer<Void> sock, int channel,
+          Pointer<UDPsocket> sock, Int32 channel, Pointer<IPaddress> address),
+      int Function(Pointer<UDPsocket> sock, int channel,
           Pointer<IPaddress> address)>('SDLNet_UDP_Bind');
   return sdlNetUdpBindLookupFunction(sock, channel, address);
 }
@@ -589,10 +594,10 @@ int sdlNetUdpBind(Pointer<Void> sock, int channel, Pointer<IPaddress> address) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_UDP_Unbind(UDPsocket sock, int channel)
 /// ```
-void sdlNetUdpUnbind(Pointer<Void> sock, int channel) {
+void sdlNetUdpUnbind(Pointer<UDPsocket> sock, int channel) {
   final sdlNetUdpUnbindLookupFunction = libSdl2Net.lookupFunction<
-      Void Function(Pointer<Void> sock, Int32 channel),
-      void Function(Pointer<Void> sock, int channel)>('SDLNet_UDP_Unbind');
+      Void Function(Pointer<UDPsocket> sock, Int32 channel),
+      void Function(Pointer<UDPsocket> sock, int channel)>('SDLNet_UDP_Unbind');
   return sdlNetUdpUnbindLookupFunction(sock, channel);
 }
 
@@ -613,11 +618,12 @@ void sdlNetUdpUnbind(Pointer<Void> sock, int channel) {
 /// ```c
 /// extern DECLSPEC IPaddress * SDLCALL SDLNet_UDP_GetPeerAddress(UDPsocket sock, int channel)
 /// ```
-Pointer<IPaddress> sdlNetUdpGetPeerAddress(Pointer<Void> sock, int channel) {
+Pointer<IPaddress> sdlNetUdpGetPeerAddress(
+    Pointer<UDPsocket> sock, int channel) {
   final sdlNetUdpGetPeerAddressLookupFunction = libSdl2Net.lookupFunction<
-      Pointer<IPaddress> Function(Pointer<Void> sock, Int32 channel),
+      Pointer<IPaddress> Function(Pointer<UDPsocket> sock, Int32 channel),
       Pointer<IPaddress> Function(
-          Pointer<Void> sock, int channel)>('SDLNet_UDP_GetPeerAddress');
+          Pointer<UDPsocket> sock, int channel)>('SDLNet_UDP_GetPeerAddress');
   return sdlNetUdpGetPeerAddressLookupFunction(sock, channel);
 }
 
@@ -662,12 +668,12 @@ Pointer<IPaddress> sdlNetUdpGetPeerAddress(Pointer<Void> sock, int channel) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_UDP_SendV(UDPsocket sock, UDPpacket **packets, int npackets)
 /// ```
-int sdlNetUdpSendV(
-    Pointer<Void> sock, Pointer<Pointer<UdPpacket>> packets, int npackets) {
+int sdlNetUdpSendV(Pointer<UDPsocket> sock, Pointer<Pointer<UDPpacket>> packets,
+    int npackets) {
   final sdlNetUdpSendVLookupFunction = libSdl2Net.lookupFunction<
-      Int32 Function(Pointer<Void> sock, Pointer<Pointer<UdPpacket>> packets,
-          Int32 npackets),
-      int Function(Pointer<Void> sock, Pointer<Pointer<UdPpacket>> packets,
+      Int32 Function(Pointer<UDPsocket> sock,
+          Pointer<Pointer<UDPpacket>> packets, Int32 npackets),
+      int Function(Pointer<UDPsocket> sock, Pointer<Pointer<UDPpacket>> packets,
           int npackets)>('SDLNet_UDP_SendV');
   return sdlNetUdpSendVLookupFunction(sock, packets, npackets);
 }
@@ -706,12 +712,13 @@ int sdlNetUdpSendV(
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_UDP_Send(UDPsocket sock, int channel, UDPpacket *packet)
 /// ```
-int sdlNetUdpSend(Pointer<Void> sock, int channel, Pointer<UdPpacket> packet) {
+int sdlNetUdpSend(
+    Pointer<UDPsocket> sock, int channel, Pointer<UDPpacket> packet) {
   final sdlNetUdpSendLookupFunction = libSdl2Net.lookupFunction<
       Int32 Function(
-          Pointer<Void> sock, Int32 channel, Pointer<UdPpacket> packet),
-      int Function(Pointer<Void> sock, int channel,
-          Pointer<UdPpacket> packet)>('SDLNet_UDP_Send');
+          Pointer<UDPsocket> sock, Int32 channel, Pointer<UDPpacket> packet),
+      int Function(Pointer<UDPsocket> sock, int channel,
+          Pointer<UDPpacket> packet)>('SDLNet_UDP_Send');
   return sdlNetUdpSendLookupFunction(sock, channel, packet);
 }
 
@@ -748,11 +755,13 @@ int sdlNetUdpSend(Pointer<Void> sock, int channel, Pointer<UdPpacket> packet) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_UDP_RecvV(UDPsocket sock, UDPpacket **packets)
 /// ```
-int sdlNetUdpRecvV(Pointer<Void> sock, Pointer<Pointer<UdPpacket>> packets) {
+int sdlNetUdpRecvV(
+    Pointer<UDPsocket> sock, Pointer<Pointer<UDPpacket>> packets) {
   final sdlNetUdpRecvVLookupFunction = libSdl2Net.lookupFunction<
-      Int32 Function(Pointer<Void> sock, Pointer<Pointer<UdPpacket>> packets),
-      int Function(Pointer<Void> sock,
-          Pointer<Pointer<UdPpacket>> packets)>('SDLNet_UDP_RecvV');
+      Int32 Function(
+          Pointer<UDPsocket> sock, Pointer<Pointer<UDPpacket>> packets),
+      int Function(Pointer<UDPsocket> sock,
+          Pointer<Pointer<UDPpacket>> packets)>('SDLNet_UDP_RecvV');
   return sdlNetUdpRecvVLookupFunction(sock, packets);
 }
 
@@ -783,11 +792,11 @@ int sdlNetUdpRecvV(Pointer<Void> sock, Pointer<Pointer<UdPpacket>> packets) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_UDP_Recv(UDPsocket sock, UDPpacket *packet)
 /// ```
-int sdlNetUdpRecv(Pointer<Void> sock, Pointer<UdPpacket> packet) {
+int sdlNetUdpRecv(Pointer<UDPsocket> sock, Pointer<UDPpacket> packet) {
   final sdlNetUdpRecvLookupFunction = libSdl2Net.lookupFunction<
-      Int32 Function(Pointer<Void> sock, Pointer<UdPpacket> packet),
-      int Function(
-          Pointer<Void> sock, Pointer<UdPpacket> packet)>('SDLNet_UDP_Recv');
+      Int32 Function(Pointer<UDPsocket> sock, Pointer<UDPpacket> packet),
+      int Function(Pointer<UDPsocket> sock,
+          Pointer<UDPpacket> packet)>('SDLNet_UDP_Recv');
   return sdlNetUdpRecvLookupFunction(sock, packet);
 }
 
@@ -805,10 +814,10 @@ int sdlNetUdpRecv(Pointer<Void> sock, Pointer<UdPpacket> packet) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_UDP_Close(UDPsocket sock)
 /// ```
-void sdlNetUdpClose(Pointer<Void> sock) {
+void sdlNetUdpClose(Pointer<UDPsocket> sock) {
   final sdlNetUdpCloseLookupFunction = libSdl2Net.lookupFunction<
-      Void Function(Pointer<Void> sock),
-      void Function(Pointer<Void> sock)>('SDLNet_UDP_Close');
+      Void Function(Pointer<UDPsocket> sock),
+      void Function(Pointer<UDPsocket> sock)>('SDLNet_UDP_Close');
   return sdlNetUdpCloseLookupFunction(sock);
 }
 
@@ -833,10 +842,11 @@ void sdlNetUdpClose(Pointer<Void> sock) {
 /// ```c
 /// extern DECLSPEC SDLNet_SocketSet SDLCALL SDLNet_AllocSocketSet(int maxsockets)
 /// ```
-Pointer<Void> sdlNetAllocSocketSet(int maxsockets) {
+Pointer<SdlNetSocketSet> sdlNetAllocSocketSet(int maxsockets) {
   final sdlNetAllocSocketSetLookupFunction = libSdl2Net.lookupFunction<
-      Pointer<Void> Function(Int32 maxsockets),
-      Pointer<Void> Function(int maxsockets)>('SDLNet_AllocSocketSet');
+      Pointer<SdlNetSocketSet> Function(Int32 maxsockets),
+      Pointer<SdlNetSocketSet> Function(
+          int maxsockets)>('SDLNet_AllocSocketSet');
   return sdlNetAllocSocketSetLookupFunction(maxsockets);
 }
 
@@ -871,10 +881,11 @@ Pointer<Void> sdlNetAllocSocketSet(int maxsockets) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_AddSocket(SDLNet_SocketSet set, SDLNet_GenericSocket sock)
 /// ```
-int sdlNetAddSocket(Pointer<Void> set, Pointer<Void> sock) {
+int sdlNetAddSocket(Pointer<SdlNetSocketSet> set, SdlNetGenericSocket sock) {
   final sdlNetAddSocketLookupFunction = libSdl2Net.lookupFunction<
-      Int32 Function(Pointer<Void> set, Pointer<Void> sock),
-      int Function(Pointer<Void> set, Pointer<Void> sock)>('SDLNet_AddSocket');
+      Int32 Function(Pointer<SdlNetSocketSet> set, SdlNetGenericSocket sock),
+      int Function(Pointer<SdlNetSocketSet> set,
+          SdlNetGenericSocket sock)>('SDLNet_AddSocket');
   return sdlNetAddSocketLookupFunction(set, sock);
 }
 
@@ -908,10 +919,11 @@ int sdlNetAddSocket(Pointer<Void> set, Pointer<Void> sock) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_DelSocket(SDLNet_SocketSet set, SDLNet_GenericSocket sock)
 /// ```
-int sdlNetDelSocket(Pointer<Void> set, Pointer<Void> sock) {
+int sdlNetDelSocket(Pointer<SdlNetSocketSet> set, SdlNetGenericSocket sock) {
   final sdlNetDelSocketLookupFunction = libSdl2Net.lookupFunction<
-      Int32 Function(Pointer<Void> set, Pointer<Void> sock),
-      int Function(Pointer<Void> set, Pointer<Void> sock)>('SDLNet_DelSocket');
+      Int32 Function(Pointer<SdlNetSocketSet> set, SdlNetGenericSocket sock),
+      int Function(Pointer<SdlNetSocketSet> set,
+          SdlNetGenericSocket sock)>('SDLNet_DelSocket');
   return sdlNetDelSocketLookupFunction(set, sock);
 }
 
@@ -935,10 +947,11 @@ int sdlNetDelSocket(Pointer<Void> set, Pointer<Void> sock) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDLNet_CheckSockets(SDLNet_SocketSet set, Uint32 timeout)
 /// ```
-int sdlNetCheckSockets(Pointer<Void> set, int timeout) {
+int sdlNetCheckSockets(Pointer<SdlNetSocketSet> set, int timeout) {
   final sdlNetCheckSocketsLookupFunction = libSdl2Net.lookupFunction<
-      Int32 Function(Pointer<Void> set, Uint32 timeout),
-      int Function(Pointer<Void> set, int timeout)>('SDLNet_CheckSockets');
+      Int32 Function(Pointer<SdlNetSocketSet> set, Uint32 timeout),
+      int Function(
+          Pointer<SdlNetSocketSet> set, int timeout)>('SDLNet_CheckSockets');
   return sdlNetCheckSocketsLookupFunction(set, timeout);
 }
 
@@ -958,10 +971,10 @@ int sdlNetCheckSockets(Pointer<Void> set, int timeout) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_FreeSocketSet(SDLNet_SocketSet set)
 /// ```
-void sdlNetFreeSocketSet(Pointer<Void> set) {
+void sdlNetFreeSocketSet(Pointer<SdlNetSocketSet> set) {
   final sdlNetFreeSocketSetLookupFunction = libSdl2Net.lookupFunction<
-      Void Function(Pointer<Void> set),
-      void Function(Pointer<Void> set)>('SDLNet_FreeSocketSet');
+      Void Function(Pointer<SdlNetSocketSet> set),
+      void Function(Pointer<SdlNetSocketSet> set)>('SDLNet_FreeSocketSet');
   return sdlNetFreeSocketSetLookupFunction(set);
 }
 
@@ -979,11 +992,12 @@ void sdlNetFreeSocketSet(Pointer<Void> set) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDLNet_SetError(const char *fmt, ...)
 /// ```
-void sdlNetSetError(String fmt, Pointer<Void> arg1) {
+void sdlNetSetError(String? fmt, Pointer<NativeType> arg1) {
   final sdlNetSetErrorLookupFunction = libSdl2Net.lookupFunction<
-      Void Function(Pointer<Utf8> fmt, Pointer<Void> arg1),
-      void Function(Pointer<Utf8> fmt, Pointer<Void> arg1)>('SDLNet_SetError');
-  final fmtPointer = fmt.toNativeUtf8();
+      Void Function(Pointer<Utf8> fmt, Pointer<NativeType> arg1),
+      void Function(
+          Pointer<Utf8> fmt, Pointer<NativeType> arg1)>('SDLNet_SetError');
+  final fmtPointer = fmt != null ? fmt.toNativeUtf8() : nullptr;
   final result = sdlNetSetErrorLookupFunction(fmtPointer, arg1);
   calloc.free(fmtPointer);
   return result;
@@ -1004,7 +1018,7 @@ void sdlNetSetError(String fmt, Pointer<Void> arg1) {
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDLNet_GetError(void)
 /// ```
-String sdlNetGetError() {
+String? sdlNetGetError() {
   final sdlNetGetErrorLookupFunction = libSdl2Net.lookupFunction<
       Pointer<Utf8> Function(), Pointer<Utf8> Function()>('SDLNet_GetError');
   return sdlNetGetErrorLookupFunction().toDartString();

@@ -14,6 +14,11 @@ import 'struct_sdl.dart';
 /// the API functions that take a joystick index will be valid, and joystick
 /// and game controller events will not be delivered.
 ///
+/// As of SDL 2.26.0, you can take the joystick lock around reinitializing the
+/// joystick subsystem, to prevent other threads from seeing joysticks in an
+/// uninitialized state. However, all open joysticks will be closed and SDL
+/// functions called with them will fail.
+///
 /// \since This function is available since SDL 2.0.7.
 ///
 /// ```c
@@ -85,7 +90,7 @@ int sdlNumJoysticks() {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_JoystickNameForIndex(int device_index)
 /// ```
-String sdlJoystickNameForIndex(int deviceIndex) {
+String? sdlJoystickNameForIndex(int deviceIndex) {
   final sdlJoystickNameForIndexLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 deviceIndex),
       Pointer<Utf8> Function(int deviceIndex)>('SDL_JoystickNameForIndex');
@@ -110,7 +115,7 @@ String sdlJoystickNameForIndex(int deviceIndex) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_JoystickPathForIndex(int device_index)
 /// ```
-String sdlJoystickPathForIndex(int deviceIndex) {
+String? sdlJoystickPathForIndex(int deviceIndex) {
   final sdlJoystickPathForIndexLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 deviceIndex),
       Pointer<Utf8> Function(int deviceIndex)>('SDL_JoystickPathForIndex');
@@ -152,10 +157,10 @@ int sdlJoystickGetDevicePlayerIndex(int deviceIndex) {
 /// ```c
 /// extern DECLSPEC SDL_JoystickGUID SDLCALL SDL_JoystickGetDeviceGUID(int device_index)
 /// ```
-Pointer<Void> sdlJoystickGetDeviceGuid(int deviceIndex) {
+SdlGuid sdlJoystickGetDeviceGuid(int deviceIndex) {
   final sdlJoystickGetDeviceGuidLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Int32 deviceIndex),
-      Pointer<Void> Function(int deviceIndex)>('SDL_JoystickGetDeviceGUID');
+      SdlGuid Function(Int32 deviceIndex),
+      SdlGuid Function(int deviceIndex)>('SDL_JoystickGetDeviceGUID');
   return sdlJoystickGetDeviceGuidLookupFunction(deviceIndex);
 }
 
@@ -425,6 +430,10 @@ int sdlJoystickIsVirtual(int deviceIndex) {
 /// the following: SDL_PollEvent, SDL_PumpEvents, SDL_WaitEventTimeout,
 /// SDL_WaitEvent.
 ///
+/// Note that when sending trigger axes, you should scale the value to the full
+/// range of Sint16. For example, a trigger at rest would have the value of
+/// `SDL_JOYSTICK_AXIS_MIN`.
+///
 /// \param joystick the virtual joystick on which to set state.
 /// \param axis the specific axis on the virtual joystick to set.
 /// \param value the new value for the specified axis.
@@ -515,7 +524,7 @@ int sdlJoystickSetVirtualHat(
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_JoystickName(SDL_Joystick *joystick)
 /// ```
-String sdlJoystickName(Pointer<SdlJoystick> joystick) {
+String? sdlJoystickName(Pointer<SdlJoystick> joystick) {
   final sdlJoystickNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Pointer<SdlJoystick> joystick),
       Pointer<Utf8> Function(
@@ -537,7 +546,7 @@ String sdlJoystickName(Pointer<SdlJoystick> joystick) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_JoystickPath(SDL_Joystick *joystick)
 /// ```
-String sdlJoystickPath(Pointer<SdlJoystick> joystick) {
+String? sdlJoystickPath(Pointer<SdlJoystick> joystick) {
   final sdlJoystickPathLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Pointer<SdlJoystick> joystick),
       Pointer<Utf8> Function(
@@ -605,11 +614,10 @@ void sdlJoystickSetPlayerIndex(Pointer<SdlJoystick> joystick, int playerIndex) {
 /// ```c
 /// extern DECLSPEC SDL_JoystickGUID SDLCALL SDL_JoystickGetGUID(SDL_Joystick *joystick)
 /// ```
-Pointer<Void> sdlJoystickGetGuid(Pointer<SdlJoystick> joystick) {
+SdlGuid sdlJoystickGetGuid(Pointer<SdlJoystick> joystick) {
   final sdlJoystickGetGuidLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<SdlJoystick> joystick),
-      Pointer<Void> Function(
-          Pointer<SdlJoystick> joystick)>('SDL_JoystickGetGUID');
+      SdlGuid Function(Pointer<SdlJoystick> joystick),
+      SdlGuid Function(Pointer<SdlJoystick> joystick)>('SDL_JoystickGetGUID');
   return sdlJoystickGetGuidLookupFunction(joystick);
 }
 
@@ -710,7 +718,7 @@ int sdlJoystickGetFirmwareVersion(Pointer<SdlJoystick> joystick) {
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDL_JoystickGetSerial(SDL_Joystick *joystick)
 /// ```
-String sdlJoystickGetSerial(Pointer<SdlJoystick> joystick) {
+String? sdlJoystickGetSerial(Pointer<SdlJoystick> joystick) {
   final sdlJoystickGetSerialLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Pointer<SdlJoystick> joystick),
       Pointer<Utf8> Function(
@@ -754,11 +762,10 @@ int sdlJoystickGetType(Pointer<SdlJoystick> joystick) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_JoystickGetGUIDString(SDL_JoystickGUID guid, char *pszGUID, int cbGUID)
 /// ```
-void sdlJoystickGetGuidString(
-    Pointer<Void> guid, Pointer<Int8> pszGuid, int cbGuid) {
+void sdlJoystickGetGuidString(SdlGuid guid, Pointer<Int8> pszGuid, int cbGuid) {
   final sdlJoystickGetGuidStringLookupFunction = libSdl2.lookupFunction<
-      Void Function(Pointer<Void> guid, Pointer<Int8> pszGuid, Int32 cbGuid),
-      void Function(Pointer<Void> guid, Pointer<Int8> pszGuid,
+      Void Function(SdlGuid guid, Pointer<Int8> pszGuid, Int32 cbGuid),
+      void Function(SdlGuid guid, Pointer<Int8> pszGuid,
           int cbGuid)>('SDL_JoystickGetGUIDString');
   return sdlJoystickGetGuidStringLookupFunction(guid, pszGuid, cbGuid);
 }
@@ -780,15 +787,53 @@ void sdlJoystickGetGuidString(
 /// ```c
 /// extern DECLSPEC SDL_JoystickGUID SDLCALL SDL_JoystickGetGUIDFromString(const char *pchGUID)
 /// ```
-Pointer<Void> sdlJoystickGetGuidFromString(String pchGuid) {
+SdlGuid sdlJoystickGetGuidFromString(String? pchGuid) {
   final sdlJoystickGetGuidFromStringLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<Utf8> pchGuid),
-      Pointer<Void> Function(
-          Pointer<Utf8> pchGuid)>('SDL_JoystickGetGUIDFromString');
-  final pchGuidPointer = pchGuid.toNativeUtf8();
+      SdlGuid Function(Pointer<Utf8> pchGuid),
+      SdlGuid Function(Pointer<Utf8> pchGuid)>('SDL_JoystickGetGUIDFromString');
+  final pchGuidPointer = pchGuid != null ? pchGuid.toNativeUtf8() : nullptr;
   final result = sdlJoystickGetGuidFromStringLookupFunction(pchGuidPointer);
   calloc.free(pchGuidPointer);
   return result;
+}
+
+///
+/// Get the device information encoded in a SDL_JoystickGUID structure
+///
+/// \param guid the SDL_JoystickGUID you wish to get info about
+/// \param vendor A pointer filled in with the device VID, or 0 if not
+/// available
+/// \param product A pointer filled in with the device PID, or 0 if not
+/// available
+/// \param version A pointer filled in with the device version, or 0 if not
+/// available
+/// \param crc16 A pointer filled in with a CRC used to distinguish different
+/// products with the same VID/PID, or 0 if not available
+///
+/// \since This function is available since SDL 2.26.0.
+///
+/// \sa SDL_JoystickGetDeviceGUID
+///
+/// ```c
+/// extern DECLSPEC void SDLCALL SDL_GetJoystickGUIDInfo(SDL_JoystickGUID guid, Uint16 *vendor, Uint16 *product, Uint16 *version, Uint16 *crc16)
+/// ```
+void sdlGetJoystickGuidInfo(SdlGuid guid, Pointer<Uint16> vendor,
+    Pointer<Uint16> product, Pointer<Uint16> version, Pointer<Uint16> crc16) {
+  final sdlGetJoystickGuidInfoLookupFunction = libSdl2.lookupFunction<
+      Void Function(
+          SdlGuid guid,
+          Pointer<Uint16> vendor,
+          Pointer<Uint16> product,
+          Pointer<Uint16> version,
+          Pointer<Uint16> crc16),
+      void Function(
+          SdlGuid guid,
+          Pointer<Uint16> vendor,
+          Pointer<Uint16> product,
+          Pointer<Uint16> version,
+          Pointer<Uint16> crc16)>('SDL_GetJoystickGUIDInfo');
+  return sdlGetJoystickGuidInfoLookupFunction(
+      guid, vendor, product, version, crc16);
 }
 
 ///
@@ -1304,11 +1349,11 @@ int sdlJoystickSetLed(
 /// extern DECLSPEC int SDLCALL SDL_JoystickSendEffect(SDL_Joystick *joystick, const void *data, int size)
 /// ```
 int sdlJoystickSendEffect(
-    Pointer<SdlJoystick> joystick, Pointer<Void> data, int size) {
+    Pointer<SdlJoystick> joystick, Pointer<NativeType> data, int size) {
   final sdlJoystickSendEffectLookupFunction = libSdl2.lookupFunction<
       Int32 Function(
-          Pointer<SdlJoystick> joystick, Pointer<Void> data, Int32 size),
-      int Function(Pointer<SdlJoystick> joystick, Pointer<Void> data,
+          Pointer<SdlJoystick> joystick, Pointer<NativeType> data, Int32 size),
+      int Function(Pointer<SdlJoystick> joystick, Pointer<NativeType> data,
           int size)>('SDL_JoystickSendEffect');
   return sdlJoystickSendEffectLookupFunction(joystick, data, size);
 }

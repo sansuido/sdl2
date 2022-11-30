@@ -16,7 +16,7 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC const char* SDLCALL SDL_GetPixelFormatName(Uint32 format)
 /// ```
-String sdlGetPixelFormatName(int format) {
+String? sdlGetPixelFormatName(int format) {
   final sdlGetPixelFormatNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Uint32 format),
       Pointer<Utf8> Function(int format)>('SDL_GetPixelFormatName');

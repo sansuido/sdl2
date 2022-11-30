@@ -68,13 +68,13 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_RWFromFile(const char *file, const char *mode)
 /// ```
-Pointer<SdlRWops> sdlRwFromFile(String file, String mode) {
+Pointer<SdlRWops> sdlRwFromFile(String? file, String? mode) {
   final sdlRwFromFileLookupFunction = libSdl2.lookupFunction<
       Pointer<SdlRWops> Function(Pointer<Utf8> file, Pointer<Utf8> mode),
       Pointer<SdlRWops> Function(
           Pointer<Utf8> file, Pointer<Utf8> mode)>('SDL_RWFromFile');
-  final filePointer = file.toNativeUtf8();
-  final modePointer = mode.toNativeUtf8();
+  final filePointer = file != null ? file.toNativeUtf8() : nullptr;
+  final modePointer = mode != null ? mode.toNativeUtf8() : nullptr;
   final result = sdlRwFromFileLookupFunction(filePointer, modePointer);
   calloc.free(filePointer);
   calloc.free(modePointer);
@@ -126,10 +126,11 @@ Pointer<SdlRWops> sdlRwFromFp(Pointer<IntPtr> fp, int autoclose) {
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_RWFromMem(void *mem, int size)
 /// ```
-Pointer<SdlRWops> sdlRwFromMem(Pointer<Void> mem, int size) {
+Pointer<SdlRWops> sdlRwFromMem(Pointer<NativeType> mem, int size) {
   final sdlRwFromMemLookupFunction = libSdl2.lookupFunction<
-      Pointer<SdlRWops> Function(Pointer<Void> mem, Int32 size),
-      Pointer<SdlRWops> Function(Pointer<Void> mem, int size)>('SDL_RWFromMem');
+      Pointer<SdlRWops> Function(Pointer<NativeType> mem, Int32 size),
+      Pointer<SdlRWops> Function(
+          Pointer<NativeType> mem, int size)>('SDL_RWFromMem');
   return sdlRwFromMemLookupFunction(mem, size);
 }
 
@@ -168,11 +169,11 @@ Pointer<SdlRWops> sdlRwFromMem(Pointer<Void> mem, int size) {
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_RWFromConstMem(const void *mem, int size)
 /// ```
-Pointer<SdlRWops> sdlRwFromConstMem(Pointer<Void> mem, int size) {
+Pointer<SdlRWops> sdlRwFromConstMem(Pointer<NativeType> mem, int size) {
   final sdlRwFromConstMemLookupFunction = libSdl2.lookupFunction<
-      Pointer<SdlRWops> Function(Pointer<Void> mem, Int32 size),
+      Pointer<SdlRWops> Function(Pointer<NativeType> mem, Int32 size),
       Pointer<SdlRWops> Function(
-          Pointer<Void> mem, int size)>('SDL_RWFromConstMem');
+          Pointer<NativeType> mem, int size)>('SDL_RWFromConstMem');
   return sdlRwFromConstMemLookupFunction(mem, size);
 }
 
@@ -378,11 +379,11 @@ int sdlRWtell(Pointer<SdlRWops> context) {
 /// extern DECLSPEC size_t SDLCALL SDL_RWread(SDL_RWops *context, void *ptr, size_t size, size_t maxnum)
 /// ```
 int sdlRWread(
-    Pointer<SdlRWops> context, Pointer<Void> ptr, int size, int maxnum) {
+    Pointer<SdlRWops> context, Pointer<NativeType> ptr, int size, int maxnum) {
   final sdlRWreadLookupFunction = libSdl2.lookupFunction<
-      Uint32 Function(Pointer<SdlRWops> context, Pointer<Void> ptr, Uint32 size,
-          Uint32 maxnum),
-      int Function(Pointer<SdlRWops> context, Pointer<Void> ptr, int size,
+      Uint32 Function(Pointer<SdlRWops> context, Pointer<NativeType> ptr,
+          Uint32 size, Uint32 maxnum),
+      int Function(Pointer<SdlRWops> context, Pointer<NativeType> ptr, int size,
           int maxnum)>('SDL_RWread');
   return sdlRWreadLookupFunction(context, ptr, size, maxnum);
 }
@@ -421,11 +422,11 @@ int sdlRWread(
 /// extern DECLSPEC size_t SDLCALL SDL_RWwrite(SDL_RWops *context, const void *ptr, size_t size, size_t num)
 /// ```
 int sdlRWwrite(
-    Pointer<SdlRWops> context, Pointer<Void> ptr, int size, int num) {
+    Pointer<SdlRWops> context, Pointer<NativeType> ptr, int size, int num) {
   final sdlRWwriteLookupFunction = libSdl2.lookupFunction<
-      Uint32 Function(Pointer<SdlRWops> context, Pointer<Void> ptr, Uint32 size,
-          Uint32 num),
-      int Function(Pointer<SdlRWops> context, Pointer<Void> ptr, int size,
+      Uint32 Function(Pointer<SdlRWops> context, Pointer<NativeType> ptr,
+          Uint32 size, Uint32 num),
+      int Function(Pointer<SdlRWops> context, Pointer<NativeType> ptr, int size,
           int num)>('SDL_RWwrite');
   return sdlRWwriteLookupFunction(context, ptr, size, num);
 }
@@ -486,13 +487,13 @@ int sdlRWclose(Pointer<SdlRWops> context) {
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_LoadFile_RW(SDL_RWops *src, size_t *datasize, int freesrc)
 /// ```
-Pointer<Void> sdlLoadFileRw(
+Pointer<NativeType> sdlLoadFileRw(
     Pointer<SdlRWops> src, Pointer<Uint32> datasize, int freesrc) {
   final sdlLoadFileRwLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(
+      Pointer<NativeType> Function(
           Pointer<SdlRWops> src, Pointer<Uint32> datasize, Int32 freesrc),
-      Pointer<Void> Function(Pointer<SdlRWops> src, Pointer<Uint32> datasize,
-          int freesrc)>('SDL_LoadFile_RW');
+      Pointer<NativeType> Function(Pointer<SdlRWops> src,
+          Pointer<Uint32> datasize, int freesrc)>('SDL_LoadFile_RW');
   return sdlLoadFileRwLookupFunction(src, datasize, freesrc);
 }
 
@@ -517,12 +518,13 @@ Pointer<Void> sdlLoadFileRw(
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_LoadFile(const char *file, size_t *datasize)
 /// ```
-Pointer<Void> sdlLoadFile(String file, Pointer<Uint32> datasize) {
+Pointer<NativeType> sdlLoadFile(String? file, Pointer<Uint32> datasize) {
   final sdlLoadFileLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<Utf8> file, Pointer<Uint32> datasize),
-      Pointer<Void> Function(
+      Pointer<NativeType> Function(
+          Pointer<Utf8> file, Pointer<Uint32> datasize),
+      Pointer<NativeType> Function(
           Pointer<Utf8> file, Pointer<Uint32> datasize)>('SDL_LoadFile');
-  final filePointer = file.toNativeUtf8();
+  final filePointer = file != null ? file.toNativeUtf8() : nullptr;
   final result = sdlLoadFileLookupFunction(filePointer, datasize);
   calloc.free(filePointer);
   return result;

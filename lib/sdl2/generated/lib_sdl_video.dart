@@ -40,7 +40,7 @@ int sdlGetNumVideoDrivers() {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetVideoDriver(int index)
 /// ```
-String sdlGetVideoDriver(int index) {
+String? sdlGetVideoDriver(int index) {
   final sdlGetVideoDriverLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 index),
       Pointer<Utf8> Function(int index)>('SDL_GetVideoDriver');
@@ -79,11 +79,12 @@ String sdlGetVideoDriver(int index) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_VideoInit(const char *driver_name)
 /// ```
-int sdlVideoInit(String driverName) {
+int sdlVideoInit(String? driverName) {
   final sdlVideoInitLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8> driverName),
       int Function(Pointer<Utf8> driverName)>('SDL_VideoInit');
-  final driverNamePointer = driverName.toNativeUtf8();
+  final driverNamePointer =
+      driverName != null ? driverName.toNativeUtf8() : nullptr;
   final result = sdlVideoInitLookupFunction(driverNamePointer);
   calloc.free(driverNamePointer);
   return result;
@@ -121,7 +122,7 @@ void sdlVideoQuit() {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetCurrentVideoDriver(void)
 /// ```
-String sdlGetCurrentVideoDriver() {
+String? sdlGetCurrentVideoDriver() {
   final sdlGetCurrentVideoDriverLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(),
       Pointer<Utf8> Function()>('SDL_GetCurrentVideoDriver');
@@ -163,7 +164,7 @@ int sdlGetNumVideoDisplays() {
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDL_GetDisplayName(int displayIndex)
 /// ```
-String sdlGetDisplayName(int displayIndex) {
+String? sdlGetDisplayName(int displayIndex) {
   final sdlGetDisplayNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 displayIndex),
       Pointer<Utf8> Function(int displayIndex)>('SDL_GetDisplayName');
@@ -603,11 +604,12 @@ int sdlGetWindowDisplayMode(
 /// ```c
 /// extern DECLSPEC void* SDLCALL SDL_GetWindowICCProfile(SDL_Window * window, size_t* size)
 /// ```
-Pointer<Void> sdlGetWindowIccProfile(
+Pointer<NativeType> sdlGetWindowIccProfile(
     Pointer<SdlWindow> window, Pointer<Uint32> size) {
   final sdlGetWindowIccProfileLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<SdlWindow> window, Pointer<Uint32> size),
-      Pointer<Void> Function(Pointer<SdlWindow> window,
+      Pointer<NativeType> Function(
+          Pointer<SdlWindow> window, Pointer<Uint32> size),
+      Pointer<NativeType> Function(Pointer<SdlWindow> window,
           Pointer<Uint32> size)>('SDL_GetWindowICCProfile');
   return sdlGetWindowIccProfileLookupFunction(window, size);
 }
@@ -707,13 +709,13 @@ int sdlGetWindowPixelFormat(Pointer<SdlWindow> window) {
 /// extern DECLSPEC SDL_Window * SDLCALL SDL_CreateWindow(const char *title, int x, int y, int w, int h, Uint32 flags)
 /// ```
 Pointer<SdlWindow> sdlCreateWindow(
-    String title, int x, int y, int w, int h, int flags) {
+    String? title, int x, int y, int w, int h, int flags) {
   final sdlCreateWindowLookupFunction = libSdl2.lookupFunction<
       Pointer<SdlWindow> Function(Pointer<Utf8> title, Int32 x, Int32 y,
           Int32 w, Int32 h, Uint32 flags),
       Pointer<SdlWindow> Function(Pointer<Utf8> title, int x, int y, int w,
           int h, int flags)>('SDL_CreateWindow');
-  final titlePointer = title.toNativeUtf8();
+  final titlePointer = title != null ? title.toNativeUtf8() : nullptr;
   final result = sdlCreateWindowLookupFunction(titlePointer, x, y, w, h, flags);
   calloc.free(titlePointer);
   return result;
@@ -739,10 +741,11 @@ Pointer<SdlWindow> sdlCreateWindow(
 /// ```c
 /// extern DECLSPEC SDL_Window * SDLCALL SDL_CreateWindowFrom(const void *data)
 /// ```
-Pointer<SdlWindow> sdlCreateWindowFrom(Pointer<Void> data) {
+Pointer<SdlWindow> sdlCreateWindowFrom(Pointer<NativeType> data) {
   final sdlCreateWindowFromLookupFunction = libSdl2.lookupFunction<
-      Pointer<SdlWindow> Function(Pointer<Void> data),
-      Pointer<SdlWindow> Function(Pointer<Void> data)>('SDL_CreateWindowFrom');
+      Pointer<SdlWindow> Function(Pointer<NativeType> data),
+      Pointer<SdlWindow> Function(
+          Pointer<NativeType> data)>('SDL_CreateWindowFrom');
   return sdlCreateWindowFromLookupFunction(data);
 }
 
@@ -835,12 +838,12 @@ int sdlGetWindowFlags(Pointer<SdlWindow> window) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_SetWindowTitle(SDL_Window * window, const char *title)
 /// ```
-void sdlSetWindowTitle(Pointer<SdlWindow> window, String title) {
+void sdlSetWindowTitle(Pointer<SdlWindow> window, String? title) {
   final sdlSetWindowTitleLookupFunction = libSdl2.lookupFunction<
       Void Function(Pointer<SdlWindow> window, Pointer<Utf8> title),
       void Function(Pointer<SdlWindow> window,
           Pointer<Utf8> title)>('SDL_SetWindowTitle');
-  final titlePointer = title.toNativeUtf8();
+  final titlePointer = title != null ? title.toNativeUtf8() : nullptr;
   final result = sdlSetWindowTitleLookupFunction(window, titlePointer);
   calloc.free(titlePointer);
   return result;
@@ -860,7 +863,7 @@ void sdlSetWindowTitle(Pointer<SdlWindow> window, String title) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetWindowTitle(SDL_Window * window)
 /// ```
-String sdlGetWindowTitle(Pointer<SdlWindow> window) {
+String? sdlGetWindowTitle(Pointer<SdlWindow> window) {
   final sdlGetWindowTitleLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Pointer<SdlWindow> window),
       Pointer<Utf8> Function(Pointer<SdlWindow> window)>('SDL_GetWindowTitle');
@@ -903,14 +906,16 @@ void sdlSetWindowIcon(Pointer<SdlWindow> window, Pointer<SdlSurface> icon) {
 /// ```c
 /// extern DECLSPEC void* SDLCALL SDL_SetWindowData(SDL_Window * window, const char *name, void *userdata)
 /// ```
-Pointer<Void> sdlSetWindowData(
-    Pointer<SdlWindow> window, String name, Pointer<Void> userdata) {
+Pointer<NativeType> sdlSetWindowData(
+    Pointer<SdlWindow> window, String? name, Pointer<NativeType> userdata) {
   final sdlSetWindowDataLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<SdlWindow> window, Pointer<Utf8> name,
-          Pointer<Void> userdata),
-      Pointer<Void> Function(Pointer<SdlWindow> window, Pointer<Utf8> name,
-          Pointer<Void> userdata)>('SDL_SetWindowData');
-  final namePointer = name.toNativeUtf8();
+      Pointer<NativeType> Function(Pointer<SdlWindow> window,
+          Pointer<Utf8> name, Pointer<NativeType> userdata),
+      Pointer<NativeType> Function(
+          Pointer<SdlWindow> window,
+          Pointer<Utf8> name,
+          Pointer<NativeType> userdata)>('SDL_SetWindowData');
+  final namePointer = name != null ? name.toNativeUtf8() : nullptr;
   final result = sdlSetWindowDataLookupFunction(window, namePointer, userdata);
   calloc.free(namePointer);
   return result;
@@ -930,12 +935,13 @@ Pointer<Void> sdlSetWindowData(
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_GetWindowData(SDL_Window * window, const char *name)
 /// ```
-Pointer<Void> sdlGetWindowData(Pointer<SdlWindow> window, String name) {
+Pointer<NativeType> sdlGetWindowData(Pointer<SdlWindow> window, String? name) {
   final sdlGetWindowDataLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<SdlWindow> window, Pointer<Utf8> name),
-      Pointer<Void> Function(
+      Pointer<NativeType> Function(
+          Pointer<SdlWindow> window, Pointer<Utf8> name),
+      Pointer<NativeType> Function(
           Pointer<SdlWindow> window, Pointer<Utf8> name)>('SDL_GetWindowData');
-  final namePointer = name.toNativeUtf8();
+  final namePointer = name != null ? name.toNativeUtf8() : nullptr;
   final result = sdlGetWindowDataLookupFunction(window, namePointer);
   calloc.free(namePointer);
   return result;
@@ -1114,6 +1120,37 @@ int sdlGetWindowBordersSize(Pointer<SdlWindow> window, Pointer<Int32> top,
           Pointer<Int32> right)>('SDL_GetWindowBordersSize');
   return sdlGetWindowBordersSizeLookupFunction(
       window, top, left, bottom, right);
+}
+
+///
+/// Get the size of a window in pixels.
+///
+/// This may differ from SDL_GetWindowSize() if we're rendering to a high-DPI
+/// drawable, i.e. the window was created with `SDL_WINDOW_ALLOW_HIGHDPI` on a
+/// platform with high-DPI support (Apple calls this "Retina"), and not
+/// disabled by the `SDL_HINT_VIDEO_HIGHDPI_DISABLED` hint.
+///
+/// \param window the window from which the drawable size should be queried
+/// \param w a pointer to variable for storing the width in pixels, may be NULL
+/// \param h a pointer to variable for storing the height in pixels, may be
+/// NULL
+///
+/// \since This function is available since SDL 2.26.0.
+///
+/// \sa SDL_CreateWindow
+/// \sa SDL_GetWindowSize
+///
+/// ```c
+/// extern DECLSPEC void SDLCALL SDL_GetWindowSizeInPixels(SDL_Window * window, int *w, int *h)
+/// ```
+void sdlGetWindowSizeInPixels(
+    Pointer<SdlWindow> window, Pointer<Int32> w, Pointer<Int32> h) {
+  final sdlGetWindowSizeInPixelsLookupFunction = libSdl2.lookupFunction<
+      Void Function(
+          Pointer<SdlWindow> window, Pointer<Int32> w, Pointer<Int32> h),
+      void Function(Pointer<SdlWindow> window, Pointer<Int32> w,
+          Pointer<Int32> h)>('SDL_GetWindowSizeInPixels');
+  return sdlGetWindowSizeInPixelsLookupFunction(window, w, h);
 }
 
 ///
@@ -2056,13 +2093,13 @@ int sdlGetWindowGammaRamp(Pointer<SdlWindow> window, Pointer<Uint16> red,
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetWindowHitTest(SDL_Window * window, SDL_HitTest callback, void *callback_data)
 /// ```
-int sdlSetWindowHitTest(Pointer<SdlWindow> window, Pointer<Void> callback,
-    Pointer<Void> callbackData) {
+int sdlSetWindowHitTest(Pointer<SdlWindow> window, SdlHitTest callback,
+    Pointer<NativeType> callbackData) {
   final sdlSetWindowHitTestLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<SdlWindow> window, Pointer<Void> callback,
-          Pointer<Void> callbackData),
-      int Function(Pointer<SdlWindow> window, Pointer<Void> callback,
-          Pointer<Void> callbackData)>('SDL_SetWindowHitTest');
+      Int32 Function(Pointer<SdlWindow> window, SdlHitTest callback,
+          Pointer<NativeType> callbackData),
+      int Function(Pointer<SdlWindow> window, SdlHitTest callback,
+          Pointer<NativeType> callbackData)>('SDL_SetWindowHitTest');
   return sdlSetWindowHitTestLookupFunction(window, callback, callbackData);
 }
 
@@ -2160,6 +2197,9 @@ void sdlEnableScreenSaver() {
 /// If you disable the screensaver, it is automatically re-enabled when SDL
 /// quits.
 ///
+/// The screensaver is disabled by default since SDL 2.0.2. Before SDL 2.0.2
+/// the screensaver was enabled by default.
+///
 /// \since This function is available since SDL 2.0.0.
 ///
 /// \sa SDL_EnableScreenSaver
@@ -2198,11 +2238,11 @@ void sdlDisableScreenSaver() {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GL_LoadLibrary(const char *path)
 /// ```
-int sdlGlLoadLibrary(String path) {
+int sdlGlLoadLibrary(String? path) {
   final sdlGlLoadLibraryLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8> path),
       int Function(Pointer<Utf8> path)>('SDL_GL_LoadLibrary');
-  final pathPointer = path.toNativeUtf8();
+  final pathPointer = path != null ? path.toNativeUtf8() : nullptr;
   final result = sdlGlLoadLibraryLookupFunction(pathPointer);
   calloc.free(pathPointer);
   return result;
@@ -2262,11 +2302,12 @@ int sdlGlLoadLibrary(String path) {
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_GL_GetProcAddress(const char *proc)
 /// ```
-Pointer<Void> sdlGlGetProcAddress(String proc) {
+Pointer<NativeType> sdlGlGetProcAddress(String? proc) {
   final sdlGlGetProcAddressLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<Utf8> proc),
-      Pointer<Void> Function(Pointer<Utf8> proc)>('SDL_GL_GetProcAddress');
-  final procPointer = proc.toNativeUtf8();
+      Pointer<NativeType> Function(Pointer<Utf8> proc),
+      Pointer<NativeType> Function(
+          Pointer<Utf8> proc)>('SDL_GL_GetProcAddress');
+  final procPointer = proc != null ? proc.toNativeUtf8() : nullptr;
   final result = sdlGlGetProcAddressLookupFunction(procPointer);
   calloc.free(procPointer);
   return result;
@@ -2310,11 +2351,12 @@ void sdlGlUnloadLibrary() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GL_ExtensionSupported(const char *extension)
 /// ```
-int sdlGlExtensionSupported(String extension) {
+int sdlGlExtensionSupported(String? extension) {
   final sdlGlExtensionSupportedLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8> extension),
       int Function(Pointer<Utf8> extension)>('SDL_GL_ExtensionSupported');
-  final extensionPointer = extension.toNativeUtf8();
+  final extensionPointer =
+      extension != null ? extension.toNativeUtf8() : nullptr;
   final result = sdlGlExtensionSupportedLookupFunction(extensionPointer);
   calloc.free(extensionPointer);
   return result;
@@ -2412,10 +2454,10 @@ int sdlGlGetAttribute(int attr, Pointer<Int32> value) {
 /// ```c
 /// extern DECLSPEC SDL_GLContext SDLCALL SDL_GL_CreateContext(SDL_Window * window)
 /// ```
-Pointer<Void> sdlGlCreateContext(Pointer<SdlWindow> window) {
+Pointer<NativeType> sdlGlCreateContext(Pointer<SdlWindow> window) {
   final sdlGlCreateContextLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<SdlWindow> window),
-      Pointer<Void> Function(
+      Pointer<NativeType> Function(Pointer<SdlWindow> window),
+      Pointer<NativeType> Function(
           Pointer<SdlWindow> window)>('SDL_GL_CreateContext');
   return sdlGlCreateContextLookupFunction(window);
 }
@@ -2437,11 +2479,11 @@ Pointer<Void> sdlGlCreateContext(Pointer<SdlWindow> window) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GL_MakeCurrent(SDL_Window * window, SDL_GLContext context)
 /// ```
-int sdlGlMakeCurrent(Pointer<SdlWindow> window, Pointer<Void> context) {
+int sdlGlMakeCurrent(Pointer<SdlWindow> window, Pointer<NativeType> context) {
   final sdlGlMakeCurrentLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<SdlWindow> window, Pointer<Void> context),
+      Int32 Function(Pointer<SdlWindow> window, Pointer<NativeType> context),
       int Function(Pointer<SdlWindow> window,
-          Pointer<Void> context)>('SDL_GL_MakeCurrent');
+          Pointer<NativeType> context)>('SDL_GL_MakeCurrent');
   return sdlGlMakeCurrentLookupFunction(window, context);
 }
 
@@ -2476,10 +2518,10 @@ Pointer<SdlWindow> sdlGlGetCurrentWindow() {
 /// ```c
 /// extern DECLSPEC SDL_GLContext SDLCALL SDL_GL_GetCurrentContext(void)
 /// ```
-Pointer<Void> sdlGlGetCurrentContext() {
+Pointer<NativeType> sdlGlGetCurrentContext() {
   final sdlGlGetCurrentContextLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(),
-      Pointer<Void> Function()>('SDL_GL_GetCurrentContext');
+      Pointer<NativeType> Function(),
+      Pointer<NativeType> Function()>('SDL_GL_GetCurrentContext');
   return sdlGlGetCurrentContextLookupFunction();
 }
 
@@ -2614,9 +2656,9 @@ void sdlGlSwapWindow(Pointer<SdlWindow> window) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_GL_DeleteContext(SDL_GLContext context)
 /// ```
-void sdlGlDeleteContext(Pointer<Void> context) {
+void sdlGlDeleteContext(Pointer<NativeType> context) {
   final sdlGlDeleteContextLookupFunction = libSdl2.lookupFunction<
-      Void Function(Pointer<Void> context),
-      void Function(Pointer<Void> context)>('SDL_GL_DeleteContext');
+      Void Function(Pointer<NativeType> context),
+      void Function(Pointer<NativeType> context)>('SDL_GL_DeleteContext');
   return sdlGlDeleteContextLookupFunction(context);
 }

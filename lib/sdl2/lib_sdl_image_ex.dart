@@ -30,13 +30,13 @@ bool sdlImageVersionAtleast(int x, int y, int z) {
 /// ```c
 /// const IMG_SetError = SDL_SetError;
 /// ```
-int imgSetError(String fmt, Pointer<Void> arg1) {
+int imgSetError(String fmt, Pointer<NativeType> arg1) {
   return sdlSetError(fmt, arg1);
 }
 
 /// ```c
 /// const IMG_GetError = SDL_GetError;
 /// ```
-String imgGetError() {
+String? imgGetError() {
   return sdlGetError();
 }

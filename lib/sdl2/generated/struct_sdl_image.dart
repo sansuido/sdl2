@@ -2,6 +2,7 @@
 import 'dart:ffi';
 import 'struct_sdl.dart';
 
+// IMG_Animation
 class ImgAnimation extends Struct {
   // [0]+(4)
   @Int32()

@@ -543,10 +543,10 @@ int sdlSimdGetAlignment() {
 /// ```c
 /// extern DECLSPEC void * SDLCALL SDL_SIMDAlloc(const size_t len)
 /// ```
-Pointer<Void> sdlSimdAlloc(int len) {
+Pointer<NativeType> sdlSimdAlloc(int len) {
   final sdlSimdAllocLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Uint32 len),
-      Pointer<Void> Function(int len)>('SDL_SIMDAlloc');
+      Pointer<NativeType> Function(Uint32 len),
+      Pointer<NativeType> Function(int len)>('SDL_SIMDAlloc');
   return sdlSimdAllocLookupFunction(len);
 }
 
@@ -575,10 +575,11 @@ Pointer<Void> sdlSimdAlloc(int len) {
 /// ```c
 /// extern DECLSPEC void * SDLCALL SDL_SIMDRealloc(void *mem, const size_t len)
 /// ```
-Pointer<Void> sdlSimdRealloc(Pointer<Void> mem, int len) {
+Pointer<NativeType> sdlSimdRealloc(Pointer<NativeType> mem, int len) {
   final sdlSimdReallocLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<Void> mem, Uint32 len),
-      Pointer<Void> Function(Pointer<Void> mem, int len)>('SDL_SIMDRealloc');
+      Pointer<NativeType> Function(Pointer<NativeType> mem, Uint32 len),
+      Pointer<NativeType> Function(
+          Pointer<NativeType> mem, int len)>('SDL_SIMDRealloc');
   return sdlSimdReallocLookupFunction(mem, len);
 }
 
@@ -607,9 +608,9 @@ Pointer<Void> sdlSimdRealloc(Pointer<Void> mem, int len) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_SIMDFree(void *ptr)
 /// ```
-void sdlSimdFree(Pointer<Void> ptr) {
+void sdlSimdFree(Pointer<NativeType> ptr) {
   final sdlSimdFreeLookupFunction = libSdl2.lookupFunction<
-      Void Function(Pointer<Void> ptr),
-      void Function(Pointer<Void> ptr)>('SDL_SIMDFree');
+      Void Function(Pointer<NativeType> ptr),
+      void Function(Pointer<NativeType> ptr)>('SDL_SIMDFree');
   return sdlSimdFreeLookupFunction(ptr);
 }

@@ -1,8 +1,124 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 import 'dart:ffi';
+import 'package:ffi/ffi.dart';
 import '../dylib.dart' as dylib;
+import 'struct_sdl.dart';
 
 final libSdl2 = dylib.dylibOpen('SDL2');
+
+// typedef SDL_AssertState (SDLCALL *SDL_AssertionHandler)( const SDL_AssertData* data, void* userdata)
+typedef SdlAssertionHandlerDart = int Function(
+    Pointer<SdlAssertData>, Pointer<NativeType>);
+typedef SdlAssertionHandler = Pointer<
+    NativeFunction<
+        Int32 Function(Pointer<SdlAssertData>, Pointer<NativeType>)>>;
+
+// typedef void (*SDL_KernelMemoryBarrierFunc)()
+typedef SdlKernelMemoryBarrierFuncDart = void Function();
+typedef SdlKernelMemoryBarrierFunc = Pointer<NativeFunction<Void Function()>>;
+
+// typedef void (SDLCALL * SDL_AudioCallback) (void *userdata, Uint8 * stream, int len)
+typedef SdlAudioCallbackDart = void Function(
+    Pointer<NativeType>, Pointer<Uint8>, int);
+typedef SdlAudioCallback = Pointer<
+    NativeFunction<Void Function(Pointer<NativeType>, Pointer<Uint8>, Int32)>>;
+
+// typedef void (SDLCALL * SDL_AudioFilter) (struct SDL_AudioCVT * cvt, SDL_AudioFormat format)
+typedef SdlAudioFilterDart = void Function(Pointer<SdlAudioCvt>, int);
+typedef SdlAudioFilter
+    = Pointer<NativeFunction<Void Function(Pointer<SdlAudioCvt>, Uint16)>>;
+
+// typedef int (SDLCALL * SDL_EventFilter) (void *userdata, SDL_Event * event)
+typedef SdlEventFilterDart = int Function(
+    Pointer<NativeType>, Pointer<SdlEvent>);
+typedef SdlEventFilter = Pointer<
+    NativeFunction<Int32 Function(Pointer<NativeType>, Pointer<SdlEvent>)>>;
+
+// typedef void (SDLCALL *SDL_HintCallback)(void *userdata, const char *name, const char *oldValue, const char *newValue)
+typedef SdlHintCallbackDart = void Function(
+    Pointer<NativeType>, Pointer<Utf8>, Pointer<Utf8>, Pointer<Utf8>);
+typedef SdlHintCallback = Pointer<
+    NativeFunction<
+        Void Function(
+            Pointer<NativeType>, Pointer<Utf8>, Pointer<Utf8>, Pointer<Utf8>)>>;
+
+// typedef void (SDLCALL *SDL_LogOutputFunction)(void *userdata, int category, SDL_LogPriority priority, const char *message)
+typedef SdlLogOutputFunctionDart = void Function(
+    Pointer<NativeType>, int, int, Pointer<Utf8>);
+typedef SdlLogOutputFunction = Pointer<
+    NativeFunction<
+        Void Function(Pointer<NativeType>, Int32, Int32, Pointer<Utf8>)>>;
+
+// typedef int (*SDL_main_func)(int argc, char *argv[])
+typedef SdlMainFuncDart = int Function(int, Pointer<Pointer<Int8>>);
+typedef SdlMainFunc
+    = Pointer<NativeFunction<Int32 Function(Int32, Pointer<Pointer<Int8>>)>>;
+
+// typedef void *(SDLCALL *SDL_malloc_func)(size_t size)
+typedef SdlMallocFuncDart = Pointer<NativeType> Function(int);
+typedef SdlMallocFunc
+    = Pointer<NativeFunction<Pointer<NativeType> Function(Uint32)>>;
+
+// typedef void *(SDLCALL *SDL_calloc_func)(size_t nmemb, size_t size)
+typedef SdlCallocFuncDart = Pointer<NativeType> Function(int, int);
+typedef SdlCallocFunc
+    = Pointer<NativeFunction<Pointer<NativeType> Function(Uint32, Uint32)>>;
+
+// typedef void *(SDLCALL *SDL_realloc_func)(void *mem, size_t size)
+typedef SdlReallocFuncDart = Pointer<NativeType> Function(
+    Pointer<NativeType>, int);
+typedef SdlReallocFunc = Pointer<
+    NativeFunction<Pointer<NativeType> Function(Pointer<NativeType>, Uint32)>>;
+
+// typedef void (SDLCALL *SDL_free_func)(void *mem)
+typedef SdlFreeFuncDart = void Function(Pointer<NativeType>);
+typedef SdlFreeFunc
+    = Pointer<NativeFunction<Void Function(Pointer<NativeType>)>>;
+
+// typedef int (SDLCALL *SDL_blit) (struct SDL_Surface * src, SDL_Rect * srcrect, struct SDL_Surface * dst, SDL_Rect * dstrect)
+typedef SdlBlitDart = int Function(Pointer<SdlSurface>, Pointer<SdlRect>,
+    Pointer<SdlSurface>, Pointer<SdlRect>);
+typedef SdlBlit = Pointer<
+    NativeFunction<
+        Int32 Function(Pointer<SdlSurface>, Pointer<SdlRect>,
+            Pointer<SdlSurface>, Pointer<SdlRect>)>>;
+
+// typedef void (SDLCALL * SDL_WindowsMessageHook)(void *userdata, void *hWnd, unsigned int message, Uint64 wParam, Sint64 lParam)
+typedef SdlWindowsMessageHookDart = void Function(
+    Pointer<NativeType>, Pointer<NativeType>, int, int, int);
+typedef SdlWindowsMessageHook = Pointer<
+    NativeFunction<
+        Void Function(
+            Pointer<NativeType>, Pointer<NativeType>, Uint32, Uint64, Int64)>>;
+
+// typedef int (SDLCALL * SDL_ThreadFunction) (void *data)
+typedef SdlThreadFunctionDart = int Function(Pointer<NativeType>);
+typedef SdlThreadFunction
+    = Pointer<NativeFunction<Int32 Function(Pointer<NativeType>)>>;
+
+// typedef uintptr_t (__cdecl * pfnSDL_CurrentBeginThread) (void *, unsigned, unsigned (__stdcall *func)(void *), void * , unsigned, unsigned * )
+typedef PfnSdlCurrentBeginThreadDart = Pointer<NativeType> Function(
+    Pointer<NativeType>);
+typedef PfnSdlCurrentBeginThread = Pointer<
+    NativeFunction<Pointer<NativeType> Function(Pointer<NativeType>)>>;
+
+// typedef void (__cdecl * pfnSDL_CurrentEndThread) (unsigned code)
+typedef PfnSdlCurrentEndThreadDart = void Function(Pointer<NativeType>);
+typedef PfnSdlCurrentEndThread
+    = Pointer<NativeFunction<Void Function(Pointer<NativeType>)>>;
+
+// typedef Uint32 (SDLCALL * SDL_TimerCallback) (Uint32 interval, void *param)
+typedef SdlTimerCallbackDart = int Function(int, Pointer<NativeType>);
+typedef SdlTimerCallback
+    = Pointer<NativeFunction<Uint32 Function(Uint32, Pointer<NativeType>)>>;
+
+// typedef SDL_HitTestResult (SDLCALL *SDL_HitTest)(SDL_Window *win, const SDL_Point *area, void *data)
+typedef SdlHitTestDart = int Function(
+    Pointer<SdlWindow>, Pointer<SdlPoint>, Pointer<NativeType>);
+typedef SdlHitTest = Pointer<
+    NativeFunction<
+        Int32 Function(
+            Pointer<SdlWindow>, Pointer<SdlPoint>, Pointer<NativeType>)>>;
 
 ///
 /// Initialize the SDL library.

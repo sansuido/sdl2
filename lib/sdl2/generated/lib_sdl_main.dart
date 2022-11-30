@@ -51,12 +51,13 @@ void sdlSetMainReady() {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RegisterApp(const char *name, Uint32 style, void *hInst)
 /// ```
-int sdlRegisterApp(String name, int style, Pointer<Void> hInst) {
+int sdlRegisterApp(String? name, int style, Pointer<NativeType> hInst) {
   final sdlRegisterAppLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<Utf8> name, Uint32 style, Pointer<Void> hInst),
+      Int32 Function(
+          Pointer<Utf8> name, Uint32 style, Pointer<NativeType> hInst),
       int Function(Pointer<Utf8> name, int style,
-          Pointer<Void> hInst)>('SDL_RegisterApp');
-  final namePointer = name.toNativeUtf8();
+          Pointer<NativeType> hInst)>('SDL_RegisterApp');
+  final namePointer = name != null ? name.toNativeUtf8() : nullptr;
   final result = sdlRegisterAppLookupFunction(namePointer, style, hInst);
   calloc.free(namePointer);
   return result;
@@ -99,11 +100,11 @@ void sdlUnregisterApp() {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_WinRTRunApp(SDL_main_func mainFunction, void * reserved)
 /// ```
-int sdlWinRtRunApp(Pointer<Void> mainFunction, Pointer<Void> reserved) {
+int sdlWinRtRunApp(SdlMainFunc mainFunction, Pointer<NativeType> reserved) {
   final sdlWinRtRunAppLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<Void> mainFunction, Pointer<Void> reserved),
-      int Function(Pointer<Void> mainFunction,
-          Pointer<Void> reserved)>('SDL_WinRTRunApp');
+      Int32 Function(SdlMainFunc mainFunction, Pointer<NativeType> reserved),
+      int Function(SdlMainFunc mainFunction,
+          Pointer<NativeType> reserved)>('SDL_WinRTRunApp');
   return sdlWinRtRunAppLookupFunction(mainFunction, reserved);
 }
 
@@ -120,12 +121,13 @@ int sdlWinRtRunApp(Pointer<Void> mainFunction, Pointer<Void> reserved) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_UIKitRunApp(int argc, char *argv[], SDL_main_func mainFunction)
 /// ```
-int sdlUiKitRunApp(int argc, Pointer<Int8> argv, Pointer<Void> mainFunction) {
+int sdlUiKitRunApp(
+    int argc, Pointer<Pointer<Int8>> argv, SdlMainFunc mainFunction) {
   final sdlUiKitRunAppLookupFunction = libSdl2.lookupFunction<
       Int32 Function(
-          Int32 argc, Pointer<Int8> argv, Pointer<Void> mainFunction),
-      int Function(int argc, Pointer<Int8> argv,
-          Pointer<Void> mainFunction)>('SDL_UIKitRunApp');
+          Int32 argc, Pointer<Pointer<Int8>> argv, SdlMainFunc mainFunction),
+      int Function(int argc, Pointer<Pointer<Int8>> argv,
+          SdlMainFunc mainFunction)>('SDL_UIKitRunApp');
   return sdlUiKitRunAppLookupFunction(argc, argv, mainFunction);
 }
 
@@ -142,10 +144,10 @@ int sdlUiKitRunApp(int argc, Pointer<Int8> argv, Pointer<Void> mainFunction) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GDKRunApp(SDL_main_func mainFunction, void *reserved)
 /// ```
-int sdlGdkRunApp(Pointer<Void> mainFunction, Pointer<Void> reserved) {
+int sdlGdkRunApp(SdlMainFunc mainFunction, Pointer<NativeType> reserved) {
   final sdlGdkRunAppLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<Void> mainFunction, Pointer<Void> reserved),
-      int Function(
-          Pointer<Void> mainFunction, Pointer<Void> reserved)>('SDL_GDKRunApp');
+      Int32 Function(SdlMainFunc mainFunction, Pointer<NativeType> reserved),
+      int Function(SdlMainFunc mainFunction,
+          Pointer<NativeType> reserved)>('SDL_GDKRunApp');
   return sdlGdkRunAppLookupFunction(mainFunction, reserved);
 }

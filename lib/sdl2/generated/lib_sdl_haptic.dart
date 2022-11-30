@@ -40,7 +40,7 @@ int sdlNumHaptics() {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_HapticName(int device_index)
 /// ```
-String sdlHapticName(int deviceIndex) {
+String? sdlHapticName(int deviceIndex) {
   final sdlHapticNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 deviceIndex),
       Pointer<Utf8> Function(int deviceIndex)>('SDL_HapticName');

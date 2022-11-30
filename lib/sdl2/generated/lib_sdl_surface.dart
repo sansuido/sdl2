@@ -128,7 +128,7 @@ Pointer<SdlSurface> sdlCreateRgbSurfaceWithFormat(
 /// extern DECLSPEC SDL_Surface *SDLCALL SDL_CreateRGBSurfaceFrom(void *pixels, int width, int height, int depth, int pitch, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask, Uint32 Amask)
 /// ```
 Pointer<SdlSurface> sdlCreateRgbSurfaceFrom(
-    Pointer<Void> pixels,
+    Pointer<NativeType> pixels,
     int width,
     int height,
     int depth,
@@ -139,7 +139,7 @@ Pointer<SdlSurface> sdlCreateRgbSurfaceFrom(
     int amask) {
   final sdlCreateRgbSurfaceFromLookupFunction = libSdl2.lookupFunction<
       Pointer<SdlSurface> Function(
-          Pointer<Void> pixels,
+          Pointer<NativeType> pixels,
           Int32 width,
           Int32 height,
           Int32 depth,
@@ -149,7 +149,7 @@ Pointer<SdlSurface> sdlCreateRgbSurfaceFrom(
           Uint32 bmask,
           Uint32 amask),
       Pointer<SdlSurface> Function(
-          Pointer<Void> pixels,
+          Pointer<NativeType> pixels,
           int width,
           int height,
           int depth,
@@ -191,14 +191,19 @@ Pointer<SdlSurface> sdlCreateRgbSurfaceFrom(
 /// ```c
 /// extern DECLSPEC SDL_Surface *SDLCALL SDL_CreateRGBSurfaceWithFormatFrom (void *pixels, int width, int height, int depth, int pitch, Uint32 format)
 /// ```
-Pointer<SdlSurface> sdlCreateRgbSurfaceWithFormatFrom(Pointer<Void> pixels,
-    int width, int height, int depth, int pitch, int format) {
+Pointer<SdlSurface> sdlCreateRgbSurfaceWithFormatFrom(
+    Pointer<NativeType> pixels,
+    int width,
+    int height,
+    int depth,
+    int pitch,
+    int format) {
   final sdlCreateRgbSurfaceWithFormatFromLookupFunction =
       libSdl2.lookupFunction<
-          Pointer<SdlSurface> Function(Pointer<Void> pixels, Int32 width,
+          Pointer<SdlSurface> Function(Pointer<NativeType> pixels, Int32 width,
               Int32 height, Int32 depth, Int32 pitch, Uint32 format),
           Pointer<SdlSurface> Function(
-              Pointer<Void> pixels,
+              Pointer<NativeType> pixels,
               int width,
               int height,
               int depth,
@@ -839,26 +844,33 @@ Pointer<SdlSurface> sdlConvertSurfaceFormat(
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_ConvertPixels(int width, int height, Uint32 src_format, const void * src, int src_pitch, Uint32 dst_format, void * dst, int dst_pitch)
 /// ```
-int sdlConvertPixels(int width, int height, int srcFormat, Pointer<Void> src,
-    int srcPitch, int dstFormat, Pointer<Void> dst, int dstPitch) {
+int sdlConvertPixels(
+    int width,
+    int height,
+    int srcFormat,
+    Pointer<NativeType> src,
+    int srcPitch,
+    int dstFormat,
+    Pointer<NativeType> dst,
+    int dstPitch) {
   final sdlConvertPixelsLookupFunction = libSdl2.lookupFunction<
       Int32 Function(
           Int32 width,
           Int32 height,
           Uint32 srcFormat,
-          Pointer<Void> src,
+          Pointer<NativeType> src,
           Int32 srcPitch,
           Uint32 dstFormat,
-          Pointer<Void> dst,
+          Pointer<NativeType> dst,
           Int32 dstPitch),
       int Function(
           int width,
           int height,
           int srcFormat,
-          Pointer<Void> src,
+          Pointer<NativeType> src,
           int srcPitch,
           int dstFormat,
-          Pointer<Void> dst,
+          Pointer<NativeType> dst,
           int dstPitch)>('SDL_ConvertPixels');
   return sdlConvertPixelsLookupFunction(
       width, height, srcFormat, src, srcPitch, dstFormat, dst, dstPitch);
@@ -887,26 +899,33 @@ int sdlConvertPixels(int width, int height, int srcFormat, Pointer<Void> src,
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_PremultiplyAlpha(int width, int height, Uint32 src_format, const void * src, int src_pitch, Uint32 dst_format, void * dst, int dst_pitch)
 /// ```
-int sdlPremultiplyAlpha(int width, int height, int srcFormat, Pointer<Void> src,
-    int srcPitch, int dstFormat, Pointer<Void> dst, int dstPitch) {
+int sdlPremultiplyAlpha(
+    int width,
+    int height,
+    int srcFormat,
+    Pointer<NativeType> src,
+    int srcPitch,
+    int dstFormat,
+    Pointer<NativeType> dst,
+    int dstPitch) {
   final sdlPremultiplyAlphaLookupFunction = libSdl2.lookupFunction<
       Int32 Function(
           Int32 width,
           Int32 height,
           Uint32 srcFormat,
-          Pointer<Void> src,
+          Pointer<NativeType> src,
           Int32 srcPitch,
           Uint32 dstFormat,
-          Pointer<Void> dst,
+          Pointer<NativeType> dst,
           Int32 dstPitch),
       int Function(
           int width,
           int height,
           int srcFormat,
-          Pointer<Void> src,
+          Pointer<NativeType> src,
           int srcPitch,
           int dstFormat,
-          Pointer<Void> dst,
+          Pointer<NativeType> dst,
           int dstPitch)>('SDL_PremultiplyAlpha');
   return sdlPremultiplyAlphaLookupFunction(
       width, height, srcFormat, src, srcPitch, dstFormat, dst, dstPitch);

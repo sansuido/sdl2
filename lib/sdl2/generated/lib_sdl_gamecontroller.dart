@@ -74,12 +74,13 @@ int sdlGameControllerAddMappingsFromRw(Pointer<SdlRWops> rw, int freerw) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GameControllerAddMapping(const char* mappingString)
 /// ```
-int sdlGameControllerAddMapping(String mappingString) {
+int sdlGameControllerAddMapping(String? mappingString) {
   final sdlGameControllerAddMappingLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8> mappingString),
       int Function(
           Pointer<Utf8> mappingString)>('SDL_GameControllerAddMapping');
-  final mappingStringPointer = mappingString.toNativeUtf8();
+  final mappingStringPointer =
+      mappingString != null ? mappingString.toNativeUtf8() : nullptr;
   final result =
       sdlGameControllerAddMappingLookupFunction(mappingStringPointer);
   calloc.free(mappingStringPointer);
@@ -139,11 +140,10 @@ Pointer<Int8> sdlGameControllerMappingForIndex(int mappingIndex) {
 /// ```c
 /// extern DECLSPEC char * SDLCALL SDL_GameControllerMappingForGUID(SDL_JoystickGUID guid)
 /// ```
-Pointer<Int8> sdlGameControllerMappingForGuid(Pointer<Void> guid) {
+Pointer<Int8> sdlGameControllerMappingForGuid(SdlGuid guid) {
   final sdlGameControllerMappingForGuidLookupFunction = libSdl2.lookupFunction<
-      Pointer<Int8> Function(Pointer<Void> guid),
-      Pointer<Int8> Function(
-          Pointer<Void> guid)>('SDL_GameControllerMappingForGUID');
+      Pointer<Int8> Function(SdlGuid guid),
+      Pointer<Int8> Function(SdlGuid guid)>('SDL_GameControllerMappingForGUID');
   return sdlGameControllerMappingForGuidLookupFunction(guid);
 }
 
@@ -224,7 +224,7 @@ int sdlIsGameController(int joystickIndex) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GameControllerNameForIndex(int joystick_index)
 /// ```
-String sdlGameControllerNameForIndex(int joystickIndex) {
+String? sdlGameControllerNameForIndex(int joystickIndex) {
   final sdlGameControllerNameForIndexLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 joystickIndex),
       Pointer<Utf8> Function(
@@ -253,7 +253,7 @@ String sdlGameControllerNameForIndex(int joystickIndex) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GameControllerPathForIndex(int joystick_index)
 /// ```
-String sdlGameControllerPathForIndex(int joystickIndex) {
+String? sdlGameControllerPathForIndex(int joystickIndex) {
   final sdlGameControllerPathForIndexLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 joystickIndex),
       Pointer<Utf8> Function(
@@ -405,7 +405,7 @@ Pointer<SdlGameController> sdlGameControllerFromPlayerIndex(int playerIndex) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GameControllerName(SDL_GameController *gamecontroller)
 /// ```
-String sdlGameControllerName(Pointer<SdlGameController> gamecontroller) {
+String? sdlGameControllerName(Pointer<SdlGameController> gamecontroller) {
   final sdlGameControllerNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Pointer<SdlGameController> gamecontroller),
       Pointer<Utf8> Function(
@@ -431,7 +431,7 @@ String sdlGameControllerName(Pointer<SdlGameController> gamecontroller) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GameControllerPath(SDL_GameController *gamecontroller)
 /// ```
-String sdlGameControllerPath(Pointer<SdlGameController> gamecontroller) {
+String? sdlGameControllerPath(Pointer<SdlGameController> gamecontroller) {
   final sdlGameControllerPathLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Pointer<SdlGameController> gamecontroller),
       Pointer<Utf8> Function(
@@ -607,7 +607,7 @@ int sdlGameControllerGetFirmwareVersion(
 /// ```c
 /// extern DECLSPEC const char * SDLCALL SDL_GameControllerGetSerial(SDL_GameController *gamecontroller)
 /// ```
-String sdlGameControllerGetSerial(Pointer<SdlGameController> gamecontroller) {
+String? sdlGameControllerGetSerial(Pointer<SdlGameController> gamecontroller) {
   final sdlGameControllerGetSerialLookupFunction = libSdl2.lookupFunction<
           Pointer<Utf8> Function(Pointer<SdlGameController> gamecontroller),
           Pointer<Utf8> Function(Pointer<SdlGameController> gamecontroller)>(
@@ -742,13 +742,13 @@ void sdlGameControllerUpdate() {
 /// ```c
 /// extern DECLSPEC SDL_GameControllerAxis SDLCALL SDL_GameControllerGetAxisFromString(const char *str)
 /// ```
-int sdlGameControllerGetAxisFromString(String str) {
+int sdlGameControllerGetAxisFromString(String? str) {
   final sdlGameControllerGetAxisFromStringLookupFunction =
       libSdl2.lookupFunction<
           Int32 Function(Pointer<Utf8> str),
           int Function(
               Pointer<Utf8> str)>('SDL_GameControllerGetAxisFromString');
-  final strPointer = str.toNativeUtf8();
+  final strPointer = str != null ? str.toNativeUtf8() : nullptr;
   final result = sdlGameControllerGetAxisFromStringLookupFunction(strPointer);
   calloc.free(strPointer);
   return result;
@@ -771,7 +771,7 @@ int sdlGameControllerGetAxisFromString(String str) {
 /// ```c
 /// extern DECLSPEC const char* SDLCALL SDL_GameControllerGetStringForAxis(SDL_GameControllerAxis axis)
 /// ```
-String sdlGameControllerGetStringForAxis(int axis) {
+String? sdlGameControllerGetStringForAxis(int axis) {
   final sdlGameControllerGetStringForAxisLookupFunction =
       libSdl2.lookupFunction<
           Pointer<Utf8> Function(Int32 axis),
@@ -796,12 +796,13 @@ String sdlGameControllerGetStringForAxis(int axis) {
 /// ```c
 /// extern DECLSPEC SDL_GameControllerButtonBind SDLCALL SDL_GameControllerGetBindForAxis(SDL_GameController *gamecontroller, SDL_GameControllerAxis axis)
 /// ```
-Pointer<Void> sdlGameControllerGetBindForAxis(
+SdlGameControllerButtonBind sdlGameControllerGetBindForAxis(
     Pointer<SdlGameController> gamecontroller, int axis) {
   final sdlGameControllerGetBindForAxisLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(
+      SdlGameControllerButtonBind Function(
           Pointer<SdlGameController> gamecontroller, Int32 axis),
-      Pointer<Void> Function(Pointer<SdlGameController> gamecontroller,
+      SdlGameControllerButtonBind Function(
+          Pointer<SdlGameController> gamecontroller,
           int axis)>('SDL_GameControllerGetBindForAxis');
   return sdlGameControllerGetBindForAxisLookupFunction(gamecontroller, axis);
 }
@@ -876,13 +877,13 @@ int sdlGameControllerGetAxis(
 /// ```c
 /// extern DECLSPEC SDL_GameControllerButton SDLCALL SDL_GameControllerGetButtonFromString(const char *str)
 /// ```
-int sdlGameControllerGetButtonFromString(String str) {
+int sdlGameControllerGetButtonFromString(String? str) {
   final sdlGameControllerGetButtonFromStringLookupFunction =
       libSdl2.lookupFunction<
           Int32 Function(Pointer<Utf8> str),
           int Function(
               Pointer<Utf8> str)>('SDL_GameControllerGetButtonFromString');
-  final strPointer = str.toNativeUtf8();
+  final strPointer = str != null ? str.toNativeUtf8() : nullptr;
   final result = sdlGameControllerGetButtonFromStringLookupFunction(strPointer);
   calloc.free(strPointer);
   return result;
@@ -894,7 +895,7 @@ int sdlGameControllerGetButtonFromString(String str) {
 /// The caller should not SDL_free() the returned string.
 ///
 /// \param button an enum value for a given SDL_GameControllerButton
-/// \returns a string for the given button, or NULL if an invalid axis is
+/// \returns a string for the given button, or NULL if an invalid button is
 /// specified. The string returned is of the format used by
 /// SDL_GameController mapping strings.
 ///
@@ -905,7 +906,7 @@ int sdlGameControllerGetButtonFromString(String str) {
 /// ```c
 /// extern DECLSPEC const char* SDLCALL SDL_GameControllerGetStringForButton(SDL_GameControllerButton button)
 /// ```
-String sdlGameControllerGetStringForButton(int button) {
+String? sdlGameControllerGetStringForButton(int button) {
   final sdlGameControllerGetStringForButtonLookupFunction =
       libSdl2.lookupFunction<
           Pointer<Utf8> Function(Int32 button),
@@ -931,13 +932,14 @@ String sdlGameControllerGetStringForButton(int button) {
 /// ```c
 /// extern DECLSPEC SDL_GameControllerButtonBind SDLCALL SDL_GameControllerGetBindForButton(SDL_GameController *gamecontroller, SDL_GameControllerButton button)
 /// ```
-Pointer<Void> sdlGameControllerGetBindForButton(
+SdlGameControllerButtonBind sdlGameControllerGetBindForButton(
     Pointer<SdlGameController> gamecontroller, int button) {
   final sdlGameControllerGetBindForButtonLookupFunction =
       libSdl2.lookupFunction<
-          Pointer<Void> Function(
+          SdlGameControllerButtonBind Function(
               Pointer<SdlGameController> gamecontroller, Int32 button),
-          Pointer<Void> Function(Pointer<SdlGameController> gamecontroller,
+          SdlGameControllerButtonBind Function(
+              Pointer<SdlGameController> gamecontroller,
               int button)>('SDL_GameControllerGetBindForButton');
   return sdlGameControllerGetBindForButtonLookupFunction(
       gamecontroller, button);
@@ -1189,6 +1191,46 @@ int sdlGameControllerGetSensorData(Pointer<SdlGameController> gamecontroller,
 }
 
 ///
+/// Get the current state of a game controller sensor with the timestamp of the
+/// last update.
+///
+/// The number of values and interpretation of the data is sensor dependent.
+/// See SDL_sensor.h for the details for each type of sensor.
+///
+/// \param gamecontroller The controller to query
+/// \param type The type of sensor to query
+/// \param timestamp A pointer filled with the timestamp in microseconds of the
+/// current sensor reading if available, or 0 if not
+/// \param data A pointer filled with the current sensor state
+/// \param num_values The number of values to write to data
+/// \return 0 or -1 if an error occurred.
+///
+/// \since This function is available since SDL 2.26.0.
+///
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_GameControllerGetSensorDataWithTimestamp(SDL_GameController *gamecontroller, SDL_SensorType type, Uint64 *timestamp, float *data, int num_values)
+/// ```
+int sdlGameControllerGetSensorDataWithTimestamp(
+    Pointer<SdlGameController> gamecontroller,
+    int type,
+    Pointer<Uint64> timestamp,
+    Pointer<Float> data,
+    int numValues) {
+  final sdlGameControllerGetSensorDataWithTimestampLookupFunction =
+      libSdl2.lookupFunction<
+          Int32 Function(Pointer<SdlGameController> gamecontroller, Int32 type,
+              Pointer<Uint64> timestamp, Pointer<Float> data, Int32 numValues),
+          int Function(
+              Pointer<SdlGameController> gamecontroller,
+              int type,
+              Pointer<Uint64> timestamp,
+              Pointer<Float> data,
+              int numValues)>('SDL_GameControllerGetSensorDataWithTimestamp');
+  return sdlGameControllerGetSensorDataWithTimestampLookupFunction(
+      gamecontroller, type, timestamp, data, numValues);
+}
+
+///
 /// Start a rumble effect on a game controller.
 ///
 /// Each call to this function cancels any previous rumble effect, and calling
@@ -1368,13 +1410,13 @@ int sdlGameControllerSetLed(
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_GameControllerSendEffect(SDL_GameController *gamecontroller, const void *data, int size)
 /// ```
-int sdlGameControllerSendEffect(
-    Pointer<SdlGameController> gamecontroller, Pointer<Void> data, int size) {
+int sdlGameControllerSendEffect(Pointer<SdlGameController> gamecontroller,
+    Pointer<NativeType> data, int size) {
   final sdlGameControllerSendEffectLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlGameController> gamecontroller,
-          Pointer<Void> data, Int32 size),
+          Pointer<NativeType> data, Int32 size),
       int Function(Pointer<SdlGameController> gamecontroller,
-          Pointer<Void> data, int size)>('SDL_GameControllerSendEffect');
+          Pointer<NativeType> data, int size)>('SDL_GameControllerSendEffect');
   return sdlGameControllerSendEffectLookupFunction(gamecontroller, data, size);
 }
 
@@ -1414,7 +1456,7 @@ void sdlGameControllerClose(Pointer<SdlGameController> gamecontroller) {
 /// ```c
 /// extern DECLSPEC const char* SDLCALL SDL_GameControllerGetAppleSFSymbolsNameForButton(SDL_GameController *gamecontroller, SDL_GameControllerButton button)
 /// ```
-String sdlGameControllerGetAppleSfSymbolsNameForButton(
+String? sdlGameControllerGetAppleSfSymbolsNameForButton(
     Pointer<SdlGameController> gamecontroller, int button) {
   final sdlGameControllerGetAppleSfSymbolsNameForButtonLookupFunction =
       libSdl2.lookupFunction<
@@ -1442,7 +1484,7 @@ String sdlGameControllerGetAppleSfSymbolsNameForButton(
 /// ```c
 /// extern DECLSPEC const char* SDLCALL SDL_GameControllerGetAppleSFSymbolsNameForAxis(SDL_GameController *gamecontroller, SDL_GameControllerAxis axis)
 /// ```
-String sdlGameControllerGetAppleSfSymbolsNameForAxis(
+String? sdlGameControllerGetAppleSfSymbolsNameForAxis(
     Pointer<SdlGameController> gamecontroller, int axis) {
   final sdlGameControllerGetAppleSfSymbolsNameForAxisLookupFunction =
       libSdl2.lookupFunction<

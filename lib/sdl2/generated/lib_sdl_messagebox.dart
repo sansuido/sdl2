@@ -94,14 +94,14 @@ int sdlShowMessageBox(
 /// extern DECLSPEC int SDLCALL SDL_ShowSimpleMessageBox(Uint32 flags, const char *title, const char *message, SDL_Window *window)
 /// ```
 int sdlShowSimpleMessageBox(
-    int flags, String title, String message, Pointer<SdlWindow> window) {
+    int flags, String? title, String? message, Pointer<SdlWindow> window) {
   final sdlShowSimpleMessageBoxLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Uint32 flags, Pointer<Utf8> title, Pointer<Utf8> message,
           Pointer<SdlWindow> window),
       int Function(int flags, Pointer<Utf8> title, Pointer<Utf8> message,
           Pointer<SdlWindow> window)>('SDL_ShowSimpleMessageBox');
-  final titlePointer = title.toNativeUtf8();
-  final messagePointer = message.toNativeUtf8();
+  final titlePointer = title != null ? title.toNativeUtf8() : nullptr;
+  final messagePointer = message != null ? message.toNativeUtf8() : nullptr;
   final result = sdlShowSimpleMessageBoxLookupFunction(
       flags, titlePointer, messagePointer, window);
   calloc.free(titlePointer);

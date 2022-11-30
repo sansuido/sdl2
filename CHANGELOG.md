@@ -1,3 +1,12 @@
+## 1.4.0
+- [update] Support SDL version 2.26.0 (stable).
+- [add] Support SDL2_gfx version 1.0.4.
+- [add] Added functions using extension.
+- [add] Added examples.
+- [changed] Changed Pointer_Void to Pointer_NativeType.
+- [changed] Changed String to String?. If you want to pass nullptr, use null for the argument.
+- [fix] Fixed callback function was Pointer_Void.
+
 ## 1.3.2
 - [update]  Rewrite a pointer to be non-nullable.
 - [fix]  Fixed union position bug.

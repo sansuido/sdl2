@@ -48,14 +48,14 @@ const MIX_MAX_VOLUME = SDL_MIX_MAXVOLUME;
 /// ```c
 /// const Mix_SetError = SDL_SetError;
 /// ```
-int mixSetError(String fmt, Pointer<Void> arg1) {
+int mixSetError(String fmt, Pointer<NativeType> arg1) {
   return sdlSetError(fmt, arg1);
 }
 
 /// ```c
 /// const Mix_GetError = SDL_GetError;
 /// ```
-String mixGetError() {
+String? mixGetError() {
   return sdlGetError();
 }
 

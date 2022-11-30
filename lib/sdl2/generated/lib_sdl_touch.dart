@@ -60,7 +60,7 @@ int sdlGetTouchDevice(int index) {
 /// ```c
 /// extern DECLSPEC const char* SDLCALL SDL_GetTouchName(int index)
 /// ```
-String sdlGetTouchName(int index) {
+String? sdlGetTouchName(int index) {
   final sdlGetTouchNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 index),
       Pointer<Utf8> Function(int index)>('SDL_GetTouchName');

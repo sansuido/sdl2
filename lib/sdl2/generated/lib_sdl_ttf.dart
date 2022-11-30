@@ -149,12 +149,12 @@ int ttfInit() {
 /// ```c
 /// extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFont(const char *file, int ptsize)
 /// ```
-Pointer<TtfFont> ttfOpenFont(String file, int ptsize) {
+Pointer<TtfFont> ttfOpenFont(String? file, int ptsize) {
   final ttfOpenFontLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<TtfFont> Function(Pointer<Utf8> file, Int32 ptsize),
       Pointer<TtfFont> Function(
           Pointer<Utf8> file, int ptsize)>('TTF_OpenFont');
-  final filePointer = file.toNativeUtf8();
+  final filePointer = file != null ? file.toNativeUtf8() : nullptr;
   final result = ttfOpenFontLookupFunction(filePointer, ptsize);
   calloc.free(filePointer);
   return result;
@@ -185,12 +185,12 @@ Pointer<TtfFont> ttfOpenFont(String file, int ptsize) {
 /// ```c
 /// extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontIndex(const char *file, int ptsize, long index)
 /// ```
-Pointer<TtfFont> ttfOpenFontIndex(String file, int ptsize, int index) {
+Pointer<TtfFont> ttfOpenFontIndex(String? file, int ptsize, int index) {
   final ttfOpenFontIndexLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<TtfFont> Function(Pointer<Utf8> file, Int32 ptsize, Int32 index),
       Pointer<TtfFont> Function(
           Pointer<Utf8> file, int ptsize, int index)>('TTF_OpenFontIndex');
-  final filePointer = file.toNativeUtf8();
+  final filePointer = file != null ? file.toNativeUtf8() : nullptr;
   final result = ttfOpenFontIndexLookupFunction(filePointer, ptsize, index);
   calloc.free(filePointer);
   return result;
@@ -296,13 +296,13 @@ Pointer<TtfFont> ttfOpenFontIndexRw(
 /// ```c
 /// extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontDPI(const char *file, int ptsize, unsigned int hdpi, unsigned int vdpi)
 /// ```
-Pointer<TtfFont> ttfOpenFontDpi(String file, int ptsize, int hdpi, int vdpi) {
+Pointer<TtfFont> ttfOpenFontDpi(String? file, int ptsize, int hdpi, int vdpi) {
   final ttfOpenFontDpiLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<TtfFont> Function(
           Pointer<Utf8> file, Int32 ptsize, Uint32 hdpi, Uint32 vdpi),
       Pointer<TtfFont> Function(Pointer<Utf8> file, int ptsize, int hdpi,
           int vdpi)>('TTF_OpenFontDPI');
-  final filePointer = file.toNativeUtf8();
+  final filePointer = file != null ? file.toNativeUtf8() : nullptr;
   final result = ttfOpenFontDpiLookupFunction(filePointer, ptsize, hdpi, vdpi);
   calloc.free(filePointer);
   return result;
@@ -338,13 +338,13 @@ Pointer<TtfFont> ttfOpenFontDpi(String file, int ptsize, int hdpi, int vdpi) {
 /// extern DECLSPEC TTF_Font * SDLCALL TTF_OpenFontIndexDPI(const char *file, int ptsize, long index, unsigned int hdpi, unsigned int vdpi)
 /// ```
 Pointer<TtfFont> ttfOpenFontIndexDpi(
-    String file, int ptsize, int index, int hdpi, int vdpi) {
+    String? file, int ptsize, int index, int hdpi, int vdpi) {
   final ttfOpenFontIndexDpiLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<TtfFont> Function(Pointer<Utf8> file, Int32 ptsize, Int32 index,
           Uint32 hdpi, Uint32 vdpi),
       Pointer<TtfFont> Function(Pointer<Utf8> file, int ptsize, int index,
           int hdpi, int vdpi)>('TTF_OpenFontIndexDPI');
-  final filePointer = file.toNativeUtf8();
+  final filePointer = file != null ? file.toNativeUtf8() : nullptr;
   final result =
       ttfOpenFontIndexDpiLookupFunction(filePointer, ptsize, index, hdpi, vdpi);
   calloc.free(filePointer);
@@ -870,7 +870,7 @@ int ttfFontFaceIsFixedWidth(Pointer<TtfFont> font) {
 /// ```c
 /// extern DECLSPEC const char * SDLCALL TTF_FontFaceFamilyName(const TTF_Font *font)
 /// ```
-String ttfFontFaceFamilyName(Pointer<TtfFont> font) {
+String? ttfFontFaceFamilyName(Pointer<TtfFont> font) {
   final ttfFontFaceFamilyNameLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<Utf8> Function(Pointer<TtfFont> font),
       Pointer<Utf8> Function(Pointer<TtfFont> font)>('TTF_FontFaceFamilyName');
@@ -894,7 +894,7 @@ String ttfFontFaceFamilyName(Pointer<TtfFont> font) {
 /// ```c
 /// extern DECLSPEC const char * SDLCALL TTF_FontFaceStyleName(const TTF_Font *font)
 /// ```
-String ttfFontFaceStyleName(Pointer<TtfFont> font) {
+String? ttfFontFaceStyleName(Pointer<TtfFont> font) {
   final ttfFontFaceStyleNameLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<Utf8> Function(Pointer<TtfFont> font),
       Pointer<Utf8> Function(Pointer<TtfFont> font)>('TTF_FontFaceStyleName');
@@ -1087,13 +1087,13 @@ int ttfGlyphMetrics32(
 /// extern DECLSPEC int SDLCALL TTF_SizeText(TTF_Font *font, const char *text, int *w, int *h)
 /// ```
 int ttfSizeText(
-    Pointer<TtfFont> font, String text, Pointer<Int32> w, Pointer<Int32> h) {
+    Pointer<TtfFont> font, String? text, Pointer<Int32> w, Pointer<Int32> h) {
   final ttfSizeTextLookupFunction = libSdl2Ttf.lookupFunction<
       Int32 Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           Pointer<Int32> w, Pointer<Int32> h),
       int Function(Pointer<TtfFont> font, Pointer<Utf8> text, Pointer<Int32> w,
           Pointer<Int32> h)>('TTF_SizeText');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfSizeTextLookupFunction(font, textPointer, w, h);
   calloc.free(textPointer);
   return result;
@@ -1121,13 +1121,13 @@ int ttfSizeText(
 /// extern DECLSPEC int SDLCALL TTF_SizeUTF8(TTF_Font *font, const char *text, int *w, int *h)
 /// ```
 int ttfSizeUtf8(
-    Pointer<TtfFont> font, String text, Pointer<Int32> w, Pointer<Int32> h) {
+    Pointer<TtfFont> font, String? text, Pointer<Int32> w, Pointer<Int32> h) {
   final ttfSizeUtf8LookupFunction = libSdl2Ttf.lookupFunction<
       Int32 Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           Pointer<Int32> w, Pointer<Int32> h),
       int Function(Pointer<TtfFont> font, Pointer<Utf8> text, Pointer<Int32> w,
           Pointer<Int32> h)>('TTF_SizeUTF8');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfSizeUtf8LookupFunction(font, textPointer, w, h);
   calloc.free(textPointer);
   return result;
@@ -1199,14 +1199,14 @@ int ttfSizeUnicode(Pointer<TtfFont> font, Pointer<Uint16> text,
 /// ```c
 /// extern DECLSPEC int SDLCALL TTF_MeasureText(TTF_Font *font, const char *text, int measure_width, int *extent, int *count)
 /// ```
-int ttfMeasureText(Pointer<TtfFont> font, String text, int measureWidth,
+int ttfMeasureText(Pointer<TtfFont> font, String? text, int measureWidth,
     Pointer<Int32> extent, Pointer<Int32> count) {
   final ttfMeasureTextLookupFunction = libSdl2Ttf.lookupFunction<
       Int32 Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           Int32 measureWidth, Pointer<Int32> extent, Pointer<Int32> count),
       int Function(Pointer<TtfFont> font, Pointer<Utf8> text, int measureWidth,
           Pointer<Int32> extent, Pointer<Int32> count)>('TTF_MeasureText');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfMeasureTextLookupFunction(
       font, textPointer, measureWidth, extent, count);
   calloc.free(textPointer);
@@ -1238,14 +1238,14 @@ int ttfMeasureText(Pointer<TtfFont> font, String text, int measureWidth,
 /// ```c
 /// extern DECLSPEC int SDLCALL TTF_MeasureUTF8(TTF_Font *font, const char *text, int measure_width, int *extent, int *count)
 /// ```
-int ttfMeasureUtf8(Pointer<TtfFont> font, String text, int measureWidth,
+int ttfMeasureUtf8(Pointer<TtfFont> font, String? text, int measureWidth,
     Pointer<Int32> extent, Pointer<Int32> count) {
   final ttfMeasureUtf8LookupFunction = libSdl2Ttf.lookupFunction<
       Int32 Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           Int32 measureWidth, Pointer<Int32> extent, Pointer<Int32> count),
       int Function(Pointer<TtfFont> font, Pointer<Utf8> text, int measureWidth,
           Pointer<Int32> extent, Pointer<Int32> count)>('TTF_MeasureUTF8');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfMeasureUtf8LookupFunction(
       font, textPointer, measureWidth, extent, count);
   calloc.free(textPointer);
@@ -1333,13 +1333,13 @@ int ttfMeasureUnicode(Pointer<TtfFont> font, Pointer<Uint16> text,
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Solid(TTF_Font *font, const char *text, SDL_Color fg)
 /// ```
 Pointer<SdlSurface> ttfRenderTextSolid(
-    Pointer<TtfFont> font, String text, SdlColor fg) {
+    Pointer<TtfFont> font, String? text, SdlColor fg) {
   final ttfRenderTextSolidLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(
           Pointer<TtfFont> font, Pointer<Utf8> text, SdlColor fg),
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg)>('TTF_RenderText_Solid');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderTextSolidLookupFunction(font, textPointer, fg);
   calloc.free(textPointer);
   return result;
@@ -1377,13 +1377,13 @@ Pointer<SdlSurface> ttfRenderTextSolid(
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Solid(TTF_Font *font, const char *text, SDL_Color fg)
 /// ```
 Pointer<SdlSurface> ttfRenderUtf8Solid(
-    Pointer<TtfFont> font, String text, SdlColor fg) {
+    Pointer<TtfFont> font, String? text, SdlColor fg) {
   final ttfRenderUtf8SolidLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(
           Pointer<TtfFont> font, Pointer<Utf8> text, SdlColor fg),
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg)>('TTF_RenderUTF8_Solid');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderUtf8SolidLookupFunction(font, textPointer, fg);
   calloc.free(textPointer);
   return result;
@@ -1467,13 +1467,13 @@ Pointer<SdlSurface> ttfRenderUnicodeSolid(
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Solid_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, Uint32 wrapLength)
 /// ```
 Pointer<SdlSurface> ttfRenderTextSolidWrapped(
-    Pointer<TtfFont> font, String text, SdlColor fg, int wrapLength) {
+    Pointer<TtfFont> font, String? text, SdlColor fg, int wrapLength) {
   final ttfRenderTextSolidWrappedLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, Uint32 wrapLength),
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, int wrapLength)>('TTF_RenderText_Solid_Wrapped');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderTextSolidWrappedLookupFunction(
       font, textPointer, fg, wrapLength);
   calloc.free(textPointer);
@@ -1510,13 +1510,13 @@ Pointer<SdlSurface> ttfRenderTextSolidWrapped(
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Solid_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, Uint32 wrapLength)
 /// ```
 Pointer<SdlSurface> ttfRenderUtf8SolidWrapped(
-    Pointer<TtfFont> font, String text, SdlColor fg, int wrapLength) {
+    Pointer<TtfFont> font, String? text, SdlColor fg, int wrapLength) {
   final ttfRenderUtf8SolidWrappedLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, Uint32 wrapLength),
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, int wrapLength)>('TTF_RenderUTF8_Solid_Wrapped');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderUtf8SolidWrappedLookupFunction(
       font, textPointer, fg, wrapLength);
   calloc.free(textPointer);
@@ -1689,13 +1689,13 @@ Pointer<SdlSurface> ttfRenderGlyph32Solid(
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Shaded(TTF_Font *font, const char *text, SDL_Color fg, SDL_Color bg)
 /// ```
 Pointer<SdlSurface> ttfRenderTextShaded(
-    Pointer<TtfFont> font, String text, SdlColor fg, SdlColor bg) {
+    Pointer<TtfFont> font, String? text, SdlColor fg, SdlColor bg) {
   final ttfRenderTextShadedLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(
           Pointer<TtfFont> font, Pointer<Utf8> text, SdlColor fg, SdlColor bg),
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, SdlColor bg)>('TTF_RenderText_Shaded');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderTextShadedLookupFunction(font, textPointer, fg, bg);
   calloc.free(textPointer);
   return result;
@@ -1732,13 +1732,13 @@ Pointer<SdlSurface> ttfRenderTextShaded(
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Shaded(TTF_Font *font, const char *text, SDL_Color fg, SDL_Color bg)
 /// ```
 Pointer<SdlSurface> ttfRenderUtf8Shaded(
-    Pointer<TtfFont> font, String text, SdlColor fg, SdlColor bg) {
+    Pointer<TtfFont> font, String? text, SdlColor fg, SdlColor bg) {
   final ttfRenderUtf8ShadedLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(
           Pointer<TtfFont> font, Pointer<Utf8> text, SdlColor fg, SdlColor bg),
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, SdlColor bg)>('TTF_RenderUTF8_Shaded');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderUtf8ShadedLookupFunction(font, textPointer, fg, bg);
   calloc.free(textPointer);
   return result;
@@ -1824,7 +1824,7 @@ Pointer<SdlSurface> ttfRenderUnicodeShaded(
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Shaded_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength)
 /// ```
 Pointer<SdlSurface> ttfRenderTextShadedWrapped(Pointer<TtfFont> font,
-    String text, SdlColor fg, SdlColor bg, int wrapLength) {
+    String? text, SdlColor fg, SdlColor bg, int wrapLength) {
   final ttfRenderTextShadedWrappedLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, SdlColor bg, Uint32 wrapLength),
@@ -1834,7 +1834,7 @@ Pointer<SdlSurface> ttfRenderTextShadedWrapped(Pointer<TtfFont> font,
           SdlColor fg,
           SdlColor bg,
           int wrapLength)>('TTF_RenderText_Shaded_Wrapped');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderTextShadedWrappedLookupFunction(
       font, textPointer, fg, bg, wrapLength);
   calloc.free(textPointer);
@@ -1872,7 +1872,7 @@ Pointer<SdlSurface> ttfRenderTextShadedWrapped(Pointer<TtfFont> font,
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Shaded_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength)
 /// ```
 Pointer<SdlSurface> ttfRenderUtf8ShadedWrapped(Pointer<TtfFont> font,
-    String text, SdlColor fg, SdlColor bg, int wrapLength) {
+    String? text, SdlColor fg, SdlColor bg, int wrapLength) {
   final ttfRenderUtf8ShadedWrappedLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, SdlColor bg, Uint32 wrapLength),
@@ -1882,7 +1882,7 @@ Pointer<SdlSurface> ttfRenderUtf8ShadedWrapped(Pointer<TtfFont> font,
           SdlColor fg,
           SdlColor bg,
           int wrapLength)>('TTF_RenderUTF8_Shaded_Wrapped');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderUtf8ShadedWrappedLookupFunction(
       font, textPointer, fg, bg, wrapLength);
   calloc.free(textPointer);
@@ -2062,13 +2062,13 @@ Pointer<SdlSurface> ttfRenderGlyph32Shaded(
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Blended(TTF_Font *font, const char *text, SDL_Color fg)
 /// ```
 Pointer<SdlSurface> ttfRenderTextBlended(
-    Pointer<TtfFont> font, String text, SdlColor fg) {
+    Pointer<TtfFont> font, String? text, SdlColor fg) {
   final ttfRenderTextBlendedLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(
           Pointer<TtfFont> font, Pointer<Utf8> text, SdlColor fg),
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg)>('TTF_RenderText_Blended');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderTextBlendedLookupFunction(font, textPointer, fg);
   calloc.free(textPointer);
   return result;
@@ -2104,13 +2104,13 @@ Pointer<SdlSurface> ttfRenderTextBlended(
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Blended(TTF_Font *font, const char *text, SDL_Color fg)
 /// ```
 Pointer<SdlSurface> ttfRenderUtf8Blended(
-    Pointer<TtfFont> font, String text, SdlColor fg) {
+    Pointer<TtfFont> font, String? text, SdlColor fg) {
   final ttfRenderUtf8BlendedLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(
           Pointer<TtfFont> font, Pointer<Utf8> text, SdlColor fg),
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg)>('TTF_RenderUTF8_Blended');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderUtf8BlendedLookupFunction(font, textPointer, fg);
   calloc.free(textPointer);
   return result;
@@ -2194,13 +2194,13 @@ Pointer<SdlSurface> ttfRenderUnicodeBlended(
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_Blended_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, Uint32 wrapLength)
 /// ```
 Pointer<SdlSurface> ttfRenderTextBlendedWrapped(
-    Pointer<TtfFont> font, String text, SdlColor fg, int wrapLength) {
+    Pointer<TtfFont> font, String? text, SdlColor fg, int wrapLength) {
   final ttfRenderTextBlendedWrappedLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, Uint32 wrapLength),
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, int wrapLength)>('TTF_RenderText_Blended_Wrapped');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderTextBlendedWrappedLookupFunction(
       font, textPointer, fg, wrapLength);
   calloc.free(textPointer);
@@ -2237,13 +2237,13 @@ Pointer<SdlSurface> ttfRenderTextBlendedWrapped(
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_Blended_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, Uint32 wrapLength)
 /// ```
 Pointer<SdlSurface> ttfRenderUtf8BlendedWrapped(
-    Pointer<TtfFont> font, String text, SdlColor fg, int wrapLength) {
+    Pointer<TtfFont> font, String? text, SdlColor fg, int wrapLength) {
   final ttfRenderUtf8BlendedWrappedLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, Uint32 wrapLength),
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, int wrapLength)>('TTF_RenderUTF8_Blended_Wrapped');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderUtf8BlendedWrappedLookupFunction(
       font, textPointer, fg, wrapLength);
   calloc.free(textPointer);
@@ -2421,13 +2421,13 @@ Pointer<SdlSurface> ttfRenderGlyph32Blended(
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_LCD(TTF_Font *font, const char *text, SDL_Color fg, SDL_Color bg)
 /// ```
 Pointer<SdlSurface> ttfRenderTextLcd(
-    Pointer<TtfFont> font, String text, SdlColor fg, SdlColor bg) {
+    Pointer<TtfFont> font, String? text, SdlColor fg, SdlColor bg) {
   final ttfRenderTextLcdLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(
           Pointer<TtfFont> font, Pointer<Utf8> text, SdlColor fg, SdlColor bg),
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, SdlColor bg)>('TTF_RenderText_LCD');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderTextLcdLookupFunction(font, textPointer, fg, bg);
   calloc.free(textPointer);
   return result;
@@ -2464,13 +2464,13 @@ Pointer<SdlSurface> ttfRenderTextLcd(
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_LCD(TTF_Font *font, const char *text, SDL_Color fg, SDL_Color bg)
 /// ```
 Pointer<SdlSurface> ttfRenderUtf8Lcd(
-    Pointer<TtfFont> font, String text, SdlColor fg, SdlColor bg) {
+    Pointer<TtfFont> font, String? text, SdlColor fg, SdlColor bg) {
   final ttfRenderUtf8LcdLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(
           Pointer<TtfFont> font, Pointer<Utf8> text, SdlColor fg, SdlColor bg),
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
           SdlColor fg, SdlColor bg)>('TTF_RenderUTF8_LCD');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderUtf8LcdLookupFunction(font, textPointer, fg, bg);
   calloc.free(textPointer);
   return result;
@@ -2556,7 +2556,7 @@ Pointer<SdlSurface> ttfRenderUnicodeLcd(
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderText_LCD_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength)
 /// ```
-Pointer<SdlSurface> ttfRenderTextLcdWrapped(Pointer<TtfFont> font, String text,
+Pointer<SdlSurface> ttfRenderTextLcdWrapped(Pointer<TtfFont> font, String? text,
     SdlColor fg, SdlColor bg, int wrapLength) {
   final ttfRenderTextLcdWrappedLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
@@ -2567,7 +2567,7 @@ Pointer<SdlSurface> ttfRenderTextLcdWrapped(Pointer<TtfFont> font, String text,
           SdlColor fg,
           SdlColor bg,
           int wrapLength)>('TTF_RenderText_LCD_Wrapped');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderTextLcdWrappedLookupFunction(
       font, textPointer, fg, bg, wrapLength);
   calloc.free(textPointer);
@@ -2605,7 +2605,7 @@ Pointer<SdlSurface> ttfRenderTextLcdWrapped(Pointer<TtfFont> font, String text,
 /// ```c
 /// extern DECLSPEC SDL_Surface * SDLCALL TTF_RenderUTF8_LCD_Wrapped(TTF_Font *font, const char *text, SDL_Color fg, SDL_Color bg, Uint32 wrapLength)
 /// ```
-Pointer<SdlSurface> ttfRenderUtf8LcdWrapped(Pointer<TtfFont> font, String text,
+Pointer<SdlSurface> ttfRenderUtf8LcdWrapped(Pointer<TtfFont> font, String? text,
     SdlColor fg, SdlColor bg, int wrapLength) {
   final ttfRenderUtf8LcdWrappedLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<SdlSurface> Function(Pointer<TtfFont> font, Pointer<Utf8> text,
@@ -2616,7 +2616,7 @@ Pointer<SdlSurface> ttfRenderUtf8LcdWrapped(Pointer<TtfFont> font, String text,
           SdlColor fg,
           SdlColor bg,
           int wrapLength)>('TTF_RenderUTF8_LCD_Wrapped');
-  final textPointer = text.toNativeUtf8();
+  final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final result = ttfRenderUtf8LcdWrappedLookupFunction(
       font, textPointer, fg, bg, wrapLength);
   calloc.free(textPointer);
@@ -3009,12 +3009,12 @@ int ttfSetFontDirection(Pointer<TtfFont> font, int direction) {
 /// ```c
 /// extern DECLSPEC int SDLCALL TTF_SetFontScriptName(TTF_Font *font, const char *script)
 /// ```
-int ttfSetFontScriptName(Pointer<TtfFont> font, String script) {
+int ttfSetFontScriptName(Pointer<TtfFont> font, String? script) {
   final ttfSetFontScriptNameLookupFunction = libSdl2Ttf.lookupFunction<
       Int32 Function(Pointer<TtfFont> font, Pointer<Utf8> script),
       int Function(Pointer<TtfFont> font,
           Pointer<Utf8> script)>('TTF_SetFontScriptName');
-  final scriptPointer = script.toNativeUtf8();
+  final scriptPointer = script != null ? script.toNativeUtf8() : nullptr;
   final result = ttfSetFontScriptNameLookupFunction(font, scriptPointer);
   calloc.free(scriptPointer);
   return result;

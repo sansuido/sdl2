@@ -30,11 +30,12 @@ import 'lib_sdl.dart';
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetError(SDL_PRINTF_FORMAT_STRING const char *fmt, ...) SDL_PRINTF_VARARG_FUNC(1)
 /// ```
-int sdlSetError(String fmt, Pointer<Void> arg1) {
+int sdlSetError(String? fmt, Pointer<NativeType> arg1) {
   final sdlSetErrorLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<Utf8> fmt, Pointer<Void> arg1),
-      int Function(Pointer<Utf8> fmt, Pointer<Void> arg1)>('SDL_SetError');
-  final fmtPointer = fmt.toNativeUtf8();
+      Int32 Function(Pointer<Utf8> fmt, Pointer<NativeType> arg1),
+      int Function(
+          Pointer<Utf8> fmt, Pointer<NativeType> arg1)>('SDL_SetError');
+  final fmtPointer = fmt != null ? fmt.toNativeUtf8() : nullptr;
   final result = sdlSetErrorLookupFunction(fmtPointer, arg1);
   calloc.free(fmtPointer);
   return result;
@@ -78,7 +79,7 @@ int sdlSetError(String fmt, Pointer<Void> arg1) {
 /// ```c
 /// extern DECLSPEC const char *SDLCALL SDL_GetError(void)
 /// ```
-String sdlGetError() {
+String? sdlGetError() {
   final sdlGetErrorLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(), Pointer<Utf8> Function()>('SDL_GetError');
   return sdlGetErrorLookupFunction().toDartString();

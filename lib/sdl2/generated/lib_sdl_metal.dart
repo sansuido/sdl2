@@ -21,10 +21,10 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_MetalView SDLCALL SDL_Metal_CreateView(SDL_Window * window)
 /// ```
-Pointer<Void> sdlMetalCreateView(Pointer<SdlWindow> window) {
+Pointer<NativeType> sdlMetalCreateView(Pointer<SdlWindow> window) {
   final sdlMetalCreateViewLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<SdlWindow> window),
-      Pointer<Void> Function(
+      Pointer<NativeType> Function(Pointer<SdlWindow> window),
+      Pointer<NativeType> Function(
           Pointer<SdlWindow> window)>('SDL_Metal_CreateView');
   return sdlMetalCreateViewLookupFunction(window);
 }
@@ -42,10 +42,10 @@ Pointer<Void> sdlMetalCreateView(Pointer<SdlWindow> window) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_Metal_DestroyView(SDL_MetalView view)
 /// ```
-void sdlMetalDestroyView(Pointer<Void> view) {
+void sdlMetalDestroyView(Pointer<NativeType> view) {
   final sdlMetalDestroyViewLookupFunction = libSdl2.lookupFunction<
-      Void Function(Pointer<Void> view),
-      void Function(Pointer<Void> view)>('SDL_Metal_DestroyView');
+      Void Function(Pointer<NativeType> view),
+      void Function(Pointer<NativeType> view)>('SDL_Metal_DestroyView');
   return sdlMetalDestroyViewLookupFunction(view);
 }
 
@@ -54,15 +54,16 @@ void sdlMetalDestroyView(Pointer<Void> view) {
 ///
 /// \since This function is available since SDL 2.0.14.
 ///
-/// \sa SDL_MetalCreateView
+/// \sa SDL_Metal_CreateView
 ///
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_Metal_GetLayer(SDL_MetalView view)
 /// ```
-Pointer<Void> sdlMetalGetLayer(Pointer<Void> view) {
+Pointer<NativeType> sdlMetalGetLayer(Pointer<NativeType> view) {
   final sdlMetalGetLayerLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<Void> view),
-      Pointer<Void> Function(Pointer<Void> view)>('SDL_Metal_GetLayer');
+      Pointer<NativeType> Function(Pointer<NativeType> view),
+      Pointer<NativeType> Function(
+          Pointer<NativeType> view)>('SDL_Metal_GetLayer');
   return sdlMetalGetLayerLookupFunction(view);
 }
 

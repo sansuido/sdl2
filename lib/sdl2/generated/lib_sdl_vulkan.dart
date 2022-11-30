@@ -48,11 +48,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_Vulkan_LoadLibrary(const char *path)
 /// ```
-int sdlVulkanLoadLibrary(String path) {
+int sdlVulkanLoadLibrary(String? path) {
   final sdlVulkanLoadLibraryLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8> path),
       int Function(Pointer<Utf8> path)>('SDL_Vulkan_LoadLibrary');
-  final pathPointer = path.toNativeUtf8();
+  final pathPointer = path != null ? path.toNativeUtf8() : nullptr;
   final result = sdlVulkanLoadLibraryLookupFunction(pathPointer);
   calloc.free(pathPointer);
   return result;
@@ -71,10 +71,12 @@ int sdlVulkanLoadLibrary(String path) {
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_Vulkan_GetVkGetInstanceProcAddr(void)
 /// ```
-Pointer<Void> sdlVulkanGetVkGetInstanceProcAddr() {
-  final sdlVulkanGetVkGetInstanceProcAddrLookupFunction = libSdl2
-      .lookupFunction<Pointer<Void> Function(), Pointer<Void> Function()>(
-          'SDL_Vulkan_GetVkGetInstanceProcAddr');
+Pointer<NativeType> sdlVulkanGetVkGetInstanceProcAddr() {
+  final sdlVulkanGetVkGetInstanceProcAddrLookupFunction =
+      libSdl2.lookupFunction<
+          Pointer<NativeType> Function(),
+          Pointer<NativeType>
+              Function()>('SDL_Vulkan_GetVkGetInstanceProcAddr');
   return sdlVulkanGetVkGetInstanceProcAddrLookupFunction();
 }
 
@@ -157,13 +159,13 @@ int sdlVulkanGetInstanceExtensions(Pointer<SdlWindow> window,
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_Vulkan_CreateSurface(SDL_Window *window, VkInstance instance, VkSurfaceKHR* surface)
 /// ```
-int sdlVulkanCreateSurface(
-    Pointer<SdlWindow> window, Pointer<Void> instance, Pointer<Void> surface) {
+int sdlVulkanCreateSurface(Pointer<SdlWindow> window,
+    Pointer<NativeType> instance, Pointer<NativeType> surface) {
   final sdlVulkanCreateSurfaceLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<SdlWindow> window, Pointer<Void> instance,
-          Pointer<Void> surface),
-      int Function(Pointer<SdlWindow> window, Pointer<Void> instance,
-          Pointer<Void> surface)>('SDL_Vulkan_CreateSurface');
+      Int32 Function(Pointer<SdlWindow> window, Pointer<NativeType> instance,
+          Pointer<NativeType> surface),
+      int Function(Pointer<SdlWindow> window, Pointer<NativeType> instance,
+          Pointer<NativeType> surface)>('SDL_Vulkan_CreateSurface');
   return sdlVulkanCreateSurfaceLookupFunction(window, instance, surface);
 }
 

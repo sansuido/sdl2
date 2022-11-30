@@ -165,12 +165,12 @@ Pointer<SdlHidDevice> sdlHidOpen(
 /// ```c
 /// extern DECLSPEC SDL_hid_device * SDLCALL SDL_hid_open_path(const char *path, int bExclusive )
 /// ```
-Pointer<SdlHidDevice> sdlHidOpenPath(String path, int bExclusive) {
+Pointer<SdlHidDevice> sdlHidOpenPath(String? path, int bExclusive) {
   final sdlHidOpenPathLookupFunction = libSdl2.lookupFunction<
       Pointer<SdlHidDevice> Function(Pointer<Utf8> path, Int32 bExclusive),
       Pointer<SdlHidDevice> Function(
           Pointer<Utf8> path, int bExclusive)>('SDL_hid_open_path');
-  final pathPointer = path.toNativeUtf8();
+  final pathPointer = path != null ? path.toNativeUtf8() : nullptr;
   final result = sdlHidOpenPathLookupFunction(pathPointer, bExclusive);
   calloc.free(pathPointer);
   return result;

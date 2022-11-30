@@ -63,13 +63,13 @@ Pointer<SdlSurface> ttfRenderUnicode(
 /// ```c
 /// const TTF_SetError = SDL_SetError;
 /// ```
-int ttfSetError(String fmt, Pointer<Void> arg1) {
+int ttfSetError(String fmt, Pointer<NativeType> arg1) {
   return sdlSetError(fmt, arg1);
 }
 
 /// ```c
 /// const TTF_GetError = SDL_GetError;
 /// ```
-String ttfGetError() {
+String? ttfGetError() {
   return sdlGetError();
 }

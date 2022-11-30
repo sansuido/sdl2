@@ -599,11 +599,12 @@ int sdlGetTextureScaleMode(
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetTextureUserData(SDL_Texture * texture, void *userdata)
 /// ```
-int sdlSetTextureUserData(Pointer<SdlTexture> texture, Pointer<Void> userdata) {
+int sdlSetTextureUserData(
+    Pointer<SdlTexture> texture, Pointer<NativeType> userdata) {
   final sdlSetTextureUserDataLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<SdlTexture> texture, Pointer<Void> userdata),
+      Int32 Function(Pointer<SdlTexture> texture, Pointer<NativeType> userdata),
       int Function(Pointer<SdlTexture> texture,
-          Pointer<Void> userdata)>('SDL_SetTextureUserData');
+          Pointer<NativeType> userdata)>('SDL_SetTextureUserData');
   return sdlSetTextureUserDataLookupFunction(texture, userdata);
 }
 
@@ -621,10 +622,10 @@ int sdlSetTextureUserData(Pointer<SdlTexture> texture, Pointer<Void> userdata) {
 /// ```c
 /// extern DECLSPEC void * SDLCALL SDL_GetTextureUserData(SDL_Texture * texture)
 /// ```
-Pointer<Void> sdlGetTextureUserData(Pointer<SdlTexture> texture) {
+Pointer<NativeType> sdlGetTextureUserData(Pointer<SdlTexture> texture) {
   final sdlGetTextureUserDataLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<SdlTexture> texture),
-      Pointer<Void> Function(
+      Pointer<NativeType> Function(Pointer<SdlTexture> texture),
+      Pointer<NativeType> Function(
           Pointer<SdlTexture> texture)>('SDL_GetTextureUserData');
   return sdlGetTextureUserDataLookupFunction(texture);
 }
@@ -662,12 +663,12 @@ Pointer<Void> sdlGetTextureUserData(Pointer<SdlTexture> texture) {
 /// extern DECLSPEC int SDLCALL SDL_UpdateTexture(SDL_Texture * texture, const SDL_Rect * rect, const void *pixels, int pitch)
 /// ```
 int sdlUpdateTexture(Pointer<SdlTexture> texture, Pointer<SdlRect> rect,
-    Pointer<Void> pixels, int pitch) {
+    Pointer<NativeType> pixels, int pitch) {
   final sdlUpdateTextureLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlTexture> texture, Pointer<SdlRect> rect,
-          Pointer<Void> pixels, Int32 pitch),
+          Pointer<NativeType> pixels, Int32 pitch),
       int Function(Pointer<SdlTexture> texture, Pointer<SdlRect> rect,
-          Pointer<Void> pixels, int pitch)>('SDL_UpdateTexture');
+          Pointer<NativeType> pixels, int pitch)>('SDL_UpdateTexture');
   return sdlUpdateTextureLookupFunction(texture, rect, pixels, pitch);
 }
 
@@ -808,14 +809,14 @@ int sdlUpdateNvTexture(Pointer<SdlTexture> texture, Pointer<SdlRect> rect,
 /// extern DECLSPEC int SDLCALL SDL_LockTexture(SDL_Texture * texture, const SDL_Rect * rect, void **pixels, int *pitch)
 /// ```
 int sdlLockTexture(Pointer<SdlTexture> texture, Pointer<SdlRect> rect,
-    Pointer<Pointer<Void>> pixels, Pointer<Int32> pitch) {
+    Pointer<Pointer<NativeType>> pixels, Pointer<Int32> pitch) {
   final sdlLockTextureLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlTexture> texture, Pointer<SdlRect> rect,
-          Pointer<Pointer<Void>> pixels, Pointer<Int32> pitch),
+          Pointer<Pointer<NativeType>> pixels, Pointer<Int32> pitch),
       int Function(
           Pointer<SdlTexture> texture,
           Pointer<SdlRect> rect,
-          Pointer<Pointer<Void>> pixels,
+          Pointer<Pointer<NativeType>> pixels,
           Pointer<Int32> pitch)>('SDL_LockTexture');
   return sdlLockTextureLookupFunction(texture, rect, pixels, pitch);
 }
@@ -2264,7 +2265,7 @@ int sdlRenderGeometryRaw(
     Pointer<Float> uv,
     int uvStride,
     int numVertices,
-    Pointer<Void> indices,
+    Pointer<NativeType> indices,
     int numIndices,
     int sizeIndices) {
   final sdlRenderGeometryRawLookupFunction = libSdl2.lookupFunction<
@@ -2278,7 +2279,7 @@ int sdlRenderGeometryRaw(
           Pointer<Float> uv,
           Int32 uvStride,
           Int32 numVertices,
-          Pointer<Void> indices,
+          Pointer<NativeType> indices,
           Int32 numIndices,
           Int32 sizeIndices),
       int Function(
@@ -2291,7 +2292,7 @@ int sdlRenderGeometryRaw(
           Pointer<Float> uv,
           int uvStride,
           int numVertices,
-          Pointer<Void> indices,
+          Pointer<NativeType> indices,
           int numIndices,
           int sizeIndices)>('SDL_RenderGeometryRaw');
   return sdlRenderGeometryRawLookupFunction(
@@ -2339,12 +2340,16 @@ int sdlRenderGeometryRaw(
 /// extern DECLSPEC int SDLCALL SDL_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect, Uint32 format, void *pixels, int pitch)
 /// ```
 int sdlRenderReadPixels(Pointer<SdlRenderer> renderer, Pointer<SdlRect> rect,
-    int format, Pointer<Void> pixels, int pitch) {
+    int format, Pointer<NativeType> pixels, int pitch) {
   final sdlRenderReadPixelsLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlRenderer> renderer, Pointer<SdlRect> rect,
-          Uint32 format, Pointer<Void> pixels, Int32 pitch),
-      int Function(Pointer<SdlRenderer> renderer, Pointer<SdlRect> rect,
-          int format, Pointer<Void> pixels, int pitch)>('SDL_RenderReadPixels');
+          Uint32 format, Pointer<NativeType> pixels, Int32 pitch),
+      int Function(
+          Pointer<SdlRenderer> renderer,
+          Pointer<SdlRect> rect,
+          int format,
+          Pointer<NativeType> pixels,
+          int pitch)>('SDL_RenderReadPixels');
   return sdlRenderReadPixelsLookupFunction(
       renderer, rect, format, pixels, pitch);
 }
@@ -2419,6 +2424,9 @@ void sdlDestroyTexture(Pointer<SdlTexture> texture) {
 
 ///
 /// Destroy the rendering context for a window and free associated textures.
+///
+/// If `renderer` is NULL, this function will return immediately after setting
+/// the SDL error message to "Invalid renderer". See SDL_GetError().
 ///
 /// \param renderer the rendering context
 ///
@@ -2563,10 +2571,10 @@ int sdlGlUnbindTexture(Pointer<SdlTexture> texture) {
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_RenderGetMetalLayer(SDL_Renderer * renderer)
 /// ```
-Pointer<Void> sdlRenderGetMetalLayer(Pointer<SdlRenderer> renderer) {
+Pointer<NativeType> sdlRenderGetMetalLayer(Pointer<SdlRenderer> renderer) {
   final sdlRenderGetMetalLayerLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<SdlRenderer> renderer),
-      Pointer<Void> Function(
+      Pointer<NativeType> Function(Pointer<SdlRenderer> renderer),
+      Pointer<NativeType> Function(
           Pointer<SdlRenderer> renderer)>('SDL_RenderGetMetalLayer');
   return sdlRenderGetMetalLayerLookupFunction(renderer);
 }
@@ -2593,10 +2601,11 @@ Pointer<Void> sdlRenderGetMetalLayer(Pointer<SdlRenderer> renderer) {
 /// ```c
 /// extern DECLSPEC void *SDLCALL SDL_RenderGetMetalCommandEncoder(SDL_Renderer * renderer)
 /// ```
-Pointer<Void> sdlRenderGetMetalCommandEncoder(Pointer<SdlRenderer> renderer) {
+Pointer<NativeType> sdlRenderGetMetalCommandEncoder(
+    Pointer<SdlRenderer> renderer) {
   final sdlRenderGetMetalCommandEncoderLookupFunction = libSdl2.lookupFunction<
-      Pointer<Void> Function(Pointer<SdlRenderer> renderer),
-      Pointer<Void> Function(
+      Pointer<NativeType> Function(Pointer<SdlRenderer> renderer),
+      Pointer<NativeType> Function(
           Pointer<SdlRenderer> renderer)>('SDL_RenderGetMetalCommandEncoder');
   return sdlRenderGetMetalCommandEncoderLookupFunction(renderer);
 }

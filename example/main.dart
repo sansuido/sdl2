@@ -1,36 +1,59 @@
-// https://wiki.libsdl.org/sdlRenderDrawLine
 import 'dart:ffi';
+import 'dart:math';
 import 'package:ffi/ffi.dart';
 import 'package:sdl2/sdl2.dart';
 
 int main() {
-  if (sdlInit(SDL_INIT_VIDEO) == 0) {
-    var window = calloc<Pointer<SdlWindow>>();
-    var renderer = calloc<Pointer<SdlRenderer>>();
-    if (sdlCreateWindowAndRenderer(640, 480, 0, window, renderer) == 0) {
-      var done = SDL_FALSE;
-      while (done == SDL_FALSE) {
-        var event = calloc<SdlEvent>();
-        sdlSetRenderDrawColor(renderer.value, 0, 0, 0, SDL_ALPHA_OPAQUE);
-        sdlRenderClear(renderer.value);
-        sdlSetRenderDrawColor(renderer.value, 255, 255, 255, SDL_ALPHA_OPAQUE);
-        sdlRenderDrawLine(renderer.value, 320, 200, 300, 240);
-        sdlRenderDrawLine(renderer.value, 300, 240, 340, 240);
-        sdlRenderDrawLine(renderer.value, 340, 240, 320, 200);
-        sdlRenderPresent(renderer.value);
-        while (sdlPollEvent(event) != 0) {
-          if (event.type == SDL_QUIT) {
-            done = SDL_TRUE;
-          }
-        }
-        calloc.free(event);
-      }
-      sdlDestroyRenderer(renderer.value);
-      sdlDestroyWindow(window.value);
-    } else {}
-    calloc.free(window);
-    calloc.free(renderer);
-    sdlQuit();
+  if (sdlInit(SDL_INIT_VIDEO) != 0) {
+    print(sdlGetError());
+    return -1;
   }
+  var window = SdlWindowEx.create(
+    title: 'draw triangle',
+    w: 640,
+    h: 480,
+  );
+  if (window == nullptr) {
+    print(sdlGetError());
+    sdlQuit();
+    return -1;
+  }
+  var renderer = window.createRenderer(
+      -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+  if (renderer == nullptr) {
+    print(sdlGetError());
+    window.destroy();
+    sdlQuit();
+    return -1;
+  }
+  var lines = [
+    Point(320, 200),
+    Point(300, 240),
+    Point(340, 240),
+    Point(320, 200)
+  ];
+  var event = calloc<SdlEvent>();
+  var running = true;
+  while (running) {
+    while (event.poll() != 0) {
+      switch (event.type) {
+        case SDL_QUIT:
+          running = false;
+          break;
+        default:
+          break;
+      }
+    }
+    renderer
+      ..setDrawColor(0, 0, 0, SDL_ALPHA_OPAQUE)
+      ..clear()
+      ..setDrawColor(255, 255, 255, SDL_ALPHA_OPAQUE)
+      ..drawLines(lines)
+      ..present();
+  }
+  event.callocFree();
+  renderer.destroy();
+  window.destroy();
+  sdlQuit();
   return 0;
 }

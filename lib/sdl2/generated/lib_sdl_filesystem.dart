@@ -26,6 +26,10 @@ import 'lib_sdl.dart';
 /// - `parent`: the containing directory of the bundle. For example:
 /// `/Applications/SDLApp/`
 ///
+/// **Nintendo 3DS Specific Functionality**: This function returns "romfs"
+/// directory of the application as it is uncommon to store resources outside
+/// the executable. As such it is not a writable directory.
+///
 /// The returned path is guaranteed to end with a path separator ('\' on
 /// Windows, '/' on most other platforms).
 ///
@@ -108,13 +112,13 @@ Pointer<Int8> sdlGetBasePath() {
 /// ```c
 /// extern DECLSPEC char *SDLCALL SDL_GetPrefPath(const char *org, const char *app)
 /// ```
-Pointer<Int8> sdlGetPrefPath(String org, String app) {
+Pointer<Int8> sdlGetPrefPath(String? org, String? app) {
   final sdlGetPrefPathLookupFunction = libSdl2.lookupFunction<
       Pointer<Int8> Function(Pointer<Utf8> org, Pointer<Utf8> app),
       Pointer<Int8> Function(
           Pointer<Utf8> org, Pointer<Utf8> app)>('SDL_GetPrefPath');
-  final orgPointer = org.toNativeUtf8();
-  final appPointer = app.toNativeUtf8();
+  final orgPointer = org != null ? org.toNativeUtf8() : nullptr;
+  final appPointer = app != null ? app.toNativeUtf8() : nullptr;
   final result = sdlGetPrefPathLookupFunction(orgPointer, appPointer);
   calloc.free(orgPointer);
   calloc.free(appPointer);
