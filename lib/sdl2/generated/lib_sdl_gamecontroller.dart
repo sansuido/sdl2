@@ -229,8 +229,11 @@ String? sdlGameControllerNameForIndex(int joystickIndex) {
       Pointer<Utf8> Function(Int32 joystickIndex),
       Pointer<Utf8> Function(
           int joystickIndex)>('SDL_GameControllerNameForIndex');
-  return sdlGameControllerNameForIndexLookupFunction(joystickIndex)
-      .toDartString();
+  final result = sdlGameControllerNameForIndexLookupFunction(joystickIndex);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -258,8 +261,11 @@ String? sdlGameControllerPathForIndex(int joystickIndex) {
       Pointer<Utf8> Function(Int32 joystickIndex),
       Pointer<Utf8> Function(
           int joystickIndex)>('SDL_GameControllerPathForIndex');
-  return sdlGameControllerPathForIndexLookupFunction(joystickIndex)
-      .toDartString();
+  final result = sdlGameControllerPathForIndexLookupFunction(joystickIndex);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -410,7 +416,11 @@ String? sdlGameControllerName(Pointer<SdlGameController> gamecontroller) {
       Pointer<Utf8> Function(Pointer<SdlGameController> gamecontroller),
       Pointer<Utf8> Function(
           Pointer<SdlGameController> gamecontroller)>('SDL_GameControllerName');
-  return sdlGameControllerNameLookupFunction(gamecontroller).toDartString();
+  final result = sdlGameControllerNameLookupFunction(gamecontroller);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -436,7 +446,11 @@ String? sdlGameControllerPath(Pointer<SdlGameController> gamecontroller) {
       Pointer<Utf8> Function(Pointer<SdlGameController> gamecontroller),
       Pointer<Utf8> Function(
           Pointer<SdlGameController> gamecontroller)>('SDL_GameControllerPath');
-  return sdlGameControllerPathLookupFunction(gamecontroller).toDartString();
+  final result = sdlGameControllerPathLookupFunction(gamecontroller);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -612,8 +626,11 @@ String? sdlGameControllerGetSerial(Pointer<SdlGameController> gamecontroller) {
           Pointer<Utf8> Function(Pointer<SdlGameController> gamecontroller),
           Pointer<Utf8> Function(Pointer<SdlGameController> gamecontroller)>(
       'SDL_GameControllerGetSerial');
-  return sdlGameControllerGetSerialLookupFunction(gamecontroller)
-      .toDartString();
+  final result = sdlGameControllerGetSerialLookupFunction(gamecontroller);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -777,7 +794,11 @@ String? sdlGameControllerGetStringForAxis(int axis) {
           Pointer<Utf8> Function(Int32 axis),
           Pointer<Utf8> Function(
               int axis)>('SDL_GameControllerGetStringForAxis');
-  return sdlGameControllerGetStringForAxisLookupFunction(axis).toDartString();
+  final result = sdlGameControllerGetStringForAxisLookupFunction(axis);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -912,8 +933,11 @@ String? sdlGameControllerGetStringForButton(int button) {
           Pointer<Utf8> Function(Int32 button),
           Pointer<Utf8> Function(
               int button)>('SDL_GameControllerGetStringForButton');
-  return sdlGameControllerGetStringForButtonLookupFunction(button)
-      .toDartString();
+  final result = sdlGameControllerGetStringForButtonLookupFunction(button);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -1464,9 +1488,12 @@ String? sdlGameControllerGetAppleSfSymbolsNameForButton(
               Pointer<SdlGameController> gamecontroller, Int32 button),
           Pointer<Utf8> Function(Pointer<SdlGameController> gamecontroller,
               int button)>('SDL_GameControllerGetAppleSFSymbolsNameForButton');
-  return sdlGameControllerGetAppleSfSymbolsNameForButtonLookupFunction(
-          gamecontroller, button)
-      .toDartString();
+  final result = sdlGameControllerGetAppleSfSymbolsNameForButtonLookupFunction(
+      gamecontroller, button);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -1492,7 +1519,10 @@ String? sdlGameControllerGetAppleSfSymbolsNameForAxis(
               Pointer<SdlGameController> gamecontroller, Int32 axis),
           Pointer<Utf8> Function(Pointer<SdlGameController> gamecontroller,
               int axis)>('SDL_GameControllerGetAppleSFSymbolsNameForAxis');
-  return sdlGameControllerGetAppleSfSymbolsNameForAxisLookupFunction(
-          gamecontroller, axis)
-      .toDartString();
+  final result = sdlGameControllerGetAppleSfSymbolsNameForAxisLookupFunction(
+      gamecontroller, axis);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }

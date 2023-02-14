@@ -65,7 +65,11 @@ String? sdlSensorGetDeviceName(int deviceIndex) {
   final sdlSensorGetDeviceNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 deviceIndex),
       Pointer<Utf8> Function(int deviceIndex)>('SDL_SensorGetDeviceName');
-  return sdlSensorGetDeviceNameLookupFunction(deviceIndex).toDartString();
+  final result = sdlSensorGetDeviceNameLookupFunction(deviceIndex);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -175,7 +179,11 @@ String? sdlSensorGetName(Pointer<SdlSensor> sensor) {
   final sdlSensorGetNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Pointer<SdlSensor> sensor),
       Pointer<Utf8> Function(Pointer<SdlSensor> sensor)>('SDL_SensorGetName');
-  return sdlSensorGetNameLookupFunction(sensor).toDartString();
+  final result = sdlSensorGetNameLookupFunction(sensor);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///

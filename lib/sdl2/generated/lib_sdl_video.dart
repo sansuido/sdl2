@@ -44,7 +44,11 @@ String? sdlGetVideoDriver(int index) {
   final sdlGetVideoDriverLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 index),
       Pointer<Utf8> Function(int index)>('SDL_GetVideoDriver');
-  return sdlGetVideoDriverLookupFunction(index).toDartString();
+  final result = sdlGetVideoDriverLookupFunction(index);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -126,7 +130,11 @@ String? sdlGetCurrentVideoDriver() {
   final sdlGetCurrentVideoDriverLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(),
       Pointer<Utf8> Function()>('SDL_GetCurrentVideoDriver');
-  return sdlGetCurrentVideoDriverLookupFunction().toDartString();
+  final result = sdlGetCurrentVideoDriverLookupFunction();
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -168,7 +176,11 @@ String? sdlGetDisplayName(int displayIndex) {
   final sdlGetDisplayNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 displayIndex),
       Pointer<Utf8> Function(int displayIndex)>('SDL_GetDisplayName');
-  return sdlGetDisplayNameLookupFunction(displayIndex).toDartString();
+  final result = sdlGetDisplayNameLookupFunction(displayIndex);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -867,7 +879,11 @@ String? sdlGetWindowTitle(Pointer<SdlWindow> window) {
   final sdlGetWindowTitleLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Pointer<SdlWindow> window),
       Pointer<Utf8> Function(Pointer<SdlWindow> window)>('SDL_GetWindowTitle');
-  return sdlGetWindowTitleLookupFunction(window).toDartString();
+  final result = sdlGetWindowTitleLookupFunction(window);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///

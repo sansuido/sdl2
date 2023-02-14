@@ -1,8 +1,12 @@
 import 'dart:ffi';
-import 'dart:math' show Point;
+import 'dart:math' show Point, Rectangle;
 import 'package:ffi/ffi.dart' as ffi;
+import 'rectangle.dart';
+import '../sdl/sdl_rect.dart';
 import '../../generated/lib_sdl_mouse.dart';
+import '../../generated/lib_sdl_rect.dart';
 import '../../generated/struct_sdl.dart';
+import '../../generated/const_sdl.dart';
 
 extension PointEx on Point {
   // dependence package:ffi
@@ -76,5 +80,27 @@ extension PointsEx on List<Point> {
       yPointer.value = this[n].y.toInt();
     }
     return ysPointer;
+  }
+
+  Rectangle? getEncloseRect({Rectangle? clip}) {
+    Rectangle? result;
+    var pointsPointer = calloc();
+    Pointer<SdlRect> clipPointer = nullptr;
+    var resultPointer = ffi.calloc<SdlRect>();
+    if (clip != null) {
+      clipPointer = clip.calloc();
+    }
+    var bl =
+        sdlEnclosePoints(pointsPointer, length, clipPointer, resultPointer) ==
+            SDL_TRUE;
+    if (bl == true) {
+      result = resultPointer.create();
+    }
+    ffi.calloc.free(resultPointer);
+    if (clipPointer != nullptr) {
+      ffi.calloc.free(clipPointer);
+    }
+    ffi.calloc.free(pointsPointer);
+    return result;
   }
 }

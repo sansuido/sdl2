@@ -82,7 +82,11 @@ int sdlSetError(String? fmt, Pointer<NativeType> arg1) {
 String? sdlGetError() {
   final sdlGetErrorLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(), Pointer<Utf8> Function()>('SDL_GetError');
-  return sdlGetErrorLookupFunction().toDartString();
+  final result = sdlGetErrorLookupFunction();
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///

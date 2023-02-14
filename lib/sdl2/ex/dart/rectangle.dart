@@ -1,9 +1,10 @@
 import 'dart:ffi';
 import 'dart:math' show Rectangle, Point;
 import 'package:ffi/ffi.dart' as ffi;
+import '../sdl/sdl_rect.dart';
 import '../../generated/struct_sdl.dart';
 
-extension RectEx on Rectangle {
+extension RectangleEx on Rectangle {
   // dependence package:ffi
   Pointer<SdlRect> calloc() {
     var result = ffi.calloc<SdlRect>()
@@ -39,6 +40,42 @@ extension RectEx on Rectangle {
     return fromCenter(center, width, height);
   }
 
+  bool hasIntersection(Rectangle b) {
+    var aPointer = calloc();
+    var bPointer = b.calloc();
+    var result = aPointer.hasIntersection(bPointer);
+    ffi.calloc.free(aPointer);
+    ffi.calloc.free(bPointer);
+    return result;
+  }
+
+  Rectangle? intersect(Rectangle b) {
+    var aPointer = calloc();
+    var bPointer = b.calloc();
+    var resultPointer = ffi.calloc<SdlRect>();
+    Rectangle? result;
+    var bl = aPointer.intersectRect(bPointer, resultPointer);
+    if (bl == true) {
+      result = resultPointer.create();
+    }
+    ffi.calloc.free(aPointer);
+    ffi.calloc.free(bPointer);
+    ffi.calloc.free(resultPointer);
+    return result;
+  }
+
+  Rectangle union(Rectangle b) {
+    var aPointer = calloc();
+    var bPointer = b.calloc();
+    var resultPointer = ffi.calloc<SdlRect>();
+    aPointer.unionRect(bPointer, resultPointer);
+    var result = resultPointer.create();
+    ffi.calloc.free(aPointer);
+    ffi.calloc.free(bPointer);
+    ffi.calloc.free(resultPointer);
+    return result;
+  }
+
   static Rectangle fromCenter(Point center, num width, num height) {
     return fromLTRB(center.x - width / 2, center.y - height / 2,
         center.x + width / 2, center.y + height / 2);
@@ -53,7 +90,7 @@ extension RectEx on Rectangle {
   }
 }
 
-extension RectsEx on List<Rectangle> {
+extension RectanglesEx on List<Rectangle> {
   // dependence package:ffi
   Pointer<SdlRect> calloc() {
     var rectsPointer = ffi.calloc<SdlRect>(length);

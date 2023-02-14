@@ -894,7 +894,11 @@ String? mixGetChunkDecoder(int index) {
   final mixGetChunkDecoderLookupFunction = libSdl2Mixer.lookupFunction<
       Pointer<Utf8> Function(Int32 index),
       Pointer<Utf8> Function(int index)>('Mix_GetChunkDecoder');
-  return mixGetChunkDecoderLookupFunction(index).toDartString();
+  final result = mixGetChunkDecoderLookupFunction(index);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -989,7 +993,11 @@ String? mixGetMusicDecoder(int index) {
   final mixGetMusicDecoderLookupFunction = libSdl2Mixer.lookupFunction<
       Pointer<Utf8> Function(Int32 index),
       Pointer<Utf8> Function(int index)>('Mix_GetMusicDecoder');
-  return mixGetMusicDecoderLookupFunction(index).toDartString();
+  final result = mixGetMusicDecoderLookupFunction(index);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -1083,7 +1091,11 @@ String? mixGetMusicTitle(Pointer<MixMusic> music) {
   final mixGetMusicTitleLookupFunction = libSdl2Mixer.lookupFunction<
       Pointer<Utf8> Function(Pointer<MixMusic> music),
       Pointer<Utf8> Function(Pointer<MixMusic> music)>('Mix_GetMusicTitle');
-  return mixGetMusicTitleLookupFunction(music).toDartString();
+  final result = mixGetMusicTitleLookupFunction(music);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -1118,7 +1130,11 @@ String? mixGetMusicTitleTag(Pointer<MixMusic> music) {
   final mixGetMusicTitleTagLookupFunction = libSdl2Mixer.lookupFunction<
       Pointer<Utf8> Function(Pointer<MixMusic> music),
       Pointer<Utf8> Function(Pointer<MixMusic> music)>('Mix_GetMusicTitleTag');
-  return mixGetMusicTitleTagLookupFunction(music).toDartString();
+  final result = mixGetMusicTitleTagLookupFunction(music);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -1148,7 +1164,11 @@ String? mixGetMusicArtistTag(Pointer<MixMusic> music) {
   final mixGetMusicArtistTagLookupFunction = libSdl2Mixer.lookupFunction<
       Pointer<Utf8> Function(Pointer<MixMusic> music),
       Pointer<Utf8> Function(Pointer<MixMusic> music)>('Mix_GetMusicArtistTag');
-  return mixGetMusicArtistTagLookupFunction(music).toDartString();
+  final result = mixGetMusicArtistTagLookupFunction(music);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -1178,7 +1198,11 @@ String? mixGetMusicAlbumTag(Pointer<MixMusic> music) {
   final mixGetMusicAlbumTagLookupFunction = libSdl2Mixer.lookupFunction<
       Pointer<Utf8> Function(Pointer<MixMusic> music),
       Pointer<Utf8> Function(Pointer<MixMusic> music)>('Mix_GetMusicAlbumTag');
-  return mixGetMusicAlbumTagLookupFunction(music).toDartString();
+  final result = mixGetMusicAlbumTagLookupFunction(music);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -1209,7 +1233,11 @@ String? mixGetMusicCopyrightTag(Pointer<MixMusic> music) {
       Pointer<Utf8> Function(Pointer<MixMusic> music),
       Pointer<Utf8> Function(
           Pointer<MixMusic> music)>('Mix_GetMusicCopyrightTag');
-  return mixGetMusicCopyrightTagLookupFunction(music).toDartString();
+  final result = mixGetMusicCopyrightTagLookupFunction(music);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -3175,7 +3203,11 @@ int mixSetSoundFonts(String? paths) {
 String? mixGetSoundFonts() {
   final mixGetSoundFontsLookupFunction = libSdl2Mixer.lookupFunction<
       Pointer<Utf8> Function(), Pointer<Utf8> Function()>('Mix_GetSoundFonts');
-  return mixGetSoundFontsLookupFunction().toDartString();
+  final result = mixGetSoundFontsLookupFunction();
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -3262,7 +3294,11 @@ int mixSetTimidityCfg(String? path) {
 String? mixGetTimidityCfg() {
   final mixGetTimidityCfgLookupFunction = libSdl2Mixer.lookupFunction<
       Pointer<Utf8> Function(), Pointer<Utf8> Function()>('Mix_GetTimidityCfg');
-  return mixGetTimidityCfgLookupFunction().toDartString();
+  final result = mixGetTimidityCfgLookupFunction();
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///

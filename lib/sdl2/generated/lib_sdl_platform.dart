@@ -25,5 +25,9 @@ import 'lib_sdl.dart';
 String? sdlGetPlatform() {
   final sdlGetPlatformLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(), Pointer<Utf8> Function()>('SDL_GetPlatform');
-  return sdlGetPlatformLookupFunction().toDartString();
+  final result = sdlGetPlatformLookupFunction();
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }

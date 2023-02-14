@@ -203,7 +203,11 @@ String? sdlGetScancodeName(int scancode) {
   final sdlGetScancodeNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 scancode),
       Pointer<Utf8> Function(int scancode)>('SDL_GetScancodeName');
-  return sdlGetScancodeNameLookupFunction(scancode).toDartString();
+  final result = sdlGetScancodeNameLookupFunction(scancode);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -256,7 +260,11 @@ String? sdlGetKeyName(int key) {
   final sdlGetKeyNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 key),
       Pointer<Utf8> Function(int key)>('SDL_GetKeyName');
-  return sdlGetKeyNameLookupFunction(key).toDartString();
+  final result = sdlGetKeyNameLookupFunction(key);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///

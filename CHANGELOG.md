@@ -1,3 +1,10 @@
+## 1.4.1
+- [update] Support SDL version 2.26.3 (stable).
+- [update] Support SDL2_image version 2.6.3.
+- [update] Support SDL2_mixer version 2.6.3.
+- [update] Support SDL2_ttf version 2.20.2.
+- [changed] Change behavior when argument is null (setViewport & setClipRect).
+
 ## 1.4.0
 - [update] Support SDL version 2.26.0 (stable).
 - [add] Support SDL2_gfx version 1.0.4.

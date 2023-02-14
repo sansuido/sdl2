@@ -87,7 +87,11 @@ String? sdlGetThreadName(Pointer<SdlThread> thread) {
   final sdlGetThreadNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Pointer<SdlThread> thread),
       Pointer<Utf8> Function(Pointer<SdlThread> thread)>('SDL_GetThreadName');
-  return sdlGetThreadNameLookupFunction(thread).toDartString();
+  final result = sdlGetThreadNameLookupFunction(thread);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///

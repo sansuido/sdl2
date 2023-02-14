@@ -63,5 +63,9 @@ void sdlGetVersion(Pointer<SdlVersion> ver) {
 String? sdlGetRevision() {
   final sdlGetRevisionLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(), Pointer<Utf8> Function()>('SDL_GetRevision');
-  return sdlGetRevisionLookupFunction().toDartString();
+  final result = sdlGetRevisionLookupFunction();
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }

@@ -454,7 +454,11 @@ String? sdlAndroidGetInternalStoragePath() {
   final sdlAndroidGetInternalStoragePathLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(),
       Pointer<Utf8> Function()>('SDL_AndroidGetInternalStoragePath');
-  return sdlAndroidGetInternalStoragePathLookupFunction().toDartString();
+  final result = sdlAndroidGetInternalStoragePathLookupFunction();
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -505,7 +509,11 @@ String? sdlAndroidGetExternalStoragePath() {
   final sdlAndroidGetExternalStoragePathLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(),
       Pointer<Utf8> Function()>('SDL_AndroidGetExternalStoragePath');
-  return sdlAndroidGetExternalStoragePathLookupFunction().toDartString();
+  final result = sdlAndroidGetExternalStoragePathLookupFunction();
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -651,7 +659,11 @@ String? sdlWinRtGetFsPathUtf8(int pathType) {
   final sdlWinRtGetFsPathUtf8LookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 pathType),
       Pointer<Utf8> Function(int pathType)>('SDL_WinRTGetFSPathUTF8');
-  return sdlWinRtGetFsPathUtf8LookupFunction(pathType).toDartString();
+  final result = sdlWinRtGetFsPathUtf8LookupFunction(pathType);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///

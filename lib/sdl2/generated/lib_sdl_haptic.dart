@@ -44,7 +44,11 @@ String? sdlHapticName(int deviceIndex) {
   final sdlHapticNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 deviceIndex),
       Pointer<Utf8> Function(int deviceIndex)>('SDL_HapticName');
-  return sdlHapticNameLookupFunction(deviceIndex).toDartString();
+  final result = sdlHapticNameLookupFunction(deviceIndex);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///

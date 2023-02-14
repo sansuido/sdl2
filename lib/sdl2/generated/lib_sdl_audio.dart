@@ -60,7 +60,11 @@ String? sdlGetAudioDriver(int index) {
   final sdlGetAudioDriverLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 index),
       Pointer<Utf8> Function(int index)>('SDL_GetAudioDriver');
-  return sdlGetAudioDriverLookupFunction(index).toDartString();
+  final result = sdlGetAudioDriverLookupFunction(index);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -136,7 +140,11 @@ String? sdlGetCurrentAudioDriver() {
   final sdlGetCurrentAudioDriverLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(),
       Pointer<Utf8> Function()>('SDL_GetCurrentAudioDriver');
-  return sdlGetCurrentAudioDriverLookupFunction().toDartString();
+  final result = sdlGetCurrentAudioDriverLookupFunction();
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -286,7 +294,11 @@ String? sdlGetAudioDeviceName(int index, int iscapture) {
       Pointer<Utf8> Function(Int32 index, Int32 iscapture),
       Pointer<Utf8> Function(
           int index, int iscapture)>('SDL_GetAudioDeviceName');
-  return sdlGetAudioDeviceNameLookupFunction(index, iscapture).toDartString();
+  final result = sdlGetAudioDeviceNameLookupFunction(index, iscapture);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///

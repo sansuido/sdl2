@@ -64,7 +64,11 @@ String? sdlGetTouchName(int index) {
   final sdlGetTouchNameLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 index),
       Pointer<Utf8> Function(int index)>('SDL_GetTouchName');
-  return sdlGetTouchNameLookupFunction(index).toDartString();
+  final result = sdlGetTouchNameLookupFunction(index);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///

@@ -483,8 +483,11 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return sdlRenderGetIntegerScale(this) == SDL_TRUE;
   }
 
-  int setVierport(math.Rectangle rect) {
-    var rectPointer = rect.calloc();
+  int setViewport([math.Rectangle? rect]) {
+    Pointer<SdlRect> rectPointer = nullptr;
+    if (rect != null) {
+      rectPointer = rect.calloc();
+    }
     // 1111
     var result = sdlRenderSetViewport(this, rectPointer);
     calloc.free(rectPointer);
@@ -500,8 +503,11 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int setClipRect(math.Rectangle rect) {
-    var rectPointer = rect.calloc();
+  int setClipRect([math.Rectangle? rect]) {
+    Pointer<SdlRect> rectPointer = nullptr;
+    if (rect != null) {
+      rectPointer = rect.calloc();
+    }
     // 1159
     var result = sdlRenderSetClipRect(this, rectPointer);
     calloc.free(rectPointer);

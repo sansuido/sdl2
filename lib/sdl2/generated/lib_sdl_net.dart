@@ -127,7 +127,11 @@ String? sdlNetResolveIp(Pointer<IPaddress> ip) {
   final sdlNetResolveIpLookupFunction = libSdl2Net.lookupFunction<
       Pointer<Utf8> Function(Pointer<IPaddress> ip),
       Pointer<Utf8> Function(Pointer<IPaddress> ip)>('SDLNet_ResolveIP');
-  return sdlNetResolveIpLookupFunction(ip).toDartString();
+  final result = sdlNetResolveIpLookupFunction(ip);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -1021,5 +1025,9 @@ void sdlNetSetError(String? fmt, Pointer<NativeType> arg1) {
 String? sdlNetGetError() {
   final sdlNetGetErrorLookupFunction = libSdl2Net.lookupFunction<
       Pointer<Utf8> Function(), Pointer<Utf8> Function()>('SDLNet_GetError');
-  return sdlNetGetErrorLookupFunction().toDartString();
+  final result = sdlNetGetErrorLookupFunction();
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }

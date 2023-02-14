@@ -874,7 +874,11 @@ String? ttfFontFaceFamilyName(Pointer<TtfFont> font) {
   final ttfFontFaceFamilyNameLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<Utf8> Function(Pointer<TtfFont> font),
       Pointer<Utf8> Function(Pointer<TtfFont> font)>('TTF_FontFaceFamilyName');
-  return ttfFontFaceFamilyNameLookupFunction(font).toDartString();
+  final result = ttfFontFaceFamilyNameLookupFunction(font);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -898,7 +902,11 @@ String? ttfFontFaceStyleName(Pointer<TtfFont> font) {
   final ttfFontFaceStyleNameLookupFunction = libSdl2Ttf.lookupFunction<
       Pointer<Utf8> Function(Pointer<TtfFont> font),
       Pointer<Utf8> Function(Pointer<TtfFont> font)>('TTF_FontFaceStyleName');
-  return ttfFontFaceStyleNameLookupFunction(font).toDartString();
+  final result = ttfFontFaceStyleNameLookupFunction(font);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///

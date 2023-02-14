@@ -148,8 +148,11 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
     return result;
   }
 
-  bool setClipRect(math.Rectangle rect) {
-    var rectPointer = rect.calloc();
+  bool setClipRect([math.Rectangle? rect]) {
+    Pointer<SdlRect> rectPointer = nullptr;
+    if (rect != null) {
+      rectPointer = rect.calloc();
+    }
     // 698
     var result = sdlSetClipRect(this, rectPointer);
     calloc.free(rectPointer);

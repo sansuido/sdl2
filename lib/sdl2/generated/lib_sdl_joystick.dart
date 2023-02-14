@@ -94,7 +94,11 @@ String? sdlJoystickNameForIndex(int deviceIndex) {
   final sdlJoystickNameForIndexLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 deviceIndex),
       Pointer<Utf8> Function(int deviceIndex)>('SDL_JoystickNameForIndex');
-  return sdlJoystickNameForIndexLookupFunction(deviceIndex).toDartString();
+  final result = sdlJoystickNameForIndexLookupFunction(deviceIndex);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -119,7 +123,11 @@ String? sdlJoystickPathForIndex(int deviceIndex) {
   final sdlJoystickPathForIndexLookupFunction = libSdl2.lookupFunction<
       Pointer<Utf8> Function(Int32 deviceIndex),
       Pointer<Utf8> Function(int deviceIndex)>('SDL_JoystickPathForIndex');
-  return sdlJoystickPathForIndexLookupFunction(deviceIndex).toDartString();
+  final result = sdlJoystickPathForIndexLookupFunction(deviceIndex);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -529,7 +537,11 @@ String? sdlJoystickName(Pointer<SdlJoystick> joystick) {
       Pointer<Utf8> Function(Pointer<SdlJoystick> joystick),
       Pointer<Utf8> Function(
           Pointer<SdlJoystick> joystick)>('SDL_JoystickName');
-  return sdlJoystickNameLookupFunction(joystick).toDartString();
+  final result = sdlJoystickNameLookupFunction(joystick);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -551,7 +563,11 @@ String? sdlJoystickPath(Pointer<SdlJoystick> joystick) {
       Pointer<Utf8> Function(Pointer<SdlJoystick> joystick),
       Pointer<Utf8> Function(
           Pointer<SdlJoystick> joystick)>('SDL_JoystickPath');
-  return sdlJoystickPathLookupFunction(joystick).toDartString();
+  final result = sdlJoystickPathLookupFunction(joystick);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
@@ -723,7 +739,11 @@ String? sdlJoystickGetSerial(Pointer<SdlJoystick> joystick) {
       Pointer<Utf8> Function(Pointer<SdlJoystick> joystick),
       Pointer<Utf8> Function(
           Pointer<SdlJoystick> joystick)>('SDL_JoystickGetSerial');
-  return sdlJoystickGetSerialLookupFunction(joystick).toDartString();
+  final result = sdlJoystickGetSerialLookupFunction(joystick);
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///

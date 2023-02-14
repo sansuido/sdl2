@@ -137,9 +137,12 @@ String? sdlGetHint(String? name) {
       Pointer<Utf8> Function(Pointer<Utf8> name),
       Pointer<Utf8> Function(Pointer<Utf8> name)>('SDL_GetHint');
   final namePointer = name != null ? name.toNativeUtf8() : nullptr;
-  final result = sdlGetHintLookupFunction(namePointer).toDartString();
+  final result = sdlGetHintLookupFunction(namePointer);
   calloc.free(namePointer);
-  return result;
+  if (result == nullptr) {
+    return null;
+  }
+  return result.toDartString();
 }
 
 ///
