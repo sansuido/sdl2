@@ -1,3 +1,7 @@
+## 1.4.2
+- [update] Support SDL version 2.26.4 (stable).
+- [changed] Rewrite Rectagle extension (add 'expansion' and more...).
+
 ## 1.4.1
 - [update] Support SDL version 2.26.3 (stable).
 - [update] Support SDL2_image version 2.6.3.
