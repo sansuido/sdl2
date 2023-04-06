@@ -48,7 +48,7 @@ int main() {
       }
     }
     angle += 0.5;
-    var dstrect = Rectangle(0, 0, 400, 300);
+    var dstrect = Rectangle<double>(0, 0, 400, 300);
     renderer
       ..setTarget(texture)
       ..clear()

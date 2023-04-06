@@ -31,7 +31,7 @@ int main() {
   }
   var fpsManager = calloc<FPSmanager>()..init();
   var event = calloc<SdlEvent>();
-  List<Point> clickPoints = [];
+  List<Point<double>> clickPoints = [];
   var running = true;
   while (running) {
     while (event.poll() != 0) {
@@ -65,8 +65,8 @@ int main() {
       }
     }
     var marge = 64;
-    var clip = Rectangle(marge, marge, window.getSize().x - marge * 2,
-        window.getSize().y - marge * 2);
+    var clip = Rectangle<double>(marge.toDouble(), marge.toDouble(),
+        window.getSize().x - marge * 2, window.getSize().y - marge * 2);
     renderer
       ..setDrawColor(0, 0, 0, 0)
       ..clear()

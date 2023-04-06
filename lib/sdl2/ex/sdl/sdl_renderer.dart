@@ -14,11 +14,11 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
   // lib_sdl_gfx.dart
 
   // 65
-  int pixelColor(math.Point p, int color) {
+  int pixelColor(math.Point<double> p, int color) {
     return gfx.pixelColor(this, p.x.toInt(), p.y.toInt(), color);
   }
 
-  int pixelRgba(math.Point p, int r, int g, int b, int a) {
+  int pixelRgba(math.Point<double> p, int r, int g, int b, int a) {
     // 77
     return gfx.pixelRgba(this, p.x.toInt(), p.y.toInt(), r, g, b, a);
   }
@@ -43,238 +43,249 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return gfx.vlineRgba(this, x, y1, y2, r, g, b, a);
   }
 
-  int rectangleColor(math.Rectangle rect, int color) {
+  int rectangleColor(math.Rectangle<double> rect, int color) {
     // 145
     return gfx.rectangleColor(this, rect.left.toInt(), rect.top.toInt(),
         rect.right.toInt(), rect.bottom.toInt(), color);
   }
 
-  int rectangleRgba(math.Rectangle rect, int r, int g, int b, int a) {
+  int rectangleRgba(math.Rectangle<double> rect, int r, int g, int b, int a) {
     // 158
     return gfx.rectangleRgba(this, rect.left.toInt(), rect.top.toInt(),
         rect.right.toInt(), rect.bottom.toInt(), r, g, b, a);
   }
 
-  int roundedRectangleColor(math.Rectangle rect, int rad, int color) {
+  int roundedRectangleColor(math.Rectangle<double> rect, int rad, int color) {
     // 172
     return gfx.roundedRectangleColor(this, rect.left.toInt(), rect.top.toInt(),
         rect.right.toInt(), rect.bottom.toInt(), rad, color);
   }
 
   int roundedRectangleRgba(
-      math.Rectangle rect, int rad, int r, int g, int b, int a) {
+      math.Rectangle<double> rect, int rad, int r, int g, int b, int a) {
     // 186
     return gfx.roundedRectangleRgba(this, rect.left.toInt(), rect.top.toInt(),
         rect.right.toInt(), rect.bottom.toInt(), rad, r, g, b, a);
   }
 
-  int boxColor(math.Rectangle rect, int color) {
+  int boxColor(math.Rectangle<double> rect, int color) {
     // 201
     return gfx.boxColor(this, rect.left.toInt(), rect.top.toInt(),
         rect.right.toInt(), rect.bottom.toInt(), color);
   }
 
-  int boxRgba(math.Rectangle rect, int r, int g, int b, int a) {
+  int boxRgba(math.Rectangle<double> rect, int r, int g, int b, int a) {
     // 214
     return gfx.boxRgba(this, rect.left.toInt(), rect.top.toInt(),
         rect.right.toInt(), rect.bottom.toInt(), r, g, b, a);
   }
 
-  int roundedBoxColor(math.Rectangle rect, int rad, int color) {
+  int roundedBoxColor(math.Rectangle<double> rect, int rad, int color) {
     // 228
     return gfx.roundedBoxColor(this, rect.left.toInt(), rect.top.toInt(),
         rect.right.toInt(), rect.bottom.toInt(), rad, color);
   }
 
-  int roundedBoxRgba(math.Rectangle rect, int rad, int r, int g, int b, int a) {
+  int roundedBoxRgba(
+      math.Rectangle<double> rect, int rad, int r, int g, int b, int a) {
     // 241
     return gfx.roundedBoxRgba(this, rect.left.toInt(), rect.top.toInt(),
         rect.right.toInt(), rect.bottom.toInt(), rad, r, g, b, a);
   }
 
-  int lineColor(math.Point p1, math.Point p2, int color) {
+  int lineColor(math.Point<double> p1, math.Point<double> p2, int color) {
     // 256
     return gfx.lineColor(
         this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(), p2.y.toInt(), color);
   }
 
-  int lineRgba(math.Point p1, math.Point p2, int r, int g, int b, int a) {
+  int lineRgba(math.Point<double> p1, math.Point<double> p2, int r, int g,
+      int b, int a) {
     // 269
     return gfx.lineRgba(this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(),
         p2.y.toInt(), r, g, b, a);
   }
 
-  int aaLineColor(math.Point p1, math.Point p2, int color) {
+  int aaLineColor(math.Point<double> p1, math.Point<double> p2, int color) {
     // 283
     return gfx.aalineColor(
         this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(), p2.y.toInt(), color);
   }
 
-  int aaLineRgba(math.Point p1, math.Point p2, int r, int g, int b, int a) {
+  int aaLineRgba(math.Point<double> p1, math.Point<double> p2, int r, int g,
+      int b, int a) {
     // 296
     return gfx.aalineRgba(this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(),
         p2.y.toInt(), r, g, b, a);
   }
 
-  int thickLineColor(math.Point p1, math.Point p2, int width, int color) {
+  int thickLineColor(
+      math.Point<double> p1, math.Point<double> p2, int width, int color) {
     // 310
     return gfx.thickLineColor(this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(),
         p2.y.toInt(), width, color);
   }
 
-  int thickLineRgba(
-      math.Point p1, math.Point p2, int width, int r, int g, int b, int a) {
+  int thickLineRgba(math.Point<double> p1, math.Point<double> p2, int width,
+      int r, int g, int b, int a) {
     // 323
     return gfx.thickLineRgba(this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(),
         p2.y.toInt(), width, r, g, b, a);
   }
 
-  int circleColor(math.Point p, int rad, int color) {
+  int circleColor(math.Point<double> p, int rad, int color) {
     // 338
     return gfx.circleColor(this, p.x.toInt(), p.y.toInt(), rad, color);
   }
 
-  int circleRgba(math.Point p, int rad, int r, int g, int b, int a) {
+  int circleRgba(math.Point<double> p, int rad, int r, int g, int b, int a) {
     // 351
     return gfx.circleRgba(this, p.x.toInt(), p.y.toInt(), rad, r, g, b, a);
   }
 
-  int arcColor(math.Point p, int rad, int start, int end, int color) {
+  int arcColor(math.Point<double> p, int rad, int start, int end, int color) {
     // 338
     return gfx.arcColor(this, p.x.toInt(), p.y.toInt(), rad, start, end, color);
   }
 
-  int arcRgba(
-      math.Point p, int rad, int start, int end, int r, int g, int b, int a) {
+  int arcRgba(math.Point<double> p, int rad, int start, int end, int r, int g,
+      int b, int a) {
     // 378
     return gfx.arcRgba(
         this, p.x.toInt(), p.y.toInt(), rad, start, end, r, g, b, a);
   }
 
-  int aaCircleColor(math.Point p, int rad, int color) {
+  int aaCircleColor(math.Point<double> p, int rad, int color) {
     // 392
     return gfx.aacircleColor(this, p.x.toInt(), p.y.toInt(), rad, color);
   }
 
-  int aaCircleRgba(math.Point p, int rad, int r, int g, int b, int a) {
+  int aaCircleRgba(math.Point<double> p, int rad, int r, int g, int b, int a) {
     // 405
     return gfx.aacircleRgba(this, p.x.toInt(), p.y.toInt(), rad, r, g, b, a);
   }
 
-  int filledCircleColor(math.Point p, int rad, int color) {
+  int filledCircleColor(math.Point<double> p, int rad, int color) {
     // 419
     return gfx.filledCircleColor(this, p.x.toInt(), p.y.toInt(), rad, color);
   }
 
-  int filledCircleRgba(math.Point p, int rad, int r, int g, int b, int a) {
+  int filledCircleRgba(
+      math.Point<double> p, int rad, int r, int g, int b, int a) {
     // 432
     return gfx.filledCircleRgba(
         this, p.x.toInt(), p.y.toInt(), rad, r, g, b, a);
   }
 
-  int ellipseColor(math.Point p, math.Point rad, int color) {
+  int ellipseColor(math.Point<double> p, math.Point<double> rad, int color) {
     // 446
     return gfx.ellipseColor(
         this, p.x.toInt(), p.y.toInt(), rad.x.toInt(), rad.y.toInt(), color);
   }
 
-  int ellipseRgba(math.Point p, math.Point rad, int r, int g, int b, int a) {
+  int ellipseRgba(math.Point<double> p, math.Point<double> rad, int r, int g,
+      int b, int a) {
     // 459
     return gfx.ellipseRgba(this, p.x.toInt(), p.y.toInt(), rad.x.toInt(),
         rad.y.toInt(), r, g, b, a);
   }
 
-  int aaEllipseColor(math.Point p, math.Point rad, int color) {
+  int aaEllipseColor(math.Point<double> p, math.Point<double> rad, int color) {
     // 473
     return gfx.aaellipseColor(
         this, p.x.toInt(), p.y.toInt(), rad.x.toInt(), rad.y.toInt(), color);
   }
 
-  int aaEllipseRgba(math.Point p, math.Point rad, int r, int g, int b, int a) {
+  int aaEllipseRgba(math.Point<double> p, math.Point<double> rad, int r, int g,
+      int b, int a) {
     // 486
     return gfx.aaellipseRgba(this, p.x.toInt(), p.y.toInt(), rad.x.toInt(),
         rad.y.toInt(), r, g, b, a);
   }
 
-  int filledEllipseColor(math.Point p, math.Point rad, int color) {
+  int filledEllipseColor(
+      math.Point<double> p, math.Point<double> rad, int color) {
     // 500
     return gfx.filledEllipseColor(
         this, p.x.toInt(), p.y.toInt(), rad.x.toInt(), rad.y.toInt(), color);
   }
 
-  int filledEllipseRgba(
-      math.Point p, math.Point rad, int r, int g, int b, int a) {
+  int filledEllipseRgba(math.Point<double> p, math.Point<double> rad, int r,
+      int g, int b, int a) {
     // 513
     return gfx.filledEllipseRgba(this, p.x.toInt(), p.y.toInt(), rad.x.toInt(),
         rad.y.toInt(), r, g, b, a);
   }
 
-  int pieColor(math.Point p, int rad, int start, int end, int color) {
+  int pieColor(math.Point<double> p, int rad, int start, int end, int color) {
     // 527
     return gfx.pieColor(this, p.x.toInt(), p.y.toInt(), rad, start, end, color);
   }
 
-  int pieRgba(
-      math.Point p, int rad, int start, int end, int r, int g, int b, int a) {
+  int pieRgba(math.Point<double> p, int rad, int start, int end, int r, int g,
+      int b, int a) {
     // 540
     return gfx.pieRgba(
         this, p.x.toInt(), p.y.toInt(), rad, start, end, r, g, b, a);
   }
 
-  int filledPieColor(math.Point p, int rad, int start, int end, int color) {
+  int filledPieColor(
+      math.Point<double> p, int rad, int start, int end, int color) {
     // 554
     return gfx.filledPieColor(
         this, p.x.toInt(), p.y.toInt(), rad, start, end, color);
   }
 
-  int filledPieRgba(
-      math.Point p, int rad, int start, int end, int r, int g, int b, int a) {
+  int filledPieRgba(math.Point<double> p, int rad, int start, int end, int r,
+      int g, int b, int a) {
     // 567
     return gfx.filledPieRgba(
         this, p.x.toInt(), p.y.toInt(), rad, start, end, r, g, b, a);
   }
 
-  int trigonColor(math.Point p1, math.Point p2, math.Point p3, int color) {
+  int trigonColor(math.Point<double> p1, math.Point<double> p2,
+      math.Point<double> p3, int color) {
     // 582
     return gfx.trigonColor(this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(),
         p2.y.toInt(), p3.x.toInt(), p3.y.toInt(), color);
   }
 
-  int trigonRgba(
-      math.Point p1, math.Point p2, math.Point p3, int r, int g, int b, int a) {
+  int trigonRgba(math.Point<double> p1, math.Point<double> p2,
+      math.Point<double> p3, int r, int g, int b, int a) {
     // 585
     return gfx.trigonRgba(this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(),
         p2.y.toInt(), p3.x.toInt(), p3.y.toInt(), r, g, b, a);
   }
 
-  int aaTrigonColor(math.Point p1, math.Point p2, math.Point p3, int color) {
+  int aaTrigonColor(math.Point<double> p1, math.Point<double> p2,
+      math.Point<double> p3, int color) {
     // 619
     return gfx.aatrigonColor(this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(),
         p2.y.toInt(), p3.x.toInt(), p3.y.toInt(), color);
   }
 
-  int aaTrigonRgba(
-      math.Point p1, math.Point p2, math.Point p3, int r, int g, int b, int a) {
+  int aaTrigonRgba(math.Point<double> p1, math.Point<double> p2,
+      math.Point<double> p3, int r, int g, int b, int a) {
     // 639
     return gfx.aatrigonRgba(this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(),
         p2.y.toInt(), p3.x.toInt(), p3.y.toInt(), r, g, b, a);
   }
 
-  int filledTrigonColor(
-      math.Point p1, math.Point p2, math.Point p3, int color) {
+  int filledTrigonColor(math.Point<double> p1, math.Point<double> p2,
+      math.Point<double> p3, int color) {
     // 657
     return gfx.filledTrigonColor(this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(),
         p2.y.toInt(), p3.x.toInt(), p3.y.toInt(), color);
   }
 
-  int filledTrigonRgba(
-      math.Point p1, math.Point p2, math.Point p3, int r, int g, int b, int a) {
+  int filledTrigonRgba(math.Point<double> p1, math.Point<double> p2,
+      math.Point<double> p3, int r, int g, int b, int a) {
     // 671
     return gfx.filledTrigonRgba(this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(),
         p2.y.toInt(), p3.x.toInt(), p3.y.toInt(), r, g, b, a);
   }
 
-  int polygonColor(List<math.Point> ps, int color) {
+  int polygonColor(List<math.Point<double>> ps, int color) {
     var xsPointer = ps.callocInt16X();
     var ysPointer = ps.callocInt16Y();
     // 706
@@ -284,7 +295,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int polygonRgba(List<math.Point> ps, int r, int g, int b, int a) {
+  int polygonRgba(List<math.Point<double>> ps, int r, int g, int b, int a) {
     var xsPointer = ps.callocInt16X();
     var ysPointer = ps.callocInt16Y();
     // 719
@@ -295,7 +306,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int aaPolygonColor(List<math.Point> ps, int color) {
+  int aaPolygonColor(List<math.Point<double>> ps, int color) {
     var xsPointer = ps.callocInt16X();
     var ysPointer = ps.callocInt16Y();
     // 733
@@ -306,7 +317,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int aaPolygonRgba(List<math.Point> ps, int r, int g, int b, int a) {
+  int aaPolygonRgba(List<math.Point<double>> ps, int r, int g, int b, int a) {
     var xsPointer = ps.callocInt16X();
     var ysPointer = ps.callocInt16Y();
     // 746
@@ -317,7 +328,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int filledPolygonColor(List<math.Point> ps, int color) {
+  int filledPolygonColor(List<math.Point<double>> ps, int color) {
     var xsPointer = ps.callocInt16X();
     var ysPointer = ps.callocInt16Y();
     // 767
@@ -328,7 +339,8 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int filledPolygonRgba(List<math.Point> ps, int r, int g, int b, int a) {
+  int filledPolygonRgba(
+      List<math.Point<double>> ps, int r, int g, int b, int a) {
     var xsPointer = ps.callocInt16X();
     var ysPointer = ps.callocInt16Y();
     // 780
@@ -339,8 +351,8 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int texturedPolygon(
-      List<math.Point> ps, Pointer<SdlSurface> texture, math.Point texturePos) {
+  int texturedPolygon(List<math.Point<double>> ps, Pointer<SdlSurface> texture,
+      math.Point<double> texturePos) {
     var xsPointer = ps.callocInt16X();
     var ysPointer = ps.callocInt16Y();
     // 801
@@ -351,7 +363,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int bezierColor(List<math.Point> ps, int s, int color) {
+  int bezierColor(List<math.Point<double>> ps, int s, int color) {
     var xsPointer = ps.callocInt16X();
     var ysPointer = ps.callocInt16Y();
     // 834
@@ -362,7 +374,8 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int bezierRgba(List<math.Point> ps, int s, int r, int g, int b, int a) {
+  int bezierRgba(
+      List<math.Point<double>> ps, int s, int r, int g, int b, int a) {
     var xsPointer = ps.callocInt16X();
     var ysPointer = ps.callocInt16Y();
     // 847
@@ -373,22 +386,22 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int characterColor(math.Point p, int c, int color) {
+  int characterColor(math.Point<double> p, int c, int color) {
     // 898
     return gfx.characterColor(this, p.x.toInt(), p.y.toInt(), c, color);
   }
 
-  int characterRgba(math.Point p, int c, int r, int g, int b, int a) {
+  int characterRgba(math.Point<double> p, int c, int r, int g, int b, int a) {
     // 811
     return gfx.characterRgba(this, p.x.toInt(), p.y.toInt(), c, r, g, b, a);
   }
 
-  int stringColor(math.Point p, String? s, int color) {
+  int stringColor(math.Point<double> p, String? s, int color) {
     // 924
     return gfx.stringColor(this, p.x.toInt(), p.y.toInt(), s, color);
   }
 
-  int stringRgba(math.Point p, String? s, int r, int g, int b, int a) {
+  int stringRgba(math.Point<double> p, String? s, int r, int g, int b, int a) {
     // 940
     return gfx.stringRgba(this, p.x.toInt(), p.y.toInt(), s, r, g, b, a);
   }
@@ -421,12 +434,13 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return sdlRenderGetWindow(this);
   }
 
-  math.Point getOutputSize() {
+  math.Point<double> getOutputSize() {
     var wPointer = calloc<Int32>();
     var hPointer = calloc<Int32>();
     // 250
     sdlGetRendererOutputSize(this, wPointer, hPointer);
-    var result = math.Point(wPointer.value, hPointer.value);
+    var result = math.Point<double>(
+        wPointer.value.toDouble(), hPointer.value.toDouble());
     calloc.free(wPointer);
     calloc.free(hPointer);
     return result;
@@ -462,12 +476,13 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return sdlRenderSetLogicalSize(this, w, h);
   }
 
-  math.Point getLogicalSize() {
+  math.Point<double> getLogicalSize() {
     var wPointer = calloc<Int32>();
     var hPointer = calloc<Int32>();
     // 1033
     sdlRenderGetLogicalSize(this, wPointer, hPointer);
-    var result = math.Point(wPointer.value, hPointer.value);
+    var result = math.Point<double>(
+        wPointer.value.toDouble(), hPointer.value.toDouble());
     calloc.free(wPointer);
     calloc.free(hPointer);
     return result;
@@ -483,7 +498,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return sdlRenderGetIntegerScale(this) == SDL_TRUE;
   }
 
-  int setViewport([math.Rectangle? rect]) {
+  int setViewport([math.Rectangle<double>? rect]) {
     Pointer<SdlRect> rectPointer = nullptr;
     if (rect != null) {
       rectPointer = rect.calloc();
@@ -494,7 +509,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  math.Rectangle getViewport() {
+  math.Rectangle<double> getViewport() {
     var rectPointer = calloc<SdlRect>();
     // 1132
     sdlRenderGetViewport(this, rectPointer);
@@ -503,7 +518,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int setClipRect([math.Rectangle? rect]) {
+  int setClipRect([math.Rectangle<double>? rect]) {
     Pointer<SdlRect> rectPointer = nullptr;
     if (rect != null) {
       rectPointer = rect.calloc();
@@ -514,7 +529,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  math.Rectangle getClipRect() {
+  math.Rectangle<double> getClipRect() {
     var rectPointer = calloc<SdlRect>();
     // 1183
     sdlRenderGetClipRect(this, rectPointer);
@@ -580,12 +595,12 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return sdlRenderClear(this);
   }
 
-  int drawPoint(math.Point point) {
+  int drawPoint(math.Point<double> point) {
     // 1537
     return sdlRenderDrawPoint(this, point.x.toInt(), point.y.toInt());
   }
 
-  int drawPoints(List<math.Point> points) {
+  int drawPoints(List<math.Point<double>> points) {
     var pointsPointer = points.calloc();
     // 1571
     var result = sdlRenderDrawPoints(this, pointsPointer, points.length);
@@ -593,13 +608,13 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int drawLine(math.Point p1, math.Point p2) {
+  int drawLine(math.Point<double> p1, math.Point<double> p2) {
     // 1611
     return sdlRenderDrawLine(
         this, p1.x.toInt(), p1.y.toInt(), p2.x.toInt(), p2.y.toInt());
   }
 
-  int drawLines(List<math.Point> points) {
+  int drawLines(List<math.Point<double>> points) {
     var pointsPointer = points.calloc();
     // 1647
     var result = sdlRenderDrawLines(this, pointsPointer, points.length);
@@ -607,7 +622,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int drawRect(math.Rectangle? rect) {
+  int drawRect(math.Rectangle<double>? rect) {
     Pointer<SdlRect> rectPointer = nullptr;
     if (rect != null) {
       rectPointer = rect.calloc();
@@ -618,7 +633,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int drawRects(List<math.Rectangle> rects) {
+  int drawRects(List<math.Rectangle<double>> rects) {
     var rectsPointer = rects.calloc();
     // 1716
     var result = sdlRenderDrawRects(this, rectsPointer, rects.length);
@@ -626,7 +641,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int fillRect(math.Rectangle? rect) {
+  int fillRect(math.Rectangle<double>? rect) {
     Pointer<SdlRect> rectPointer = nullptr;
     if (rect != null) {
       rectPointer = rect.calloc();
@@ -637,7 +652,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int fillRects(List<math.Rectangle> rects) {
+  int fillRects(List<math.Rectangle<double>> rects) {
     var rectsPointer = rects.calloc();
     // 1788
     var result = sdlRenderFillRects(this, rectsPointer, rects.length);
@@ -646,7 +661,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
   }
 
   int copy(Pointer<SdlTexture> texture,
-      {math.Rectangle? srcrect, math.Rectangle? dstrect}) {
+      {math.Rectangle<double>? srcrect, math.Rectangle<double>? dstrect}) {
     Pointer<SdlRect> srcrectPointer = nullptr;
     Pointer<SdlRect> dstrectPointer = nullptr;
     if (srcrect != null) {
@@ -663,10 +678,10 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
   }
 
   int copyEx(Pointer<SdlTexture> texture,
-      {math.Rectangle? srcrect,
-      math.Rectangle? dstrect,
+      {math.Rectangle<double>? srcrect,
+      math.Rectangle<double>? dstrect,
       double angle = 0,
-      math.Point? center,
+      math.Point<double>? center,
       int flip = SDL_FLIP_NONE}) {
     Pointer<SdlRect> srcrectPointer = nullptr;
     Pointer<SdlRect> dstrectPointer = nullptr;

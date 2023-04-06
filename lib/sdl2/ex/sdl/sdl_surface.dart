@@ -148,7 +148,7 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
     return result;
   }
 
-  bool setClipRect([math.Rectangle? rect]) {
+  bool setClipRect([math.Rectangle<double>? rect]) {
     Pointer<SdlRect> rectPointer = nullptr;
     if (rect != null) {
       rectPointer = rect.calloc();
@@ -159,7 +159,7 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
     return result == SDL_TRUE;
   }
 
-  math.Rectangle getClipRect() {
+  math.Rectangle<double> getClipRect() {
     var rectPointer = calloc<SdlRect>();
     // 725
     sdlGetClipRect(this, rectPointer);
@@ -186,7 +186,7 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
   // sdlConvertPixels
   // sdlPremultiplyAlpha
 
-  int fillRect(math.Rectangle? rect, int color) {
+  int fillRect(math.Rectangle<double>? rect, int color) {
     int result;
     Pointer<SdlRect> rectPointer = nullptr;
     if (rect != null) {
@@ -197,7 +197,7 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
     return result;
   }
 
-  int fillRects(List<math.Rectangle> rects, int color) {
+  int fillRects(List<math.Rectangle<double>> rects, int color) {
     var rectsPointer = rects.calloc();
     // 976
     var result = sdlFillRects(this, rectsPointer, rects.length, color);
@@ -207,8 +207,8 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
 
   int upperBlit(
     Pointer<SdlSurface> dst, {
-    math.Rectangle? srcrect,
-    math.Rectangle? dstrect,
+    math.Rectangle<double>? srcrect,
+    math.Rectangle<double>? dstrect,
   }) {
     Pointer<SdlRect> srcrectPointer = nullptr;
     Pointer<SdlRect> dstrectPointer = nullptr;
@@ -227,8 +227,8 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
 
   int lowerBlit(
     Pointer<SdlSurface> dst, {
-    math.Rectangle? srcrect,
-    math.Rectangle? dstrect,
+    math.Rectangle<double>? srcrect,
+    math.Rectangle<double>? dstrect,
   }) {
     Pointer<SdlRect> srcrectPointer = nullptr;
     Pointer<SdlRect> dstrectPointer = nullptr;
@@ -247,8 +247,8 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
 
   int softStretch(
     Pointer<SdlSurface> dst, {
-    math.Rectangle? srcrect,
-    math.Rectangle? dstrect,
+    math.Rectangle<double>? srcrect,
+    math.Rectangle<double>? dstrect,
   }) {
     Pointer<SdlRect> srcrectPointer = nullptr;
     Pointer<SdlRect> dstrectPointer = nullptr;
@@ -267,8 +267,8 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
 
   int softStretchLinear(
     Pointer<SdlSurface> dst, {
-    math.Rectangle? srcrect,
-    math.Rectangle? dstrect,
+    math.Rectangle<double>? srcrect,
+    math.Rectangle<double>? dstrect,
   }) {
     Pointer<SdlRect> srcrectPointer = nullptr;
     Pointer<SdlRect> dstrectPointer = nullptr;
@@ -288,8 +288,8 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
 
   int upperBlitScaled(
     Pointer<SdlSurface> dst, {
-    math.Rectangle? srcrect,
-    math.Rectangle? dstrect,
+    math.Rectangle<double>? srcrect,
+    math.Rectangle<double>? dstrect,
   }) {
     Pointer<SdlRect> srcrectPointer = nullptr;
     Pointer<SdlRect> dstrectPointer = nullptr;
@@ -308,8 +308,8 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
 
   int lowerBlitScaled(
     Pointer<SdlSurface> dst, {
-    math.Rectangle? srcrect,
-    math.Rectangle? dstrect,
+    math.Rectangle<double>? srcrect,
+    math.Rectangle<double>? dstrect,
   }) {
     Pointer<SdlRect> srcrectPointer = nullptr;
     Pointer<SdlRect> dstrectPointer = nullptr;
@@ -341,16 +341,16 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
 
   int blit(
     Pointer<SdlSurface> dst, {
-    math.Rectangle? srcrect,
-    math.Rectangle? dstrect,
+    math.Rectangle<double>? srcrect,
+    math.Rectangle<double>? dstrect,
   }) {
     return upperBlit(dst, srcrect: srcrect, dstrect: dstrect);
   }
 
   int blitScaled(
     Pointer<SdlSurface> dst, {
-    math.Rectangle? srcrect,
-    math.Rectangle? dstrect,
+    math.Rectangle<double>? srcrect,
+    math.Rectangle<double>? dstrect,
   }) {
     return upperBlitScaled(dst, srcrect: srcrect, dstrect: dstrect);
   }

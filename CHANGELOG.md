@@ -1,3 +1,6 @@
+## 1.4.3
+- [changed] Changed ambiguous types of Point and Rectangle to <double>.
+
 ## 1.4.2
 - [update] Support SDL version 2.26.4 (stable).
 - [changed] Rewrite Rectagle extension (add 'expansion' and more...).

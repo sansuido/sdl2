@@ -1,10 +1,10 @@
 import 'dart:ffi';
-import 'dart:math' show Rectangle, Point;
+import 'dart:math' as math show Rectangle, Point;
 import 'package:ffi/ffi.dart' as ffi;
 import '../sdl/sdl_rect.dart';
 import '../../generated/struct_sdl.dart';
 
-extension RectangleEx on Rectangle {
+extension RectangleEx on math.Rectangle<double> {
   // dependence package:ffi
   Pointer<SdlRect> calloc() {
     var result = ffi.calloc<SdlRect>()
@@ -16,42 +16,45 @@ extension RectangleEx on Rectangle {
   }
 
   // utility
-  Point get size => Point(width, height);
-  Point get center => Point(left + width / 2, top + height / 2);
+  math.Point<double> get size =>
+      math.Point<double>(width.toDouble(), height.toDouble());
+  math.Point<double> get center =>
+      math.Point<double>(left + width / 2, top + height / 2);
 
-  Rectangle setX(num x) {
-    return fromLTWH(Point(x, top), size);
+  math.Rectangle<double> setX(double x) {
+    return fromLTWH(math.Point<double>(x, top), size);
   }
 
-  Rectangle setY(num y) {
-    return fromLTWH(Point(left, y), size);
+  math.Rectangle<double> setY(double y) {
+    return fromLTWH(math.Point<double>(left, y), size);
   }
 
-  Rectangle setWidth(num width_) {
-    return fromLTWH(topLeft, Point(width_, height));
+  math.Rectangle<double> setWidth(double width_) {
+    return fromLTWH(topLeft, math.Point<double>(width_, height));
   }
 
-  Rectangle setHeight(num height_) {
-    return fromLTWH(topLeft, Point(width, height_));
+  math.Rectangle<double> setHeight(double height_) {
+    return fromLTWH(topLeft, math.Point<double>(width, height_));
   }
 
-  Rectangle shift(Point shift) {
-    return fromLTWH(Point(left + shift.x, top + shift.y), size);
+  math.Rectangle<double> shift(math.Point<double> shift) {
+    return fromLTWH(math.Point<double>(left + shift.x, top + shift.y), size);
   }
 
-  Rectangle centerOn(Point center_) {
+  math.Rectangle<double> centerOn(math.Point<double> center_) {
     return fromCenter(center_, size);
   }
 
-  Rectangle expansion(num value) {
-    return fromCenter(center, Point(width + value, height + value));
+  math.Rectangle<double> expansion(num value) {
+    return fromCenter(
+        center, math.Point<double>(width + value, height + value));
   }
 
-  Rectangle expansionLT(num value) {
-    return fromLTWH(topLeft, Point(width + value, height + value));
+  math.Rectangle<double> expansionLT(num value) {
+    return fromLTWH(topLeft, math.Point<double>(width + value, height + value));
   }
 
-  Rectangle union(Rectangle b) {
+  math.Rectangle<double> union(math.Rectangle<double> b) {
     var aPointer = calloc();
     var bPointer = b.calloc();
     var resultPointer = ffi.calloc<SdlRect>();
@@ -63,14 +66,16 @@ extension RectangleEx on Rectangle {
     return result;
   }
 
-  static Rectangle fromCenter(Point center, Point size) {
-    return Rectangle.fromPoints(
-        Point(center.x - size.x / 2, center.y - size.y / 2),
-        Point(center.x + size.x / 2, center.y + size.y / 2));
+  static math.Rectangle<double> fromCenter(
+      math.Point<double> center, math.Point<double> size) {
+    return math.Rectangle<double>.fromPoints(
+        math.Point<double>(center.x - size.x / 2, center.y - size.y / 2),
+        math.Point<double>(center.x + size.x / 2, center.y + size.y / 2));
   }
 
-  static Rectangle fromLTWH(Point topLeft, Point size) {
-    return Rectangle(topLeft.x, topLeft.y, size.x, size.y);
+  static math.Rectangle<double> fromLTWH(
+      math.Point<double> topLeft, math.Point<double> size) {
+    return math.Rectangle<double>(topLeft.x, topLeft.y, size.x, size.y);
   }
 
   // == intersects
@@ -88,7 +93,7 @@ extension RectangleEx on Rectangle {
   //  var aPointer = calloc();
   //  var bPointer = b.calloc();
   //  var resultPointer = ffi.calloc<SdlRect>();
-  //  Rectangle? result;
+  //  math.Rectangle<double>? result;
   //  var bl = aPointer.intersectRect(bPointer, resultPointer);
   //  if (bl == true) {
   //    result = resultPointer.create();
@@ -99,13 +104,13 @@ extension RectangleEx on Rectangle {
   //  return result;
   //}
 
-  // == Rectangle.fromPoints
-  //static Rectangle fromLTRB(num left, num top, num right, num bottom) {
-  //  return Rectangle(left, top, right - left, bottom - top);
+  // == math.Rectangle.fromPoints
+  //static math.Rectangle<double> fromLTRB(num left, num top, num right, num bottom) {
+  //  return math.Rectangle<double>(left, top, right - left, bottom - top);
   //}
 }
 
-extension RectanglesEx on List<Rectangle> {
+extension RectanglesEx on List<math.Rectangle<double>> {
   // dependence package:ffi
   Pointer<SdlRect> calloc() {
     var rectsPointer = ffi.calloc<SdlRect>(length);

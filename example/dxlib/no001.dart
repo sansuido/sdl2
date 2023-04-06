@@ -14,8 +14,8 @@ const gPlayerHeight = 32;
 
 Pointer<SdlWindow> gWindow = nullptr;
 Pointer<SdlRenderer> gRenderer = nullptr;
-var gPlayerX = (gScreenWidth - gPlayerWidth) ~/ 2;
-var gPlayerY = (gScreenHeight - gPlayerHeight) ~/ 2;
+double gPlayerX = (gScreenWidth - gPlayerWidth) / 2;
+double gPlayerY = (gScreenHeight - gPlayerHeight) / 2;
 
 bool init() {
   var success = true;
@@ -83,7 +83,8 @@ int main() {
         ..setDrawColor(0x00, 0x00, 0x00, SDL_ALPHA_OPAQUE)
         ..clear()
         ..setDrawColor(0x00, 0xff, 0x00, SDL_ALPHA_OPAQUE)
-        ..fillRect(Rectangle(gPlayerX, gPlayerY, gPlayerWidth, gPlayerHeight))
+        ..fillRect(Rectangle(gPlayerX, gPlayerY, gPlayerWidth.toDouble(),
+            gPlayerHeight.toDouble()))
         ..present();
     }
     event.callocFree();

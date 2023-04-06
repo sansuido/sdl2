@@ -1,5 +1,5 @@
 import 'dart:ffi';
-import 'dart:math' show Point, Rectangle;
+import 'dart:math' as math show Point, Rectangle;
 import 'package:ffi/ffi.dart' as ffi;
 import 'rectangle.dart';
 import '../sdl/sdl_rect.dart';
@@ -8,7 +8,7 @@ import '../../generated/lib_sdl_rect.dart';
 import '../../generated/struct_sdl.dart';
 import '../../generated/const_sdl.dart';
 
-extension PointEx on Point {
+extension PointEx on math.Point<double> {
   // dependence package:ffi
   Pointer<SdlPoint> calloc() {
     var result = ffi.calloc<SdlPoint>()
@@ -18,41 +18,44 @@ extension PointEx on Point {
   }
 
   // lib_sdl_mouse.dart
-  static Point getMouseState() {
+  static math.Point<double> getMouseState() {
     var xPointer = ffi.calloc<Int32>();
     var yPointer = ffi.calloc<Int32>();
     // 47
     sdlGetMouseState(xPointer, yPointer);
-    var result = Point(xPointer.value, yPointer.value);
+    var result = math.Point<double>(
+        xPointer.value.toDouble(), yPointer.value.toDouble());
     ffi.calloc.free(xPointer);
     ffi.calloc.free(yPointer);
     return result;
   }
 
-  static Point getGlobalMouseState() {
+  static math.Point<double> getGlobalMouseState() {
     var xPointer = ffi.calloc<Int32>();
     var yPointer = ffi.calloc<Int32>();
     // 84
     sdlGetGlobalMouseState(xPointer, yPointer);
-    var result = Point(xPointer.value, yPointer.value);
+    var result = math.Point<double>(
+        xPointer.value.toDouble(), yPointer.value.toDouble());
     ffi.calloc.free(xPointer);
     ffi.calloc.free(yPointer);
     return result;
   }
 
-  static Point getRelativeMouseState() {
+  static math.Point<double> getRelativeMouseState() {
     var xPointer = ffi.calloc<Int32>();
     var yPointer = ffi.calloc<Int32>();
     // 112
     sdlGetRelativeMouseState(xPointer, yPointer);
-    var result = Point(xPointer.value, yPointer.value);
+    var result = math.Point<double>(
+        xPointer.value.toDouble(), yPointer.value.toDouble());
     ffi.calloc.free(xPointer);
     ffi.calloc.free(yPointer);
     return result;
   }
 }
 
-extension PointsEx on List<Point> {
+extension PointsEx on List<math.Point<double>> {
   // dependence package:ffi
   Pointer<SdlPoint> calloc() {
     var pointsPointer = ffi.calloc<SdlPoint>(length);
@@ -82,8 +85,8 @@ extension PointsEx on List<Point> {
     return ysPointer;
   }
 
-  Rectangle? getEncloseRect({Rectangle? clip}) {
-    Rectangle? result;
+  math.Rectangle<double>? getEncloseRect({math.Rectangle<double>? clip}) {
+    math.Rectangle<double>? result;
     var pointsPointer = calloc();
     Pointer<SdlRect> clipPointer = nullptr;
     var resultPointer = ffi.calloc<SdlRect>();

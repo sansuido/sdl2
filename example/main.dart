@@ -26,7 +26,7 @@ int main() {
     sdlQuit();
     return -1;
   }
-  var lines = [
+  var lines = <Point<double>>[
     Point(320, 200),
     Point(300, 240),
     Point(340, 240),

@@ -31,7 +31,7 @@ int main() {
   var baseX = 100;
   var baseY = 240;
   var event = calloc<SdlEvent>();
-  var points = <Point>[];
+  var points = <Point<double>>[];
   var dx = 3.0;
   var zY = 1 / 10.0;
   var coY = 30;
@@ -86,7 +86,7 @@ int main() {
       points[i] = Point(points[i - 1].x, points[i - 1].y);
     }
     t += zY;
-    points[0] = Point(baseX, baseY + coY * cos(t));
+    points[0] = Point(baseX.toDouble(), baseY + coY * cos(t));
     tot++;
     if (tot > gMaxN) {
       tot--;

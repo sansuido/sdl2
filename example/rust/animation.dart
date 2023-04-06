@@ -5,8 +5,8 @@ import 'package:ffi/ffi.dart';
 import 'package:sdl2/sdl2.dart';
 
 class Chara {
-  late Rectangle srcrect;
-  late Rectangle dstrect;
+  late Rectangle<double> srcrect;
+  late Rectangle<double> dstrect;
   late double angle;
   late int flip;
   Chara(this.srcrect, this.dstrect,
@@ -66,17 +66,17 @@ int main() {
     }
     var ticks = sdlGetTicks();
     charas[0].srcrect =
-        charas[0].srcrect.setX(32 * ((ticks / 100) % 4).toInt());
+        charas[0].srcrect.setX(32 * ((ticks / 100) % 4).floor().toDouble());
     charas[0].dstrect =
-        charas[0].dstrect.setX(1 * ((ticks / 14) % 768).toInt() - 128);
+        charas[0].dstrect.setX(1 * ((ticks / 14) % 768).floor() - 128);
     charas[1].srcrect =
-        charas[1].srcrect.setX(32 * ((ticks / 100) % 4).toInt());
+        charas[1].srcrect.setX(32 * ((ticks / 100) % 4).floor().toDouble());
     charas[1].dstrect =
-        charas[1].dstrect.setX((1 * ((ticks / 12) % 768).toInt() - 672) * -1);
+        charas[1].dstrect.setX((1 * ((ticks / 12) % 768).floor() - 672) * -1);
     charas[2].srcrect =
-        charas[2].srcrect.setX(32 * ((ticks / 100) % 4).toInt());
+        charas[2].srcrect.setX(32 * ((ticks / 100) % 4).floor().toDouble());
     charas[2].dstrect =
-        charas[2].dstrect.setX(1 * ((ticks / 10) % 768).toInt() - 128);
+        charas[2].dstrect.setX(1 * ((ticks / 10) % 768).floor() - 128);
     renderer
       ..setDrawColor(0, 0, 0, SDL_ALPHA_OPAQUE)
       ..clear();

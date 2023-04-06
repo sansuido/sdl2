@@ -95,8 +95,11 @@ int main() {
   var bar = min(gScreenWidth, gScreenHeight) / 2;
   var squareRect = Rectangle(
       gScreenWidth / 2 - bar / 2, gScreenHeight / 2 - bar / 2, bar, bar);
-  var pauseRect1 = Rectangle(squareRect.left + (squareRect.width - 40 * 3) / 2,
-      squareRect.top + squareRect.height / 4, 40, squareRect.height / 2);
+  var pauseRect1 = Rectangle<double>(
+      squareRect.left + (squareRect.width - 40 * 3) / 2,
+      squareRect.top + squareRect.height / 4,
+      40,
+      squareRect.height / 2);
   var pauseRect2 = pauseRect1.shift(Point(40 * 2, 0));
 
   var event = calloc<SdlEvent>();

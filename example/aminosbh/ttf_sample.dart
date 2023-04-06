@@ -69,11 +69,11 @@ int main() {
       // Declare rect of square
       // Square dimensions: Half of the min(gScreenWidth, gScreenHeight)
       // Square position: In the middle of the screen
-      var squareRect = Rectangle(
-          gScreenWidth ~/ 2 - gScreenHeight ~/ 2 ~/ 2,
-          gScreenHeight ~/ 2 - gScreenHeight ~/ 2 ~/ 2,
-          gScreenHeight ~/ 2,
-          gScreenHeight ~/ 2);
+      var squareRect = Rectangle<double>(
+          gScreenWidth / 2 - gScreenHeight / 2 / 2,
+          gScreenHeight / 2 - gScreenHeight / 2 / 2,
+          gScreenHeight / 2,
+          gScreenHeight / 2);
       Pointer<TtfFont> font = nullptr;
       font = TtfFontEx.open(gFontPath, 40);
       //var font = ttfOpenFont(gFontPath, 40);
@@ -83,7 +83,7 @@ int main() {
         return 0;
       }
       Pointer<SdlTexture> text = nullptr;
-      late Rectangle textRect;
+      late Rectangle<double> textRect;
       var textSurface = font.renderUtf8Shaded(
           '赤い四角/Red square',
           SdlColorEx.rgbaToU32(0, 0, 0, SDL_ALPHA_OPAQUE),
@@ -101,11 +101,11 @@ int main() {
           return 0;
         }
         // Get text dimensions
-        textRect = Rectangle(
-            (gScreenWidth - textSurface.ref.w) ~/ 2,
+        textRect = Rectangle<double>(
+            (gScreenWidth - textSurface.ref.w) / 2,
             squareRect.top - textSurface.ref.h - 10,
-            textSurface.ref.w,
-            textSurface.ref.h);
+            textSurface.ref.w.toDouble(),
+            textSurface.ref.h.toDouble());
         textSurface.free();
       }
       // Event loop exit flag

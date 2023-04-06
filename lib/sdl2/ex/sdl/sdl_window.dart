@@ -74,12 +74,12 @@ extension SdlWindowPointerEx on Pointer<SdlWindow> {
     sdlSetWindowPosition(this, x, y);
   }
 
-  math.Point getPosition() {
+  math.Point<double> getPosition() {
     var x = calloc<Int32>();
     var y = calloc<Int32>();
     // 989
     sdlGetWindowPosition(this, x, y);
-    var result = math.Point(x.value, y.value);
+    var result = math.Point<double>(x.value.toDouble(), y.value.toDouble());
     calloc.free(x);
     calloc.free(y);
     return result;
@@ -90,26 +90,26 @@ extension SdlWindowPointerEx on Pointer<SdlWindow> {
     sdlSetWindowSize(this, w, h);
   }
 
-  math.Point getSize() {
+  math.Point<double> getSize() {
     var w = calloc<Int32>();
     var h = calloc<Int32>();
     sdlGetWindowSize(this, w, h);
     // 1059
-    var result = math.Point(w.value, h.value);
+    var result = math.Point<double>(w.value.toDouble(), h.value.toDouble());
     calloc.free(w);
     calloc.free(h);
     return result;
   }
 
-  math.Rectangle getBordersSize() {
+  math.Rectangle<double> getBordersSize() {
     var top = calloc<Int32>();
     var left = calloc<Int32>();
     var bottom = calloc<Int32>();
     var right = calloc<Int32>();
     // 1104
     sdlGetWindowBordersSize(this, top, left, bottom, right);
-    var result =
-        math.Rectangle(top.value, left.value, bottom.value, right.value);
+    var result = math.Rectangle<double>(top.value.toDouble(),
+        left.value.toDouble(), bottom.value.toDouble(), right.value.toDouble());
     calloc.free(top);
     calloc.free(left);
     calloc.free(bottom);
@@ -117,11 +117,11 @@ extension SdlWindowPointerEx on Pointer<SdlWindow> {
     return result;
   }
 
-  math.Point getSizeInPixels() {
+  math.Point<double> getSizeInPixels() {
     var w = calloc<Int32>();
     var h = calloc<Int32>();
     sdlGetWindowSizeInPixels(this, w, h);
-    var result = math.Point(w.value, h.value);
+    var result = math.Point<double>(w.value.toDouble(), h.value.toDouble());
     calloc.free(w);
     calloc.free(h);
     return result;
@@ -132,12 +132,12 @@ extension SdlWindowPointerEx on Pointer<SdlWindow> {
     sdlSetWindowMinimumSize(this, w, h);
   }
 
-  math.Point getMinimumSize() {
+  math.Point<double> getMinimumSize() {
     var w = calloc<Int32>();
     var h = calloc<Int32>();
     sdlGetWindowMinimumSize(this, w, h);
     // 1159
-    var result = math.Point(w.value, h.value);
+    var result = math.Point<double>(w.value.toDouble(), h.value.toDouble());
     calloc.free(w);
     calloc.free(h);
     return result;
@@ -148,12 +148,12 @@ extension SdlWindowPointerEx on Pointer<SdlWindow> {
     sdlSetWindowMaximumSize(this, w, h);
   }
 
-  math.Point getMaximumSize() {
+  math.Point<double> getMaximumSize() {
     var w = calloc<Int32>();
     var h = calloc<Int32>();
     sdlGetWindowMaximumSize(this, w, h);
     // 1209
-    var result = math.Point(w.value, h.value);
+    var result = math.Point<double>(w.value.toDouble(), h.value.toDouble());
     calloc.free(w);
     calloc.free(h);
     return result;
@@ -219,7 +219,7 @@ extension SdlWindowPointerEx on Pointer<SdlWindow> {
     sdlUpdateWindowSurface(this);
   }
 
-  int updateSurfaceRects(List<math.Rectangle> rects) {
+  int updateSurfaceRects(List<math.Rectangle<double>> rects) {
     var rectsPointer = rects.calloc();
     // 1526
     var result = sdlUpdateWindowSurfaceRects(this, rectsPointer, rects.length);
@@ -259,7 +259,7 @@ extension SdlWindowPointerEx on Pointer<SdlWindow> {
 
   // sdlGetGrabbedWindow
 
-  int setMouseRect(math.Rectangle rect) {
+  int setMouseRect(math.Rectangle<double> rect) {
     var rectPointer = rect.calloc();
     // 1731
     var result = sdlSetWindowMouseRect(this, rectPointer);
@@ -267,8 +267,8 @@ extension SdlWindowPointerEx on Pointer<SdlWindow> {
     return result;
   }
 
-  math.Rectangle? getMouseRect() {
-    math.Rectangle? result;
+  math.Rectangle<double>? getMouseRect() {
+    math.Rectangle<double>? result;
     // 1753
     var rectPointer = sdlGetWindowMouseRect(this);
     if (rectPointer != nullptr) {

@@ -17,7 +17,7 @@ int main() {
   }
   var event = calloc<SdlEvent>();
   var running = true;
-  Point oldPoint = Point(0, 0);
+  Point<double> oldPoint = Point(0, 0);
   int oldButton = 0;
   while (running) {
     while (event.poll() != 0) {

@@ -1,12 +1,13 @@
 import 'dart:ffi';
-import 'dart:math' show Rectangle;
+import 'dart:math' as math show Rectangle;
 import '../../generated/const_sdl.dart';
 import '../../generated/lib_sdl_rect.dart';
 import '../../generated/struct_sdl.dart';
 
 extension SdlRectPointerEx on Pointer<SdlRect> {
-  Rectangle create() {
-    return Rectangle(ref.x, ref.y, ref.w, ref.h);
+  math.Rectangle<double> create() {
+    return math.Rectangle<double>(
+        ref.x.toDouble(), ref.y.toDouble(), ref.w.toDouble(), ref.h.toDouble());
   }
 
   bool hasIntersection(Pointer<SdlRect> b) {

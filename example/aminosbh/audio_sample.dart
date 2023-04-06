@@ -92,9 +92,9 @@ int main() {
         sdlPauseAudioDevice(deviceId, 0);
         // Declare rect of square
         var bar = min(gScreenWidth, gScreenHeight) / 2;
-        var squareRect = Rectangle(
+        var squareRect = Rectangle<double>(
             gScreenWidth / 2 - bar / 2, gScreenHeight / 2 - bar / 2, bar, bar);
-        var pauseRect1 = Rectangle(
+        var pauseRect1 = Rectangle<double>(
             squareRect.left + (squareRect.width - 40 * 3) / 2,
             squareRect.top + squareRect.height / 4,
             40,

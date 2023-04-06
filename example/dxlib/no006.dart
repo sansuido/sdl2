@@ -174,7 +174,8 @@ class Game {
               height = 0;
             }
             renderer.copy(texture,
-                dstrect: Rectangle(drawX, drawY, size.x, size.y));
+                dstrect: Rectangle<double>(drawX.toDouble(), drawY.toDouble(),
+                    size.x.toDouble(), size.y.toDouble()));
             drawX += size.x.toInt();
             height = size.y.toInt() > height ? size.y.toInt() : height;
           }
@@ -186,7 +187,8 @@ class Game {
       drawX = 0;
       drawY += height;
       renderer.copy(pressAnyKeyTexture,
-          dstrect: Rectangle(drawX, drawY, size.x, size.y));
+          dstrect: Rectangle<double>(drawX.toDouble(), drawY.toDouble(),
+              size.x.toDouble(), size.y.toDouble()));
     }
     renderer.present();
   }

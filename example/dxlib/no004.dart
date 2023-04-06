@@ -19,7 +19,7 @@ var gPlayerY = 2;
 var gMoveX = 0, gMoveY = 0;
 var gMove = 0;
 var gMoveCounter = 0;
-var gScrollX = 0, gScrollY = 0;
+double gScrollX = 0, gScrollY = 0;
 var gMapData = [
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
@@ -110,8 +110,8 @@ void update() {
       gScrollX = 0;
       gScrollY = 0;
     } else {
-      gScrollX = -(gMoveX * gMapSize * gMoveCounter ~/ gMoveFrame);
-      gScrollY = -(gMoveY * gMapSize * gMoveCounter ~/ gMoveFrame);
+      gScrollX = -(gMoveX * gMapSize * gMoveCounter / gMoveFrame);
+      gScrollY = -(gMoveY * gMapSize * gMoveCounter / gMoveFrame);
     }
   }
 }
@@ -155,16 +155,19 @@ void render() {
         continue;
       }
       if (gMapData[drawY][drawX] == 0) {
-        gRenderer.fillRect(Rectangle(x * gMapSize + gScrollX,
-            y * gMapSize + gScrollY, gMapSize, gMapSize));
+        gRenderer.fillRect(Rectangle<double>(x * gMapSize + gScrollX,
+            y * gMapSize + gScrollY, gMapSize.toDouble(), gMapSize.toDouble()));
       }
     }
   }
   // player
   gRenderer
     ..setDrawColor(0xff, 0xff, 0xff, 0xff)
-    ..fillRect(Rectangle((gPlayerX - mapDrawPointX) * gMapSize,
-        (gPlayerY - mapDrawPointY) * gMapSize, gMapSize, gMapSize))
+    ..fillRect(Rectangle<double>(
+        (gPlayerX - mapDrawPointX) * gMapSize.toDouble(),
+        (gPlayerY - mapDrawPointY) * gMapSize.toDouble(),
+        gMapSize.toDouble(),
+        gMapSize.toDouble()))
     // term
     ..present();
 }

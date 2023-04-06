@@ -75,7 +75,7 @@ void render() {
     ..clear();
   // map
   gRenderer.setDrawColor(0xff, 0x00, 0x00, SDL_ALPHA_OPAQUE);
-  var rects = <Rectangle>[];
+  var rects = <Rectangle<double>>[];
   for (var y = 0; y < gMapData.length; y++) {
     for (var x = 0; x < gMapData[y].length; x++) {
       if (gMapData[y][x] != 0) {

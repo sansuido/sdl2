@@ -32,7 +32,7 @@ int main() {
   }
   var fpsManager = calloc<FPSmanager>()..init();
   var event = calloc<SdlEvent>();
-  List<Point> clickPoints = [];
+  List<Point<double>> clickPoints = [];
   var running = true;
   while (running) {
     while (event.poll() != 0) {
