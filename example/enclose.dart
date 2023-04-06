@@ -49,7 +49,7 @@ int main() {
         case SDL_MOUSEBUTTONDOWN:
           switch (event.button.ref.button) {
             case SDL_BUTTON_LEFT:
-              clickPoints.add(PointEx.getMouseState());
+              clickPoints.add(PointEx.getMousePosition());
               break;
             case SDL_BUTTON_RIGHT:
               if (clickPoints.isNotEmpty) {

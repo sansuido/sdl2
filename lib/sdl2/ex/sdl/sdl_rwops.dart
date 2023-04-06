@@ -14,27 +14,27 @@ import '../../generated/struct_sdl_ttf.dart';
 
 extension SdlRWopsEx on SdlRWops {
   // lib_sdl_rwops.dart
-  Pointer<SdlRWops> fromFile(String file, String mode) {
+  static Pointer<SdlRWops> fromFile(String file, String mode) {
     // 71
     return sdlRwFromFile(file, mode);
   }
 
-  Pointer<SdlRWops> fromFp(Pointer<IntPtr> fp, int autoclose) {
+  static Pointer<SdlRWops> fromFp(Pointer<IntPtr> fp, int autoclose) {
     // 87
     return sdlRwFromFp(fp, autoclose);
   }
 
-  Pointer<SdlRWops> fromMem(Pointer<NativeType> mem, int size) {
+  static Pointer<SdlRWops> fromMem(Pointer<NativeType> mem, int size) {
     // 129
     return sdlRwFromMem(mem, size);
   }
 
-  Pointer<SdlRWops> fromConstMem(Pointer<NativeType> mem, int size) {
+  static Pointer<SdlRWops> fromConstMem(Pointer<NativeType> mem, int size) {
     // 172
     return sdlRwFromConstMem(mem, size);
   }
 
-  Pointer<SdlRWops> alloc() {
+  static Pointer<SdlRWops> alloc() {
     // 206
     return sdlAllocRw();
   }

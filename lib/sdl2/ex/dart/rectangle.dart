@@ -77,37 +77,6 @@ extension RectangleEx on math.Rectangle<double> {
       math.Point<double> topLeft, math.Point<double> size) {
     return math.Rectangle<double>(topLeft.x, topLeft.y, size.x, size.y);
   }
-
-  // == intersects
-  //bool hasIntersection(Rectangle b) {
-  //  var aPointer = calloc();
-  //  var bPointer = b.calloc();
-  //  var result = aPointer.hasIntersection(bPointer);
-  //  ffi.calloc.free(aPointer);
-  //  ffi.calloc.free(bPointer);
-  //  return result;
-  //}
-
-  // == intersection
-  //Rectangle? intersect(Rectangle b) {
-  //  var aPointer = calloc();
-  //  var bPointer = b.calloc();
-  //  var resultPointer = ffi.calloc<SdlRect>();
-  //  math.Rectangle<double>? result;
-  //  var bl = aPointer.intersectRect(bPointer, resultPointer);
-  //  if (bl == true) {
-  //    result = resultPointer.create();
-  //  }
-  //  ffi.calloc.free(aPointer);
-  //  ffi.calloc.free(bPointer);
-  //  ffi.calloc.free(resultPointer);
-  //  return result;
-  //}
-
-  // == math.Rectangle.fromPoints
-  //static math.Rectangle<double> fromLTRB(num left, num top, num right, num bottom) {
-  //  return math.Rectangle<double>(left, top, right - left, bottom - top);
-  //}
 }
 
 extension RectanglesEx on List<math.Rectangle<double>> {

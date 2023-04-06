@@ -1,3 +1,8 @@
+## 1.4.4
+- [add] Added default colors to SdlColorEx (black, white, and etc).
+- [fix] Fixed that Point of getSize of SdlTexturePointerEx was ambiguous type.
+- [fix] Renamed getMouseState in extension to getMousePosition.
+
 ## 1.4.3
 - [changed] Changed ambiguous types of Point and Rectangle to <double>.
 

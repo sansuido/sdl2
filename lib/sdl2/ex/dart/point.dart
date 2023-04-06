@@ -18,7 +18,7 @@ extension PointEx on math.Point<double> {
   }
 
   // lib_sdl_mouse.dart
-  static math.Point<double> getMouseState() {
+  static math.Point<double> getMousePosition() {
     var xPointer = ffi.calloc<Int32>();
     var yPointer = ffi.calloc<Int32>();
     // 47
@@ -30,7 +30,7 @@ extension PointEx on math.Point<double> {
     return result;
   }
 
-  static math.Point<double> getGlobalMouseState() {
+  static math.Point<double> getGlobalMousePosition() {
     var xPointer = ffi.calloc<Int32>();
     var yPointer = ffi.calloc<Int32>();
     // 84
@@ -42,7 +42,7 @@ extension PointEx on math.Point<double> {
     return result;
   }
 
-  static math.Point<double> getRelativeMouseState() {
+  static math.Point<double> getRelativeMousePosition() {
     var xPointer = ffi.calloc<Int32>();
     var yPointer = ffi.calloc<Int32>();
     // 112

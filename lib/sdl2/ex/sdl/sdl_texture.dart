@@ -33,12 +33,12 @@ extension SdlTexturePointerEx on Pointer<SdlTexture> {
     return result;
   }
 
-  Point? getSize() {
-    Point? result;
+  Point<double>? getSize() {
+    Point<double>? result;
     var wPointer = calloc<Int32>();
     var hPointer = calloc<Int32>();
     if (query(nullptr, nullptr, wPointer, hPointer) == 0) {
-      result = Point(wPointer.value, hPointer.value);
+      result = Point(wPointer.value.toDouble(), hPointer.value.toDouble());
     }
     calloc.free(wPointer);
     calloc.free(hPointer);

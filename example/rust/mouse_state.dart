@@ -34,7 +34,7 @@ int main() {
           break;
       }
     }
-    var newPoint = PointEx.getMouseState();
+    var newPoint = PointEx.getMousePosition();
     var newButton = sdlGetMouseState(nullptr, nullptr);
     if (oldPoint != newPoint || oldButton != newButton) {
       print('X = ${newPoint.x} Y = ${newPoint.y} : $oldButton => $newButton');
