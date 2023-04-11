@@ -1,3 +1,7 @@
+## 1.5.0
+- [update] Support SDL version 2.26.5 (stable).
+- [changed] Changed the gfx library that depended on the dll to the dart source.
+
 ## 1.4.4
 - [add] Added default colors to SdlColorEx (black, white, and etc).
 - [fix] Fixed that Point of getSize of SdlTexturePointerEx was ambiguous type.

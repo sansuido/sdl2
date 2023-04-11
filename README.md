@@ -7,6 +7,10 @@ SDL2 for Dart
 
 # Note
 
+A Dart library for accessing common SDL 2.26.5 (stable) APIs using, FFI.
+
+https://www.libsdl.org/
+
 Windows 64bit & Linux (Tested under Windows 10 WSL2 environment)
 
 # Example

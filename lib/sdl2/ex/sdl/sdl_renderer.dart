@@ -2,7 +2,7 @@ import 'dart:ffi';
 import 'dart:math' as math show Point, Rectangle;
 import 'package:ffi/ffi.dart';
 import 'package:sdl2/sdl2/generated/const_sdl.dart';
-import '../../generated/lib_sdl_gfx.dart' as gfx;
+import '../../gfx/primitives.dart' as gfx;
 import '../../generated/struct_sdl.dart';
 import '../../generated/lib_sdl_image.dart';
 import '../../generated/lib_sdl_render.dart';
@@ -396,12 +396,12 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return gfx.characterRgba(this, p.x.toInt(), p.y.toInt(), c, r, g, b, a);
   }
 
-  int stringColor(math.Point<double> p, String? s, int color) {
+  int stringColor(math.Point<double> p, String s, int color) {
     // 924
     return gfx.stringColor(this, p.x.toInt(), p.y.toInt(), s, color);
   }
 
-  int stringRgba(math.Point<double> p, String? s, int r, int g, int b, int a) {
+  int stringRgba(math.Point<double> p, String s, int r, int g, int b, int a) {
     // 940
     return gfx.stringRgba(this, p.x.toInt(), p.y.toInt(), s, r, g, b, a);
   }

@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'dart:math';
 import 'package:ffi/ffi.dart';
 import 'package:sdl2/sdl2.dart';
+import 'package:sdl2/sdl2gfx.dart' as gfx;
 
 const gScreenWidth = 800;
 const gScreenHeight = 600;
@@ -30,7 +31,7 @@ int main() {
     sdlQuit();
     return -1;
   }
-  var fpsManager = calloc<FPSmanager>()..init();
+  var fpsManager = gfx.FpsManager();
   var event = calloc<SdlEvent>();
   List<Point<double>> clickPoints = [];
   var running = true;
@@ -78,7 +79,6 @@ int main() {
     renderer.present();
     fpsManager.delay();
   }
-  fpsManager.callocFree();
   event.callocFree();
   renderer.destroy();
   window.destroy();

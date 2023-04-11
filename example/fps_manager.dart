@@ -2,11 +2,12 @@ import 'dart:ffi';
 import 'dart:math';
 import 'package:ffi/ffi.dart';
 import 'package:sdl2/sdl2.dart';
+import 'package:sdl2/sdl2gfx.dart' as gfx;
 
 const gWindowWidth = 640;
 const gWindowHeight = 480;
 
-void setTitle(Pointer<SdlWindow> window, Pointer<FPSmanager> fpsManager) {
+void setTitle(Pointer<SdlWindow> window, gfx.FpsManager fpsManager) {
   window.setTitle('FPSmanager example (${fpsManager.getFramerate()})');
 }
 
@@ -30,9 +31,7 @@ int main() {
     sdlQuit();
     return -1;
   }
-  var fpsManager = calloc<FPSmanager>()
-    ..init()
-    ..setFramerate(30);
+  var fpsManager = gfx.FpsManager();
   setTitle(window, fpsManager);
   var event = calloc<SdlEvent>();
   var time = sdlGetTicks();
@@ -79,7 +78,6 @@ int main() {
       ..present();
   }
   event.callocFree();
-  fpsManager.callocFree();
   renderer.destroy();
   window.destroy();
   sdlQuit();
