@@ -88,3 +88,4 @@ export 'sdl2/lib_sdl_mixer_ex.dart';
 export 'sdl2/lib_sdl_net_ex.dart';
 export 'sdl2/lib_sdl_ttf_ex.dart';
 export 'sdl2/lib_sdl_video_ex.dart';
+export 'sdl2/struct_sdl_ex.dart';

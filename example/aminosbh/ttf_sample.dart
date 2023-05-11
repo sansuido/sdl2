@@ -37,7 +37,7 @@ import 'package:sdl2/sdl2.dart';
 const gScreenWidth = 800;
 const gScreenHeight = 600;
 
-const gFontPath = 'res/SourceHanCodeJP.ttc';
+const gFontPath = 'assets/SourceHanCodeJP.ttc';
 //const gFontPath = 'C:/Windows/Fonts/msgothic.ttc';
 
 int main() {

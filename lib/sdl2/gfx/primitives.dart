@@ -3577,3 +3577,12 @@ int thickLineRgba(Pointer<SdlRenderer> renderer, int x1, int y1, int x2, int y2,
 
   return result;
 }
+
+void gfxFree() {
+  for (var i = 0; i < 256; i++) {
+    if (gfxPrimitivesFont[i] != nullptr) {
+      sdlDestroyTexture(gfxPrimitivesFont[i]);
+      gfxPrimitivesFont[i] = nullptr;
+    }
+  }
+}

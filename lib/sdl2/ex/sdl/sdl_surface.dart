@@ -37,7 +37,7 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
     return false;
   }
 
-  int setPallate(Pointer<SdlPalette> palette) {
+  int setPalette(Pointer<SdlPalette> palette) {
     // 250
     return sdlSetSurfacePalette(this, palette);
   }

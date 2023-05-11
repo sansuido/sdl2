@@ -2,4 +2,4 @@
 import 'dart:ffi';
 
 // TTF_Font
-class TtfFont extends Opaque {}
+final class TtfFont extends Opaque {}

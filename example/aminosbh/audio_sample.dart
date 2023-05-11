@@ -36,7 +36,7 @@ import 'package:sdl2/sdl2.dart';
 const gScreenWidth = 800;
 const gScreenHeight = 600;
 const gWavesSound =
-    'res/waves-at-baltic-sea-shore/waves-at-baltic-sea-shore.wav';
+    'assets/waves-at-baltic-sea-shore/waves-at-baltic-sea-shore.wav';
 
 int main() {
   // Initialize SDL

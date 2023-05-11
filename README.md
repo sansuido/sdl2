@@ -3,7 +3,7 @@ SDL2 for Dart
 
 # Requirement
 
-* ffi ^2.0.1
+* ffi ^2.0.2
 
 # Note
 
@@ -15,9 +15,7 @@ Windows 64bit & Linux (Tested under Windows 10 WSL2 environment)
 
 # Example
 
-learnopengl.com for Dart. [https://github.com/sansuido/learnopengl](https://github.com/sansuido/learnopengl)
-
-Contains code samples for all chapters of Learn OpenGL and [https://learnopengl.com](https://learnopengl.com). 
+[https://github.com/sansuido/sdl2ui/](https://github.com/sansuido/sdl2ui/)
 
 # Author
 

@@ -38,11 +38,11 @@ import 'package:sdl2/sdl2.dart';
 const gScreenWidth = 800;
 const gScreenHeight = 600;
 const gWavesSound =
-    'res/waves-at-baltic-sea-shore/waves-at-baltic-sea-shore.wav';
-const gClapSound = 'res/claps-and-snares/clap.ogg';
-const gSnareSound = 'res/claps-and-snares/snare.ogg';
-const gTechnoClapSnareSound = 'res/claps-and-snares/techno-clap-snare.ogg';
-const gReverbSnareSound = 'res/claps-and-snares/dubstep-reverb-snare.ogg';
+    'assets/waves-at-baltic-sea-shore/waves-at-baltic-sea-shore.wav';
+const gClapSound = 'assets/claps-and-snares/clap.ogg';
+const gSnareSound = 'assets/claps-and-snares/snare.ogg';
+const gTechnoClapSnareSound = 'assets/claps-and-snares/techno-clap-snare.ogg';
+const gReverbSnareSound = 'assets/claps-and-snares/dubstep-reverb-snare.ogg';
 
 int main() {
   // Initialize SDL

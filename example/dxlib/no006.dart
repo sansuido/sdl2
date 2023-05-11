@@ -9,7 +9,7 @@ import 'package:sdl2/sdl2.dart';
 const gTitle = 'DXLIB Tutorial 06';
 const gScreenWidth = 640;
 const gScreenHeight = 480;
-const gFontPath = 'res/SourceHanCodeJP.ttc';
+const gFontPath = 'assets/SourceHanCodeJP.ttc';
 //const gFontPath = 'C:/Windows/Fonts/msgothic.ttc';
 const gFontSize = 24;
 const gString = '　ゲームプログラムとは、いやプログラムとは'

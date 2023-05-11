@@ -35,7 +35,7 @@ int main() {
     return -1;
   }
   Pointer<SdlCursor> cursor = nullptr;
-  var surface = imgLoad('res/rust/cursor.png');
+  var surface = imgLoad('assets/rust/cursor.png');
   if (surface != nullptr) {
     cursor = surface.createColorCursor(0, 0)..set();
     surface.free();

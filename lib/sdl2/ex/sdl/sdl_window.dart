@@ -159,7 +159,7 @@ extension SdlWindowPointerEx on Pointer<SdlWindow> {
     return result;
   }
 
-  void setBorderd(bool bordered) {
+  void setBordered(bool bordered) {
     // 1238
     sdlSetWindowBordered(this, bordered ? SDL_TRUE : SDL_FALSE);
   }

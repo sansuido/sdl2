@@ -2,7 +2,7 @@
 import 'dart:ffi';
 
 // Mix_Chunk
-class MixChunk extends Struct {
+final class MixChunk extends Struct {
   // [0]+(4)
   @Int32()
   external int allocated;
@@ -25,4 +25,4 @@ class MixChunk extends Struct {
 }
 
 // Mix_Music
-class MixMusic extends Opaque {}
+final class MixMusic extends Opaque {}

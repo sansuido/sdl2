@@ -35,7 +35,7 @@ int main() {
   }
   // animation sheet and extras are available from
   // https://opengameart.org/content/a-platformer-in-the-forest
-  var texture = renderer.loadTexture('res/rust/characters.bmp');
+  var texture = renderer.loadTexture('assets/rust/characters.bmp');
   var event = calloc<SdlEvent>();
   var running = true;
   var charas = <Chara>[];

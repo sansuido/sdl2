@@ -1,3 +1,9 @@
+## 1.5.1
+- [update] Support ffi ^2.0.2.
+- [add] Add gfxFree.
+- [changed] Renamed `res` folder to `assets`;
+- [fix] Fixed description error.
+
 ## 1.5.0
 - [update] Support SDL version 2.26.5 (stable).
 - [changed] Changed the gfx library that depended on the dll to the dart source.
