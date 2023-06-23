@@ -22,12 +22,13 @@ import 'struct_sdl.dart';
 /// \since This function is available since SDL 2.0.7.
 ///
 /// ```c
-/// extern DECLSPEC void SDLCALL SDL_LockJoysticks(void)
+/// extern DECLSPEC void SDLCALL SDL_LockJoysticks(void) SDL_ACQUIRE(SDL_joystick_lock)
 /// ```
-void sdlLockJoysticks() {
-  final sdlLockJoysticksLookupFunction = libSdl2
-      .lookupFunction<Void Function(), void Function()>('SDL_LockJoysticks');
-  return sdlLockJoysticksLookupFunction();
+void sdlLockJoysticks(Pointer<NativeType> arg0) {
+  final sdlLockJoysticksLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<NativeType> arg0),
+      void Function(Pointer<NativeType> arg0)>('SDL_LockJoysticks');
+  return sdlLockJoysticksLookupFunction(arg0);
 }
 
 ///
@@ -43,12 +44,13 @@ void sdlLockJoysticks() {
 /// \since This function is available since SDL 2.0.7.
 ///
 /// ```c
-/// extern DECLSPEC void SDLCALL SDL_UnlockJoysticks(void)
+/// extern DECLSPEC void SDLCALL SDL_UnlockJoysticks(void) SDL_RELEASE(SDL_joystick_lock)
 /// ```
-void sdlUnlockJoysticks() {
-  final sdlUnlockJoysticksLookupFunction = libSdl2
-      .lookupFunction<Void Function(), void Function()>('SDL_UnlockJoysticks');
-  return sdlUnlockJoysticksLookupFunction();
+void sdlUnlockJoysticks(Pointer<NativeType> arg0) {
+  final sdlUnlockJoysticksLookupFunction = libSdl2.lookupFunction<
+      Void Function(Pointer<NativeType> arg0),
+      void Function(Pointer<NativeType> arg0)>('SDL_UnlockJoysticks');
+  return sdlUnlockJoysticksLookupFunction(arg0);
 }
 
 ///
@@ -266,13 +268,12 @@ int sdlJoystickGetDeviceType(int deviceIndex) {
 ///
 /// Get the instance ID of a joystick.
 ///
-/// This can be called before any joysticks are opened. If the index is out of
-/// range, this function will return -1.
+/// This can be called before any joysticks are opened.
 ///
 /// \param device_index the index of the joystick to query (the N'th joystick
 /// on the system
 /// \returns the instance id of the selected joystick. If called on an invalid
-/// index, this function returns zero
+/// index, this function returns -1.
 ///
 /// \since This function is available since SDL 2.0.6.
 ///

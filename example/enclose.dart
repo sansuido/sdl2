@@ -83,6 +83,7 @@ int main() {
     renderer.present();
     fpsManager.delay();
   }
+  gfx.gfxFree();
   event.callocFree();
   renderer.destroy();
   window.destroy();

@@ -151,3 +151,18 @@ int sdlGdkRunApp(SdlMainFunc mainFunction, Pointer<NativeType> reserved) {
           Pointer<NativeType> reserved)>('SDL_GDKRunApp');
   return sdlGdkRunAppLookupFunction(mainFunction, reserved);
 }
+
+///
+/// Callback from the application to let the suspend continue.
+///
+/// \since This function is available since SDL 2.28.0.
+///
+/// ```c
+/// extern DECLSPEC void SDLCALL SDL_GDKSuspendComplete(void)
+/// ```
+void sdlGdkSuspendComplete() {
+  final sdlGdkSuspendCompleteLookupFunction =
+      libSdl2.lookupFunction<Void Function(), void Function()>(
+          'SDL_GDKSuspendComplete');
+  return sdlGdkSuspendCompleteLookupFunction();
+}

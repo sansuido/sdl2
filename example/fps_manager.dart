@@ -77,6 +77,7 @@ int main() {
           Point(15, 15), 'FPS:$frameRate', SdlColorEx.rgbaToU32(0, 255, 0, 255))
       ..present();
   }
+  gfx.gfxFree();
   event.callocFree();
   renderer.destroy();
   window.destroy();

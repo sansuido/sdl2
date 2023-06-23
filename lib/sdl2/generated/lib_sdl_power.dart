@@ -18,23 +18,23 @@ import 'lib_sdl.dart';
 /// It's possible a platform can only report battery percentage or time left
 /// but not both.
 ///
-/// \param secs seconds of battery life left, you can pass a NULL here if you
-/// don't care, will return -1 if we can't determine a value, or
-/// we're not running on a battery
-/// \param pct percentage of battery life left, between 0 and 100, you can pass
-/// a NULL here if you don't care, will return -1 if we can't
-/// determine a value, or we're not running on a battery
+/// \param seconds seconds of battery life left, you can pass a NULL here if
+/// you don't care, will return -1 if we can't determine a
+/// value, or we're not running on a battery
+/// \param percent percentage of battery life left, between 0 and 100, you can
+/// pass a NULL here if you don't care, will return -1 if we
+/// can't determine a value, or we're not running on a battery
 /// \returns an SDL_PowerState enum representing the current battery state.
 ///
 /// \since This function is available since SDL 2.0.0.
 ///
 /// ```c
-/// extern DECLSPEC SDL_PowerState SDLCALL SDL_GetPowerInfo(int *secs, int *pct)
+/// extern DECLSPEC SDL_PowerState SDLCALL SDL_GetPowerInfo(int *seconds, int *percent)
 /// ```
-int sdlGetPowerInfo(Pointer<Int32> secs, Pointer<Int32> pct) {
+int sdlGetPowerInfo(Pointer<Int32> seconds, Pointer<Int32> percent) {
   final sdlGetPowerInfoLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<Int32> secs, Pointer<Int32> pct),
+      Int32 Function(Pointer<Int32> seconds, Pointer<Int32> percent),
       int Function(
-          Pointer<Int32> secs, Pointer<Int32> pct)>('SDL_GetPowerInfo');
-  return sdlGetPowerInfoLookupFunction(secs, pct);
+          Pointer<Int32> seconds, Pointer<Int32> percent)>('SDL_GetPowerInfo');
+  return sdlGetPowerInfoLookupFunction(seconds, percent);
 }

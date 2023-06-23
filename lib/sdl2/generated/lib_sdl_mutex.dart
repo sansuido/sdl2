@@ -50,13 +50,13 @@ Pointer<SdlMutex> sdlCreateMutex() {
 /// \since This function is available since SDL 2.0.0.
 ///
 /// ```c
-/// extern DECLSPEC int SDLCALL SDL_LockMutex(SDL_mutex * mutex)
+/// extern DECLSPEC int SDLCALL SDL_LockMutex(SDL_mutex * mutex) SDL_ACQUIRE(mutex)
 /// ```
-int sdlLockMutex(Pointer<SdlMutex> mutex) {
+int sdlLockMutex(Pointer<NativeType> arg0) {
   final sdlLockMutexLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<SdlMutex> mutex),
-      int Function(Pointer<SdlMutex> mutex)>('SDL_LockMutex');
-  return sdlLockMutexLookupFunction(mutex);
+      Int32 Function(Pointer<NativeType> arg0),
+      int Function(Pointer<NativeType> arg0)>('SDL_LockMutex');
+  return sdlLockMutexLookupFunction(arg0);
 }
 
 ///
@@ -80,13 +80,14 @@ int sdlLockMutex(Pointer<SdlMutex> mutex) {
 /// \sa SDL_UnlockMutex
 ///
 /// ```c
-/// extern DECLSPEC int SDLCALL SDL_TryLockMutex(SDL_mutex * mutex)
+/// extern DECLSPEC int SDLCALL SDL_TryLockMutex(SDL_mutex * mutex) SDL_TRY_ACQUIRE(0, mutex)
 /// ```
-int sdlTryLockMutex(Pointer<SdlMutex> mutex) {
+int sdlTryLockMutex(Pointer<NativeType> arg0, Pointer<NativeType> arg1) {
   final sdlTryLockMutexLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<SdlMutex> mutex),
-      int Function(Pointer<SdlMutex> mutex)>('SDL_TryLockMutex');
-  return sdlTryLockMutexLookupFunction(mutex);
+      Int32 Function(Pointer<NativeType> arg0, Pointer<NativeType> arg1),
+      int Function(Pointer<NativeType> arg0,
+          Pointer<NativeType> arg1)>('SDL_TryLockMutex');
+  return sdlTryLockMutexLookupFunction(arg0, arg1);
 }
 
 ///
@@ -107,13 +108,13 @@ int sdlTryLockMutex(Pointer<SdlMutex> mutex) {
 /// \since This function is available since SDL 2.0.0.
 ///
 /// ```c
-/// extern DECLSPEC int SDLCALL SDL_UnlockMutex(SDL_mutex * mutex)
+/// extern DECLSPEC int SDLCALL SDL_UnlockMutex(SDL_mutex * mutex) SDL_RELEASE(mutex)
 /// ```
-int sdlUnlockMutex(Pointer<SdlMutex> mutex) {
+int sdlUnlockMutex(Pointer<NativeType> arg0) {
   final sdlUnlockMutexLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<SdlMutex> mutex),
-      int Function(Pointer<SdlMutex> mutex)>('SDL_UnlockMutex');
-  return sdlUnlockMutexLookupFunction(mutex);
+      Int32 Function(Pointer<NativeType> arg0),
+      int Function(Pointer<NativeType> arg0)>('SDL_UnlockMutex');
+  return sdlUnlockMutexLookupFunction(arg0);
 }
 
 ///
@@ -279,7 +280,7 @@ int sdlSemTryWait(Pointer<SdlSem> sem) {
 /// successful it will atomically decrement the semaphore value.
 ///
 /// \param sem the semaphore to wait on
-/// \param ms the length of the timeout, in milliseconds
+/// \param timeout the length of the timeout, in milliseconds
 /// \returns 0 if the wait succeeds, `SDL_MUTEX_TIMEDOUT` if the wait does not
 /// succeed in the allotted time, or a negative error code on failure;
 /// call SDL_GetError() for more information.
@@ -294,13 +295,13 @@ int sdlSemTryWait(Pointer<SdlSem> sem) {
 /// \sa SDL_SemWait
 ///
 /// ```c
-/// extern DECLSPEC int SDLCALL SDL_SemWaitTimeout(SDL_sem * sem, Uint32 ms)
+/// extern DECLSPEC int SDLCALL SDL_SemWaitTimeout(SDL_sem *sem, Uint32 timeout)
 /// ```
-int sdlSemWaitTimeout(Pointer<SdlSem> sem, int ms) {
+int sdlSemWaitTimeout(Pointer<SdlSem> sem, int timeout) {
   final sdlSemWaitTimeoutLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<SdlSem> sem, Uint32 ms),
-      int Function(Pointer<SdlSem> sem, int ms)>('SDL_SemWaitTimeout');
-  return sdlSemWaitTimeoutLookupFunction(sem, ms);
+      Int32 Function(Pointer<SdlSem> sem, Uint32 timeout),
+      int Function(Pointer<SdlSem> sem, int timeout)>('SDL_SemWaitTimeout');
+  return sdlSemWaitTimeoutLookupFunction(sem, timeout);
 }
 
 ///

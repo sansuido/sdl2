@@ -1493,6 +1493,25 @@ int sdlSetWindowFullscreen(Pointer<SdlWindow> window, int flags) {
 }
 
 ///
+/// Return whether the window has a surface associated with it.
+///
+/// \returns SDL_TRUE if there is a surface associated with the window, or SDL_FALSE otherwise.
+///
+/// \since This function is available since SDL 2.28.0.
+///
+/// \sa SDL_GetWindowSurface
+///
+/// ```c
+/// extern DECLSPEC SDL_bool SDLCALL SDL_HasWindowSurface(SDL_Window *window)
+/// ```
+int sdlHasWindowSurface(Pointer<SdlWindow> window) {
+  final sdlHasWindowSurfaceLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlWindow> window),
+      int Function(Pointer<SdlWindow> window)>('SDL_HasWindowSurface');
+  return sdlHasWindowSurfaceLookupFunction(window);
+}
+
+///
 /// Get the SDL surface associated with the window.
 ///
 /// A new surface will be created with the optimal format for the window, if
@@ -1512,6 +1531,8 @@ int sdlSetWindowFullscreen(Pointer<SdlWindow> window, int flags) {
 ///
 /// \since This function is available since SDL 2.0.0.
 ///
+/// \sa SDL_DestroyWindowSurface
+/// \sa SDL_HasWindowSurface
 /// \sa SDL_UpdateWindowSurface
 /// \sa SDL_UpdateWindowSurfaceRects
 ///
@@ -1563,7 +1584,7 @@ int sdlUpdateWindowSurface(Pointer<SdlWindow> window) {
 ///
 /// \param window the window to update
 /// \param rects an array of SDL_Rect structures representing areas of the
-/// surface to copy
+/// surface to copy, in pixels
 /// \param numrects the number of rectangles
 /// \returns 0 on success or a negative error code on failure; call
 /// SDL_GetError() for more information.
@@ -1584,6 +1605,28 @@ int sdlUpdateWindowSurfaceRects(
       int Function(Pointer<SdlWindow> window, Pointer<SdlRect> rects,
           int numrects)>('SDL_UpdateWindowSurfaceRects');
   return sdlUpdateWindowSurfaceRectsLookupFunction(window, rects, numrects);
+}
+
+///
+/// Destroy the surface associated with the window.
+///
+/// \param window the window to update
+/// \returns 0 on success or a negative error code on failure; call
+/// SDL_GetError() for more information.
+///
+/// \since This function is available since SDL 2.28.0.
+///
+/// \sa SDL_GetWindowSurface
+/// \sa SDL_HasWindowSurface
+///
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_DestroyWindowSurface(SDL_Window *window)
+/// ```
+int sdlDestroyWindowSurface(Pointer<SdlWindow> window) {
+  final sdlDestroyWindowSurfaceLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<SdlWindow> window),
+      int Function(Pointer<SdlWindow> window)>('SDL_DestroyWindowSurface');
+  return sdlDestroyWindowSurfaceLookupFunction(window);
 }
 
 ///

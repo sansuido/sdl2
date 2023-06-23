@@ -1,3 +1,6 @@
+## 1.5.2
+- [update] Support SDL version 2.28.0 (stable).
+
 ## 1.5.1
 - [update] Support ffi ^2.0.2.
 - [add] Add gfxFree.

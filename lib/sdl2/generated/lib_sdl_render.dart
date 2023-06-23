@@ -2375,6 +2375,11 @@ int sdlRenderReadPixels(Pointer<SdlRenderer> renderer, Pointer<SdlRect> rect,
 ///
 /// \param renderer the rendering context
 ///
+/// \threadsafety You may only call this function on the main thread. If this
+/// happens to work on a background thread on any given platform
+/// or backend, it's purely by luck and you should not rely on it
+/// to work next time.
+///
 /// \since This function is available since SDL 2.0.0.
 ///
 /// \sa SDL_RenderClear
