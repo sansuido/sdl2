@@ -1,3 +1,7 @@
+## 1.5.3
+- [update] Support SDL version 2.28.2 (stable).
+- [changed] Changed the gfx boxColor (or boxRgba) to reduce the drawing area by 1 dot.
+
 ## 1.5.2
 - [update] Support SDL version 2.28.0 (stable).
 

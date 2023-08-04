@@ -7,7 +7,7 @@ SDL2 for Dart
 
 # Note
 
-A Dart library for accessing common SDL 2.28.0 (stable) APIs using, FFI.
+A Dart library for accessing common SDL 2.28.2 (stable) APIs using, FFI.
 
 https://www.libsdl.org/
 
