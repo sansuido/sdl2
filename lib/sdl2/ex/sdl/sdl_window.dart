@@ -1,7 +1,6 @@
 import 'dart:ffi';
 import 'dart:math' as math;
 import 'package:ffi/ffi.dart';
-import 'package:sdl2/sdl2/generated/const_sdl.dart';
 
 import '../../generated/lib_sdl.dart';
 import '../../generated/struct_sdl.dart';
@@ -161,17 +160,17 @@ extension SdlWindowPointerEx on Pointer<SdlWindow> {
 
   void setBordered(bool bordered) {
     // 1238
-    sdlSetWindowBordered(this, bordered ? SDL_TRUE : SDL_FALSE);
+    sdlSetWindowBordered(this, bordered);
   }
 
   void setResizable(bool resizable) {
     // 1265
-    sdlSetWindowResizable(this, resizable ? SDL_TRUE : SDL_FALSE);
+    sdlSetWindowResizable(this, resizable);
   }
 
   void setAlwaysOnTop(bool onTop) {
     // 1290
-    sdlSetWindowAlwaysOnTop(this, onTop ? SDL_TRUE : SDL_FALSE);
+    sdlSetWindowAlwaysOnTop(this, onTop);
   }
 
   void show() {
@@ -229,32 +228,32 @@ extension SdlWindowPointerEx on Pointer<SdlWindow> {
 
   void setGrab(bool grabbed) {
     // 1557
-    sdlSetWindowGrab(this, grabbed ? SDL_TRUE : SDL_FALSE);
+    sdlSetWindowGrab(this, grabbed);
   }
 
   void setKeyboardGrab(bool grabbed) {
     // 1596
-    sdlSetWindowKeyboardGrab(this, grabbed ? SDL_TRUE : SDL_FALSE);
+    sdlSetWindowKeyboardGrab(this, grabbed);
   }
 
   void setMouseGrab(bool grabbed) {
     // 1621
-    sdlSetWindowMouseGrab(this, grabbed ? SDL_TRUE : SDL_FALSE);
+    sdlSetWindowMouseGrab(this, grabbed);
   }
 
   bool getGrab() {
     // 1642
-    return sdlGetWindowGrab(this) == SDL_TRUE;
+    return sdlGetWindowGrab(this);
   }
 
   bool getKeyboardGrab() {
     // 1663
-    return sdlGetWindowKeyboardGrab(this) == SDL_TRUE;
+    return sdlGetWindowKeyboardGrab(this);
   }
 
   bool getMouseGrab() {
     // 1684
-    return sdlGetWindowMouseGrab(this) == SDL_TRUE;
+    return sdlGetWindowMouseGrab(this);
   }
 
   // sdlGetGrabbedWindow
@@ -316,7 +315,8 @@ extension SdlWindowPointerEx on Pointer<SdlWindow> {
   // sdlSetWindowGammaRamp
   // sdlGetWindowGammaRamp
 
-  int setHitTest(SdlHitTest callback, Pointer<NativeType> callbackData) {
+  int setHitTest(Pointer<NativeFunction<SdlHitTest>> callback,
+      Pointer<NativeType> callbackData) {
     // 2059
     return sdlSetWindowHitTest(this, callback, callbackData);
   }

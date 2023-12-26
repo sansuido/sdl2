@@ -103,10 +103,10 @@ int sdlPeepEvents(Pointer<SdlEvent> events, int numevents, int action,
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasEvent(Uint32 type)
 /// ```
-int sdlHasEvent(int type) {
+bool sdlHasEvent(int type) {
   final sdlHasEventLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Uint32 type), int Function(int type)>('SDL_HasEvent');
-  return sdlHasEventLookupFunction(type);
+  return sdlHasEventLookupFunction(type) == 1;
 }
 
 ///
@@ -128,11 +128,11 @@ int sdlHasEvent(int type) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasEvents(Uint32 minType, Uint32 maxType)
 /// ```
-int sdlHasEvents(int minType, int maxType) {
+bool sdlHasEvents(int minType, int maxType) {
   final sdlHasEventsLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Uint32 minType, Uint32 maxType),
       int Function(int minType, int maxType)>('SDL_HasEvents');
-  return sdlHasEventsLookupFunction(minType, maxType);
+  return sdlHasEventsLookupFunction(minType, maxType) == 1;
 }
 
 ///
@@ -404,10 +404,12 @@ int sdlPushEvent(Pointer<SdlEvent> event) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_SetEventFilter(SDL_EventFilter filter, void *userdata)
 /// ```
-void sdlSetEventFilter(SdlEventFilter filter, Pointer<NativeType> userdata) {
+void sdlSetEventFilter(Pointer<NativeFunction<SdlEventFilter>> filter,
+    Pointer<NativeType> userdata) {
   final sdlSetEventFilterLookupFunction = libSdl2.lookupFunction<
-      Void Function(SdlEventFilter filter, Pointer<NativeType> userdata),
-      void Function(SdlEventFilter filter,
+      Void Function(Pointer<NativeFunction<SdlEventFilter>> filter,
+          Pointer<NativeType> userdata),
+      void Function(Pointer<NativeFunction<SdlEventFilter>> filter,
           Pointer<NativeType> userdata)>('SDL_SetEventFilter');
   return sdlSetEventFilterLookupFunction(filter, userdata);
 }
@@ -430,14 +432,14 @@ void sdlSetEventFilter(SdlEventFilter filter, Pointer<NativeType> userdata) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GetEventFilter(SDL_EventFilter * filter, void **userdata)
 /// ```
-int sdlGetEventFilter(
-    Pointer<SdlEventFilter> filter, Pointer<Pointer<NativeType>> userdata) {
+bool sdlGetEventFilter(Pointer<Pointer<NativeFunction<SdlEventFilter>>> filter,
+    Pointer<Pointer<NativeType>> userdata) {
   final sdlGetEventFilterLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Pointer<SdlEventFilter> filter,
+      Int32 Function(Pointer<Pointer<NativeFunction<SdlEventFilter>>> filter,
           Pointer<Pointer<NativeType>> userdata),
-      int Function(Pointer<SdlEventFilter> filter,
+      int Function(Pointer<Pointer<NativeFunction<SdlEventFilter>>> filter,
           Pointer<Pointer<NativeType>> userdata)>('SDL_GetEventFilter');
-  return sdlGetEventFilterLookupFunction(filter, userdata);
+  return sdlGetEventFilterLookupFunction(filter, userdata) == 1;
 }
 
 ///
@@ -469,10 +471,12 @@ int sdlGetEventFilter(
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_AddEventWatch(SDL_EventFilter filter, void *userdata)
 /// ```
-void sdlAddEventWatch(SdlEventFilter filter, Pointer<NativeType> userdata) {
+void sdlAddEventWatch(Pointer<NativeFunction<SdlEventFilter>> filter,
+    Pointer<NativeType> userdata) {
   final sdlAddEventWatchLookupFunction = libSdl2.lookupFunction<
-      Void Function(SdlEventFilter filter, Pointer<NativeType> userdata),
-      void Function(SdlEventFilter filter,
+      Void Function(Pointer<NativeFunction<SdlEventFilter>> filter,
+          Pointer<NativeType> userdata),
+      void Function(Pointer<NativeFunction<SdlEventFilter>> filter,
           Pointer<NativeType> userdata)>('SDL_AddEventWatch');
   return sdlAddEventWatchLookupFunction(filter, userdata);
 }
@@ -493,10 +497,12 @@ void sdlAddEventWatch(SdlEventFilter filter, Pointer<NativeType> userdata) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_DelEventWatch(SDL_EventFilter filter, void *userdata)
 /// ```
-void sdlDelEventWatch(SdlEventFilter filter, Pointer<NativeType> userdata) {
+void sdlDelEventWatch(Pointer<NativeFunction<SdlEventFilter>> filter,
+    Pointer<NativeType> userdata) {
   final sdlDelEventWatchLookupFunction = libSdl2.lookupFunction<
-      Void Function(SdlEventFilter filter, Pointer<NativeType> userdata),
-      void Function(SdlEventFilter filter,
+      Void Function(Pointer<NativeFunction<SdlEventFilter>> filter,
+          Pointer<NativeType> userdata),
+      void Function(Pointer<NativeFunction<SdlEventFilter>> filter,
           Pointer<NativeType> userdata)>('SDL_DelEventWatch');
   return sdlDelEventWatchLookupFunction(filter, userdata);
 }
@@ -520,10 +526,12 @@ void sdlDelEventWatch(SdlEventFilter filter, Pointer<NativeType> userdata) {
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_FilterEvents(SDL_EventFilter filter, void *userdata)
 /// ```
-void sdlFilterEvents(SdlEventFilter filter, Pointer<NativeType> userdata) {
+void sdlFilterEvents(Pointer<NativeFunction<SdlEventFilter>> filter,
+    Pointer<NativeType> userdata) {
   final sdlFilterEventsLookupFunction = libSdl2.lookupFunction<
-      Void Function(SdlEventFilter filter, Pointer<NativeType> userdata),
-      void Function(SdlEventFilter filter,
+      Void Function(Pointer<NativeFunction<SdlEventFilter>> filter,
+          Pointer<NativeType> userdata),
+      void Function(Pointer<NativeFunction<SdlEventFilter>> filter,
           Pointer<NativeType> userdata)>('SDL_FilterEvents');
   return sdlFilterEventsLookupFunction(filter, userdata);
 }

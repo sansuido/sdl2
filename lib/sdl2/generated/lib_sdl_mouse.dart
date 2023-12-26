@@ -199,11 +199,11 @@ int sdlWarpMouseGlobal(int x, int y) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetRelativeMouseMode(SDL_bool enabled)
 /// ```
-int sdlSetRelativeMouseMode(int enabled) {
+int sdlSetRelativeMouseMode(bool enabled) {
   final sdlSetRelativeMouseModeLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 enabled),
       int Function(int enabled)>('SDL_SetRelativeMouseMode');
-  return sdlSetRelativeMouseModeLookupFunction(enabled);
+  return sdlSetRelativeMouseModeLookupFunction(enabled ? 1 : 0);
 }
 
 ///
@@ -253,11 +253,11 @@ int sdlSetRelativeMouseMode(int enabled) {
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_CaptureMouse(SDL_bool enabled)
 /// ```
-int sdlCaptureMouse(int enabled) {
+int sdlCaptureMouse(bool enabled) {
   final sdlCaptureMouseLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 enabled),
       int Function(int enabled)>('SDL_CaptureMouse');
-  return sdlCaptureMouseLookupFunction(enabled);
+  return sdlCaptureMouseLookupFunction(enabled ? 1 : 0);
 }
 
 ///
@@ -272,11 +272,11 @@ int sdlCaptureMouse(int enabled) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GetRelativeMouseMode(void)
 /// ```
-int sdlGetRelativeMouseMode() {
+bool sdlGetRelativeMouseMode() {
   final sdlGetRelativeMouseModeLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>(
           'SDL_GetRelativeMouseMode');
-  return sdlGetRelativeMouseModeLookupFunction();
+  return sdlGetRelativeMouseModeLookupFunction() == 1;
 }
 
 ///

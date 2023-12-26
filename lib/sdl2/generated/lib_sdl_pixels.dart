@@ -46,7 +46,7 @@ String? sdlGetPixelFormatName(int format) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_PixelFormatEnumToMasks(Uint32 format, int *bpp, Uint32 * Rmask, Uint32 * Gmask, Uint32 * Bmask, Uint32 * Amask)
 /// ```
-int sdlPixelFormatEnumToMasks(
+bool sdlPixelFormatEnumToMasks(
     int format,
     Pointer<Int32> bpp,
     Pointer<Uint32> rmask,
@@ -64,7 +64,8 @@ int sdlPixelFormatEnumToMasks(
           Pointer<Uint32> bmask,
           Pointer<Uint32> amask)>('SDL_PixelFormatEnumToMasks');
   return sdlPixelFormatEnumToMasksLookupFunction(
-      format, bpp, rmask, gmask, bmask, amask);
+          format, bpp, rmask, gmask, bmask, amask) ==
+      1;
 }
 
 ///

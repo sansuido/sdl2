@@ -3,11 +3,11 @@ SDL2 for Dart
 
 # Requirement
 
-* ffi ^2.0.2
+* ffi ^2.1.0
 
 # Note
 
-A Dart library for accessing common SDL 2.28.2 (stable) APIs using, FFI.
+A Dart library for accessing common SDL 2.28.5 (stable) APIs using, FFI.
 
 https://www.libsdl.org/
 

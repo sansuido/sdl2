@@ -93,11 +93,11 @@ void ttfGetHarfBuzzVersion(
 /// ```c
 /// extern DECLSPEC void SDLCALL TTF_ByteSwappedUNICODE(SDL_bool swapped)
 /// ```
-void ttfByteSwappedUnicode(int swapped) {
+void ttfByteSwappedUnicode(bool swapped) {
   final ttfByteSwappedUnicodeLookupFunction = libSdl2Ttf.lookupFunction<
       Void Function(Int32 swapped),
       void Function(int swapped)>('TTF_ByteSwappedUNICODE');
-  return ttfByteSwappedUnicodeLookupFunction(swapped);
+  return ttfByteSwappedUnicodeLookupFunction(swapped ? 1 : 0);
 }
 
 ///
@@ -2937,11 +2937,11 @@ int ttfGetFontKerningSizeGlyphs32(
 /// ```c
 /// extern DECLSPEC int TTF_SetFontSDF(TTF_Font *font, SDL_bool on_off)
 /// ```
-int ttfSetFontSdf(Pointer<TtfFont> font, int onOff) {
+int ttfSetFontSdf(Pointer<TtfFont> font, bool onOff) {
   final ttfSetFontSdfLookupFunction = libSdl2Ttf.lookupFunction<
       Int32 Function(Pointer<TtfFont> font, Int32 onOff),
       int Function(Pointer<TtfFont> font, int onOff)>('TTF_SetFontSDF');
-  return ttfSetFontSdfLookupFunction(font, onOff);
+  return ttfSetFontSdfLookupFunction(font, onOff ? 1 : 0);
 }
 
 ///
@@ -2958,11 +2958,11 @@ int ttfSetFontSdf(Pointer<TtfFont> font, int onOff) {
 /// ```c
 /// extern DECLSPEC SDL_bool TTF_GetFontSDF(const TTF_Font *font)
 /// ```
-int ttfGetFontSdf(Pointer<TtfFont> font) {
+bool ttfGetFontSdf(Pointer<TtfFont> font) {
   final ttfGetFontSdfLookupFunction = libSdl2Ttf.lookupFunction<
       Int32 Function(Pointer<TtfFont> font),
       int Function(Pointer<TtfFont> font)>('TTF_GetFontSDF');
-  return ttfGetFontSdfLookupFunction(font);
+  return ttfGetFontSdfLookupFunction(font) == 1;
 }
 
 ///

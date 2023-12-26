@@ -23,10 +23,10 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GetWindowWMInfo(SDL_Window * window, SDL_SysWMinfo * info)
 /// ```
-int sdlGetWindowWmInfo(Pointer<SdlWindow> window, Pointer<SdlSysWMinfo> info) {
+bool sdlGetWindowWmInfo(Pointer<SdlWindow> window, Pointer<SdlSysWMinfo> info) {
   final sdlGetWindowWmInfoLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlWindow> window, Pointer<SdlSysWMinfo> info),
       int Function(Pointer<SdlWindow> window,
           Pointer<SdlSysWMinfo> info)>('SDL_GetWindowWMInfo');
-  return sdlGetWindowWmInfoLookupFunction(window, info);
+  return sdlGetWindowWmInfoLookupFunction(window, info) == 1;
 }

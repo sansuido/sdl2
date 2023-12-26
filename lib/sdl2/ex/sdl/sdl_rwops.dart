@@ -1,5 +1,5 @@
 import 'dart:ffi';
-import '../../generated/const_sdl.dart';
+//import '../../generated/const_sdl.dart';
 import '../../generated/lib_sdl_audio.dart';
 import '../../generated/lib_sdl_gamecontroller.dart';
 import '../../generated/lib_sdl_gesture.dart';
@@ -19,7 +19,7 @@ extension SdlRWopsEx on SdlRWops {
     return sdlRwFromFile(file, mode);
   }
 
-  static Pointer<SdlRWops> fromFp(Pointer<IntPtr> fp, int autoclose) {
+  static Pointer<SdlRWops> fromFp(Pointer<IntPtr> fp, bool autoclose) {
     // 87
     return sdlRwFromFp(fp, autoclose);
   }
@@ -72,94 +72,94 @@ extension SdlRWopsPointerEx on Pointer<SdlRWops> {
   }
 
   // lib_sdl_image.dart
-  bool isAvif() {
+  int isAvif() {
     // 546
-    return imgIsAvif(this) == SDL_TRUE;
+    return imgIsAvif(this);
   }
 
-  bool isIco() {
+  int isIco() {
     // 597
-    return imgIsIco(this) == SDL_TRUE;
+    return imgIsIco(this);
   }
 
-  bool isCur() {
+  int isCur() {
     // 648
-    return imgIsCur(this) == SDL_TRUE;
+    return imgIsCur(this);
   }
 
-  bool isBmp() {
+  int isBmp() {
     // 699
-    return imgIsBmp(this) == SDL_TRUE;
+    return imgIsBmp(this);
   }
 
-  bool isGif() {
+  int isGif() {
     // 750
-    return imgIsGif(this) == SDL_TRUE;
+    return imgIsGif(this);
   }
 
-  bool isJpg() {
+  int isJpg() {
     // 801
-    return imgIsJpg(this) == SDL_TRUE;
+    return imgIsJpg(this);
   }
 
-  bool isJxl() {
+  int isJxl() {
     // 852
-    return imgIsJxl(this) == SDL_TRUE;
+    return imgIsJxl(this);
   }
 
-  bool isLbm() {
+  int isLbm() {
     // 903
-    return imgIsLbm(this) == SDL_TRUE;
+    return imgIsLbm(this);
   }
 
-  bool isPcx() {
+  int isPcx() {
     // 954
-    return imgIsPcx(this) == SDL_TRUE;
+    return imgIsPcx(this);
   }
 
-  bool isPng() {
+  int isPng() {
     // 1005
-    return imgIsPng(this) == SDL_TRUE;
+    return imgIsPng(this);
   }
 
-  bool isPnm() {
+  int isPnm() {
     // 1056
-    return imgIsPnm(this) == SDL_TRUE;
+    return imgIsPnm(this);
   }
 
-  bool isSvg() {
+  int isSvg() {
     // 1107
-    return imgIsSvg(this) == SDL_TRUE;
+    return imgIsSvg(this);
   }
 
-  bool isQoi() {
+  int isQoi() {
     // 1158
-    return imgIsQoi(this) == SDL_TRUE;
+    return imgIsQoi(this);
   }
 
-  bool isTif() {
+  int isTif() {
     // 1209
-    return imgIsTif(this) == SDL_TRUE;
+    return imgIsTif(this);
   }
 
-  bool isXcf() {
+  int isXcf() {
     // 1260
-    return imgIsXcf(this) == SDL_TRUE;
+    return imgIsXcf(this);
   }
 
-  bool isXpm() {
+  int isXpm() {
     // 1311
-    return imgIsXpm(this) == SDL_TRUE;
+    return imgIsXpm(this);
   }
 
-  bool isXv() {
+  int isXv() {
     // 1362
-    return imgIsXv(this) == SDL_TRUE;
+    return imgIsXv(this);
   }
 
-  bool isWebp() {
+  int isWebp() {
     // 1413
-    return imgIsWebp(this) == SDL_TRUE;
+    return imgIsWebp(this);
   }
 
   Pointer<SdlSurface> loadAvif() {

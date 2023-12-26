@@ -67,10 +67,10 @@ Pointer<Int8> sdlGetClipboardText() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasClipboardText(void)
 /// ```
-int sdlHasClipboardText() {
+bool sdlHasClipboardText() {
   final sdlHasClipboardTextLookupFunction = libSdl2
       .lookupFunction<Int32 Function(), int Function()>('SDL_HasClipboardText');
-  return sdlHasClipboardTextLookupFunction();
+  return sdlHasClipboardTextLookupFunction() == 1;
 }
 
 ///
@@ -140,9 +140,9 @@ Pointer<Int8> sdlGetPrimarySelectionText() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasPrimarySelectionText(void)
 /// ```
-int sdlHasPrimarySelectionText() {
+bool sdlHasPrimarySelectionText() {
   final sdlHasPrimarySelectionTextLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>(
           'SDL_HasPrimarySelectionText');
-  return sdlHasPrimarySelectionTextLookupFunction();
+  return sdlHasPrimarySelectionTextLookupFunction() == 1;
 }

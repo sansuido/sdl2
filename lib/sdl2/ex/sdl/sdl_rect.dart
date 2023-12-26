@@ -1,6 +1,6 @@
 import 'dart:ffi';
 import 'dart:math' as math show Rectangle;
-import '../../generated/const_sdl.dart';
+
 import '../../generated/lib_sdl_rect.dart';
 import '../../generated/struct_sdl.dart';
 
@@ -12,12 +12,12 @@ extension SdlRectPointerEx on Pointer<SdlRect> {
 
   bool hasIntersection(Pointer<SdlRect> b) {
     // 22
-    return sdlHasIntersection(this, b) == SDL_TRUE;
+    return sdlHasIntersection(this, b);
   }
 
   bool intersectRect(Pointer<SdlRect> b, Pointer<SdlRect> result) {
     // 48
-    return sdlIntersectRect(this, b, result) == SDL_TRUE;
+    return sdlIntersectRect(this, b, result);
   }
 
   void unionRect(Pointer<SdlRect> b, Pointer<SdlRect> result) {
@@ -28,6 +28,6 @@ extension SdlRectPointerEx on Pointer<SdlRect> {
   bool intersectRectAndLine(Pointer<Int32> x1, Pointer<Int32> y1,
       Pointer<Int32> x2, Pointer<Int32> y2) {
     // 132
-    return sdlIntersectRectAndLine(this, x1, y1, x2, y2) == SDL_TRUE;
+    return sdlIntersectRectAndLine(this, x1, y1, x2, y2);
   }
 }

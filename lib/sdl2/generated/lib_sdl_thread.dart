@@ -8,24 +8,25 @@ import 'struct_sdl.dart';
 /// extern DECLSPEC SDL_Thread *SDLCALL SDL_CreateThread(SDL_ThreadFunction fn, const char *name, void *data, pfnSDL_CurrentBeginThread pfnBeginThread, pfnSDL_CurrentEndThread pfnEndThread)
 /// ```
 Pointer<SdlThread> sdlCreateThread(
-    SdlThreadFunction fn,
+    Pointer<NativeFunction<SdlThreadFunction>> fn,
     String? name,
     Pointer<NativeType> data,
-    PfnSdlCurrentBeginThread pfnBeginThread,
-    PfnSdlCurrentEndThread pfnEndThread) {
+    Pointer<NativeFunction<PfnSdlCurrentBeginThread>> pfnBeginThread,
+    Pointer<NativeFunction<PfnSdlCurrentEndThread>> pfnEndThread) {
   final sdlCreateThreadLookupFunction = libSdl2.lookupFunction<
-      Pointer<SdlThread> Function(
-          SdlThreadFunction fn,
-          Pointer<Utf8> name,
-          Pointer<NativeType> data,
-          PfnSdlCurrentBeginThread pfnBeginThread,
-          PfnSdlCurrentEndThread pfnEndThread),
-      Pointer<SdlThread> Function(
-          SdlThreadFunction fn,
-          Pointer<Utf8> name,
-          Pointer<NativeType> data,
-          PfnSdlCurrentBeginThread pfnBeginThread,
-          PfnSdlCurrentEndThread pfnEndThread)>('SDL_CreateThread');
+          Pointer<SdlThread> Function(
+              Pointer<NativeFunction<SdlThreadFunction>> fn,
+              Pointer<Utf8> name,
+              Pointer<NativeType> data,
+              Pointer<NativeFunction<PfnSdlCurrentBeginThread>> pfnBeginThread,
+              Pointer<NativeFunction<PfnSdlCurrentEndThread>> pfnEndThread),
+          Pointer<SdlThread> Function(
+              Pointer<NativeFunction<SdlThreadFunction>> fn,
+              Pointer<Utf8> name,
+              Pointer<NativeType> data,
+              Pointer<NativeFunction<PfnSdlCurrentBeginThread>> pfnBeginThread,
+              Pointer<NativeFunction<PfnSdlCurrentEndThread>> pfnEndThread)>(
+      'SDL_CreateThread');
   final namePointer = name != null ? name.toNativeUtf8() : nullptr;
   final result = sdlCreateThreadLookupFunction(
       fn, namePointer, data, pfnBeginThread, pfnEndThread);
@@ -37,27 +38,27 @@ Pointer<SdlThread> sdlCreateThread(
 /// extern DECLSPEC SDL_Thread *SDLCALL SDL_CreateThreadWithStackSize(SDL_ThreadFunction fn, const char *name, const size_t stacksize, void *data, pfnSDL_CurrentBeginThread pfnBeginThread, pfnSDL_CurrentEndThread pfnEndThread)
 /// ```
 Pointer<SdlThread> sdlCreateThreadWithStackSize(
-    SdlThreadFunction fn,
+    Pointer<NativeFunction<SdlThreadFunction>> fn,
     String? name,
     int stacksize,
     Pointer<NativeType> data,
-    PfnSdlCurrentBeginThread pfnBeginThread,
-    PfnSdlCurrentEndThread pfnEndThread) {
+    Pointer<NativeFunction<PfnSdlCurrentBeginThread>> pfnBeginThread,
+    Pointer<NativeFunction<PfnSdlCurrentEndThread>> pfnEndThread) {
   final sdlCreateThreadWithStackSizeLookupFunction = libSdl2.lookupFunction<
           Pointer<SdlThread> Function(
-              SdlThreadFunction fn,
+              Pointer<NativeFunction<SdlThreadFunction>> fn,
               Pointer<Utf8> name,
               Uint32 stacksize,
               Pointer<NativeType> data,
-              PfnSdlCurrentBeginThread pfnBeginThread,
-              PfnSdlCurrentEndThread pfnEndThread),
+              Pointer<NativeFunction<PfnSdlCurrentBeginThread>> pfnBeginThread,
+              Pointer<NativeFunction<PfnSdlCurrentEndThread>> pfnEndThread),
           Pointer<SdlThread> Function(
-              SdlThreadFunction fn,
+              Pointer<NativeFunction<SdlThreadFunction>> fn,
               Pointer<Utf8> name,
               int stacksize,
               Pointer<NativeType> data,
-              PfnSdlCurrentBeginThread pfnBeginThread,
-              PfnSdlCurrentEndThread pfnEndThread)>(
+              Pointer<NativeFunction<PfnSdlCurrentBeginThread>> pfnBeginThread,
+              Pointer<NativeFunction<PfnSdlCurrentEndThread>> pfnEndThread)>(
       'SDL_CreateThreadWithStackSize');
   final namePointer = name != null ? name.toNativeUtf8() : nullptr;
   final result = sdlCreateThreadWithStackSizeLookupFunction(

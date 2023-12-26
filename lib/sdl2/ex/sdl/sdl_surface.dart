@@ -1,7 +1,6 @@
 import 'dart:ffi';
 import 'dart:math' as math show Rectangle;
 import 'package:ffi/ffi.dart';
-import 'package:sdl2/sdl2/generated/const_sdl.dart';
 import '../../generated/lib_sdl_mouse.dart';
 import '../../generated/struct_sdl.dart';
 import '../../generated/lib_sdl_surface.dart';
@@ -69,7 +68,7 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
 
   bool hasRre() {
     // 417
-    return sdlHasSurfaceRle(this) == SDL_TRUE;
+    return sdlHasSurfaceRle(this);
   }
 
   int setColorKey(int flag, int key) {
@@ -79,7 +78,7 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
 
   bool hadColorKey() {
     // 475
-    return sdlHasColorKey(this) == SDL_TRUE;
+    return sdlHasColorKey(this);
   }
 
   int? getColorKey() {
@@ -156,7 +155,7 @@ extension SdlSurfacePointerEx on Pointer<SdlSurface> {
     // 698
     var result = sdlSetClipRect(this, rectPointer);
     calloc.free(rectPointer);
-    return result == SDL_TRUE;
+    return result;
   }
 
   math.Rectangle<double> getClipRect() {

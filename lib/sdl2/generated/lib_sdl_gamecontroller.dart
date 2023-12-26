@@ -195,11 +195,11 @@ Pointer<Int8> sdlGameControllerMapping(
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsGameController(int joystick_index)
 /// ```
-int sdlIsGameController(int joystickIndex) {
+bool sdlIsGameController(int joystickIndex) {
   final sdlIsGameControllerLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 joystickIndex),
       int Function(int joystickIndex)>('SDL_IsGameController');
-  return sdlIsGameControllerLookupFunction(joystickIndex);
+  return sdlIsGameControllerLookupFunction(joystickIndex) == 1;
 }
 
 ///
@@ -649,12 +649,12 @@ String? sdlGameControllerGetSerial(Pointer<SdlGameController> gamecontroller) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GameControllerGetAttached(SDL_GameController *gamecontroller)
 /// ```
-int sdlGameControllerGetAttached(Pointer<SdlGameController> gamecontroller) {
+bool sdlGameControllerGetAttached(Pointer<SdlGameController> gamecontroller) {
   final sdlGameControllerGetAttachedLookupFunction = libSdl2.lookupFunction<
           Int32 Function(Pointer<SdlGameController> gamecontroller),
           int Function(Pointer<SdlGameController> gamecontroller)>(
       'SDL_GameControllerGetAttached');
-  return sdlGameControllerGetAttachedLookupFunction(gamecontroller);
+  return sdlGameControllerGetAttachedLookupFunction(gamecontroller) == 1;
 }
 
 ///
@@ -843,13 +843,13 @@ SdlGameControllerButtonBind sdlGameControllerGetBindForAxis(
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GameControllerHasAxis(SDL_GameController *gamecontroller, SDL_GameControllerAxis axis)
 /// ```
-int sdlGameControllerHasAxis(
+bool sdlGameControllerHasAxis(
     Pointer<SdlGameController> gamecontroller, int axis) {
   final sdlGameControllerHasAxisLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlGameController> gamecontroller, Int32 axis),
       int Function(Pointer<SdlGameController> gamecontroller,
           int axis)>('SDL_GameControllerHasAxis');
-  return sdlGameControllerHasAxisLookupFunction(gamecontroller, axis);
+  return sdlGameControllerHasAxisLookupFunction(gamecontroller, axis) == 1;
 }
 
 ///
@@ -984,13 +984,13 @@ SdlGameControllerButtonBind sdlGameControllerGetBindForButton(
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GameControllerHasButton(SDL_GameController *gamecontroller, SDL_GameControllerButton button)
 /// ```
-int sdlGameControllerHasButton(
+bool sdlGameControllerHasButton(
     Pointer<SdlGameController> gamecontroller, int button) {
   final sdlGameControllerHasButtonLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlGameController> gamecontroller, Int32 button),
       int Function(Pointer<SdlGameController> gamecontroller,
           int button)>('SDL_GameControllerHasButton');
-  return sdlGameControllerHasButtonLookupFunction(gamecontroller, button);
+  return sdlGameControllerHasButtonLookupFunction(gamecontroller, button) == 1;
 }
 
 ///
@@ -1105,13 +1105,13 @@ int sdlGameControllerGetTouchpadFinger(
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GameControllerHasSensor(SDL_GameController *gamecontroller, SDL_SensorType type)
 /// ```
-int sdlGameControllerHasSensor(
+bool sdlGameControllerHasSensor(
     Pointer<SdlGameController> gamecontroller, int type) {
   final sdlGameControllerHasSensorLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlGameController> gamecontroller, Int32 type),
       int Function(Pointer<SdlGameController> gamecontroller,
           int type)>('SDL_GameControllerHasSensor');
-  return sdlGameControllerHasSensorLookupFunction(gamecontroller, type);
+  return sdlGameControllerHasSensorLookupFunction(gamecontroller, type) == 1;
 }
 
 ///
@@ -1128,7 +1128,7 @@ int sdlGameControllerHasSensor(
 /// extern DECLSPEC int SDLCALL SDL_GameControllerSetSensorEnabled(SDL_GameController *gamecontroller, SDL_SensorType type, SDL_bool enabled)
 /// ```
 int sdlGameControllerSetSensorEnabled(
-    Pointer<SdlGameController> gamecontroller, int type, int enabled) {
+    Pointer<SdlGameController> gamecontroller, int type, bool enabled) {
   final sdlGameControllerSetSensorEnabledLookupFunction =
       libSdl2.lookupFunction<
           Int32 Function(Pointer<SdlGameController> gamecontroller, Int32 type,
@@ -1136,7 +1136,7 @@ int sdlGameControllerSetSensorEnabled(
           int Function(Pointer<SdlGameController> gamecontroller, int type,
               int enabled)>('SDL_GameControllerSetSensorEnabled');
   return sdlGameControllerSetSensorEnabledLookupFunction(
-      gamecontroller, type, enabled);
+      gamecontroller, type, enabled ? 1 : 0);
 }
 
 ///
@@ -1151,13 +1151,14 @@ int sdlGameControllerSetSensorEnabled(
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GameControllerIsSensorEnabled(SDL_GameController *gamecontroller, SDL_SensorType type)
 /// ```
-int sdlGameControllerIsSensorEnabled(
+bool sdlGameControllerIsSensorEnabled(
     Pointer<SdlGameController> gamecontroller, int type) {
   final sdlGameControllerIsSensorEnabledLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlGameController> gamecontroller, Int32 type),
       int Function(Pointer<SdlGameController> gamecontroller,
           int type)>('SDL_GameControllerIsSensorEnabled');
-  return sdlGameControllerIsSensorEnabledLookupFunction(gamecontroller, type);
+  return sdlGameControllerIsSensorEnabledLookupFunction(gamecontroller, type) ==
+      1;
 }
 
 ///
@@ -1341,12 +1342,12 @@ int sdlGameControllerRumbleTriggers(Pointer<SdlGameController> gamecontroller,
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GameControllerHasLED(SDL_GameController *gamecontroller)
 /// ```
-int sdlGameControllerHasLed(Pointer<SdlGameController> gamecontroller) {
+bool sdlGameControllerHasLed(Pointer<SdlGameController> gamecontroller) {
   final sdlGameControllerHasLedLookupFunction = libSdl2.lookupFunction<
           Int32 Function(Pointer<SdlGameController> gamecontroller),
           int Function(Pointer<SdlGameController> gamecontroller)>(
       'SDL_GameControllerHasLED');
-  return sdlGameControllerHasLedLookupFunction(gamecontroller);
+  return sdlGameControllerHasLedLookupFunction(gamecontroller) == 1;
 }
 
 ///
@@ -1363,12 +1364,12 @@ int sdlGameControllerHasLed(Pointer<SdlGameController> gamecontroller) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GameControllerHasRumble(SDL_GameController *gamecontroller)
 /// ```
-int sdlGameControllerHasRumble(Pointer<SdlGameController> gamecontroller) {
+bool sdlGameControllerHasRumble(Pointer<SdlGameController> gamecontroller) {
   final sdlGameControllerHasRumbleLookupFunction = libSdl2.lookupFunction<
           Int32 Function(Pointer<SdlGameController> gamecontroller),
           int Function(Pointer<SdlGameController> gamecontroller)>(
       'SDL_GameControllerHasRumble');
-  return sdlGameControllerHasRumbleLookupFunction(gamecontroller);
+  return sdlGameControllerHasRumbleLookupFunction(gamecontroller) == 1;
 }
 
 ///
@@ -1385,14 +1386,14 @@ int sdlGameControllerHasRumble(Pointer<SdlGameController> gamecontroller) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_GameControllerHasRumbleTriggers(SDL_GameController *gamecontroller)
 /// ```
-int sdlGameControllerHasRumbleTriggers(
+bool sdlGameControllerHasRumbleTriggers(
     Pointer<SdlGameController> gamecontroller) {
   final sdlGameControllerHasRumbleTriggersLookupFunction =
       libSdl2.lookupFunction<
               Int32 Function(Pointer<SdlGameController> gamecontroller),
               int Function(Pointer<SdlGameController> gamecontroller)>(
           'SDL_GameControllerHasRumbleTriggers');
-  return sdlGameControllerHasRumbleTriggersLookupFunction(gamecontroller);
+  return sdlGameControllerHasRumbleTriggersLookupFunction(gamecontroller) == 1;
 }
 
 ///

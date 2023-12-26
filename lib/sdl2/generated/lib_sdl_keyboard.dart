@@ -329,11 +329,11 @@ void sdlStartTextInput() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsTextInputActive(void)
 /// ```
-int sdlIsTextInputActive() {
+bool sdlIsTextInputActive() {
   final sdlIsTextInputActiveLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>(
           'SDL_IsTextInputActive');
-  return sdlIsTextInputActiveLookupFunction();
+  return sdlIsTextInputActiveLookupFunction() == 1;
 }
 
 ///
@@ -377,10 +377,10 @@ void sdlClearComposition() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsTextInputShown(void)
 /// ```
-int sdlIsTextInputShown() {
+bool sdlIsTextInputShown() {
   final sdlIsTextInputShownLookupFunction = libSdl2
       .lookupFunction<Int32 Function(), int Function()>('SDL_IsTextInputShown');
-  return sdlIsTextInputShownLookupFunction();
+  return sdlIsTextInputShownLookupFunction() == 1;
 }
 
 ///
@@ -425,11 +425,11 @@ void sdlSetTextInputRect(Pointer<SdlRect> rect) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasScreenKeyboardSupport(void)
 /// ```
-int sdlHasScreenKeyboardSupport() {
+bool sdlHasScreenKeyboardSupport() {
   final sdlHasScreenKeyboardSupportLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>(
           'SDL_HasScreenKeyboardSupport');
-  return sdlHasScreenKeyboardSupportLookupFunction();
+  return sdlHasScreenKeyboardSupportLookupFunction() == 1;
 }
 
 ///
@@ -445,9 +445,9 @@ int sdlHasScreenKeyboardSupport() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsScreenKeyboardShown(SDL_Window *window)
 /// ```
-int sdlIsScreenKeyboardShown(Pointer<SdlWindow> window) {
+bool sdlIsScreenKeyboardShown(Pointer<SdlWindow> window) {
   final sdlIsScreenKeyboardShownLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlWindow> window),
       int Function(Pointer<SdlWindow> window)>('SDL_IsScreenKeyboardShown');
-  return sdlIsScreenKeyboardShownLookupFunction(window);
+  return sdlIsScreenKeyboardShownLookupFunction(window) == 1;
 }

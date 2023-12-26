@@ -1,6 +1,5 @@
 import 'dart:ffi';
 import 'package:ffi/ffi.dart';
-import '../../generated/const_sdl.dart';
 import '../../generated/struct_sdl.dart';
 import '../../generated/struct_sdl_ttf.dart';
 import '../../generated/lib_sdl_ttf.dart';
@@ -527,14 +526,14 @@ extension TtfFontPointerEx on Pointer<TtfFont> {
     return ttfGetFontKerningSizeGlyphs32(this, previousCh, ch);
   }
 
-  int setSdf(int onOff) {
+  int setSdf(bool onOff) {
     // 2932
     return ttfSetFontSdf(this, onOff);
   }
 
   bool getSdf() {
     // 2953
-    return ttfGetFontSdf(this) == SDL_TRUE;
+    return ttfGetFontSdf(this);
   }
 
   int setDirection(int direction) {

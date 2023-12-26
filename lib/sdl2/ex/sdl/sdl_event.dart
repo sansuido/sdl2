@@ -1,5 +1,4 @@
 import 'dart:ffi';
-import '../../generated/const_sdl.dart';
 import '../../generated/struct_sdl.dart';
 import '../../generated/lib_sdl_events.dart';
 
@@ -13,12 +12,12 @@ extension SdlEventEx on SdlEvent {
 
   static bool have(int type) {
     // 106
-    return sdlHasEvent(type) == SDL_TRUE;
+    return sdlHasEvent(type);
   }
 
   static bool has(int minType, int maxType) {
     // 131
-    return sdlHasEvents(minType, maxType) == SDL_TRUE;
+    return sdlHasEvents(minType, maxType);
   }
 
   static void flash(int type) {

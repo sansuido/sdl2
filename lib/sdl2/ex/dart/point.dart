@@ -6,7 +6,6 @@ import '../sdl/sdl_rect.dart';
 import '../../generated/lib_sdl_mouse.dart';
 import '../../generated/lib_sdl_rect.dart';
 import '../../generated/struct_sdl.dart';
-import '../../generated/const_sdl.dart';
 
 extension PointEx on math.Point<double> {
   // dependence package:ffi
@@ -94,8 +93,7 @@ extension PointsEx on List<math.Point<double>> {
       clipPointer = clip.calloc();
     }
     var bl =
-        sdlEnclosePoints(pointsPointer, length, clipPointer, resultPointer) ==
-            SDL_TRUE;
+        sdlEnclosePoints(pointsPointer, length, clipPointer, resultPointer);
     if (bl == true) {
       result = resultPointer.create();
     }

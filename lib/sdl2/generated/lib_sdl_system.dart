@@ -16,11 +16,12 @@ import 'struct_sdl.dart';
 /// extern DECLSPEC void SDLCALL SDL_SetWindowsMessageHook(SDL_WindowsMessageHook callback, void *userdata)
 /// ```
 void sdlSetWindowsMessageHook(
-    SdlWindowsMessageHook callback, Pointer<NativeType> userdata) {
+    Pointer<NativeFunction<SdlWindowsMessageHook>> callback,
+    Pointer<NativeType> userdata) {
   final sdlSetWindowsMessageHookLookupFunction = libSdl2.lookupFunction<
-      Void Function(
-          SdlWindowsMessageHook callback, Pointer<NativeType> userdata),
-      void Function(SdlWindowsMessageHook callback,
+      Void Function(Pointer<NativeFunction<SdlWindowsMessageHook>> callback,
+          Pointer<NativeType> userdata),
+      void Function(Pointer<NativeFunction<SdlWindowsMessageHook>> callback,
           Pointer<NativeType> userdata)>('SDL_SetWindowsMessageHook');
   return sdlSetWindowsMessageHookLookupFunction(callback, userdata);
 }
@@ -139,7 +140,7 @@ Pointer<ID3D12Device> sdlRenderGetD3D12Device(Pointer<SdlRenderer> renderer) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_DXGIGetOutputInfo( int displayIndex, int *adapterIndex, int *outputIndex )
 /// ```
-int sdlDxgiGetOutputInfo(
+bool sdlDxgiGetOutputInfo(
     int displayIndex, Pointer<Int32> adapterIndex, Pointer<Int32> outputIndex) {
   final sdlDxgiGetOutputInfoLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Int32 displayIndex, Pointer<Int32> adapterIndex,
@@ -147,7 +148,8 @@ int sdlDxgiGetOutputInfo(
       int Function(int displayIndex, Pointer<Int32> adapterIndex,
           Pointer<Int32> outputIndex)>('SDL_DXGIGetOutputInfo');
   return sdlDxgiGetOutputInfoLookupFunction(
-      displayIndex, adapterIndex, outputIndex);
+          displayIndex, adapterIndex, outputIndex) ==
+      1;
 }
 
 ///
@@ -264,11 +266,11 @@ int sdlIPhoneSetAnimationCallback(Pointer<SdlWindow> window, int interval,
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_iPhoneSetEventPump(SDL_bool enabled)
 /// ```
-void sdlIPhoneSetEventPump(int enabled) {
+void sdlIPhoneSetEventPump(bool enabled) {
   final sdlIPhoneSetEventPumpLookupFunction = libSdl2.lookupFunction<
       Void Function(Int32 enabled),
       void Function(int enabled)>('SDL_iPhoneSetEventPump');
-  return sdlIPhoneSetEventPumpLookupFunction(enabled);
+  return sdlIPhoneSetEventPumpLookupFunction(enabled ? 1 : 0);
 }
 
 ///
@@ -378,10 +380,10 @@ int sdlGetAndroidSdkVersion() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsAndroidTV(void)
 /// ```
-int sdlIsAndroidTv() {
+bool sdlIsAndroidTv() {
   final sdlIsAndroidTvLookupFunction = libSdl2
       .lookupFunction<Int32 Function(), int Function()>('SDL_IsAndroidTV');
-  return sdlIsAndroidTvLookupFunction();
+  return sdlIsAndroidTvLookupFunction() == 1;
 }
 
 ///
@@ -394,10 +396,10 @@ int sdlIsAndroidTv() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsChromebook(void)
 /// ```
-int sdlIsChromebook() {
+bool sdlIsChromebook() {
   final sdlIsChromebookLookupFunction = libSdl2
       .lookupFunction<Int32 Function(), int Function()>('SDL_IsChromebook');
-  return sdlIsChromebookLookupFunction();
+  return sdlIsChromebookLookupFunction() == 1;
 }
 
 ///
@@ -410,10 +412,10 @@ int sdlIsChromebook() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsDeXMode(void)
 /// ```
-int sdlIsDeXMode() {
+bool sdlIsDeXMode() {
   final sdlIsDeXModeLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_IsDeXMode');
-  return sdlIsDeXModeLookupFunction();
+  return sdlIsDeXModeLookupFunction() == 1;
 }
 
 ///
@@ -529,13 +531,14 @@ String? sdlAndroidGetExternalStoragePath() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_AndroidRequestPermission(const char *permission)
 /// ```
-int sdlAndroidRequestPermission(String? permission) {
+bool sdlAndroidRequestPermission(String? permission) {
   final sdlAndroidRequestPermissionLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Utf8> permission),
       int Function(Pointer<Utf8> permission)>('SDL_AndroidRequestPermission');
   final permissionPointer =
       permission != null ? permission.toNativeUtf8() : nullptr;
-  final result = sdlAndroidRequestPermissionLookupFunction(permissionPointer);
+  final result =
+      sdlAndroidRequestPermissionLookupFunction(permissionPointer) == 1;
   calloc.free(permissionPointer);
   return result;
 }
@@ -695,10 +698,10 @@ int sdlWinRtGetDeviceFamily() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsTablet(void)
 /// ```
-int sdlIsTablet() {
+bool sdlIsTablet() {
   final sdlIsTabletLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_IsTablet');
-  return sdlIsTabletLookupFunction();
+  return sdlIsTabletLookupFunction() == 1;
 }
 
 /// Functions used by iOS application delegates to notify SDL about state changes

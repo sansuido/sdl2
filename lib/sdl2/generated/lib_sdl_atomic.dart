@@ -21,11 +21,11 @@ import 'struct_sdl.dart';
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_AtomicTryLock(SDL_SpinLock *lock)
 /// ```
-int sdlAtomicTryLock(Pointer<Int32> lock) {
+bool sdlAtomicTryLock(Pointer<Int32> lock) {
   final sdlAtomicTryLockLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Int32> lock),
       int Function(Pointer<Int32> lock)>('SDL_AtomicTryLock');
-  return sdlAtomicTryLockLookupFunction(lock);
+  return sdlAtomicTryLockLookupFunction(lock) == 1;
 }
 
 ///
@@ -137,12 +137,12 @@ void sdlMemoryBarrierAcquireFunction() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_AtomicCAS(SDL_atomic_t *a, int oldval, int newval)
 /// ```
-int sdlAtomicCas(Pointer<SdlAtomicT> a, int oldval, int newval) {
+bool sdlAtomicCas(Pointer<SdlAtomicT> a, int oldval, int newval) {
   final sdlAtomicCasLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlAtomicT> a, Int32 oldval, Int32 newval),
       int Function(
           Pointer<SdlAtomicT> a, int oldval, int newval)>('SDL_AtomicCAS');
-  return sdlAtomicCasLookupFunction(a, oldval, newval);
+  return sdlAtomicCasLookupFunction(a, oldval, newval) == 1;
 }
 
 ///
@@ -241,14 +241,14 @@ int sdlAtomicAdd(Pointer<SdlAtomicT> a, int v) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_AtomicCASPtr(void **a, void *oldval, void *newval)
 /// ```
-int sdlAtomicCasPtr(Pointer<Pointer<NativeType>> a, Pointer<NativeType> oldval,
+bool sdlAtomicCasPtr(Pointer<Pointer<NativeType>> a, Pointer<NativeType> oldval,
     Pointer<NativeType> newval) {
   final sdlAtomicCasPtrLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Pointer<NativeType>> a, Pointer<NativeType> oldval,
           Pointer<NativeType> newval),
       int Function(Pointer<Pointer<NativeType>> a, Pointer<NativeType> oldval,
           Pointer<NativeType> newval)>('SDL_AtomicCASPtr');
-  return sdlAtomicCasPtrLookupFunction(a, oldval, newval);
+  return sdlAtomicCasPtrLookupFunction(a, oldval, newval) == 1;
 }
 
 ///

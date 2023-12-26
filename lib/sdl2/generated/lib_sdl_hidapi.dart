@@ -489,9 +489,9 @@ int sdlHidGetIndexedString(Pointer<SdlHidDevice> dev, int stringIndex,
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_hid_ble_scan(SDL_bool active)
 /// ```
-void sdlHidBleScan(int active) {
+void sdlHidBleScan(bool active) {
   final sdlHidBleScanLookupFunction = libSdl2.lookupFunction<
       Void Function(Int32 active),
       void Function(int active)>('SDL_hid_ble_scan');
-  return sdlHidBleScanLookupFunction(active);
+  return sdlHidBleScanLookupFunction(active ? 1 : 0);
 }

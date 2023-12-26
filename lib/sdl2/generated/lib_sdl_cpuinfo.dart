@@ -63,10 +63,10 @@ int sdlGetCpuCacheLineSize() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasRDTSC(void)
 /// ```
-int sdlHasRdtsc() {
+bool sdlHasRdtsc() {
   final sdlHasRdtscLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_HasRDTSC');
-  return sdlHasRdtscLookupFunction();
+  return sdlHasRdtscLookupFunction() == 1;
 }
 
 ///
@@ -93,10 +93,10 @@ int sdlHasRdtsc() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasAltiVec(void)
 /// ```
-int sdlHasAltiVec() {
+bool sdlHasAltiVec() {
   final sdlHasAltiVecLookupFunction = libSdl2
       .lookupFunction<Int32 Function(), int Function()>('SDL_HasAltiVec');
-  return sdlHasAltiVecLookupFunction();
+  return sdlHasAltiVecLookupFunction() == 1;
 }
 
 ///
@@ -122,10 +122,10 @@ int sdlHasAltiVec() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasMMX(void)
 /// ```
-int sdlHasMmx() {
+bool sdlHasMmx() {
   final sdlHasMmxLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_HasMMX');
-  return sdlHasMmxLookupFunction();
+  return sdlHasMmxLookupFunction() == 1;
 }
 
 ///
@@ -151,10 +151,10 @@ int sdlHasMmx() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_Has3DNow(void)
 /// ```
-int sdlHas3DNow() {
+bool sdlHas3DNow() {
   final sdlHas3DNowLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_Has3DNow');
-  return sdlHas3DNowLookupFunction();
+  return sdlHas3DNowLookupFunction() == 1;
 }
 
 ///
@@ -180,10 +180,10 @@ int sdlHas3DNow() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE(void)
 /// ```
-int sdlHasSse() {
+bool sdlHasSse() {
   final sdlHasSseLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_HasSSE');
-  return sdlHasSseLookupFunction();
+  return sdlHasSseLookupFunction() == 1;
 }
 
 ///
@@ -209,10 +209,10 @@ int sdlHasSse() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE2(void)
 /// ```
-int sdlHasSse2() {
+bool sdlHasSse2() {
   final sdlHasSse2LookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_HasSSE2');
-  return sdlHasSse2LookupFunction();
+  return sdlHasSse2LookupFunction() == 1;
 }
 
 ///
@@ -238,10 +238,10 @@ int sdlHasSse2() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE3(void)
 /// ```
-int sdlHasSse3() {
+bool sdlHasSse3() {
   final sdlHasSse3LookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_HasSSE3');
-  return sdlHasSse3LookupFunction();
+  return sdlHasSse3LookupFunction() == 1;
 }
 
 ///
@@ -267,10 +267,10 @@ int sdlHasSse3() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE41(void)
 /// ```
-int sdlHasSse41() {
+bool sdlHasSse41() {
   final sdlHasSse41LookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_HasSSE41');
-  return sdlHasSse41LookupFunction();
+  return sdlHasSse41LookupFunction() == 1;
 }
 
 ///
@@ -296,10 +296,10 @@ int sdlHasSse41() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE42(void)
 /// ```
-int sdlHasSse42() {
+bool sdlHasSse42() {
   final sdlHasSse42LookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_HasSSE42');
-  return sdlHasSse42LookupFunction();
+  return sdlHasSse42LookupFunction() == 1;
 }
 
 ///
@@ -325,10 +325,10 @@ int sdlHasSse42() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasAVX(void)
 /// ```
-int sdlHasAvx() {
+bool sdlHasAvx() {
   final sdlHasAvxLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_HasAVX');
-  return sdlHasAvxLookupFunction();
+  return sdlHasAvxLookupFunction() == 1;
 }
 
 ///
@@ -354,10 +354,10 @@ int sdlHasAvx() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasAVX2(void)
 /// ```
-int sdlHasAvx2() {
+bool sdlHasAvx2() {
   final sdlHasAvx2LookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_HasAVX2');
-  return sdlHasAvx2LookupFunction();
+  return sdlHasAvx2LookupFunction() == 1;
 }
 
 ///
@@ -374,10 +374,10 @@ int sdlHasAvx2() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasAVX512F(void)
 /// ```
-int sdlHasAvx512F() {
+bool sdlHasAvx512F() {
   final sdlHasAvx512FLookupFunction = libSdl2
       .lookupFunction<Int32 Function(), int Function()>('SDL_HasAVX512F');
-  return sdlHasAvx512FLookupFunction();
+  return sdlHasAvx512FLookupFunction() == 1;
 }
 
 ///
@@ -396,10 +396,10 @@ int sdlHasAvx512F() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasARMSIMD(void)
 /// ```
-int sdlHasArmsimd() {
+bool sdlHasArmsimd() {
   final sdlHasArmsimdLookupFunction = libSdl2
       .lookupFunction<Int32 Function(), int Function()>('SDL_HasARMSIMD');
-  return sdlHasArmsimdLookupFunction();
+  return sdlHasArmsimdLookupFunction() == 1;
 }
 
 ///
@@ -414,10 +414,10 @@ int sdlHasArmsimd() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasNEON(void)
 /// ```
-int sdlHasNeon() {
+bool sdlHasNeon() {
   final sdlHasNeonLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_HasNEON');
-  return sdlHasNeonLookupFunction();
+  return sdlHasNeonLookupFunction() == 1;
 }
 
 ///
@@ -434,10 +434,10 @@ int sdlHasNeon() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasLSX(void)
 /// ```
-int sdlHasLsx() {
+bool sdlHasLsx() {
   final sdlHasLsxLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_HasLSX');
-  return sdlHasLsxLookupFunction();
+  return sdlHasLsxLookupFunction() == 1;
 }
 
 ///
@@ -454,10 +454,10 @@ int sdlHasLsx() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasLASX(void)
 /// ```
-int sdlHasLasx() {
+bool sdlHasLasx() {
   final sdlHasLasxLookupFunction =
       libSdl2.lookupFunction<Int32 Function(), int Function()>('SDL_HasLASX');
-  return sdlHasLasxLookupFunction();
+  return sdlHasLasxLookupFunction() == 1;
 }
 
 ///

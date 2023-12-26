@@ -58,11 +58,11 @@ Pointer<SdlWindow> sdlCreateShapedWindow(
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_IsShapedWindow(const SDL_Window *window)
 /// ```
-int sdlIsShapedWindow(Pointer<SdlWindow> window) {
+bool sdlIsShapedWindow(Pointer<SdlWindow> window) {
   final sdlIsShapedWindowLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlWindow> window),
       int Function(Pointer<SdlWindow> window)>('SDL_IsShapedWindow');
-  return sdlIsShapedWindowLookupFunction(window);
+  return sdlIsShapedWindowLookupFunction(window) == 1;
 }
 
 ///

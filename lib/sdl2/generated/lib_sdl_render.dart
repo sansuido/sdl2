@@ -906,11 +906,11 @@ void sdlUnlockTexture(Pointer<SdlTexture> texture) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_RenderTargetSupported(SDL_Renderer *renderer)
 /// ```
-int sdlRenderTargetSupported(Pointer<SdlRenderer> renderer) {
+bool sdlRenderTargetSupported(Pointer<SdlRenderer> renderer) {
   final sdlRenderTargetSupportedLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlRenderer> renderer),
       int Function(Pointer<SdlRenderer> renderer)>('SDL_RenderTargetSupported');
-  return sdlRenderTargetSupportedLookupFunction(renderer);
+  return sdlRenderTargetSupportedLookupFunction(renderer) == 1;
 }
 
 ///
@@ -1061,12 +1061,12 @@ void sdlRenderGetLogicalSize(
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_RenderSetIntegerScale(SDL_Renderer * renderer, SDL_bool enable)
 /// ```
-int sdlRenderSetIntegerScale(Pointer<SdlRenderer> renderer, int enable) {
+int sdlRenderSetIntegerScale(Pointer<SdlRenderer> renderer, bool enable) {
   final sdlRenderSetIntegerScaleLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlRenderer> renderer, Int32 enable),
       int Function(Pointer<SdlRenderer> renderer,
           int enable)>('SDL_RenderSetIntegerScale');
-  return sdlRenderSetIntegerScaleLookupFunction(renderer, enable);
+  return sdlRenderSetIntegerScaleLookupFunction(renderer, enable ? 1 : 0);
 }
 
 ///
@@ -1083,11 +1083,11 @@ int sdlRenderSetIntegerScale(Pointer<SdlRenderer> renderer, int enable) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_RenderGetIntegerScale(SDL_Renderer * renderer)
 /// ```
-int sdlRenderGetIntegerScale(Pointer<SdlRenderer> renderer) {
+bool sdlRenderGetIntegerScale(Pointer<SdlRenderer> renderer) {
   final sdlRenderGetIntegerScaleLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlRenderer> renderer),
       int Function(Pointer<SdlRenderer> renderer)>('SDL_RenderGetIntegerScale');
-  return sdlRenderGetIntegerScaleLookupFunction(renderer);
+  return sdlRenderGetIntegerScaleLookupFunction(renderer) == 1;
 }
 
 ///
@@ -1205,11 +1205,11 @@ void sdlRenderGetClipRect(
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_RenderIsClipEnabled(SDL_Renderer * renderer)
 /// ```
-int sdlRenderIsClipEnabled(Pointer<SdlRenderer> renderer) {
+bool sdlRenderIsClipEnabled(Pointer<SdlRenderer> renderer) {
   final sdlRenderIsClipEnabledLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlRenderer> renderer),
       int Function(Pointer<SdlRenderer> renderer)>('SDL_RenderIsClipEnabled');
-  return sdlRenderIsClipEnabledLookupFunction(renderer);
+  return sdlRenderIsClipEnabledLookupFunction(renderer) == 1;
 }
 
 ///
@@ -2593,7 +2593,7 @@ Pointer<NativeType> sdlRenderGetMetalLayer(Pointer<SdlRenderer> renderer) {
 /// Note that as of SDL 2.0.18, this will return NULL if Metal refuses to give
 /// SDL a drawable to render to, which might happen if the window is
 /// hidden/minimized/offscreen. This doesn't apply to command encoders for
-/// render targets, just the window's backbacker. Check your return values!
+/// render targets, just the window's backbuffer. Check your return values!
 ///
 /// \param renderer The renderer to query
 /// \returns an `id<MTLRenderCommandEncoder>` on success, or NULL if the

@@ -84,12 +84,12 @@ Pointer<SdlRWops> sdlRwFromFile(String? file, String? mode) {
 /// ```c
 /// extern DECLSPEC SDL_RWops *SDLCALL SDL_RWFromFP(FILE * fp, SDL_bool autoclose)
 /// ```
-Pointer<SdlRWops> sdlRwFromFp(Pointer<IntPtr> fp, int autoclose) {
+Pointer<SdlRWops> sdlRwFromFp(Pointer<IntPtr> fp, bool autoclose) {
   final sdlRwFromFpLookupFunction = libSdl2.lookupFunction<
       Pointer<SdlRWops> Function(Pointer<IntPtr> fp, Int32 autoclose),
       Pointer<SdlRWops> Function(
           Pointer<IntPtr> fp, int autoclose)>('SDL_RWFromFP');
-  return sdlRwFromFpLookupFunction(fp, autoclose);
+  return sdlRwFromFpLookupFunction(fp, autoclose ? 1 : 0);
 }
 
 ///

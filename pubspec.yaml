@@ -1,15 +1,15 @@
 name: sdl2
-description: A Dart library for accessing common SDL 2.28.2 (stable) APIs using, FFI.
-version: 1.5.3
+description: A Dart library for accessing common SDL 2.28.5 (stable) APIs using, FFI.
+version: 1.6.0
 homepage: https://github.com/sansuido/sdl2
 repository: https://github.com/sansuido/sdl2
 
 environment:
-  sdk: '>=3.0.7 <4.0.0'
+  sdk: '>=3.2.3 <4.0.0'
 
 dependencies:
-  ffi: ^2.0.2
+  ffi: ^2.1.0
 
 dev_dependencies:
-  lints: ^2.1.1
-  change_case: ^1.1.0
+  lints: ^3.0.0
+  change_case: ^2.0.0

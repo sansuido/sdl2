@@ -128,14 +128,15 @@ void sdlVulkanUnloadLibrary() {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_Vulkan_GetInstanceExtensions(SDL_Window *window, unsigned int *pCount, const char **pNames)
 /// ```
-int sdlVulkanGetInstanceExtensions(Pointer<SdlWindow> window,
+bool sdlVulkanGetInstanceExtensions(Pointer<SdlWindow> window,
     Pointer<Uint32> pCount, Pointer<Pointer<Int8>> pNames) {
   final sdlVulkanGetInstanceExtensionsLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlWindow> window, Pointer<Uint32> pCount,
           Pointer<Pointer<Int8>> pNames),
       int Function(Pointer<SdlWindow> window, Pointer<Uint32> pCount,
           Pointer<Pointer<Int8>> pNames)>('SDL_Vulkan_GetInstanceExtensions');
-  return sdlVulkanGetInstanceExtensionsLookupFunction(window, pCount, pNames);
+  return sdlVulkanGetInstanceExtensionsLookupFunction(window, pCount, pNames) ==
+      1;
 }
 
 ///
@@ -159,14 +160,14 @@ int sdlVulkanGetInstanceExtensions(Pointer<SdlWindow> window,
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_Vulkan_CreateSurface(SDL_Window *window, VkInstance instance, VkSurfaceKHR* surface)
 /// ```
-int sdlVulkanCreateSurface(Pointer<SdlWindow> window,
+bool sdlVulkanCreateSurface(Pointer<SdlWindow> window,
     Pointer<NativeType> instance, Pointer<NativeType> surface) {
   final sdlVulkanCreateSurfaceLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlWindow> window, Pointer<NativeType> instance,
           Pointer<NativeType> surface),
       int Function(Pointer<SdlWindow> window, Pointer<NativeType> instance,
           Pointer<NativeType> surface)>('SDL_Vulkan_CreateSurface');
-  return sdlVulkanCreateSurfaceLookupFunction(window, instance, surface);
+  return sdlVulkanCreateSurfaceLookupFunction(window, instance, surface) == 1;
 }
 
 ///

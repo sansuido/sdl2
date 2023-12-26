@@ -419,11 +419,11 @@ int sdlSetSurfaceRle(Pointer<SdlSurface> surface, int flag) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasSurfaceRLE(SDL_Surface * surface)
 /// ```
-int sdlHasSurfaceRle(Pointer<SdlSurface> surface) {
+bool sdlHasSurfaceRle(Pointer<SdlSurface> surface) {
   final sdlHasSurfaceRleLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlSurface> surface),
       int Function(Pointer<SdlSurface> surface)>('SDL_HasSurfaceRLE');
-  return sdlHasSurfaceRleLookupFunction(surface);
+  return sdlHasSurfaceRleLookupFunction(surface) == 1;
 }
 
 ///
@@ -477,11 +477,11 @@ int sdlSetColorKey(Pointer<SdlSurface> surface, int flag, int key) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_HasColorKey(SDL_Surface * surface)
 /// ```
-int sdlHasColorKey(Pointer<SdlSurface> surface) {
+bool sdlHasColorKey(Pointer<SdlSurface> surface) {
   final sdlHasColorKeyLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlSurface> surface),
       int Function(Pointer<SdlSurface> surface)>('SDL_HasColorKey');
-  return sdlHasColorKeyLookupFunction(surface);
+  return sdlHasColorKeyLookupFunction(surface) == 1;
 }
 
 ///
@@ -700,12 +700,12 @@ int sdlGetSurfaceBlendMode(
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_SetClipRect(SDL_Surface * surface, const SDL_Rect * rect)
 /// ```
-int sdlSetClipRect(Pointer<SdlSurface> surface, Pointer<SdlRect> rect) {
+bool sdlSetClipRect(Pointer<SdlSurface> surface, Pointer<SdlRect> rect) {
   final sdlSetClipRectLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<SdlSurface> surface, Pointer<SdlRect> rect),
       int Function(Pointer<SdlSurface> surface,
           Pointer<SdlRect> rect)>('SDL_SetClipRect');
-  return sdlSetClipRectLookupFunction(surface, rect);
+  return sdlSetClipRectLookupFunction(surface, rect) == 1;
 }
 
 ///

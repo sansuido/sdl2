@@ -54,21 +54,22 @@ void sdlFree(Pointer<NativeType> mem) {
 /// extern DECLSPEC void SDLCALL SDL_GetOriginalMemoryFunctions(SDL_malloc_func *malloc_func, SDL_calloc_func *calloc_func, SDL_realloc_func *realloc_func, SDL_free_func *free_func)
 /// ```
 void sdlGetOriginalMemoryFunctions(
-    Pointer<SdlMallocFunc> mallocFunc,
-    Pointer<SdlCallocFunc> callocFunc,
-    Pointer<SdlReallocFunc> reallocFunc,
-    Pointer<SdlFreeFunc> freeFunc) {
+    Pointer<Pointer<NativeFunction<SdlMallocFunc>>> mallocFunc,
+    Pointer<Pointer<NativeFunction<SdlCallocFunc>>> callocFunc,
+    Pointer<Pointer<NativeFunction<SdlReallocFunc>>> reallocFunc,
+    Pointer<Pointer<NativeFunction<SdlFreeFunc>>> freeFunc) {
   final sdlGetOriginalMemoryFunctionsLookupFunction = libSdl2.lookupFunction<
-      Void Function(
-          Pointer<SdlMallocFunc> mallocFunc,
-          Pointer<SdlCallocFunc> callocFunc,
-          Pointer<SdlReallocFunc> reallocFunc,
-          Pointer<SdlFreeFunc> freeFunc),
-      void Function(
-          Pointer<SdlMallocFunc> mallocFunc,
-          Pointer<SdlCallocFunc> callocFunc,
-          Pointer<SdlReallocFunc> reallocFunc,
-          Pointer<SdlFreeFunc> freeFunc)>('SDL_GetOriginalMemoryFunctions');
+          Void Function(
+              Pointer<Pointer<NativeFunction<SdlMallocFunc>>> mallocFunc,
+              Pointer<Pointer<NativeFunction<SdlCallocFunc>>> callocFunc,
+              Pointer<Pointer<NativeFunction<SdlReallocFunc>>> reallocFunc,
+              Pointer<Pointer<NativeFunction<SdlFreeFunc>>> freeFunc),
+          void Function(
+              Pointer<Pointer<NativeFunction<SdlMallocFunc>>> mallocFunc,
+              Pointer<Pointer<NativeFunction<SdlCallocFunc>>> callocFunc,
+              Pointer<Pointer<NativeFunction<SdlReallocFunc>>> reallocFunc,
+              Pointer<Pointer<NativeFunction<SdlFreeFunc>>> freeFunc)>(
+      'SDL_GetOriginalMemoryFunctions');
   return sdlGetOriginalMemoryFunctionsLookupFunction(
       mallocFunc, callocFunc, reallocFunc, freeFunc);
 }
@@ -82,21 +83,22 @@ void sdlGetOriginalMemoryFunctions(
 /// extern DECLSPEC void SDLCALL SDL_GetMemoryFunctions(SDL_malloc_func *malloc_func, SDL_calloc_func *calloc_func, SDL_realloc_func *realloc_func, SDL_free_func *free_func)
 /// ```
 void sdlGetMemoryFunctions(
-    Pointer<SdlMallocFunc> mallocFunc,
-    Pointer<SdlCallocFunc> callocFunc,
-    Pointer<SdlReallocFunc> reallocFunc,
-    Pointer<SdlFreeFunc> freeFunc) {
+    Pointer<Pointer<NativeFunction<SdlMallocFunc>>> mallocFunc,
+    Pointer<Pointer<NativeFunction<SdlCallocFunc>>> callocFunc,
+    Pointer<Pointer<NativeFunction<SdlReallocFunc>>> reallocFunc,
+    Pointer<Pointer<NativeFunction<SdlFreeFunc>>> freeFunc) {
   final sdlGetMemoryFunctionsLookupFunction = libSdl2.lookupFunction<
-      Void Function(
-          Pointer<SdlMallocFunc> mallocFunc,
-          Pointer<SdlCallocFunc> callocFunc,
-          Pointer<SdlReallocFunc> reallocFunc,
-          Pointer<SdlFreeFunc> freeFunc),
-      void Function(
-          Pointer<SdlMallocFunc> mallocFunc,
-          Pointer<SdlCallocFunc> callocFunc,
-          Pointer<SdlReallocFunc> reallocFunc,
-          Pointer<SdlFreeFunc> freeFunc)>('SDL_GetMemoryFunctions');
+          Void Function(
+              Pointer<Pointer<NativeFunction<SdlMallocFunc>>> mallocFunc,
+              Pointer<Pointer<NativeFunction<SdlCallocFunc>>> callocFunc,
+              Pointer<Pointer<NativeFunction<SdlReallocFunc>>> reallocFunc,
+              Pointer<Pointer<NativeFunction<SdlFreeFunc>>> freeFunc),
+          void Function(
+              Pointer<Pointer<NativeFunction<SdlMallocFunc>>> mallocFunc,
+              Pointer<Pointer<NativeFunction<SdlCallocFunc>>> callocFunc,
+              Pointer<Pointer<NativeFunction<SdlReallocFunc>>> reallocFunc,
+              Pointer<Pointer<NativeFunction<SdlFreeFunc>>> freeFunc)>(
+      'SDL_GetMemoryFunctions');
   return sdlGetMemoryFunctionsLookupFunction(
       mallocFunc, callocFunc, reallocFunc, freeFunc);
 }
@@ -109,16 +111,23 @@ void sdlGetMemoryFunctions(
 /// ```c
 /// extern DECLSPEC int SDLCALL SDL_SetMemoryFunctions(SDL_malloc_func malloc_func, SDL_calloc_func calloc_func, SDL_realloc_func realloc_func, SDL_free_func free_func)
 /// ```
-int sdlSetMemoryFunctions(SdlMallocFunc mallocFunc, SdlCallocFunc callocFunc,
-    SdlReallocFunc reallocFunc, SdlFreeFunc freeFunc) {
+int sdlSetMemoryFunctions(
+    Pointer<NativeFunction<SdlMallocFunc>> mallocFunc,
+    Pointer<NativeFunction<SdlCallocFunc>> callocFunc,
+    Pointer<NativeFunction<SdlReallocFunc>> reallocFunc,
+    Pointer<NativeFunction<SdlFreeFunc>> freeFunc) {
   final sdlSetMemoryFunctionsLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(SdlMallocFunc mallocFunc, SdlCallocFunc callocFunc,
-          SdlReallocFunc reallocFunc, SdlFreeFunc freeFunc),
-      int Function(
-          SdlMallocFunc mallocFunc,
-          SdlCallocFunc callocFunc,
-          SdlReallocFunc reallocFunc,
-          SdlFreeFunc freeFunc)>('SDL_SetMemoryFunctions');
+          Int32 Function(
+              Pointer<NativeFunction<SdlMallocFunc>> mallocFunc,
+              Pointer<NativeFunction<SdlCallocFunc>> callocFunc,
+              Pointer<NativeFunction<SdlReallocFunc>> reallocFunc,
+              Pointer<NativeFunction<SdlFreeFunc>> freeFunc),
+          int Function(
+              Pointer<NativeFunction<SdlMallocFunc>> mallocFunc,
+              Pointer<NativeFunction<SdlCallocFunc>> callocFunc,
+              Pointer<NativeFunction<SdlReallocFunc>> reallocFunc,
+              Pointer<NativeFunction<SdlFreeFunc>> freeFunc)>(
+      'SDL_SetMemoryFunctions');
   return sdlSetMemoryFunctionsLookupFunction(
       mallocFunc, callocFunc, reallocFunc, freeFunc);
 }

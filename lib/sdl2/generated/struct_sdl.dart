@@ -66,8 +66,10 @@ final class SdlAudioSpec extends Struct {
 }
 
 extension SdlAudioSpecExtension on Pointer<SdlAudioSpec> {
-  Pointer<SdlAudioCallback> get callback =>
-      cast<Uint8>().elementAt(16).cast<SdlAudioCallback>();
+  Pointer<Pointer<NativeFunction<SdlAudioCallback>>> get callback =>
+      cast<Uint8>()
+          .elementAt(16)
+          .cast<Pointer<NativeFunction<SdlAudioCallback>>>();
 }
 
 // SDL_AudioCVT
@@ -111,11 +113,13 @@ final class SdlAudioCvt extends Struct {
 }
 
 extension SdlAudioCvtExtension on Pointer<SdlAudioCvt> {
-  List<SdlAudioFilter> get filters {
-    var list = <SdlAudioFilter>[];
+  List<Pointer<NativeFunction<SdlAudioFilter>>> get filters {
+    var list = <Pointer<NativeFunction<SdlAudioFilter>>>[];
     for (var i = 0; i < 10; i++) {
-      list.add(
-          cast<Uint8>().elementAt(48 + i * 0).cast<SdlAudioFilter>().value);
+      list.add(cast<Uint8>()
+          .elementAt(48 + i * 0)
+          .cast<Pointer<NativeFunction<SdlAudioFilter>>>()
+          .value);
     }
     return list;
   }

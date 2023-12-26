@@ -10,14 +10,12 @@ final libSdl2Mixer = dylib.dylibOpen('SDL2_mixer');
 // typedef void (SDLCALL *Mix_EffectFunc_t)(int chan, void *stream, int len, void *udata)
 typedef MixEffectFuncTDart = void Function(
     int, Pointer<NativeType>, int, Pointer<NativeType>);
-typedef MixEffectFuncT = Pointer<
-    NativeFunction<
-        Void Function(Int32, Pointer<NativeType>, Int32, Pointer<NativeType>)>>;
+typedef MixEffectFuncT = Void Function(
+    Int32, Pointer<NativeType>, Int32, Pointer<NativeType>);
 
 // typedef void (SDLCALL *Mix_EffectDone_t)(int chan, void *udata)
 typedef MixEffectDoneTDart = void Function(int, Pointer<NativeType>);
-typedef MixEffectDoneT
-    = Pointer<NativeFunction<Void Function(Int32, Pointer<NativeType>)>>;
+typedef MixEffectDoneT = Void Function(Int32, Pointer<NativeType>);
 
 ///
 /// Query the version of SDL_mixer that the program is linked against.
@@ -925,12 +923,12 @@ String? mixGetChunkDecoder(int index) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL Mix_HasChunkDecoder(const char *name)
 /// ```
-int mixHasChunkDecoder(String? name) {
+bool mixHasChunkDecoder(String? name) {
   final mixHasChunkDecoderLookupFunction = libSdl2Mixer.lookupFunction<
       Int32 Function(Pointer<Utf8> name),
       int Function(Pointer<Utf8> name)>('Mix_HasChunkDecoder');
   final namePointer = name != null ? name.toNativeUtf8() : nullptr;
-  final result = mixHasChunkDecoderLookupFunction(namePointer);
+  final result = mixHasChunkDecoderLookupFunction(namePointer) == 1;
   calloc.free(namePointer);
   return result;
 }
@@ -1024,12 +1022,12 @@ String? mixGetMusicDecoder(int index) {
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL Mix_HasMusicDecoder(const char *name)
 /// ```
-int mixHasMusicDecoder(String? name) {
+bool mixHasMusicDecoder(String? name) {
   final mixHasMusicDecoderLookupFunction = libSdl2Mixer.lookupFunction<
       Int32 Function(Pointer<Utf8> name),
       int Function(Pointer<Utf8> name)>('Mix_HasMusicDecoder');
   final namePointer = name != null ? name.toNativeUtf8() : nullptr;
-  final result = mixHasMusicDecoderLookupFunction(namePointer);
+  final result = mixHasMusicDecoderLookupFunction(namePointer) == 1;
   calloc.free(namePointer);
   return result;
 }
@@ -1494,12 +1492,15 @@ void mixChannelFinished(Pointer<NativeType> channelFinished) {
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_RegisterEffect(int chan, Mix_EffectFunc_t f, Mix_EffectDone_t d, void *arg)
 /// ```
-int mixRegisterEffect(
-    int chan, MixEffectFuncT f, MixEffectDoneT d, Pointer<NativeType> arg) {
+int mixRegisterEffect(int chan, Pointer<NativeFunction<MixEffectFuncT>> f,
+    Pointer<NativeFunction<MixEffectDoneT>> d, Pointer<NativeType> arg) {
   final mixRegisterEffectLookupFunction = libSdl2Mixer.lookupFunction<
-      Int32 Function(Int32 chan, MixEffectFuncT f, MixEffectDoneT d,
-          Pointer<NativeType> arg),
-      int Function(int chan, MixEffectFuncT f, MixEffectDoneT d,
+      Int32 Function(Int32 chan, Pointer<NativeFunction<MixEffectFuncT>> f,
+          Pointer<NativeFunction<MixEffectDoneT>> d, Pointer<NativeType> arg),
+      int Function(
+          int chan,
+          Pointer<NativeFunction<MixEffectFuncT>> f,
+          Pointer<NativeFunction<MixEffectDoneT>> d,
           Pointer<NativeType> arg)>('Mix_RegisterEffect');
   return mixRegisterEffectLookupFunction(chan, f, d, arg);
 }
@@ -1529,10 +1530,12 @@ int mixRegisterEffect(
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_UnregisterEffect(int channel, Mix_EffectFunc_t f)
 /// ```
-int mixUnregisterEffect(int channel, MixEffectFuncT f) {
+int mixUnregisterEffect(
+    int channel, Pointer<NativeFunction<MixEffectFuncT>> f) {
   final mixUnregisterEffectLookupFunction = libSdl2Mixer.lookupFunction<
-      Int32 Function(Int32 channel, MixEffectFuncT f),
-      int Function(int channel, MixEffectFuncT f)>('Mix_UnregisterEffect');
+      Int32 Function(Int32 channel, Pointer<NativeFunction<MixEffectFuncT>> f),
+      int Function(int channel,
+          Pointer<NativeFunction<MixEffectFuncT>> f)>('Mix_UnregisterEffect');
   return mixUnregisterEffectLookupFunction(channel, f);
 }
 

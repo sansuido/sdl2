@@ -1,5 +1,5 @@
 import 'dart:ffi';
-import '../../generated/const_sdl.dart';
+//import '../../generated/const_sdl.dart';
 import '../../generated/struct_sdl.dart';
 import '../../generated/lib_sdl_mouse.dart';
 
@@ -32,9 +32,9 @@ extension SdlCursorEx on SdlCursor {
     return sdlGetDefaultCursor();
   }
 
-  static int show(bool toggle) {
+  static int show(int toggle) {
     // 502
-    return sdlShowCursor(toggle ? SDL_ENABLE : SDL_DISABLE);
+    return sdlShowCursor(toggle);
   }
 }
 

@@ -458,7 +458,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
 
   bool targetSupported() {
     // 908
-    return sdlRenderTargetSupported(this) == SDL_TRUE;
+    return sdlRenderTargetSupported(this);
   }
 
   int setTarget(Pointer<SdlTexture> texture) {
@@ -488,14 +488,14 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
     return result;
   }
 
-  int setIntegerScale(int enable) {
+  int setIntegerScale(bool enable) {
     // 1063
     return sdlRenderSetIntegerScale(this, enable);
   }
 
   bool getIntegerScale() {
     // 1085
-    return sdlRenderGetIntegerScale(this) == SDL_TRUE;
+    return sdlRenderGetIntegerScale(this);
   }
 
   int setViewport([math.Rectangle<double>? rect]) {
@@ -540,7 +540,7 @@ extension SdlRendererPointerEx on Pointer<SdlRenderer> {
 
   bool isCkipEnabled() {
     // 1207
-    return sdlRenderIsClipEnabled(this) == SDL_TRUE;
+    return sdlRenderIsClipEnabled(this);
   }
 
   int setScale(double scaleX, double scaleY) {

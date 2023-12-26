@@ -407,12 +407,15 @@ void sdlLogMessageV(
 /// ```c
 /// extern DECLSPEC void SDLCALL SDL_LogGetOutputFunction(SDL_LogOutputFunction *callback, void **userdata)
 /// ```
-void sdlLogGetOutputFunction(Pointer<SdlLogOutputFunction> callback,
+void sdlLogGetOutputFunction(
+    Pointer<Pointer<NativeFunction<SdlLogOutputFunction>>> callback,
     Pointer<Pointer<NativeType>> userdata) {
   final sdlLogGetOutputFunctionLookupFunction = libSdl2.lookupFunction<
-      Void Function(Pointer<SdlLogOutputFunction> callback,
+      Void Function(
+          Pointer<Pointer<NativeFunction<SdlLogOutputFunction>>> callback,
           Pointer<Pointer<NativeType>> userdata),
-      void Function(Pointer<SdlLogOutputFunction> callback,
+      void Function(
+          Pointer<Pointer<NativeFunction<SdlLogOutputFunction>>> callback,
           Pointer<Pointer<NativeType>> userdata)>('SDL_LogGetOutputFunction');
   return sdlLogGetOutputFunctionLookupFunction(callback, userdata);
 }
@@ -431,11 +434,12 @@ void sdlLogGetOutputFunction(Pointer<SdlLogOutputFunction> callback,
 /// extern DECLSPEC void SDLCALL SDL_LogSetOutputFunction(SDL_LogOutputFunction callback, void *userdata)
 /// ```
 void sdlLogSetOutputFunction(
-    SdlLogOutputFunction callback, Pointer<NativeType> userdata) {
+    Pointer<NativeFunction<SdlLogOutputFunction>> callback,
+    Pointer<NativeType> userdata) {
   final sdlLogSetOutputFunctionLookupFunction = libSdl2.lookupFunction<
-      Void Function(
-          SdlLogOutputFunction callback, Pointer<NativeType> userdata),
-      void Function(SdlLogOutputFunction callback,
+      Void Function(Pointer<NativeFunction<SdlLogOutputFunction>> callback,
+          Pointer<NativeType> userdata),
+      void Function(Pointer<NativeFunction<SdlLogOutputFunction>> callback,
           Pointer<NativeType> userdata)>('SDL_LogSetOutputFunction');
   return sdlLogSetOutputFunctionLookupFunction(callback, userdata);
 }

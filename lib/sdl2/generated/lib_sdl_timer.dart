@@ -161,11 +161,17 @@ void sdlDelay(int ms) {
 /// extern DECLSPEC SDL_TimerID SDLCALL SDL_AddTimer(Uint32 interval, SDL_TimerCallback callback, void *param)
 /// ```
 int sdlAddTimer(
-    int interval, SdlTimerCallback callback, Pointer<NativeType> param) {
+    int interval,
+    Pointer<NativeFunction<SdlTimerCallback>> callback,
+    Pointer<NativeType> param) {
   final sdlAddTimerLookupFunction = libSdl2.lookupFunction<
-      Int32 Function(Uint32 interval, SdlTimerCallback callback,
+      Int32 Function(
+          Uint32 interval,
+          Pointer<NativeFunction<SdlTimerCallback>> callback,
           Pointer<NativeType> param),
-      int Function(int interval, SdlTimerCallback callback,
+      int Function(
+          int interval,
+          Pointer<NativeFunction<SdlTimerCallback>> callback,
           Pointer<NativeType> param)>('SDL_AddTimer');
   return sdlAddTimerLookupFunction(interval, callback, param);
 }
@@ -184,9 +190,9 @@ int sdlAddTimer(
 /// ```c
 /// extern DECLSPEC SDL_bool SDLCALL SDL_RemoveTimer(SDL_TimerID id)
 /// ```
-int sdlRemoveTimer(int id) {
+bool sdlRemoveTimer(int id) {
   final sdlRemoveTimerLookupFunction =
       libSdl2.lookupFunction<Int32 Function(Int32 id), int Function(int id)>(
           'SDL_RemoveTimer');
-  return sdlRemoveTimerLookupFunction(id);
+  return sdlRemoveTimerLookupFunction(id) == 1;
 }

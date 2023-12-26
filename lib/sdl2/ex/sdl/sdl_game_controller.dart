@@ -1,6 +1,5 @@
 import 'dart:ffi';
 
-import '../../generated/const_sdl.dart';
 import '../../generated/lib_sdl_gamecontroller.dart';
 import '../../generated/struct_sdl.dart';
 
@@ -34,7 +33,7 @@ extension SdlGameControllerEx on SdlGameController {
 
   static bool isGameController(int joystickIndex) {
     // 198
-    return sdlIsGameController(joystickIndex) == SDL_TRUE;
+    return sdlIsGameController(joystickIndex);
   }
 
   static String? nameForIndex(int joystickIndex) {
@@ -161,7 +160,7 @@ extension SdlGameControllerPointerEx on Pointer<SdlGameController> {
 
   bool getAttached() {
     // 635
-    return sdlGameControllerGetAttached(this) == SDL_TRUE;
+    return sdlGameControllerGetAttached(this);
   }
 
   Pointer<SdlJoystick> getJoystick() {
@@ -176,7 +175,7 @@ extension SdlGameControllerPointerEx on Pointer<SdlGameController> {
 
   bool hasAxis(int axis) {
     // 825
-    return sdlGameControllerHasAxis(this, axis) == SDL_TRUE;
+    return sdlGameControllerHasAxis(this, axis);
   }
 
   int getAxis(int axis) {
@@ -191,7 +190,7 @@ extension SdlGameControllerPointerEx on Pointer<SdlGameController> {
 
   bool hasButton(int button) {
     // 963
-    return sdlGameControllerHasButton(this, button) == SDL_TRUE;
+    return sdlGameControllerHasButton(this, button);
   }
 
   int getButton(int button) {
@@ -218,17 +217,17 @@ extension SdlGameControllerPointerEx on Pointer<SdlGameController> {
 
   bool hasSensor(int type) {
     // 1084
-    return sdlGameControllerHasSensor(this, type) == SDL_TRUE;
+    return sdlGameControllerHasSensor(this, type);
   }
 
-  int setSensorEnabled(int type, int enabled) {
+  int setSensorEnabled(int type, bool enabled) {
     // 1106
     return sdlGameControllerSetSensorEnabled(this, type, enabled);
   }
 
   bool isSensorEnabled(int type) {
     // 1130
-    return sdlGameControllerIsSensorEnabled(this, type) == SDL_TRUE;
+    return sdlGameControllerIsSensorEnabled(this, type);
   }
 
   double getSensorDataRate(int type) {
@@ -262,17 +261,17 @@ extension SdlGameControllerPointerEx on Pointer<SdlGameController> {
 
   bool hasLed() {
     // 1320
-    return sdlGameControllerHasLed(this) == SDL_TRUE;
+    return sdlGameControllerHasLed(this);
   }
 
   bool hasRumble() {
     // 1342
-    return sdlGameControllerHasRumble(this) == SDL_TRUE;
+    return sdlGameControllerHasRumble(this);
   }
 
   bool hasRumbleTriggers() {
     // 1364
-    return sdlGameControllerHasRumbleTriggers(this) == SDL_TRUE;
+    return sdlGameControllerHasRumbleTriggers(this);
   }
 
   int setLed(int red, int green, int blue) {
