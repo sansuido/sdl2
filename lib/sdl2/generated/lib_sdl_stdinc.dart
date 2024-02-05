@@ -978,17 +978,17 @@ int sdlSscanf(String? text, String? fmt, Pointer<NativeType> arg2) {
 }
 
 /// ```c
-/// extern DECLSPEC int SDLCALL SDL_vsscanf(const char *text, const char *fmt, va_list ap)
+/// extern DECLSPEC int SDLCALL SDL_vsscanf(const char *text, SDL_SCANF_FORMAT_STRING const char *fmt, va_list ap) SDL_SCANF_VARARG_FUNCV(2)
 /// ```
-int sdlVsscanf(String? text, String? fmt, Pointer<NativeType> ap) {
+int sdlVsscanf(String? text, String? fmt, Pointer<NativeType> arg2) {
   final sdlVsscanfLookupFunction = libSdl2.lookupFunction<
       Int32 Function(
-          Pointer<Utf8> text, Pointer<Utf8> fmt, Pointer<NativeType> ap),
+          Pointer<Utf8> text, Pointer<Utf8> fmt, Pointer<NativeType> arg2),
       int Function(Pointer<Utf8> text, Pointer<Utf8> fmt,
-          Pointer<NativeType> ap)>('SDL_vsscanf');
+          Pointer<NativeType> arg2)>('SDL_vsscanf');
   final textPointer = text != null ? text.toNativeUtf8() : nullptr;
   final fmtPointer = fmt != null ? fmt.toNativeUtf8() : nullptr;
-  final result = sdlVsscanfLookupFunction(textPointer, fmtPointer, ap);
+  final result = sdlVsscanfLookupFunction(textPointer, fmtPointer, arg2);
   calloc.free(textPointer);
   calloc.free(fmtPointer);
   return result;
@@ -1011,17 +1011,17 @@ int sdlSnprintf(Pointer<NativeType> arg0, int maxlen, String? fmt,
 }
 
 /// ```c
-/// extern DECLSPEC int SDLCALL SDL_vsnprintf(SDL_OUT_Z_CAP(maxlen) char *text, size_t maxlen, const char *fmt, va_list ap)
+/// extern DECLSPEC int SDLCALL SDL_vsnprintf(SDL_OUT_Z_CAP(maxlen) char *text, size_t maxlen, SDL_PRINTF_FORMAT_STRING const char *fmt, va_list ap) SDL_PRINTF_VARARG_FUNCV(3)
 /// ```
-int sdlVsnprintf(
-    Pointer<NativeType> arg0, int maxlen, String? fmt, Pointer<NativeType> ap) {
+int sdlVsnprintf(Pointer<NativeType> arg0, int maxlen, String? fmt,
+    Pointer<NativeType> arg3) {
   final sdlVsnprintfLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<NativeType> arg0, Uint32 maxlen, Pointer<Utf8> fmt,
-          Pointer<NativeType> ap),
+          Pointer<NativeType> arg3),
       int Function(Pointer<NativeType> arg0, int maxlen, Pointer<Utf8> fmt,
-          Pointer<NativeType> ap)>('SDL_vsnprintf');
+          Pointer<NativeType> arg3)>('SDL_vsnprintf');
   final fmtPointer = fmt != null ? fmt.toNativeUtf8() : nullptr;
-  final result = sdlVsnprintfLookupFunction(arg0, maxlen, fmtPointer, ap);
+  final result = sdlVsnprintfLookupFunction(arg0, maxlen, fmtPointer, arg3);
   calloc.free(fmtPointer);
   return result;
 }
@@ -1043,17 +1043,17 @@ int sdlAsprintf(
 }
 
 /// ```c
-/// extern DECLSPEC int SDLCALL SDL_vasprintf(char **strp, const char *fmt, va_list ap)
+/// extern DECLSPEC int SDLCALL SDL_vasprintf(char **strp, SDL_PRINTF_FORMAT_STRING const char *fmt, va_list ap) SDL_PRINTF_VARARG_FUNCV(2)
 /// ```
 int sdlVasprintf(
-    Pointer<Pointer<Int8>> strp, String? fmt, Pointer<NativeType> ap) {
+    Pointer<Pointer<Int8>> strp, String? fmt, Pointer<NativeType> arg2) {
   final sdlVasprintfLookupFunction = libSdl2.lookupFunction<
       Int32 Function(Pointer<Pointer<Int8>> strp, Pointer<Utf8> fmt,
-          Pointer<NativeType> ap),
+          Pointer<NativeType> arg2),
       int Function(Pointer<Pointer<Int8>> strp, Pointer<Utf8> fmt,
-          Pointer<NativeType> ap)>('SDL_vasprintf');
+          Pointer<NativeType> arg2)>('SDL_vasprintf');
   final fmtPointer = fmt != null ? fmt.toNativeUtf8() : nullptr;
-  final result = sdlVasprintfLookupFunction(strp, fmtPointer, ap);
+  final result = sdlVasprintfLookupFunction(strp, fmtPointer, arg2);
   calloc.free(fmtPointer);
   return result;
 }
@@ -1505,8 +1505,8 @@ int sdlIconv(
 }
 
 ///
-/// This function converts a buffer or string between encodings in one pass, returning a
-/// string that must be freed with SDL_free() or NULL on error.
+/// This function converts a buffer or string between encodings in one pass,
+/// returning a string that must be freed with SDL_free() or NULL on error.
 ///
 /// \since This function is available since SDL 2.0.0.
 ///

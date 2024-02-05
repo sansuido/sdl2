@@ -37,12 +37,12 @@ Pointer<SdlVersion> imgLinkedVersion() {
 ///
 /// Currently, these flags are:
 ///
-/// - `_INIT_JPG`
-/// - `_INIT_PNG`
-/// - `_INIT_TIF`
-/// - `_INIT_WEBP`
-/// - `_INIT_JXL`
-/// - `_INIT_AVIF`
+/// - `IMG_INIT_JPG`
+/// - `IMG_INIT_PNG`
+/// - `IMG_INIT_TIF`
+/// - `IMG_INIT_WEBP`
+/// - `IMG_INIT_JXL`
+/// - `IMG_INIT_AVIF`
 ///
 /// More flags may be added in a future SDL_image release.
 ///
@@ -2572,4 +2572,33 @@ Pointer<ImgAnimation> imgLoadGifAnimationRw(Pointer<SdlRWops> src) {
       Pointer<ImgAnimation> Function(
           Pointer<SdlRWops> src)>('IMG_LoadGIFAnimation_RW');
   return imgLoadGifAnimationRwLookupFunction(src);
+}
+
+///
+/// Load a WEBP animation directly.
+///
+/// If you know you definitely have a WEBP image, you can call this function,
+/// which will skip SDL_image's file format detection routines. Generally it's
+/// better to use the abstract interfaces; also, there is only an SDL_RWops
+/// interface available here.
+///
+/// \param src an SDL_RWops that data will be read from.
+/// \returns a new IMG_Animation, or NULL on error.
+///
+/// \since This function is available since SDL_image 2.6.0.
+///
+/// \sa IMG_LoadAnimation
+/// \sa IMG_LoadAnimation_RW
+/// \sa IMG_LoadAnimationTyped_RW
+/// \sa IMG_FreeAnimation
+///
+/// ```c
+/// extern DECLSPEC IMG_Animation * SDLCALL IMG_LoadWEBPAnimation_RW(SDL_RWops *src)
+/// ```
+Pointer<ImgAnimation> imgLoadWebpAnimationRw(Pointer<SdlRWops> src) {
+  final imgLoadWebpAnimationRwLookupFunction = libSdl2Image.lookupFunction<
+      Pointer<ImgAnimation> Function(Pointer<SdlRWops> src),
+      Pointer<ImgAnimation> Function(
+          Pointer<SdlRWops> src)>('IMG_LoadWEBPAnimation_RW');
+  return imgLoadWebpAnimationRwLookupFunction(src);
 }

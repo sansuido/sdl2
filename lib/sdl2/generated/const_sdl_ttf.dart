@@ -2,8 +2,8 @@
 // ignore_for_file: constant_identifier_names
 //const SDL_TTF_H_ = ;
 const SDL_TTF_MAJOR_VERSION = 2;
-const SDL_TTF_MINOR_VERSION = 20;
-const SDL_TTF_PATCHLEVEL = 2;
+const SDL_TTF_MINOR_VERSION = 22;
+const SDL_TTF_PATCHLEVEL = 0;
 //const SDL_TTF_VERSION = (X) { (X)->major = SDL_TTF_MAJOR_VERSION; (X)->minor = SDL_TTF_MINOR_VERSION; (X)->patch = SDL_TTF_PATCHLEVEL; };
 const TTF_MAJOR_VERSION = SDL_TTF_MAJOR_VERSION;
 const TTF_MINOR_VERSION = SDL_TTF_MINOR_VERSION;

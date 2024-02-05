@@ -44,8 +44,12 @@ Pointer<SdlVersion> mixLinkedVersion() {
 /// Initialize SDL_mixer.
 ///
 /// This function loads dynamic libraries that SDL_mixer needs, and prepares
-/// them for use. This must be the first function you call in SDL_mixer, and if
-/// it fails you should not continue with the library.
+/// them for use.
+///
+/// Note that, unlike other SDL libraries, this call is optional! If you load a
+/// music file, SDL_mixer will handle initialization on the fly. This function
+/// will let you know, up front, whether a specific format will be available
+/// for use.
 ///
 /// Flags should be one or more flags from MIX_InitFlags OR'd together. It
 /// returns the flags successfully initialized, or 0 on failure.
@@ -58,6 +62,7 @@ Pointer<SdlVersion> mixLinkedVersion() {
 /// - `MIX_INIT_OGG`
 /// - `MIX_INIT_MID`
 /// - `MIX_INIT_OPUS`
+/// - `MIX_INIT_WAVPACK`
 ///
 /// More flags may be added in a future SDL_mixer release.
 ///
@@ -170,7 +175,7 @@ void mixQuit() {
 /// it to the correct format on demand.
 ///
 /// That being said, if you have control of your audio data and you know its
-/// format ahead of time, you can save CPU time by opening the audio device in
+/// format ahead of time, you may save CPU time by opening the audio device in
 /// that exact format so SDL_mixer does not have to spend time converting
 /// anything behind the scenes, and can just pass the data straight through to
 /// the hardware. On some platforms, where the hardware only supports specific
@@ -216,7 +221,7 @@ void mixQuit() {
 /// The app can use Mix_QuerySpec() to determine the final device settings.
 ///
 /// When done with an audio device, probably at the end of the program, the app
-/// should dispose of the device with Mix_CloseDevice().
+/// should dispose of the device with Mix_CloseAudio().
 ///
 /// \param frequency the frequency to playback audio at (in Hz).
 /// \param format audio format, one of SDL's AUDIO_* values.
@@ -228,7 +233,7 @@ void mixQuit() {
 /// \since This function is available since SDL_mixer 2.0.0.
 ///
 /// \sa Mix_OpenAudioDevice
-/// \sa Mix_CloseDevice
+/// \sa Mix_CloseAudio
 ///
 /// ```c
 /// extern DECLSPEC int SDLCALL Mix_OpenAudio(int frequency, Uint16 format, int channels, int chunksize)
@@ -359,6 +364,23 @@ int mixOpenAudioDevice(int frequency, int format, int channels, int chunksize,
       frequency, format, channels, chunksize, devicePointer, allowedChanges);
   calloc.free(devicePointer);
   return result;
+}
+
+///
+/// Suspend or resume the whole audio output.
+///
+/// \param pause_on 1 to pause audio output, or 0 to resume.
+///
+/// \since This function is available since SDL_mixer 2.8.0.
+///
+/// ```c
+/// extern DECLSPEC void SDLCALL Mix_PauseAudio(int pause_on)
+/// ```
+void mixPauseAudio(int pauseOn) {
+  final mixPauseAudioLookupFunction = libSdl2Mixer.lookupFunction<
+      Void Function(Int32 pauseOn),
+      void Function(int pauseOn)>('Mix_PauseAudio');
+  return mixPauseAudioLookupFunction(pauseOn);
 }
 
 ///
@@ -671,6 +693,7 @@ Pointer<MixMusic> mixLoadMusRw(Pointer<SdlRWops> src, int freesrc) {
 /// - `MUS_MP3` (MP3 files)
 /// - `MUS_FLAC` (FLAC files)
 /// - `MUS_OPUS` (Opus files)
+/// - `MUS_WAVPACK` (WavPack files)
 ///
 /// If `freesrc` is non-zero, the RWops will be closed before returning,
 /// whether this function succeeds or not. SDL_mixer reads everything it needs
@@ -948,7 +971,7 @@ bool mixHasChunkDecoder(String? name) {
 /// These return values are static, read-only data; do not modify or free it.
 /// The pointers remain valid until you call Mix_CloseAudio().
 ///
-/// \returns number of chunk decoders available.
+/// \returns number of music decoders available.
 ///
 /// \since This function is available since SDL_mixer 2.0.0.
 ///
@@ -1520,7 +1543,7 @@ int mixRegisterEffect(int chan, Pointer<NativeFunction<MixEffectFuncT>> f,
 /// zero if there's an error, not on success. We apologize for the API design
 /// inconsistency here.
 ///
-/// \param chan the channel to unregister an effect on, or MIX_CHANNEL_POST.
+/// \param channel the channel to unregister an effect on, or MIX_CHANNEL_POST.
 /// \param f effect the callback stop calling in future mixing iterations.
 /// \returns zero if error (no such channel or effect), nonzero if removed.
 /// Error messages can be retrieved from Mix_GetError().
@@ -1556,7 +1579,8 @@ int mixUnregisterEffect(
 /// zero if there's an error, not on success. We apologize for the API design
 /// inconsistency here.
 ///
-/// \param chan the channel to unregister all effects on, or MIX_CHANNEL_POST.
+/// \param channel the channel to unregister all effects on, or
+/// MIX_CHANNEL_POST.
 /// \returns zero if error (no such channel), nonzero if all effects removed.
 /// Error messages can be retrieved from Mix_GetError().
 ///
@@ -1630,7 +1654,7 @@ int mixSetPanning(int channel, int left, int right) {
 /// Set the position of a channel.
 ///
 /// `angle` is an integer from 0 to 360, that specifies the location of the
-/// sound in relation to the listener. `angle` will be reduced as neccesary
+/// sound in relation to the listener. `angle` will be reduced as necessary
 /// (540 becomes 180 degrees, -100 becomes 260). Angle 0 is due north, and
 /// rotates clockwise as the value increases. For efficiency, the precision of
 /// this effect may be limited (angles 1 through 7 might all produce the same
@@ -1982,7 +2006,7 @@ int mixGroupNewer(int tag) {
 ///
 /// \param channel the channel on which to play the new chunk.
 /// \param chunk the new chunk to play.
-/// \param loop the number of times the chunk should loop, -1 to loop (not
+/// \param loops the number of times the chunk should loop, -1 to loop (not
 /// actually) infinitely.
 /// \returns which channel was used to play the sound, or -1 if sound could not
 /// be played.
@@ -2023,7 +2047,7 @@ int mixPlayChannel(int channel, Pointer<MixChunk> chunk, int loops) {
 ///
 /// \param channel the channel on which to play the new chunk.
 /// \param chunk the new chunk to play.
-/// \param loop the number of times the chunk should loop, -1 to loop (not
+/// \param loops the number of times the chunk should loop, -1 to loop (not
 /// actually) infinitely.
 /// \param ticks the maximum number of milliseconds of this chunk to mix for
 /// playback.
@@ -2094,7 +2118,7 @@ int mixPlayMusic(Pointer<MixMusic> music, int loops) {
 /// Mix_VolumeMusic() on fading music).
 ///
 /// \param music the new music object to play.
-/// \param loop the number of times the chunk should loop, -1 to loop (not
+/// \param loops the number of times the chunk should loop, -1 to loop (not
 /// actually) infinitely.
 /// \param ms the number of milliseconds to spend fading in.
 /// \returns zero on success, -1 on error.
@@ -2140,7 +2164,7 @@ int mixFadeInMusic(Pointer<MixMusic> music, int loops, int ms) {
 /// To convert from milliseconds, divide by 1000.0.
 ///
 /// \param music the new music object to play.
-/// \param loop the number of times the chunk should loop, -1 to loop (not
+/// \param loops the number of times the chunk should loop, -1 to loop (not
 /// actually) infinitely.
 /// \param ms the number of milliseconds to spend fading in.
 /// \param position the start position within the music, in seconds, where
@@ -2192,7 +2216,7 @@ int mixFadeInMusicPos(
 /// \param channel the channel on which to play the new chunk, or -1 to find
 /// any available.
 /// \param chunk the new chunk to play.
-/// \param loop the number of times the chunk should loop, -1 to loop (not
+/// \param loops the number of times the chunk should loop, -1 to loop (not
 /// actually) infinitely.
 /// \param ms the number of milliseconds to spend fading in.
 /// \returns which channel was used to play the sound, or -1 if sound could not
@@ -2245,7 +2269,7 @@ int mixFadeInChannel(int channel, Pointer<MixChunk> chunk, int loops, int ms) {
 /// \param channel the channel on which to play the new chunk, or -1 to find
 /// any available.
 /// \param chunk the new chunk to play.
-/// \param loop the number of times the chunk should loop, -1 to loop (not
+/// \param loops the number of times the chunk should loop, -1 to loop (not
 /// actually) infinitely.
 /// \param ms the number of milliseconds to spend fading in.
 /// \param ticks the maximum number of milliseconds of this chunk to mix for
@@ -2308,7 +2332,7 @@ int mixVolume(int channel, int volume) {
 /// Set the volume for a specific chunk.
 ///
 /// In addition to channels having a volume setting, individual chunks also
-/// maintain a seperate volume. Both values are considered when mixing, so both
+/// maintain a separate volume. Both values are considered when mixing, so both
 /// affect the final attenuation of the sound. This lets an app adjust the
 /// volume for all instances of a sound in addition to specific instances of
 /// that sound.
@@ -2323,8 +2347,7 @@ int mixVolume(int channel, int volume) {
 ///
 /// The default volume for a chunk is MIX_MAX_VOLUME (no attenuation).
 ///
-/// \param channel the channel on set/query the volume on, or -1 for all
-/// channels.
+/// \param chunk the chunk whose volume to adjust.
 /// \param volume the new volume, between 0 and MIX_MAX_VOLUME, or -1 to query.
 /// \returns the previous volume. If the specified volume is -1, this returns
 /// the current volume. If `chunk` is NULL, this returns -1.
@@ -2458,8 +2481,8 @@ int mixHaltChannel(int channel) {
 /// This will stop further playback on all channels with a specific tag, until
 /// a new chunk is started there.
 ///
-/// A tag is an arbitary number that can be assigned to several mixer channels,
-/// to form groups of channels.
+/// A tag is an arbitrary number that can be assigned to several mixer
+/// channels, to form groups of channels.
 ///
 /// The default tag for a channel is -1.
 ///
@@ -2559,7 +2582,7 @@ int mixExpireChannel(int channel, int ticks) {
 ///
 /// \param which the channel to fade out.
 /// \param ms number of milliseconds to fade before halting the channel.
-/// \returns 0 on success, or -1 on error.
+/// \returns the number of channels scheduled to fade.
 ///
 /// \since This function is available since SDL_mixer 2.0.0.
 ///
@@ -2581,8 +2604,8 @@ int mixFadeOutChannel(int which, int ms) {
 /// current volumes to silence over `ms` milliseconds. After that time, those
 /// channels are halted.
 ///
-/// A tag is an arbitary number that can be assigned to several mixer channels,
-/// to form groups of channels.
+/// A tag is an arbitrary number that can be assigned to several mixer
+/// channels, to form groups of channels.
 ///
 /// The default tag for a channel is -1.
 ///
@@ -2631,7 +2654,6 @@ int mixFadeOutGroup(int tag, int ms) {
 /// requested; it just schedules the music to fade and notes the time for the
 /// mixer to manage later, and returns immediately.
 ///
-/// \param which the channel to fade out.
 /// \param ms number of milliseconds to fade before halting the channel.
 /// \returns non-zero if music was scheduled to fade, zero otherwise. If no
 /// music is currently playing, this returns zero.
@@ -2877,6 +2899,48 @@ int mixModMusicJumpToOrder(int order) {
       Int32 Function(Int32 order),
       int Function(int order)>('Mix_ModMusicJumpToOrder');
   return mixModMusicJumpToOrderLookupFunction(order);
+}
+
+///
+/// Start a track in music object.
+///
+/// This only applies to GME music formats.
+///
+/// \param music the music object.
+/// \param track the track number to play. 0 is the first track.
+/// \returns 0 if successful, or -1 if failed or isn't implemented.
+///
+/// \since This function is available since SDL_mixer 2.8.0.
+///
+/// ```c
+/// extern DECLSPEC int SDLCALL Mix_StartTrack(Mix_Music *music, int track)
+/// ```
+int mixStartTrack(Pointer<MixMusic> music, int track) {
+  final mixStartTrackLookupFunction = libSdl2Mixer.lookupFunction<
+      Int32 Function(Pointer<MixMusic> music, Int32 track),
+      int Function(Pointer<MixMusic> music, int track)>('Mix_StartTrack');
+  return mixStartTrackLookupFunction(music, track);
+}
+
+///
+/// Get number of tracks in music object.
+///
+/// This only applies to GME music formats.
+///
+/// \param music the music object.
+/// \returns number of tracks if successful, or -1 if failed or isn't
+/// implemented.
+///
+/// \since This function is available since SDL_mixer 2.8.0.
+///
+/// ```c
+/// extern DECLSPEC int SDLCALL Mix_GetNumTracks(Mix_Music *music)
+/// ```
+int mixGetNumTracks(Pointer<MixMusic> music) {
+  final mixGetNumTracksLookupFunction = libSdl2Mixer.lookupFunction<
+      Int32 Function(Pointer<MixMusic> music),
+      int Function(Pointer<MixMusic> music)>('Mix_GetNumTracks');
+  return mixGetNumTracksLookupFunction(music);
 }
 
 ///

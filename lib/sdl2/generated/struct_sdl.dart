@@ -1001,16 +1001,6 @@ final class SdlQuitEvent extends Struct {
   external int timestamp;
 }
 
-// SDL_OSEvent
-final class SdlOsEvent extends Struct {
-  // [0]+(4)
-  @Uint32()
-  external int type;
-  // [4]+(4)
-  @Uint32()
-  external int timestamp;
-}
-
 // SDL_UserEvent
 final class SdlUserEvent extends Struct {
   // [0]+(4)
@@ -2162,6 +2152,9 @@ final class ID3D12Device extends Opaque {}
 
 // XTaskQueueHandle
 final class XTaskQueueHandle extends Opaque {}
+
+// XUserHandle
+final class XUserHandle extends Opaque {}
 
 // NSWindow
 final class NSWindow extends Opaque {}

@@ -384,7 +384,9 @@ bool sdlIsTextInputShown() {
 }
 
 ///
-/// Set the rectangle used to type Unicode text inputs.
+/// Set the rectangle used to type Unicode text inputs. Native input methods
+/// will place a window with word suggestions near it, without covering the
+/// text being inputted.
 ///
 /// To start text input in a given location, this function is intended to be
 /// called before SDL_StartTextInput, although some platforms support moving

@@ -1,3 +1,9 @@
+## 1.7.0
+- [update] Support SDL version 2.30.0 (stable).
+- [update] Support SDL2_image version 2.8.2.
+- [update] Support SDL2_mixer version 2.8.0.
+- [update] Support SDL2_ttf version 2.22.0.
+
 ## 1.6.0
 - [update] Support SDL version 2.28.5 (stable).
 - [changed] Changed SDL_bool to bool (in internal source).

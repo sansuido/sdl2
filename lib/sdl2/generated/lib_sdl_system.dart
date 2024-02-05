@@ -798,3 +798,26 @@ int sdlGdkGetTaskQueue(Pointer<XTaskQueueHandle> outTaskQueue) {
           Pointer<XTaskQueueHandle> outTaskQueue)>('SDL_GDKGetTaskQueue');
   return sdlGdkGetTaskQueueLookupFunction(outTaskQueue);
 }
+
+///
+/// Gets a reference to the default user handle for GDK.
+///
+/// This is effectively a synchronous version of XUserAddAsync, which always
+/// prefers the default user and allows a sign-in UI.
+///
+/// \param outUserHandle a pointer to be filled in with the default user
+/// handle.
+/// \returns 0 if success, -1 if any error occurs.
+///
+/// \since This function is available since SDL 2.28.0.
+///
+/// ```c
+/// extern DECLSPEC int SDLCALL SDL_GDKGetDefaultUser(XUserHandle * outUserHandle)
+/// ```
+int sdlGdkGetDefaultUser(Pointer<XUserHandle> outUserHandle) {
+  final sdlGdkGetDefaultUserLookupFunction = libSdl2.lookupFunction<
+      Int32 Function(Pointer<XUserHandle> outUserHandle),
+      int Function(
+          Pointer<XUserHandle> outUserHandle)>('SDL_GDKGetDefaultUser');
+  return sdlGdkGetDefaultUserLookupFunction(outUserHandle);
+}

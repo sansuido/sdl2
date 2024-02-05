@@ -1495,7 +1495,8 @@ int sdlSetWindowFullscreen(Pointer<SdlWindow> window, int flags) {
 ///
 /// Return whether the window has a surface associated with it.
 ///
-/// \returns SDL_TRUE if there is a surface associated with the window, or SDL_FALSE otherwise.
+/// \returns SDL_TRUE if there is a surface associated with the window, or
+/// SDL_FALSE otherwise.
 ///
 /// \since This function is available since SDL 2.28.0.
 ///
@@ -1581,6 +1582,11 @@ int sdlUpdateWindowSurface(Pointer<SdlWindow> window) {
 /// on the screen.
 ///
 /// This function is equivalent to the SDL 1.2 API SDL_UpdateRects().
+///
+/// Note that this function will update _at least_ the rectangles specified,
+/// but this is only intended as an optimization; in practice, this might
+/// update more of the screen (or all of the screen!), depending on what
+/// method SDL uses to send pixels to the system.
 ///
 /// \param window the window to update
 /// \param rects an array of SDL_Rect structures representing areas of the

@@ -376,18 +376,18 @@ void sdlLogMessage(
 /// \sa SDL_LogWarn
 ///
 /// ```c
-/// extern DECLSPEC void SDLCALL SDL_LogMessageV(int category, SDL_LogPriority priority, const char *fmt, va_list ap)
+/// extern DECLSPEC void SDLCALL SDL_LogMessageV(int category, SDL_LogPriority priority, SDL_PRINTF_FORMAT_STRING const char *fmt, va_list ap) SDL_PRINTF_VARARG_FUNCV(3)
 /// ```
 void sdlLogMessageV(
-    int category, int priority, String? fmt, Pointer<NativeType> ap) {
+    int category, int priority, String? fmt, Pointer<NativeType> arg3) {
   final sdlLogMessageVLookupFunction = libSdl2.lookupFunction<
       Void Function(Int32 category, Int32 priority, Pointer<Utf8> fmt,
-          Pointer<NativeType> ap),
+          Pointer<NativeType> arg3),
       void Function(int category, int priority, Pointer<Utf8> fmt,
-          Pointer<NativeType> ap)>('SDL_LogMessageV');
+          Pointer<NativeType> arg3)>('SDL_LogMessageV');
   final fmtPointer = fmt != null ? fmt.toNativeUtf8() : nullptr;
   final result =
-      sdlLogMessageVLookupFunction(category, priority, fmtPointer, ap);
+      sdlLogMessageVLookupFunction(category, priority, fmtPointer, arg3);
   calloc.free(fmtPointer);
   return result;
 }
