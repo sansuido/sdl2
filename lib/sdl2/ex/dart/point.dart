@@ -59,7 +59,7 @@ extension PointsEx on List<math.Point<double>> {
   Pointer<SdlPoint> calloc() {
     var pointsPointer = ffi.calloc<SdlPoint>(length);
     for (var n = 0; n < length; n++) {
-      var pointPointer = pointsPointer.elementAt(n);
+      var pointPointer = pointsPointer + n;
       pointPointer.ref.x = this[n].x.toInt();
       pointPointer.ref.y = this[n].y.toInt();
     }
@@ -69,7 +69,7 @@ extension PointsEx on List<math.Point<double>> {
   Pointer<Int16> callocInt16X() {
     var xsPointer = ffi.calloc<Int16>(length);
     for (var n = 0; n < length; n++) {
-      var xPointer = xsPointer.elementAt(n);
+      var xPointer = xsPointer + n;
       xPointer.value = this[n].x.toInt();
     }
     return xsPointer;
@@ -78,7 +78,7 @@ extension PointsEx on List<math.Point<double>> {
   Pointer<Int16> callocInt16Y() {
     var ysPointer = ffi.calloc<Int16>(length);
     for (var n = 0; n < length; n++) {
-      var yPointer = ysPointer.elementAt(n);
+      var yPointer = ysPointer + n;
       yPointer.value = this[n].y.toInt();
     }
     return ysPointer;

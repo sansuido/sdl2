@@ -127,8 +127,8 @@ Pointer<SdlSurface> rotateSurface90Degrees(
           bpr = src.ref.w * bpp;
           for (row = 0; row < src.ref.h; row++) {
             sdlMemcpy(dstBuf.value, srcBuf.value, bpr);
-            srcBuf.value = srcBuf.value.elementAt(src.ref.pitch);
-            dstBuf.value = dstBuf.value.elementAt(dst.ref.pitch);
+            srcBuf.value = srcBuf.value + src.ref.pitch;
+            dstBuf.value = dstBuf.value + dst.ref.pitch;
           }
         }
       }
@@ -139,13 +139,13 @@ Pointer<SdlSurface> rotateSurface90Degrees(
       {
         for (row = 0; row < src.ref.h; ++row) {
           srcBuf.value = src.ref.pixels.cast<Uint8>();
-          srcBuf.value = srcBuf.value.elementAt(row * src.ref.pitch);
+          srcBuf.value = srcBuf.value + row * src.ref.pitch;
           dstBuf.value = dst.ref.pixels.cast<Uint8>();
-          dstBuf.value = dstBuf.value.elementAt((dst.ref.w - row - 1) * bpp);
+          dstBuf.value = dstBuf.value + (dst.ref.w - row - 1) * bpp;
           for (col = 0; col < src.ref.w; ++col) {
             sdlMemcpy(dstBuf.value, srcBuf.value, bpp);
-            srcBuf.value = srcBuf.value.elementAt(bpp);
-            dstBuf.value = dstBuf.value.elementAt(dst.ref.pitch);
+            srcBuf.value = srcBuf.value + bpp;
+            dstBuf.value = dstBuf.value + dst.ref.pitch;
           }
         }
       }
@@ -155,14 +155,15 @@ Pointer<SdlSurface> rotateSurface90Degrees(
       {
         for (row = 0; row < src.ref.h; ++row) {
           srcBuf.value = src.ref.pixels.cast<Uint8>();
-          srcBuf.value = srcBuf.value.elementAt(row * src.ref.pitch);
+          srcBuf.value = srcBuf.value + row * src.ref.pitch;
           dstBuf.value = dst.ref.pixels.cast<Uint8>();
-          dstBuf.value = dstBuf.value.elementAt(
-              (dst.ref.h - row - 1) * dst.ref.pitch + (dst.ref.w - 1) * bpp);
+          dstBuf.value = dstBuf.value +
+              (dst.ref.h - row - 1) * dst.ref.pitch +
+              (dst.ref.w - 1) * bpp;
           for (col = 0; col < src.ref.w; ++col) {
             sdlMemcpy(dstBuf.value, srcBuf.value, bpp);
-            srcBuf.value = srcBuf.value.elementAt(bpp);
-            dstBuf.value = dstBuf.value.elementAt(-bpp);
+            srcBuf.value = srcBuf.value + bpp;
+            dstBuf.value = dstBuf.value + -bpp;
           }
         }
       }
@@ -172,14 +173,14 @@ Pointer<SdlSurface> rotateSurface90Degrees(
       {
         for (row = 0; row < src.ref.h; ++row) {
           srcBuf.value = src.ref.pixels.cast<Uint8>();
-          srcBuf.value = srcBuf.value.elementAt(row * src.ref.pitch);
+          srcBuf.value = srcBuf.value + row * src.ref.pitch;
           dstBuf.value = dst.ref.pixels.cast<Uint8>();
-          dstBuf.value = dstBuf.value
-              .elementAt((row * bpp) + ((dst.ref.h - 1) * dst.ref.pitch));
+          dstBuf.value =
+              dstBuf.value + (row * bpp) + ((dst.ref.h - 1) * dst.ref.pitch);
           for (col = 0; col < src.ref.w; ++col) {
             sdlMemcpy(dstBuf.value, srcBuf.value, bpp);
-            srcBuf.value = srcBuf.value.elementAt(bpp);
-            dstBuf.value = dstBuf.value.elementAt(-dst.ref.pitch);
+            srcBuf.value = srcBuf.value + bpp;
+            dstBuf.value = dstBuf.value - dst.ref.pitch;
           }
         }
       }

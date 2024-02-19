@@ -1,3 +1,7 @@
+## 1.7.1
+- [update] Removed deprecated `elementAt`. (Require Dart 3.3.0)
+- [update] Support ffi ^2.1.2.
+
 ## 1.7.0
 - [update] Support SDL version 2.30.0 (stable).
 - [update] Support SDL2_image version 2.8.2.

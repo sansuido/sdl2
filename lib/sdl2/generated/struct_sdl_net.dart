@@ -66,8 +66,7 @@ final class UDPpacket extends Struct {
 }
 
 extension UDPpacketExtension on Pointer<UDPpacket> {
-  Pointer<IPaddress> get address =>
-      cast<Uint8>().elementAt(32).cast<IPaddress>();
+  Pointer<IPaddress> get address => (cast<Uint8>() + 32).cast<IPaddress>();
 }
 
 // SDLNet_SocketSet

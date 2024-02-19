@@ -3,7 +3,7 @@ SDL2 for Dart
 
 # Requirement
 
-* ffi ^2.1.0
+* ffi ^2.1.2
 
 Windows requires dll files (SDL2.dll and more).
 

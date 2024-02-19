@@ -3200,7 +3200,7 @@ int characterRgba(Pointer<SdlRenderer> renderer, int x, int y, int c, int r,
     for (iy = 0; iy < charHeight; iy++) {
       patt = currentFontdata[charpos + iy];
       for (ix = 0; ix < charWidth; ix++) {
-        var pixel = pixels.elementAt(linepos);
+        var pixel = pixels + linepos;
         if (patt & 0x80 != 0) {
           pixel.value = 0xffffffff;
         } else {
